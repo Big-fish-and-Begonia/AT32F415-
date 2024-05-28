@@ -1,0 +1,783 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+  <FileVersion>1.00.00</FileVersion>
+  <entry term="MCUBaseInfo">
+  	<Member MCUName="AT32F415KCU7-4"/>
+  	<Member SRAM="0x8000"/>
+  	<Member PID="0x70030242"/>
+		<Member PinNums="32"/>
+		<Member xPinNum="8"/>
+		<Member yPinNum="8"/>
+		<Member Package="QFN"/>
+  	</entry>
+  <entry term="PeripheralsList">
+  	<Member InstanceName="ADC1"                             Name="ADC"                GroupName="ADC"             Version="v1_0_0_WK"     About ="Analog-to-digital converter" AboutCH = "模拟/数字转换1"/>
+	<Member InstanceName="CAN1"                             Name="CAN"                 GroupName="CAN"             Version="v1_0_0_WK"     About ="Controller Area Network 1" AboutCH = "CAN 总线控制器1"/>
+	<Member InstanceName="CMP1"                             Name="CMP1"                 GroupName="CMP"             Version="v1_0_0_WK"     About ="Comparator" AboutCH = "比较器"/>
+	<Member InstanceName="CMP2"                             Name="CMP2"                 GroupName="CMP"             Version="v1_0_0_WK"     About ="Comparator" AboutCH = "比较器"/>
+  	<Member InstanceName="CRC"                              Name="CRC"                 GroupName="CRC"             Version="v1_0_0_WK"     About ="CRC calculation unit" AboutCH = "CRC 计算单元"/>
+	<Member InstanceName="CRM"                              Name="CRM"                 GroupName="CRM"             Version="v1_0_0_WK"     About ="Clock and reset manage" AboutCH = "时钟和复位管理"/>
+	<Member InstanceName="DEBUG"                            Name="DEBUG"               GroupName="DEBUG"           Version="v1_0_0_WK"     About ="Debug interface" AboutCH = "调试接口"/>
+	<Member InstanceName="DMA"                              Name="DMA"                 GroupName="DMA"             Version="v1_0_0_WK"     About ="Direct memory access controller" AboutCH = "直接存储器访问控制器"/>
+	<Member InstanceName="ERTC"                             Name="ERTC"                GroupName="ERTC"            Version="v1_0_0_WK"     About ="Real-Time Clock" AboutCH = "实时时钟"/>	
+	<Member InstanceName="EXINT"                            Name="EXINT"               GroupName="EXINT"           Version="v1_0_0_WK"     About ="External interrupt/Event controller" AboutCH = "外部中断/事件控制器"/>
+	<Member InstanceName="GPIO"                             Name="GPIO"                GroupName="GPIO"            Version="v1_0_0_WK"     About ="General-purpose I/Os" AboutCH = "通用和复用功能I/O"/>	
+	<Member InstanceName="I2C1"                             Name="I2C"                 GroupName="I2C"             Version="v1_0_0_WK"     About ="Inter integrated circuit interface 1" AboutCH = "内部集成电路接口1"/>
+	<Member InstanceName="I2C2"                             Name="I2C"                 GroupName="I2C"             Version="v1_0_0_WK"     About ="Inter integrated circuit interface 2" AboutCH = "内部集成电路接口2"/>
+	<Member InstanceName="I2S1"                             Name="I2S"                 GroupName="I2S"             Version="v1_0_0_WK"     About ="Inter IC Sound 1" AboutCH = "集成电路内置音频总线1"/>
+	<Member InstanceName="I2S2"                             Name="I2S"                 GroupName="I2S"             Version="v1_0_0_WK"     About ="Inter IC Sound 2" AboutCH = "集成电路内置音频总线2"/>
+	<Member InstanceName="NVIC"                             Name="NVIC"                GroupName="NVIC"            Version="v1_0_0_WK"     About ="Nested vectored interrupt controller" AboutCH = "嵌套向量中断控制器"/>
+	<Member InstanceName="PWC"                              Name="PWC"                 GroupName="PWC"             Version="v1_0_0_WK"     About ="Power control" AboutCH = "电源控制"/>
+	<Member InstanceName="SDIO1"                            Name="SDIO"                GroupName="SDIO"            Version="v1_0_0_WK"     About ="SDIO interface" AboutCH = "SDIO接口1"/>
+	<Member InstanceName="SPI1"                             Name="SPI"                 GroupName="SPI"             Version="v1_0_0_WK"     About ="Serial peripheral interface 1" AboutCH = "串行外设接口1"/>
+	<Member InstanceName="SPI2"                             Name="SPI"                 GroupName="SPI"             Version="v1_0_0_WK"     About ="Serial peripheral interface 2" AboutCH = "串行外设接口2"/>
+	<Member InstanceName="TMR1"                             Name="TMR1"                GroupName="TMR"             Version="v1_0_0_WK"     About ="TIMER 1"   AboutCH = "定时器1"/>
+	<Member InstanceName="TMR2"                             Name="TMR2"                GroupName="TMR"             Version="v1_0_0_WK"     About ="TIMER 2"   AboutCH = "定时器2"/>
+	<Member InstanceName="TMR3"                             Name="TMR3"                GroupName="TMR"             Version="v1_0_0_WK"     About ="TIMER 3"   AboutCH = "定时器3"/>
+	<Member InstanceName="TMR4"                             Name="TMR4"                GroupName="TMR"             Version="v1_0_0_WK"     About ="TIMER 4"   AboutCH = "定时器4"/>
+	<Member InstanceName="TMR5"                             Name="TMR5"                GroupName="TMR"             Version="v1_0_0_WK"     About ="TIMER 5"   AboutCH = "定时器5"/>
+     <Member InstanceName="TMR9"                            Name="TMR9"                GroupName="TMR"             Version="v1_0_0_WK"     About ="TIMER 9"   AboutCH = "定时器9"/>		
+	<Member InstanceName="TMR10"                            Name="TMR10_11"            GroupName="TMR"             Version="v1_0_0_WK"     About ="TIMER 10"   AboutCH = "定时器10"/>
+	<Member InstanceName="TMR11"                            Name="TMR10_11"            GroupName="TMR"             Version="v1_0_0_WK"     About ="TIMER 11"   AboutCH = "定时器11"/>
+	<Member InstanceName="USART1"                           Name="USART"               GroupName="USART"           Version="v1_0_0_WK"     About ="Universal synchronous/asynchronous receiver/transmitter 1" AboutCH = "通用同步异步收发器1"/>
+	<Member InstanceName="USART2"                           Name="USART"               GroupName="USART"           Version="v1_0_0_WK"     About ="Universal synchronous/asynchronous receiver/transmitter 2" AboutCH = "通用同步异步收发器2"/>	
+	<Member InstanceName="USB_OTGFS1"                       Name="USB_OTGFS"           GroupName="USB_OTGFS"       Version="v1_0_0_WK"     About ="Universal Serial Bus On-The-Go Full-Speed" AboutCH = "USB OTG 全速"/>
+	<Member InstanceName="WDT"                              Name="WDT"                 GroupName="WDT"             Version="v1_0_0_WK"     About ="Watchdog timer" AboutCH = "看门狗"/>
+	<Member InstanceName="WWDT"                             Name="WWDT"                GroupName="WWDT"            Version="v1_0_0_WK"     About ="Window watchdog timer" AboutCH = "窗口看门狗"/>	
+  </entry>
+  <entry term="PinsList">
+	<Member PinNum="1" PinName="VDD" PinType="S" GPIOStructure="" PinFixed ="true">
+	</Member>
+	<Member PinNum="2" PinName="PD0/HEXT_IN" PinType="I/O" GPIOStructure="" PinFixed ="false">
+		<PinFunc Func="CRM_HEXT_IN"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT0" IOMode="Input"/>
+	</Member>
+	<Member PinNum="3" PinName="PD1/HEXT_OUT" PinType="I/O" GPIOStructure="" PinFixed ="false">
+		<PinFunc Func="CRM_HEXT_OUT"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT1" IOMode="Input"/>
+	</Member>
+	<Member PinNum="4" PinName="NRST" PinType="I/O" GPIOStructure="" PinFixed ="true">
+	</Member>
+	<Member PinNum="5" PinName="VDDA/VREF+" PinType="S" GPIOStructure="" PinFixed ="true">
+	</Member>
+	<Member PinNum="6" PinName="PA0/WKUP" PinType="I/O" GPIOStructure="" PinFixed ="false">
+		<PinFunc Func="ADC1_IN0"/>
+		<PinFunc Func="WKUP"/>
+		<PinFunc Func="CMP1_OUT"/>
+		<PinFunc Func="CMP1_INP2"/>
+		<PinFunc Func="CMP1_INM6"/>
+		<PinFunc Func="USART2_CTS"/>
+		<PinFunc Func="TMR2_CH1"/>
+		<PinFunc Func="TMR2_EXT"/>
+		<PinFunc Func="TMR5_CH1"/>
+		<PinFunc Func="TMR1_EXT"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT0" IOMode="Input"/>
+	</Member>
+	<Member PinNum="7" PinName="PA1" PinType="I/O" GPIOStructure="" PinFixed ="false">
+		<PinFunc Func="ADC1_IN1"/>
+		<PinFunc Func="CMP1_INP1"/>
+		<PinFunc Func="USART2_RTS"/>
+		<PinFunc Func="TMR2_CH2"/>
+		<PinFunc Func="TMR5_CH2"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT1" IOMode="Input"/>
+	</Member>
+	<Member PinNum="8" PinName="PA2" PinType="I/O" GPIOStructure="" PinFixed ="false">
+		<PinFunc Func="ADC1_IN2"/>
+		<PinFunc Func="CMP2_OUT"/>
+		<PinFunc Func="CMP2_INP2"/>
+		<PinFunc Func="CMP2_INM6"/>
+		<PinFunc Func="USART2_TX"/>
+		<PinFunc Func="TMR2_CH3"/>
+		<PinFunc Func="TMR5_CH3"/>
+		<PinFunc Func="TMR9_CH1"/>
+		<PinFunc Func="SDIO1_CK"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT2" IOMode="Input"/>
+	</Member>
+	<Member PinNum="9" PinName="PA3" PinType="I/O" GPIOStructure="" PinFixed ="false">
+		<PinFunc Func="ADC1_IN3"/>
+		<PinFunc Func="CMP2_INP1"/>
+		<PinFunc Func="USART2_RX"/>
+		<PinFunc Func="TMR2_CH4"/>
+		<PinFunc Func="TMR5_CH4"/>
+		<PinFunc Func="TMR9_CH2"/>
+		<PinFunc Func="SDIO1_CMD"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT3" IOMode="Input"/>
+	</Member>
+	<Member PinNum="10" PinName="PA4" PinType="I/O" GPIOStructure="" PinFixed ="false">
+		<PinFunc Func="ADC1_IN4"/>
+		<PinFunc Func="CMP1_INM4"/>
+		<PinFunc Func="CMP2_INM4"/>
+		<PinFunc Func="USART2_CK"/>
+		<PinFunc Func="SPI1_CS"/>
+		<PinFunc Func="I2S1_WS"/>
+		<PinFunc Func="SDIO1_D0"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT4" IOMode="Input"/>
+	</Member>
+	<Member PinNum="11" PinName="PA5" PinType="I/O" GPIOStructure="" PinFixed ="false">
+		<PinFunc Func="ADC1_IN5"/>
+		<PinFunc Func="CMP1_INP0"/>
+		<PinFunc Func="CMP1_INM5"/>
+		<PinFunc Func="CMP2_INM5"/>
+		<PinFunc Func="SPI1_SCK"/>
+		<PinFunc Func="I2S1_CK"/>
+		<PinFunc Func="SDIO1_D1"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT5" IOMode="Input"/>
+	</Member>
+	<Member PinNum="12" PinName="PA6" PinType="I/O" GPIOStructure="" PinFixed ="false">
+		<PinFunc Func="ADC1_IN6"/>
+		<PinFunc Func="SPI1_MISO"/>
+		<PinFunc Func="TMR3_CH1"/>
+		<PinFunc Func="CMP1_OUT"/>
+		<PinFunc Func="SDIO1_D2"/>
+		<PinFunc Func="TMR1_BRK"/>
+		<PinFunc Func="TMR10_CH1"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT6" IOMode="Input"/>
+	</Member>
+	<Member PinNum="13" PinName="PA7" PinType="I/O" GPIOStructure="" PinFixed ="false">
+		<PinFunc Func="ADC1_IN7"/>
+		<PinFunc Func="CMP2_INP0"/>
+		<PinFunc Func="SPI1_MOSI"/>
+		<PinFunc Func="I2S1_SD"/>
+		<PinFunc Func="TMR3_CH2"/>
+		<PinFunc Func="CMP2_OUT"/>
+		<PinFunc Func="SDIO1_D3"/>
+		<PinFunc Func="TMR1_CH1C"/>
+		<PinFunc Func="TMR11_CH1"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT7" IOMode="Input"/>
+	</Member>
+	<Member PinNum="14" PinName="PB0" PinType="I/O" GPIOStructure="" PinFixed ="false">
+		<PinFunc Func="ADC1_IN8"/>
+		<PinFunc Func="I2S1_MCK"/>
+		<PinFunc Func="TMR3_CH3"/>
+		<PinFunc Func="TMR1_CH2C"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT0" IOMode="Input"/>
+	</Member>
+	<Member PinNum="15" PinName="PB1" PinType="I/O" GPIOStructure="" PinFixed ="false">
+		<PinFunc Func="ADC1_IN9"/>
+		<PinFunc Func="TMR3_CH4"/>
+		<PinFunc Func="TMR1_CH3C"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT1" IOMode="Input"/>
+	</Member>
+	<Member PinNum="16" PinName="PB2/BOOT1" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT2" IOMode="Input"/>
+	</Member>
+	<Member PinNum="17" PinName="VDD" PinType="S" GPIOStructure="" PinFixed ="true">
+	</Member>
+	<Member PinNum="18" PinName="PA8" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="USB_OTGFS1_SOF"/>
+		<PinFunc Func="CRM_CLKOUT"/>
+		<PinFunc Func="USART1_CK"/>
+		<PinFunc Func="TMR1_CH1"/>
+		<PinFunc Func="I2C2_SCL"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT8" IOMode="Input"/>
+	</Member>
+	<Member PinNum="19" PinName="PA9" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="USB_OTGFS1_VBUS"/>
+		<PinFunc Func="USART1_TX"/>
+		<PinFunc Func="TMR1_CH2"/>
+		<PinFunc Func="I2C2_SMBA"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT9" IOMode="Input"/>
+	</Member>
+	<Member PinNum="20" PinName="PA10" PinType="I/O" GPIOStructure="" PinFixed ="false">
+		<PinFunc Func="USB_OTGFS1_ID"/>
+		<PinFunc Func="USART1_RX"/>
+		<PinFunc Func="TMR1_CH3"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT10" IOMode="Input"/>
+	</Member>
+	<Member PinNum="21" PinName="PA11" PinType="I/O" GPIOStructure="" PinFixed ="false">
+		<PinFunc Func="USB_OTGFS1_D-"/>
+		<PinFunc Func="USART1_CTS"/>
+		<PinFunc Func="CAN1_RX"/>
+		<PinFunc Func="TMR1_CH4"/>
+		<PinFunc Func="CMP1_OUT"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT11" IOMode="Input"/>
+	</Member>
+	<Member PinNum="22" PinName="PA12" PinType="I/O" GPIOStructure="" PinFixed ="false">
+		<PinFunc Func="USB_OTGFS1_D+"/>
+		<PinFunc Func="USART1_RTS"/>
+		<PinFunc Func="CAN1_TX"/>
+		<PinFunc Func="TMR1_EXT"/>
+		<PinFunc Func="CMP2_OUT"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT12" IOMode="Input"/>
+	</Member>
+	<Member PinNum="23" PinName="PA13" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="DEBUG_JTMS_SWDIO"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT13" IOMode="Input"/>
+	</Member>
+	<Member PinNum="24" PinName="PA14" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="DEBUG_JTCK_SWCLK"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT14" IOMode="Input"/>
+	</Member>
+	<Member PinNum="25" PinName="PA15" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="DEBUG_JTDI"/>
+		<PinFunc Func="SPI1_CS"/>
+		<PinFunc Func="I2S1_WS"/>
+		<PinFunc Func="SPI2_CS"/>
+		<PinFunc Func="I2S2_WS"/>
+		<PinFunc Func="TMR2_CH1"/>
+		<PinFunc Func="TMR2_EXT"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT15" IOMode="Input"/>
+	</Member>
+	<Member PinNum="26" PinName="PB3" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="DEBUG_JTDO"/>
+		<PinFunc Func="DEBUG_SWO"/>
+		<PinFunc Func="SPI1_SCK"/>
+		<PinFunc Func="I2S1_CK"/>
+		<PinFunc Func="SPI2_SCK"/>
+		<PinFunc Func="I2S2_CK"/>
+		<PinFunc Func="TMR2_CH2"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT3" IOMode="Input"/>
+	</Member>
+	<Member PinNum="27" PinName="PB4" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="DEBUG_NJTRST"/>
+		<PinFunc Func="SPI1_MISO"/>
+		<PinFunc Func="SPI2_MISO"/>
+		<PinFunc Func="I2C2_SDA"/>
+		<PinFunc Func="TMR3_CH1"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT4" IOMode="Input"/>
+	</Member>
+	<Member PinNum="28" PinName="PB5" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="I2C1_SMBA"/>
+		<PinFunc Func="SPI1_MOSI"/>
+		<PinFunc Func="I2S1_SD"/>
+		<PinFunc Func="SPI2_MOSI"/>
+		<PinFunc Func="I2S2_SD"/>
+		<PinFunc Func="TMR3_CH2"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT5" IOMode="Input"/>
+	</Member>
+	<Member PinNum="29" PinName="PB6" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="I2C1_SCL"/>
+		<PinFunc Func="TMR4_CH1"/>
+		<PinFunc Func="USART1_TX"/>
+		<PinFunc Func="I2S1_MCK"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT6" IOMode="Input"/>
+	</Member>
+	<Member PinNum="30" PinName="PB7" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="I2C1_SDA"/>
+		<PinFunc Func="TMR4_CH2"/>
+		<PinFunc Func="USART1_RX"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT7" IOMode="Input"/>
+	</Member>
+	<Member PinNum="31" PinName="BOOT0" PinType="I" GPIOStructure="" PinFixed ="true">
+	</Member>
+	<Member PinNum="32" PinName="PB8" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="TMR4_CH3"/>
+		<PinFunc Func="TMR10_CH1"/>
+		<PinFunc Func="I2C1_SCL"/>
+		<PinFunc Func="CAN1_RX"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT8" IOMode="Input"/>
+	</Member>
+  </entry>
+  <entry term="PinsSignalsGroup">
+  	<Member IPName="CAN1" GroupNum="1">
+		<Signal SignalName="CAN1_RX" PinName="PA11"/>
+         <Signal SignalName="CAN1_TX" PinName="PA12"/>
+	</Member>
+	<Member IPName="CAN1" GroupNum="2" GMUX="CAN1_GMUX_0010">
+		<Signal SignalName="CAN1_RX" PinName="PB8"/>
+         <Signal SignalName="CAN1_TX" PinName="PB9"/>
+	</Member>
+	
+	<Member IPName="TMR1" GroupNum="1">
+		<Signal SignalName="TMR1_EXT" PinName="PA12"/>
+		<Signal SignalName="TMR1_CH1" PinName="PA8"/>
+		<Signal SignalName="TMR1_CH2" PinName="PA9"/>
+		<Signal SignalName="TMR1_CH3" PinName="PA10"/>
+		<Signal SignalName="TMR1_CH4" PinName="PA11"/>
+		<Signal SignalName="TMR1_BRK" PinName="PB12"/>
+         <Signal SignalName="TMR1_CH1C" PinName="PB13"/>
+         <Signal SignalName="TMR1_CH2C" PinName="PB14"/>
+         <Signal SignalName="TMR1_CH3C" PinName="PB15"/>        
+	</Member>	
+	<Member IPName="TMR1" GroupNum="2" GMUX="TMR1_GMUX_0001">
+		<Signal SignalName="TMR1_EXT" PinName="PA12"/>
+		<Signal SignalName="TMR1_CH1" PinName="PA8"/>
+		<Signal SignalName="TMR1_CH2" PinName="PA9"/>
+		<Signal SignalName="TMR1_CH3" PinName="PA10"/>
+		<Signal SignalName="TMR1_CH4" PinName="PA11"/>
+		<Signal SignalName="TMR1_BRK" PinName="PA6"/>
+         <Signal SignalName="TMR1_CH1C" PinName="PA7"/>
+         <Signal SignalName="TMR1_CH2C" PinName="PB0"/>
+         <Signal SignalName="TMR1_CH3C" PinName="PB1"/>        
+	</Member>	
+	<Member IPName="TMR1" GroupNum="3" GMUX="TMR1_GMUX_0010">
+		<Signal SignalName="TMR1_EXT" PinName="PA0"/>
+		<Signal SignalName="TMR1_CH1" PinName="PC6"/>
+		<Signal SignalName="TMR1_CH2" PinName="PC7"/>
+		<Signal SignalName="TMR1_CH3" PinName="PC8"/>
+		<Signal SignalName="TMR1_CH4" PinName="PC9"/>
+		<Signal SignalName="TMR1_BRK" PinName="PA6"/>
+         <Signal SignalName="TMR1_CH1C" PinName="PA7"/>
+         <Signal SignalName="TMR1_CH2C" PinName="PB0"/>
+         <Signal SignalName="TMR1_CH3C" PinName="PB1"/>        
+	</Member>
+	
+	<Member IPName="TMR2" GroupNum="1">
+		<Signal SignalName="TMR2_EXT" PinName="PA0"/>
+		<Signal SignalName="TMR2_CH1" PinName="PA0"/>
+		<Signal SignalName="TMR2_CH2" PinName="PA1"/>
+		<Signal SignalName="TMR2_CH3" PinName="PA2"/>
+		<Signal SignalName="TMR2_CH4" PinName="PA3"/>     
+	</Member>
+	<Member IPName="TMR2" GroupNum="2" GMUX="TMR2_GMUX_001">
+		<Signal SignalName="TMR2_EXT" PinName="PA15"/>
+		<Signal SignalName="TMR2_CH1" PinName="PA15"/>
+		<Signal SignalName="TMR2_CH2" PinName="PB3"/>
+		<Signal SignalName="TMR2_CH3" PinName="PA2"/>
+		<Signal SignalName="TMR2_CH4" PinName="PA3"/>     
+	</Member>
+	<Member IPName="TMR2" GroupNum="3" GMUX="TMR2_GMUX_010">
+		<Signal SignalName="TMR2_EXT" PinName="PA0"/>
+		<Signal SignalName="TMR2_CH1" PinName="PA0"/>
+		<Signal SignalName="TMR2_CH2" PinName="PA1"/>
+		<Signal SignalName="TMR2_CH3" PinName="PB10"/>
+		<Signal SignalName="TMR2_CH4" PinName="PB11"/>     
+	</Member>
+	<Member IPName="TMR2" GroupNum="4" GMUX="TMR2_GMUX_011">
+		<Signal SignalName="TMR2_EXT" PinName="PA15"/>
+		<Signal SignalName="TMR2_CH1" PinName="PA15"/>
+		<Signal SignalName="TMR2_CH2" PinName="PB3"/>
+		<Signal SignalName="TMR2_CH3" PinName="PB10"/>
+		<Signal SignalName="TMR2_CH4" PinName="PB11"/>     
+	</Member>
+	
+	<Member IPName="TMR3" GroupNum="1">
+		<Signal SignalName="TMR3_EXT" PinName="PD2"/>
+		<Signal SignalName="TMR3_CH1" PinName="PA6"/>
+		<Signal SignalName="TMR3_CH2" PinName="PA7"/>
+		<Signal SignalName="TMR3_CH3" PinName="PB0"/>
+		<Signal SignalName="TMR3_CH4" PinName="PB1"/>     
+	</Member>
+	<Member IPName="TMR3" GroupNum="2" GMUX="TMR3_GMUX_0010">
+		<Signal SignalName="TMR3_EXT" PinName="PD2"/>
+		<Signal SignalName="TMR3_CH1" PinName="PB4"/>
+		<Signal SignalName="TMR3_CH2" PinName="PB5"/>
+		<Signal SignalName="TMR3_CH3" PinName="PB0"/>
+		<Signal SignalName="TMR3_CH4" PinName="PB1"/>     
+	</Member>
+	<Member IPName="TMR3" GroupNum="3" GMUX="TMR3_GMUX_0011">
+		<Signal SignalName="TMR3_EXT" PinName="PD2"/>
+		<Signal SignalName="TMR3_CH1" PinName="PC6"/>
+		<Signal SignalName="TMR3_CH2" PinName="PC7"/>
+		<Signal SignalName="TMR3_CH3" PinName="PC8"/>
+		<Signal SignalName="TMR3_CH4" PinName="PC9"/>     
+	</Member>
+	
+	<Member IPName="TMR4" GroupNum="1">
+		<Signal SignalName="TMR4_CH1" PinName="PB6"/>
+		<Signal SignalName="TMR4_CH2" PinName="PB7"/>
+		<Signal SignalName="TMR4_CH3" PinName="PB8"/>
+		<Signal SignalName="TMR4_CH4" PinName="PB9"/>     
+	</Member>
+	
+	<Member IPName="TMR5" GroupNum="1">
+		<Signal SignalName="TMR5_CH1" PinName="PA0"/>
+		<Signal SignalName="TMR5_CH2" PinName="PA1"/>
+		<Signal SignalName="TMR5_CH3" PinName="PA2"/>
+		<Signal SignalName="TMR5_CH4" PinName="PA3"/>     
+	</Member>
+	
+	<Member IPName="TMR5" GroupNum="2" GMUX="TMR5_GMUX_001">
+		<Signal SignalName="TMR5_CH1" PinName="PF4"/>
+		<Signal SignalName="TMR5_CH2" PinName="PF5"/>
+		<Signal SignalName="TMR5_CH3" PinName="PA2"/>
+		<Signal SignalName="TMR5_CH4" PinName="PA3"/>     
+	</Member>
+	
+	<Member IPName="TMR9" GroupNum="1">
+		<Signal SignalName="TMR9_CH1" PinName="PA2"/>
+		<Signal SignalName="TMR9_CH2" PinName="PA3"/>   
+	</Member>	
+	<Member IPName="TMR9" GroupNum="2" GMUX="TMR9_GMUX">
+		<Signal SignalName="TMR9_CH1" PinName="PB14"/>
+		<Signal SignalName="TMR9_CH2" PinName="PB15"/>   
+	</Member>
+	
+	<Member IPName="TMR10" GroupNum="1">
+		<Signal SignalName="TMR10_CH1" PinName="PB8"/>
+	</Member>
+	
+	<Member IPName="TMR10" GroupNum="1" GMUX="TMR10_GMUX">
+		<Signal SignalName="TMR10_CH1" PinName="PA6"/>
+	</Member>
+	
+	<Member IPName="TMR11" GroupNum="1">
+		<Signal SignalName="TMR11_CH1" PinName="PB9"/>
+	</Member>
+	
+	<Member IPName="TMR11" GroupNum="1" GMUX="TMR11_GMUX">
+		<Signal SignalName="TMR11_CH1" PinName="PA7"/>
+	</Member>
+	
+ 	<Member IPName="USART1" GroupNum="1">
+		<Signal SignalName="USART1_TX" PinName="PA9" TMRIPCanUse="NO"/>
+         <Signal SignalName="USART1_RX" PinName="PA10"/>
+         <Signal SignalName="USART1_CK" PinName="PA8"/>
+		<Signal SignalName="USART1_CTS" PinName="PA11"/>
+         <Signal SignalName="USART1_RTS" PinName="PA12"/>
+	</Member>
+	<Member IPName="USART1" GroupNum="2" GMUX="USART1_GMUX_0001">
+		<Signal SignalName="USART1_TX" PinName="PB6" TMRIPCanUse="NO"/>
+         <Signal SignalName="USART1_RX" PinName="PB7"/>
+         <Signal SignalName="USART1_CK" PinName="PA8"/>
+		<Signal SignalName="USART1_CTS" PinName="PA11"/>
+         <Signal SignalName="USART1_RTS" PinName="PA12"/>
+	</Member>
+	
+	<Member  IPName="USART2" GroupNum="1">
+		<Signal SignalName="USART2_TX" PinName="PA2" TMRIPCanUse="NO"/>
+         <Signal SignalName="USART2_RX" PinName="PA3"/>
+         <Signal SignalName="USART2_CK" PinName="PA4"/>
+		<Signal SignalName="USART2_CTS" PinName="PA0"/>
+         <Signal SignalName="USART2_RTS" PinName="PA1"/>
+	</Member>
+	
+	<Member  IPName="USART3" GroupNum="1">
+		<Signal SignalName="USART3_TX" PinName="PB10" TMRIPCanUse="NO"/>
+         <Signal SignalName="USART3_RX" PinName="PB11"/>
+         <Signal SignalName="USART3_CK" PinName="PB12"/>
+         <Signal SignalName="USART3_CTS" PinName="PB13"/>
+         <Signal SignalName="USART3_RTS" PinName="PB14"/>		
+	</Member>
+	<Member  IPName="USART3" GroupNum="2" GMUX="USART3_GMUX_0001">
+		<Signal SignalName="USART3_TX" PinName="PC10" TMRIPCanUse="NO"/>
+         <Signal SignalName="USART3_RX" PinName="PC11"/>
+         <Signal SignalName="USART3_CK" PinName="PC12"/>
+         <Signal SignalName="USART3_CTS" PinName="PB13"/>
+         <Signal SignalName="USART3_RTS" PinName="PB14"/>		
+	</Member>
+	<Member  IPName="USART3" GroupNum="3" GMUX="USART3_GMUX_0010">
+		<Signal SignalName="USART3_TX" PinName="PA7" TMRIPCanUse="NO"/>
+         <Signal SignalName="USART3_RX" PinName="PA6"/>
+         <Signal SignalName="USART3_CK" PinName="PA5"/>
+         <Signal SignalName="USART3_CTS" PinName="PB1"/>
+         <Signal SignalName="USART3_RTS" PinName="PB0"/>		
+	</Member>
+	
+	<Member IPName="UART4" GroupNum="1">
+		<Signal SignalName="UART4_TX" PinName="PC10" TMRIPCanUse="NO"/>
+         <Signal SignalName="UART4_RX" PinName="PC11"/>
+	</Member>
+	<Member IPName="UART4" GroupNum="2" GMUX="UART4_GMUX_0001">
+		<Signal SignalName="UART4_TX" PinName="PF4" TMRIPCanUse="NO"/>
+         <Signal SignalName="UART4_RX" PinName="PF5"/>
+	</Member>
+	
+	<Member IPName="UART5" GroupNum="1">
+		<Signal SignalName="UART5_TX" PinName="PC12" TMRIPCanUse="NO"/>
+         <Signal SignalName="UART5_RX" PinName="PD2"/>
+	</Member>
+	
+	<Member IPName="I2C1" GroupNum="1">
+		<Signal SignalName="I2C1_SCL" PinName="PB6"/>
+         <Signal SignalName="I2C1_SDA" PinName="PB7"/>
+         <Signal SignalName="I2C1_SMBA" PinName="PB5"/>
+	</Member>
+	<Member IPName="I2C1" GroupNum="2" GMUX="I2C1_GMUX_0001">
+		<Signal SignalName="I2C1_SCL" PinName="PB8"/>
+         <Signal SignalName="I2C1_SDA" PinName="PB9"/>
+         <Signal SignalName="I2C1_SMBA" PinName="PB5"/>
+	</Member>
+	<Member IPName="I2C1" GroupNum="3" GMUX="I2C1_GMUX_0010">
+		<Signal SignalName="I2C1_SCL" PinName="PF6"/>
+         <Signal SignalName="I2C1_SDA" PinName="PF7"/>
+         <Signal SignalName="I2C1_SMBA" PinName="PB5"/>
+	</Member>
+	
+	<Member IPName="I2C2" GroupNum="1">
+		<Signal SignalName="I2C2_SCL" PinName="PB10"/>
+         <Signal SignalName="I2C2_SDA" PinName="PB11"/>
+         <Signal SignalName="I2C2_SMBA" PinName="PB12"/>
+	</Member>
+	<Member IPName="I2C2" GroupNum="3" GMUX="I2C2_GMUX_0001">
+		<Signal SignalName="I2C2_SCL" PinName="PA8"/>
+         <Signal SignalName="I2C2_SDA" PinName="PC9"/>
+         <Signal SignalName="I2C2_SMBA" PinName="PA9"/>
+	</Member>
+	<Member IPName="I2C2" GroupNum="4" GMUX="I2C2_GMUX_0010">
+		<Signal SignalName="I2C2_SCL" PinName="PA8"/>
+         <Signal SignalName="I2C2_SDA" PinName="PB4"/>
+         <Signal SignalName="I2C2_SMBA" PinName="PA9"/>
+	</Member>
+	<Member IPName="I2C2" GroupNum="2" GMUX="I2C2_GMUX_0011">
+		<Signal SignalName="I2C2_SCL" PinName="PF6"/>
+         <Signal SignalName="I2C2_SDA" PinName="PF7"/>
+         <Signal SignalName="I2C2_SMBA" PinName="PA9"/>
+	</Member>
+	
+	<Member IPName="SPI1" GroupNum="1">
+		<Signal SignalName="SPI1_CS" PinName="PA4" TMRIPCanUse="NO"/>
+         <Signal SignalName="SPI1_SCK" PinName="PA5"/>
+         <Signal SignalName="SPI1_MISO" PinName="PA6" TMRIPCanUse="NO"/>
+         <Signal SignalName="SPI1_MOSI" PinName="PA7" TMRIPCanUse="NO"/>
+	</Member>
+	<Member IPName="SPI1" GroupNum="2" GMUX="SPI1_GMUX_0001">
+		<Signal SignalName="SPI1_CS" PinName="PA15" TMRIPCanUse="NO"/>
+         <Signal SignalName="SPI1_SCK" PinName="PB3"/>
+         <Signal SignalName="SPI1_MISO" PinName="PB4" TMRIPCanUse="NO"/>
+         <Signal SignalName="SPI1_MOSI" PinName="PB5" TMRIPCanUse="NO"/>
+	</Member>
+	
+	<Member IPName="SPI2" GroupNum="1">
+		<Signal SignalName="SPI2_CS" PinName="PB12" TMRIPCanUse="NO"/>
+         <Signal SignalName="SPI2_SCK" PinName="PB13"/>
+         <Signal SignalName="SPI2_MISO" PinName="PB14" TMRIPCanUse="NO"/>
+         <Signal SignalName="SPI2_MOSI" PinName="PB15" TMRIPCanUse="NO"/>
+	</Member>	
+	<Member IPName="SPI2" GroupNum="1" GMUX="SPI2_GMUX_0001">
+		<Signal SignalName="SPI2_CS" PinName="PA15" TMRIPCanUse="NO"/>
+         <Signal SignalName="SPI2_SCK" PinName="PB3"/>
+         <Signal SignalName="SPI2_MISO" PinName="PB4" TMRIPCanUse="NO"/>
+         <Signal SignalName="SPI2_MOSI" PinName="PB5" TMRIPCanUse="NO"/>
+	</Member>
+	
+	<Member IPName="I2S1" GroupNum="1">
+		<Signal SignalName="I2S1_WS" PinName="PA4"/>
+         <Signal SignalName="I2S1_CK" PinName="PA5"/>
+         <Signal SignalName="I2S1_SD" PinName="PA7"/>
+         <Signal SignalName="I2S1_MCK" PinName="PB0"/>
+	</Member>
+	<Member IPName="I2S1" GroupNum="2" GMUX="SPI1_GMUX_0001">
+		<Signal SignalName="I2S1_WS" PinName="PA15"/>
+         <Signal SignalName="I2S1_CK" PinName="PB3"/>
+         <Signal SignalName="I2S1_SD" PinName="PB5"/>
+         <Signal SignalName="I2S1_MCK" PinName="PB6"/>
+	</Member>
+	
+	<Member IPName="I2S2" GroupNum="1">
+		<Signal SignalName="I2S2_WS" PinName="PB12"/>
+         <Signal SignalName="I2S2_CK" PinName="PB13"/>
+         <Signal SignalName="I2S2_SD" PinName="PB15"/>
+         <Signal SignalName="I2S2_MCK" PinName="PC6"/>
+	</Member>
+	<Member IPName="I2S2" GroupNum="2" GMUX="SPI2_GMUX_0001">
+		<Signal SignalName="I2S2_WS" PinName="PA15"/>
+         <Signal SignalName="I2S2_CK" PinName="PB3"/>
+         <Signal SignalName="I2S2_SD" PinName="PB5"/>
+         <Signal SignalName="I2S2_MCK" PinName="PC7"/>
+	</Member>
+
+	<Member IPName="SDIO1" GroupNum="1">
+		<Signal SignalName="SDIO1_D0" PinName="PC8"/>
+         <Signal SignalName="SDIO1_D1" PinName="PC9" TMRIPCanUse="NO"/>
+         <Signal SignalName="SDIO1_D2" PinName="PC10" TMRIPCanUse="NO"/>
+         <Signal SignalName="SDIO1_D3" PinName="PC11"/>
+         <Signal SignalName="SDIO1_D4" PinName="PB8"/>
+         <Signal SignalName="SDIO1_D5" PinName="PB9"/>
+         <Signal SignalName="SDIO1_D6" PinName="PC6"/>
+         <Signal SignalName="SDIO1_D7" PinName="PC7"/>
+         <Signal SignalName="SDIO1_CK" PinName="PC12"/>
+         <Signal SignalName="SDIO1_CMD" PinName="PD2"/>
+	</Member>
+	<Member IPName="SDIO1" GroupNum="2" GMUX="SDIO1_GMUX_0100">
+		<Signal SignalName="SDIO1_D0" PinName="PC0"/>
+         <Signal SignalName="SDIO1_D1" PinName="PC1" TMRIPCanUse="NO"/>
+         <Signal SignalName="SDIO1_D2" PinName="PC2" TMRIPCanUse="NO"/>
+         <Signal SignalName="SDIO1_D3" PinName="PC3"/>
+         <Signal SignalName="SDIO1_D4" PinName="PA4"/>
+         <Signal SignalName="SDIO1_D5" PinName="PA5"/>
+         <Signal SignalName="SDIO1_D6" PinName="PA6"/>
+         <Signal SignalName="SDIO1_D7" PinName="PA7"/>
+         <Signal SignalName="SDIO1_CK" PinName="PC4"/>
+         <Signal SignalName="SDIO1_CMD" PinName="PC5"/>
+	</Member>
+	<Member IPName="SDIO1" GroupNum="3" GMUX="SDIO1_GMUX_0101">
+		<Signal SignalName="SDIO1_D0" PinName="PA4"/>
+         <Signal SignalName="SDIO1_D1" PinName="PA5" TMRIPCanUse="NO"/>
+         <Signal SignalName="SDIO1_D2" PinName="PA6" TMRIPCanUse="NO"/>
+         <Signal SignalName="SDIO1_D3" PinName="PA7"/>
+         <Signal SignalName="SDIO1_CK" PinName="PC4"/>
+         <Signal SignalName="SDIO1_CMD" PinName="PC5"/>
+	</Member>
+	<Member IPName="SDIO1" GroupNum="4" GMUX="SDIO1_GMUX_0110">
+		<Signal SignalName="SDIO1_D0" PinName="PC0"/>
+         <Signal SignalName="SDIO1_D1" PinName="PC1" TMRIPCanUse="NO"/>
+         <Signal SignalName="SDIO1_D2" PinName="PC2" TMRIPCanUse="NO"/>
+         <Signal SignalName="SDIO1_D3" PinName="PC3"/>
+         <Signal SignalName="SDIO1_D4" PinName="PA4"/>
+         <Signal SignalName="SDIO1_D5" PinName="PA5"/>
+         <Signal SignalName="SDIO1_D6" PinName="PA6"/>
+         <Signal SignalName="SDIO1_D7" PinName="PA7"/>
+         <Signal SignalName="SDIO1_CK" PinName="PA2"/>
+         <Signal SignalName="SDIO1_CMD" PinName="PA3"/>
+	</Member>
+	<Member IPName="SDIO1" GroupNum="5" GMUX="SDIO1_GMUX_0111">
+		<Signal SignalName="SDIO1_D0" PinName="PA4"/>
+         <Signal SignalName="SDIO1_D1" PinName="PA5" TMRIPCanUse="NO"/>
+         <Signal SignalName="SDIO1_D2" PinName="PA6" TMRIPCanUse="NO"/>
+         <Signal SignalName="SDIO1_D3" PinName="PA7"/>
+         <Signal SignalName="SDIO1_CK" PinName="PA2"/>
+         <Signal SignalName="SDIO1_CMD" PinName="PA3"/>
+	</Member>
+
+	<Member IPName="CMP1" GroupNum="1">
+		<Signal SignalName="CMP1_OUT" PinName="PA0"/>
+		<Signal SignalName="CMP2_OUT" PinName="PA2"/>
+         <Signal SignalName="CMP1_INP0" PinName="PA5"/>
+         <Signal SignalName="CMP1_INP1" PinName="PA1"/>
+         <Signal SignalName="CMP1_INP2" PinName="PA0"/>
+         <Signal SignalName="CMP1_INM4" PinName="PA4"/>
+         <Signal SignalName="CMP1_INM5" PinName="PA5"/>
+         <Signal SignalName="CMP1_INM6" PinName="PA0"/>
+	</Member>
+	<Member IPName="CMP1" GroupNum="2" GMUX="CMP_MUX_01">
+		<Signal SignalName="CMP1_OUT" PinName="PA6"/>
+		<Signal SignalName="CMP2_OUT" PinName="PA7"/>
+         <Signal SignalName="CMP1_INP0" PinName="PA5"/>
+         <Signal SignalName="CMP1_INP1" PinName="PA1"/>
+         <Signal SignalName="CMP1_INP2" PinName="PA0"/>
+         <Signal SignalName="CMP1_INM4" PinName="PA4"/>
+         <Signal SignalName="CMP1_INM5" PinName="PA5"/>
+         <Signal SignalName="CMP1_INM6" PinName="PA0"/>
+	</Member>
+	<Member IPName="CMP1" GroupNum="3" GMUX="CMP_MUX_10">
+		<Signal SignalName="CMP1_OUT" PinName="PA11"/>
+		<Signal SignalName="CMP2_OUT" PinName="PA12"/>
+         <Signal SignalName="CMP1_INP0" PinName="PA5"/>
+         <Signal SignalName="CMP1_INP1" PinName="PA1"/>
+         <Signal SignalName="CMP1_INP2" PinName="PA0"/>
+         <Signal SignalName="CMP1_INM4" PinName="PA4"/>
+         <Signal SignalName="CMP1_INM5" PinName="PA5"/>
+         <Signal SignalName="CMP1_INM6" PinName="PA0"/>
+	</Member>
+	
+	<Member IPName="CMP2" GroupNum="1">
+		<Signal SignalName="CMP1_OUT" PinName="PA0"/>
+		<Signal SignalName="CMP2_OUT" PinName="PA2"/>
+         <Signal SignalName="CMP2_INP0" PinName="PA7"/>
+         <Signal SignalName="CMP2_INP1" PinName="PA3"/>
+         <Signal SignalName="CMP2_INP2" PinName="PA2"/>
+         <Signal SignalName="CMP2_INM4" PinName="PA4"/>
+         <Signal SignalName="CMP2_INM5" PinName="PA5"/>
+         <Signal SignalName="CMP2_INM6" PinName="PA2"/>
+	</Member>
+	<Member IPName="CMP2" GroupNum="2" GMUX="CMP_MUX_01">
+		<Signal SignalName="CMP1_OUT" PinName="PA6"/>
+		<Signal SignalName="CMP2_OUT" PinName="PA7"/>
+         <Signal SignalName="CMP2_INP0" PinName="PA7"/>
+         <Signal SignalName="CMP2_INP1" PinName="PA3"/>
+         <Signal SignalName="CMP2_INP2" PinName="PA2"/>
+         <Signal SignalName="CMP2_INM4" PinName="PA4"/>
+         <Signal SignalName="CMP2_INM5" PinName="PA5"/>
+         <Signal SignalName="CMP2_INM6" PinName="PA2"/>
+	</Member>
+	<Member IPName="CMP2" GroupNum="3" GMUX="CMP_MUX_10">
+		<Signal SignalName="CMP1_OUT" PinName="PA11"/>
+		<Signal SignalName="CMP2_OUT" PinName="PA12"/>
+         <Signal SignalName="CMP2_INP0" PinName="PA7"/>
+         <Signal SignalName="CMP2_INP1" PinName="PA3"/>
+         <Signal SignalName="CMP2_INP2" PinName="PA2"/>
+         <Signal SignalName="CMP2_INM4" PinName="PA4"/>
+         <Signal SignalName="CMP2_INM5" PinName="PA5"/>
+         <Signal SignalName="CMP2_INM6" PinName="PA2"/>
+	</Member>
+  </entry>   
+</Configuration>

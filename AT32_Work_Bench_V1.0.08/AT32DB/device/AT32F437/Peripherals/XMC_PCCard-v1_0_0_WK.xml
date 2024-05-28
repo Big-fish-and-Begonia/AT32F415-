@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<IP>
+	<About>External memory controller</About>
+	<AboutCH>外部存储控制器</AboutCH>
+	
+    <RefParameter Comment="Instance" DefaultValue="XMC$Index" Name="Instance" Type="" Visible="false"/>
+	
+    <RefParameter Name="Bank" Comment="Bank" CommentCH="存储区块" DefaultValue="XMC_BANK4_PCCARD" Group="NAND control" GroupCH="NAND控制" Type="list">
+        <PossibleValue Comment="Bank4 PCCard" CommentCH="存储区块4 PCCard" Value="XMC_BANK4_PCCARD"/>
+    </RefParameter>  
+    
+   
+    <RefParameter Name="Data_size" Comment="Data size" CommentCH="数据宽度" DefaultValue="XMC_BUSTYPE_8_BITS" Group="NAND control" GroupCH="NAND控制" Type="list" Visible="false" Reload = "false">
+    	   <Condition Diagnostic="" Expression="$IpInstance_8_Bits_DA"/>
+        <PossibleValue Comment="8 bits" CommentCH="8位宽" Value="XMC_BUSTYPE_8_BITS"/>
+    </RefParameter> 
+    <RefParameter Name="Data_size" Comment="Data size" CommentCH="数据宽度" DefaultValue="XMC_BUSTYPE_16_BITS" Group="NAND control" GroupCH="NAND控制" Type="list" Visible="false" Reload = "false">
+    	   <Condition Diagnostic="" Expression="$IpInstance_16_Bits_DA"/>
+        <PossibleValue Comment="16 bits" CommentCH="16位宽" Value="XMC_BUSTYPE_16_BITS"/>
+    </RefParameter> 
+    
+    <RefParameter Name="Ready_or_Busy" Comment="Ready or Busy" CommentCH="就绪/忙" DefaultValue="XMC_WAIT_OPERATION_DISABLE" Group="NAND control" GroupCH="NAND控制" Type="list" Visible="false" Reload = "false">
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="XMC_WAIT_OPERATION_DISABLE"/>
+    </RefParameter> 
+    <RefParameter Name="Ready_or_Busy" Comment="Ready or Busy" CommentCH="就绪/忙" DefaultValue="XMC_WAIT_OPERATION_ENABLE" Group="NAND control" GroupCH="NAND控制" Type="list" Visible="false" Reload = "false">
+    	   <Condition Diagnostic="" Expression="$IpInstance_Ready_or_Busy"/>
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="XMC_WAIT_OPERATION_ENABLE"/>
+    </RefParameter> 
+    
+    <RefParameter Name="CLE_RE_delay" Comment="CLE to RE delay" CommentCH="CLE 至RE 的延迟" DefaultValue="1" Group="NAND control" GroupCH="NAND控制" Max="16" Min="1" Type="integer" Reload = "false">
+    </RefParameter> 
+     
+     <RefParameter Name="ALE_RE_delay" Comment="ALE to RE delay" CommentCH="ALE 至RE 的延迟" DefaultValue="1" Group="NAND control" GroupCH="NAND控制" Max="16" Min="1" Type="integer" Reload = "false">
+    </RefParameter> 
+    
+     <!-- Regular memory -->
+    <RefParameter Name="Regular_resistance_time" Comment="Regular memory databus High resistance time" CommentCH="常规空间数据总线的高阻时间" DefaultValue="254" Group="Regular memory timing in HCLK cycles" GroupCH="常规空间时序" Max="255" Min="0" Type="integer" Reload = "false">
+    </RefParameter> 
+    
+    <RefParameter Name="Regular_hold_time" Comment="Regular memory hold time" CommentCH="常规空间的保持时间" DefaultValue="254" Group="Regular memory timing in HCLK cycles" GroupCH="常规空间时序" Max="255" Min="1" Type="integer" Reload = "false">
+    </RefParameter> 
+    
+    <RefParameter Name="Regular_wait_time" Comment="Regular memory wait time" CommentCH="常规空间的等待时间" DefaultValue="254" Group="Regular memory timing in HCLK cycles" GroupCH="常规空间时序" Max="255" Min="0" Type="integer" Reload = "false">
+    </RefParameter> 
+    
+    <RefParameter Name="Regular_setup_time" Comment="Regular memory setup time" CommentCH="常规空间的建立时间" DefaultValue="254" Group="Regular memory timing in HCLK cycles" GroupCH="常规空间时序" Max="255" Min="0" Type="integer" Reload = "false">
+    </RefParameter> 
+    
+    <!-- Special memory -->
+    <RefParameter Name="Special_resistance_time" Comment="Special memory databus High resistance time" CommentCH="特殊空间数据总线的高阻时间" DefaultValue="254" Group="Special memory timing in HCLK cycles" GroupCH="特殊空间时序" Max="255" Min="0" Type="integer" Reload = "false">
+    </RefParameter> 
+    
+    <RefParameter Name="Special_hold_time" Comment="Special memory hold time" CommentCH="特殊空间的保持时间" DefaultValue="254" Group="Special memory timing in HCLK cycles" GroupCH="特殊空间时序" Max="255" Min="1" Type="integer" Reload = "false">
+    </RefParameter> 
+    
+    <RefParameter Name="Special_wait_time" Comment="Special memory wait time" CommentCH="特殊空间的等待时间" DefaultValue="254" Group="Special memory timing in HCLK cycles" GroupCH="特殊空间时序" Max="255" Min="0" Type="integer" Reload = "false">
+    </RefParameter> 
+    
+    <RefParameter Name="Special_setup_time" Comment="Special memory setup time" CommentCH="特殊空间的建立时间" DefaultValue="254" Group="Special memory timing in HCLK cycles" GroupCH="特殊空间时序" Max="255" Min="0" Type="integer" Reload = "false">
+    </RefParameter> 
+    
+    <!-- IO memory -->
+    <RefParameter Name="IO_resistance_time" Comment="IO memory databus High resistance time" CommentCH="IO空间数据总线的高阻时间" DefaultValue="254" Group="IO memory timing in HCLK cycles" GroupCH="IO空间时序" Max="255" Min="0" Type="integer" Reload = "false">
+    </RefParameter> 
+    
+    <RefParameter Name="IO_hold_time" Comment="IO memory hold time" CommentCH="IO空间的保持时间" DefaultValue="254" Group="IO memory timing in HCLK cycles" GroupCH="IO空间时序" Max="255" Min="1" Type="integer" Reload = "false">
+    </RefParameter> 
+    
+    <RefParameter Name="IO_wait_time" Comment="IO memory wait time" CommentCH="IO空间的等待时间" DefaultValue="254" Group="IO memory timing in HCLK cycles" GroupCH="IO空间时序" Max="255" Min="0" Type="integer" Reload = "false">
+    </RefParameter> 
+    
+    <RefParameter Name="IO_setup_time" Comment="IO memory setup time" CommentCH="IO空间的建立时间" DefaultValue="254" Group="IO memory timing in HCLK cycles" GroupCH="IO空间时序" Max="255" Min="0" Type="integer" Reload = "false">
+    </RefParameter> 
+ 
+    <RefMode Name="XMC_Settings" Abstract="true">
+    	    <!-- NOR/PSARM control -->
+        <Parameter Name="Bank"/>        
+        <Parameter Name="Data_size"/>
+        <Parameter Name="Ready_or_Busy"/>
+        <Parameter Name="CLE_RE_delay"/>
+        <Parameter Name="ALE_RE_delay"/>
+        <!-- Regular memory timing -->
+       <Parameter Name="Regular_resistance_time"/>
+        <Parameter Name="Regular_hold_time"/>   
+        <Parameter Name="Regular_wait_time"/>   
+        <Parameter Name="Regular_setup_time"/>   
+        <!-- Special memory timing -->
+       <Parameter Name="Special_resistance_time"/>
+        <Parameter Name="Special_hold_time"/>   
+        <Parameter Name="Special_wait_time"/>   
+        <Parameter Name="Special_setup_time"/> 
+        <!-- IO memory timing -->
+        <Parameter Name="IO_resistance_time"/>
+        <Parameter Name="IO_hold_time"/>   
+        <Parameter Name="IO_wait_time"/>   
+        <Parameter Name="IO_setup_time"/>
+    </RefMode>
+                        
+    <ModeLogicOperator Name="OR">
+    	   <Mode Name="Chip_Select" UserName="Chip Select NCE4_1+NCE4_2" UserNameCH="片选 NCE4_1+NCE4_2">
+			<ModeLogicOperator Name="XOR">
+				<Mode Name="Chip_Select" UserName="Chip Select NCE4_1+NCE4_2" UserNameCH="片选 NCE4_1+NCE4_2">
+					<SignalLogicalOp Name="AND">
+						<Signal Name="NCE4_1"/>
+						<Signal Name="NCE4_2"/>
+					</SignalLogicalOp>
+				</Mode>
+			</ModeLogicOperator>
+			<Semaphore>$IpInstance_Chip_Select</Semaphore>
+	   </Mode>
+
+        <Mode Name="Address_Bus" UserName="Address" UserNameCH="地址线">
+            <Condition Expression="$IpInstance_Chip_Select" Diagnostic="Chip Select disabled" DiagnosticCH="未开启片选"/>
+            <ModeLogicOperator Name="XOR">
+                <Mode Name="1_Bits" UserName="1 bits" UserNameCH="1位宽">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="A0"/>
+                        <Signal Name="NOE"/>
+                        <Signal Name="NWE"/>
+                        <Signal Name="NIORD"/>
+                        <Signal Name="NIOWR"/>
+                        <Signal Name="NREG"/>
+                        <Signal Name="CD"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_Address_Range</Semaphore>
+                </Mode>
+                <Mode Name="2_Bits" UserName="2 bits" UserNameCH="2位宽">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="A0--A1"/>
+                        <Signal Name="NOE"/>
+                        <Signal Name="NWE"/>
+                        <Signal Name="NIORD"/>
+                        <Signal Name="NIOWR"/>
+                        <Signal Name="NREG"/>
+                        <Signal Name="CD"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_Address_Range</Semaphore>
+                </Mode>
+                <Mode Name="3_Bits" UserName="3 bits" UserNameCH="3位宽">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="A0--A2"/>
+                        <Signal Name="NOE"/>
+                        <Signal Name="NWE"/>
+                        <Signal Name="NIORD"/>
+                        <Signal Name="NIOWR"/>
+                        <Signal Name="NREG"/>
+                        <Signal Name="CD"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_Address_Range</Semaphore>
+                </Mode>
+                <Mode Name="4_Bits" UserName="4 bits" UserNameCH="4位宽">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="A0--A3"/>
+                        <Signal Name="NOE"/>
+                        <Signal Name="NWE"/>
+                        <Signal Name="NIORD"/>
+                        <Signal Name="NIOWR"/>
+                        <Signal Name="NREG"/>
+                        <Signal Name="CD"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_Address_Range</Semaphore>
+                </Mode>
+                <Mode Name="5_Bits" UserName="5 bits" UserNameCH="5位宽">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="A0--A4"/>
+                        <Signal Name="NOE"/>
+                        <Signal Name="NWE"/>
+                        <Signal Name="NIORD"/>
+                        <Signal Name="NIOWR"/>
+                        <Signal Name="NREG"/>
+                        <Signal Name="CD"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_Address_Range</Semaphore>
+                </Mode>
+                <Mode Name="6_Bits" UserName="6 bits" UserNameCH="6位宽">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="A0--A5"/>
+                        <Signal Name="NOE"/>
+                        <Signal Name="NWE"/>
+                        <Signal Name="NIORD"/>
+                        <Signal Name="NIOWR"/>
+                        <Signal Name="NREG"/>
+                        <Signal Name="CD"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_Address_Range</Semaphore>
+                </Mode>
+                <Mode Name="7_Bits" UserName="7 bits" UserNameCH="7位宽">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="A0--A6"/>
+                        <Signal Name="NOE"/>
+                        <Signal Name="NWE"/>
+                        <Signal Name="NIORD"/>
+                        <Signal Name="NIOWR"/>
+                        <Signal Name="NREG"/>
+                        <Signal Name="CD"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_Address_Range</Semaphore>
+                </Mode>
+                <Mode Name="8_Bits" UserName="8 bits" UserNameCH="8位宽">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="A0--A7"/>
+                        <Signal Name="NOE"/>
+                        <Signal Name="NWE"/>
+                        <Signal Name="NIORD"/>
+                        <Signal Name="NIOWR"/>
+                        <Signal Name="NREG"/>
+                        <Signal Name="CD"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_Address_Range</Semaphore>
+                </Mode>
+                <Mode Name="9_Bits" UserName="9 bits" UserNameCH="9位宽">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="A0--A8"/>
+                        <Signal Name="NOE"/>
+                        <Signal Name="NWE"/>
+                        <Signal Name="NIORD"/>
+                        <Signal Name="NIOWR"/>
+                        <Signal Name="NREG"/>
+                        <Signal Name="CD"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_Address_Range</Semaphore>
+                </Mode>
+                <Mode Name="10_Bits" UserName="10 bits" UserNameCH="10位宽">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="A0--A9"/>
+                        <Signal Name="NOE"/>
+                        <Signal Name="NWE"/>
+                        <Signal Name="NIORD"/>
+                        <Signal Name="NIOWR"/>
+                        <Signal Name="NREG"/>
+                        <Signal Name="CD"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_Address_Range</Semaphore>
+                </Mode>
+                <Mode Name="11_Bits" UserName="11 bits" UserNameCH="11位宽">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="A0--A10"/>
+                        <Signal Name="NOE"/>
+                        <Signal Name="NWE"/>
+                        <Signal Name="NIORD"/>
+                        <Signal Name="NIOWR"/>
+                        <Signal Name="NREG"/>
+                        <Signal Name="CD"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_Address_Range</Semaphore>
+                </Mode>
+            </ModeLogicOperator>            
+        </Mode>
+        
+        <Mode Name="Data_Bus" UserName="Data" UserNameCH="数据线">
+            <Condition Expression="$IpInstance_Address_Range" Diagnostic="Address disabled" DiagnosticCH="未开启地址线"/>
+            <ModeLogicOperator Name="XOR">
+                <Mode Name="16_Bits" UserName="16 bits" UserNameCH="16位宽">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="D0--D15"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_16_Bits_DA</Semaphore>
+                </Mode>
+            </ModeLogicOperator>            
+        </Mode>
+        
+        <Mode Name="Ready_or_Busy" UserName="Ready or Busy" UserNameCH="就绪/忙">
+        	     <Condition Expression="$IpInstance_16_Bits_DA" Diagnostic="Date disabled" DiagnosticCH="未开启数据线"/>
+			<ModeLogicOperator Name="XOR">
+				<Mode Name="NWAIT" UserName="NWAIT" UserNameCH="NWAIT">
+					<SignalLogicalOp Name="AND">
+						<Signal Name="NWAIT"/>
+					</SignalLogicalOp>
+					<Semaphore>$IpInstance_Ready_or_Busy</Semaphore>
+				</Mode>
+			</ModeLogicOperator>			
+	   </Mode>
+	   
+	   <Mode Name="Interrupt" UserName="Interrupt" UserNameCH="中断">
+        	     <Condition Expression="$IpInstance_16_Bits_DA" Diagnostic="Date disabled" DiagnosticCH="未开启数据线"/>
+			<ModeLogicOperator Name="XOR">
+				<Mode Name="Interrupt" UserName="Interrupt" UserNameCH="中断">
+					<SignalLogicalOp Name="AND">
+						<Signal Name="INTR"/>
+					</SignalLogicalOp>
+					<Semaphore>$IpInstance_Interrupt</Semaphore>
+				</Mode>
+			</ModeLogicOperator>			
+	   </Mode>
+        
+    </ModeLogicOperator>
+	
+                        
+    <!-- RefSignal -->
+    <RefSignal IOMode="MuxOutputPushPull" Name="NCE4_1"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="NCE4_2"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="NOE"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="NWE"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="NIORD"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="NIOWR"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="NREG"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="CD"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="NWAIT"/>       
+    <RefSignal IOMode="MuxOutputPushPull" Name="INTR"/>       
+    <RefSignal IOMode="MuxOutputPushPull" Name="D0"/>       
+    <RefSignal IOMode="MuxOutputPushPull" Name="D1"/> 
+    <RefSignal IOMode="MuxOutputPushPull" Name="D2"/> 
+    <RefSignal IOMode="MuxOutputPushPull" Name="D3"/>       
+    <RefSignal IOMode="MuxOutputPushPull" Name="D4"/> 
+    <RefSignal IOMode="MuxOutputPushPull" Name="D5"/> 
+    <RefSignal IOMode="MuxOutputPushPull" Name="D6"/>       
+    <RefSignal IOMode="MuxOutputPushPull" Name="D7"/> 
+    <RefSignal IOMode="MuxOutputPushPull" Name="D8"/> 
+    <RefSignal IOMode="MuxOutputPushPull" Name="D9"/>       
+    <RefSignal IOMode="MuxOutputPushPull" Name="D10"/> 
+    <RefSignal IOMode="MuxOutputPushPull" Name="D11"/> 
+    <RefSignal IOMode="MuxOutputPushPull" Name="D12"/> 
+    <RefSignal IOMode="MuxOutputPushPull" Name="D13"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="D14"/> 
+    <RefSignal IOMode="MuxOutputPushPull" Name="D15"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="A0"/>       
+    <RefSignal IOMode="MuxOutputPushPull" Name="A1"/> 
+    <RefSignal IOMode="MuxOutputPushPull" Name="A2"/> 
+    <RefSignal IOMode="MuxOutputPushPull" Name="A3"/>       
+    <RefSignal IOMode="MuxOutputPushPull" Name="A4"/> 
+    <RefSignal IOMode="MuxOutputPushPull" Name="A5"/> 
+    <RefSignal IOMode="MuxOutputPushPull" Name="A6"/>       
+    <RefSignal IOMode="MuxOutputPushPull" Name="A7"/> 
+    <RefSignal IOMode="MuxOutputPushPull" Name="A8"/> 
+    <RefSignal IOMode="MuxOutputPushPull" Name="A9"/>       
+    <RefSignal IOMode="MuxOutputPushPull" Name="A10"/> 
+</IP>

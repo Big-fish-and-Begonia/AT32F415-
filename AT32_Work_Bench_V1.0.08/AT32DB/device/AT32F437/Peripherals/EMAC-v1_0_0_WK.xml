@@ -1,0 +1,659 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<IP>
+	<About>Ethernet media access control</About>
+	<AboutCH>以太网控制器</AboutCH>
+	
+    <RefParameter Comment="Instance" DefaultValue="EMAC" Name="Instance" Type="" Visible="false"/>
+	
+	<RefParameter Name="Mode" Comment="Mode" CommentCH="模式" DefaultValue="FALSE" Group="Basic Parameters" GroupCH="基础参数" Type="list"  Visible="false">
+		<Condition Diagnostic="" Expression="$IpInstance_MII"/>
+        <PossibleValue Comment="MII" CommentCH="MII" Value="FALSE"/>
+    </RefParameter>
+    <RefParameter Name="Mode" Comment="Mode" CommentCH="模式" DefaultValue="TRUE" Group="Basic Parameters" GroupCH="基础参数" Type="list"  Visible="false">
+		<Condition Diagnostic="" Expression="$IpInstance_RMII"/>
+        <PossibleValue Comment="RMII" CommentCH="RMII" Value="TRUE"/>
+    </RefParameter>
+    
+	<!-- Basic Parameters -->
+    <RefParameter Name="Auto_Negotiation" Comment="Auto Negotiation" CommentCH="自动协商" DefaultValue="EMAC_AUTO_NEGOTIATION_OFF" Group="Basic Parameters" GroupCH="基础参数" Type="list">
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="EMAC_AUTO_NEGOTIATION_OFF"/>
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="EMAC_AUTO_NEGOTIATION_ON"/>
+    </RefParameter>
+    
+    <RefParameter Name="Speed" Comment="Speed" CommentCH="速度" DefaultValue="EMAC_SPEED_100MBPS" Group="Basic Parameters" GroupCH="基础参数" Type="list" Reload="false">
+        <Condition Diagnostic="" Expression="Auto_Negotiation = EMAC_AUTO_NEGOTIATION_OFF"/>
+        <PossibleValue Comment="10Mbits/s" CommentCH="10Mbits/s" Value="EMAC_SPEED_10MBPS"/>
+        <PossibleValue Comment="100Mbits/s" CommentCH="100Mbits/s" Value="EMAC_SPEED_100MBPS"/>
+    </RefParameter>
+    <RefParameter Name="Speed" Comment="Speed" CommentCH="速度" DefaultValue="EMAC_SPEED_100MBPS" Group="Basic Parameters" GroupCH="基础参数" Type="list" Reload="false">
+        <Condition Diagnostic="" Expression="Auto_Negotiation = EMAC_AUTO_NEGOTIATION_ON"/>
+        <PossibleValue Comment="100Mbits/s" CommentCH="100Mbits/s" Value="EMAC_SPEED_100MBPS"/>
+    </RefParameter>
+    
+    <RefParameter Name="Duplex_mode" Comment="Duplex mode" CommentCH="双工模式" DefaultValue="EMAC_FULL_DUPLEX" Group="Basic Parameters" GroupCH="基础参数" Type="list" Reload="false">
+        <Condition Diagnostic="" Expression="Auto_Negotiation = EMAC_AUTO_NEGOTIATION_OFF"/>
+        <PossibleValue Comment="Full duplex" CommentCH="全双工" Value="EMAC_FULL_DUPLEX"/>
+        <PossibleValue Comment="Half duplex" CommentCH="半双工" Value="EMAC_HALF_DUPLEX"/>
+    </RefParameter>
+    <RefParameter Name="Duplex_mode" Comment="Duplex mode" CommentCH="双工模式" DefaultValue="EMAC_FULL_DUPLEX" Group="Basic Parameters" GroupCH="基础参数" Type="list" Reload="false">
+        <Condition Diagnostic="" Expression="Auto_Negotiation = EMAC_AUTO_NEGOTIATION_ON"/>
+        <PossibleValue Comment="Full duplex" CommentCH="全双工" Value="EMAC_FULL_DUPLEX"/>
+    </RefParameter>
+    
+    <RefParameter Name="Hardware_Checksum" Comment="Hardware Checksum" CommentCH="硬件校验" DefaultValue="TRUE" Group="Basic Parameters" GroupCH="基础参数" Type="list" Reload="false">
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE"/>
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE"/>
+    </RefParameter>
+    
+    <RefParameter Name="EXINT19_WakeUp" Comment="EXINT19 WakeUp" CommentCH="EXINT19唤醒" DefaultValue="TRUE" Group="Basic Parameters" GroupCH="基础参数" Type="list" Reload="false">
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="DISABLE"/>
+        <PossibleValue Comment="Interrupt" CommentCH="中断" Value="EXINT_LINE_INTERRUPUT"/>
+        <PossibleValue Comment="Event" CommentCH="事件" Value="EXINT_LINE_EVENT"/>
+    </RefParameter>
+    
+    <RefParameter Name="MAC_address" Comment="MAC address" CommentCH="MAC地址" DefaultValue="00:00:44:45:56:01" Group="Basic Parameters" GroupCH="基础参数" Type="mac address" Reload="false"/>
+
+    <!-- PHY Parameters -->
+    <RefParameter Name="PHY" Comment="PHY" CommentCH="PHY" DefaultValue="DM9162" Group="PHY Parameters" GroupCH="PHY参数" Type="list">
+        <PossibleValue Comment="DM9162" CommentCH="DM9162" Value="DM9162"/>
+        <PossibleValue Comment="DP83848" CommentCH="DP83848" Value="DP83848"/>
+        <PossibleValue Comment="AR8032" CommentCH="AR8032" Value="AR8032"/>
+        <PossibleValue Comment="YT8512" CommentCH="YT8512" Value="YT8512"/>
+        <PossibleValue Comment="RTL8201F" CommentCH="RTL8201F" Value="RTL8201F"/>
+        <PossibleValue Comment="LAN8720" CommentCH="LAN8720" Value="LAN8720"/>
+        <PossibleValue Comment="IP101GR" CommentCH="IP101GR" Value="IP101GR"/>
+        <PossibleValue Comment="User PHY" CommentCH="自定义PHY" Value="User_PHY"/>
+    </RefParameter>
+    
+    <!-- DM9162 PHY Parameters -->
+    <RefParameter Name="DM9162_PHY_name" Comment="PHY name" CommentCH="PHY名称" DefaultValue="DM9162" Group="PHY Parameters" GroupCH="PHY参数" Type="string edit" Reload="false" Visible="false">
+        <Condition Diagnostic="" Expression="PHY = DM9162"/>
+    </RefParameter>
+    
+    <RefParameter Name="DM9162_PHY_address" Comment="PHY address" CommentCH="PHY地址" DefaultValue="1" Group="PHY Parameters" GroupCH="PHY参数" Max="31" Min="0" Type="integer" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = DM9162"/>
+    </RefParameter>
+    
+    <RefParameter Name="DM9162_Control_register" Comment="Basic mode control register" CommentCH="控制寄存器" DefaultValue="0" Max="FF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = DM9162"/>
+    </RefParameter>
+    	
+    <RefParameter Name="DM9162_Status_register" Comment="Basic mode status register" CommentCH="状态寄存器" DefaultValue="1" Max="FF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = DM9162"/>
+    </RefParameter>
+     
+    <RefParameter Name="DM9162_Specified_status_register" Comment="Specified Configuration and Status Register" CommentCH="特殊配置和状态寄存器" DefaultValue="11" Max="FF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = DM9162"/>
+    </RefParameter>
+        	
+     <RefParameter Name="DM9162_PHY_reset_bit" Comment="PHY reset bit" CommentCH="PHY软件复位" DefaultValue="8000" Max="FFFF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = DM9162"/>
+    </RefParameter>
+      	
+     <RefParameter Name="DM9162_Enable_AUTO_Negotiation_bit" Comment="Enable AUTO Negotiation bit" CommentCH="使能自动协商位" DefaultValue="1000" Max="FFFF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = DM9162"/>
+    </RefParameter>
+     
+     <RefParameter Name="DM9162_Enable_loopback_bit" Comment="Enable loopback bit" CommentCH="使能回环模式位" DefaultValue="4000" Max="FFFF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = DM9162"/>
+    </RefParameter>
+     	
+     <RefParameter Name="DM9162_Link_status_bit" Comment="Link status bit" CommentCH="连接状态位" DefaultValue="0004" Max="FFFF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = DM9162"/>
+    </RefParameter>
+     	
+     <RefParameter Name="DM9162_Auto_negotiation_complete_bit" Comment="Auto-negotiation Complete bit" CommentCH="自动协商完成位" DefaultValue="0020" Max="FFFF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = DM9162"/>
+    </RefParameter>
+     	
+     <RefParameter Name="DM9162_PHY_Duplex_status" Comment="PHY Duplex status" CommentCH="PHY双工状态" DefaultValue="8000" Max="FFFF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = DM9162"/>
+    </RefParameter>
+     		
+     <RefParameter Name="DM9162_PHY_Speed_tatus" Comment="PHY Speed status" CommentCH="PHY速度状态" DefaultValue="4000" Max="FFFF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = DM9162"/>
+    </RefParameter>
+    
+    <!-- DP83848 PHY Parameters -->
+    <RefParameter Name="DP83848_PHY_name" Comment="PHY name" CommentCH="PHY名称" DefaultValue="DP83848" Group="PHY Parameters" GroupCH="PHY参数" Type="string edit" Reload="false" Visible="false">
+        <Condition Diagnostic="" Expression="PHY = DP83848"/>
+    </RefParameter>
+    
+    <RefParameter Name="DP83848_PHY_address" Comment="PHY address" CommentCH="PHY地址" DefaultValue="1" Group="PHY Parameters" GroupCH="PHY参数" Max="31" Min="0" Type="integer" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = DP83848"/>
+    </RefParameter>
+    
+    <RefParameter Name="DP83848_Control_register" Comment="Basic mode control register" CommentCH="控制寄存器" DefaultValue="0" Max="FF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = DP83848"/>
+    </RefParameter>
+    	
+    <RefParameter Name="DP83848_Status_register" Comment="Basic mode status register" CommentCH="状态寄存器" DefaultValue="1" Max="FF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = DP83848"/>
+    </RefParameter>
+     
+    <RefParameter Name="DP83848_Specified_status_register" Comment="Specified Configuration and Status Register" CommentCH="特殊配置和状态寄存器" DefaultValue="10" Max="FF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = DP83848"/>
+    </RefParameter>
+        	
+     <RefParameter Name="DP83848_PHY_reset_bit" Comment="PHY reset bit" CommentCH="PHY软件复位" DefaultValue="8000" Max="FFFF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = DP83848"/>
+    </RefParameter>
+      	
+     <RefParameter Name="DP83848_Enable_AUTO_Negotiation_bit" Comment="Enable AUTO Negotiation bit" CommentCH="使能自动协商位" DefaultValue="1000" Max="FFFF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = DP83848"/>
+    </RefParameter>
+     
+     <RefParameter Name="DP83848_Enable_loopback_bit" Comment="Enable loopback bit" CommentCH="使能回环模式位" DefaultValue="4000" Max="FFFF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = DP83848"/>
+    </RefParameter>
+     	
+     <RefParameter Name="DP83848_Link_status_bit" Comment="Link status bit" CommentCH="连接状态位" DefaultValue="0004" Max="FFFF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = DP83848"/>
+    </RefParameter>
+     	
+     <RefParameter Name="DP83848_Auto_negotiation_complete_bit" Comment="Auto-negotiation Complete bit" CommentCH="自动协商完成位" DefaultValue="0020" Max="FFFF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = DP83848"/>
+    </RefParameter>
+     	
+     <RefParameter Name="DP83848_PHY_Duplex_status" Comment="PHY Duplex status" CommentCH="PHY双工状态" DefaultValue="0004" Max="FFFF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = DP83848"/>
+    </RefParameter>
+     		
+     <RefParameter Name="DP83848_PHY_Speed_tatus" Comment="PHY Speed status" CommentCH="PHY速度状态" DefaultValue="0002" Max="FFFF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = DP83848"/>
+    </RefParameter>
+    
+    <!-- AR8032 PHY Parameters -->
+    <RefParameter Name="AR8032_PHY_name" Comment="PHY name" CommentCH="PHY名称" DefaultValue="AR8032" Group="PHY Parameters" GroupCH="PHY参数" Type="string edit" Reload="false" Visible="false">
+        <Condition Diagnostic="" Expression="PHY = AR8032"/>
+    </RefParameter>
+    
+    <RefParameter Name="AR8032_PHY_address" Comment="PHY address" CommentCH="PHY地址" DefaultValue="1" Group="PHY Parameters" GroupCH="PHY参数" Max="31" Min="0" Type="integer" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = AR8032"/>
+    </RefParameter>
+    
+    <RefParameter Name="AR8032_Control_register" Comment="Basic mode control register" CommentCH="控制寄存器" DefaultValue="0" Max="FF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = AR8032"/>
+    </RefParameter>
+    	
+    <RefParameter Name="AR8032_Status_register" Comment="Basic mode status register" CommentCH="状态寄存器" DefaultValue="1" Max="FF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = AR8032"/>
+    </RefParameter>
+     
+    <RefParameter Name="AR8032_Specified_status_register" Comment="Specified Configuration and Status Register" CommentCH="特殊配置和状态寄存器" DefaultValue="11" Max="FF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = AR8032"/>
+    </RefParameter>
+        	
+     <RefParameter Name="AR8032_PHY_reset_bit" Comment="PHY reset bit" CommentCH="PHY软件复位" DefaultValue="8000" Max="FFFF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = AR8032"/>
+    </RefParameter>
+      	
+     <RefParameter Name="AR8032_Enable_AUTO_Negotiation_bit" Comment="Enable AUTO Negotiation bit" CommentCH="使能自动协商位" DefaultValue="1000" Max="FFFF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = AR8032"/>
+    </RefParameter>
+     
+     <RefParameter Name="AR8032_Enable_loopback_bit" Comment="Enable loopback bit" CommentCH="使能回环模式位" DefaultValue="4000" Max="FFFF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = AR8032"/>
+    </RefParameter>
+     	
+     <RefParameter Name="AR8032_Link_status_bit" Comment="Link status bit" CommentCH="连接状态位" DefaultValue="0004" Max="FFFF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = AR8032"/>
+    </RefParameter>
+     	
+     <RefParameter Name="AR8032_Auto_negotiation_complete_bit" Comment="Auto-negotiation Complete bit" CommentCH="自动协商完成位" DefaultValue="0020" Max="FFFF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = AR8032"/>
+    </RefParameter>
+     	
+     <RefParameter Name="AR8032_PHY_Duplex_status" Comment="PHY Duplex status" CommentCH="PHY双工状态" DefaultValue="2000" Max="FFFF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = AR8032"/>
+    </RefParameter>
+     		
+     <RefParameter Name="AR8032_PHY_Speed_tatus" Comment="PHY Speed status" CommentCH="PHY速度状态" DefaultValue="4000" Max="FFFF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = AR8032"/>
+    </RefParameter>
+    
+     <!-- YT8512 PHY Parameters -->
+    <RefParameter Name="YT8512_PHY_name" Comment="PHY name" CommentCH="PHY名称" DefaultValue="YT8512" Group="PHY Parameters" GroupCH="PHY参数" Type="string edit" Reload="false" Visible="false">
+        <Condition Diagnostic="" Expression="PHY = YT8512"/>
+    </RefParameter>
+    
+    <RefParameter Name="YT8512_PHY_address" Comment="PHY address" CommentCH="PHY地址" DefaultValue="1" Group="PHY Parameters" GroupCH="PHY参数" Max="31" Min="0" Type="integer" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = YT8512"/>
+    </RefParameter>
+    
+    <RefParameter Name="YT8512_Control_register" Comment="Basic mode control register" CommentCH="控制寄存器" DefaultValue="0" Max="FF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = YT8512"/>
+    </RefParameter>
+    	
+    <RefParameter Name="YT8512_Status_register" Comment="Basic mode status register" CommentCH="状态寄存器" DefaultValue="1" Max="FF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = YT8512"/>
+    </RefParameter>
+     
+    <RefParameter Name="YT8512_Specified_status_register" Comment="Specified Configuration and Status Register" CommentCH="特殊配置和状态寄存器" DefaultValue="11" Max="FF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = YT8512"/>
+    </RefParameter>
+        	
+     <RefParameter Name="YT8512_PHY_reset_bit" Comment="PHY reset bit" CommentCH="PHY软件复位" DefaultValue="8000" Max="FFFF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = YT8512"/>
+    </RefParameter>
+      	
+     <RefParameter Name="YT8512_Enable_AUTO_Negotiation_bit" Comment="Enable AUTO Negotiation bit" CommentCH="使能自动协商位" DefaultValue="1000" Max="FFFF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = YT8512"/>
+    </RefParameter>
+     
+     <RefParameter Name="YT8512_Enable_loopback_bit" Comment="Enable loopback bit" CommentCH="使能回环模式位" DefaultValue="4000" Max="FFFF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = YT8512"/>
+    </RefParameter>
+     	
+     <RefParameter Name="YT8512_Link_status_bit" Comment="Link status bit" CommentCH="连接状态位" DefaultValue="0004" Max="FFFF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = YT8512"/>
+    </RefParameter>
+     	
+     <RefParameter Name="YT8512_Auto_negotiation_complete_bit" Comment="Auto-negotiation Complete bit" CommentCH="自动协商完成位" DefaultValue="0020" Max="FFFF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = YT8512"/>
+    </RefParameter>
+     	
+     <RefParameter Name="YT8512_PHY_Duplex_status" Comment="PHY Duplex status" CommentCH="PHY双工状态" DefaultValue="2000" Max="FFFF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = YT8512"/>
+    </RefParameter>
+     		
+     <RefParameter Name="YT8512_PHY_Speed_tatus" Comment="PHY Speed status" CommentCH="PHY速度状态" DefaultValue="4000" Max="FFFF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = YT8512"/>
+    </RefParameter>
+    
+    <!-- RTL8201F PHY Parameters -->
+    <RefParameter Name="RTL8201F_PHY_name" Comment="PHY name" CommentCH="PHY名称" DefaultValue="RTL8201F" Group="PHY Parameters" GroupCH="PHY参数" Type="string edit" Reload="false" Visible="false">
+        <Condition Diagnostic="" Expression="PHY = RTL8201F"/>
+    </RefParameter>
+    
+    <RefParameter Name="RTL8201F_PHY_address" Comment="PHY address" CommentCH="PHY地址" DefaultValue="1" Group="PHY Parameters" GroupCH="PHY参数" Max="31" Min="0" Type="integer" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = RTL8201F"/>
+    </RefParameter>
+    
+    <RefParameter Name="RTL8201F_Control_register" Comment="Basic mode control register" CommentCH="控制寄存器" DefaultValue="0" Max="FF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = RTL8201F"/>
+    </RefParameter>
+    	
+    <RefParameter Name="RTL8201F_Status_register" Comment="Basic mode status register" CommentCH="状态寄存器" DefaultValue="1" Max="FF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = RTL8201F"/>
+    </RefParameter>
+     
+    <RefParameter Name="RTL8201F_Specified_status_register" Comment="Specified Configuration and Status Register" CommentCH="特殊配置和状态寄存器" DefaultValue="00" Max="FF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = RTL8201F"/>
+    </RefParameter>
+        	
+     <RefParameter Name="RTL8201F_PHY_reset_bit" Comment="PHY reset bit" CommentCH="PHY软件复位" DefaultValue="8000" Max="FFFF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = RTL8201F"/>
+    </RefParameter>
+      	
+     <RefParameter Name="RTL8201F_Enable_AUTO_Negotiation_bit" Comment="Enable AUTO Negotiation bit" CommentCH="使能自动协商位" DefaultValue="1000" Max="FFFF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = RTL8201F"/>
+    </RefParameter>
+     
+     <RefParameter Name="RTL8201F_Enable_loopback_bit" Comment="Enable loopback bit" CommentCH="使能回环模式位" DefaultValue="4000" Max="FFFF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = RTL8201F"/>
+    </RefParameter>
+     	
+     <RefParameter Name="RTL8201F_Link_status_bit" Comment="Link status bit" CommentCH="连接状态位" DefaultValue="0004" Max="FFFF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = RTL8201F"/>
+    </RefParameter>
+     	
+     <RefParameter Name="RTL8201F_Auto_negotiation_complete_bit" Comment="Auto-negotiation Complete bit" CommentCH="自动协商完成位" DefaultValue="0020" Max="FFFF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = RTL8201F"/>
+    </RefParameter>
+     	
+     <RefParameter Name="RTL8201F_PHY_Duplex_status" Comment="PHY Duplex status" CommentCH="PHY双工状态" DefaultValue="0100" Max="FFFF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = RTL8201F"/>
+    </RefParameter>
+     		
+     <RefParameter Name="RTL8201F_PHY_Speed_tatus" Comment="PHY Speed status" CommentCH="PHY速度状态" DefaultValue="2000" Max="FFFF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = RTL8201F"/>
+    </RefParameter>
+    
+    <!-- LAN8720 PHY Parameters -->
+    <RefParameter Name="LAN8720_PHY_name" Comment="PHY name" CommentCH="PHY名称" DefaultValue="LAN8720" Group="PHY Parameters" GroupCH="PHY参数" Type="string edit" Reload="false" Visible="false">
+        <Condition Diagnostic="" Expression="PHY = LAN8720"/>
+    </RefParameter>
+    
+    <RefParameter Name="LAN8720_PHY_address" Comment="PHY address" CommentCH="PHY地址" DefaultValue="1" Group="PHY Parameters" GroupCH="PHY参数" Max="31" Min="0" Type="integer" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = LAN8720"/>
+    </RefParameter>
+    
+    <RefParameter Name="LAN8720_Control_register" Comment="Basic mode control register" CommentCH="控制寄存器" DefaultValue="0" Max="FF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = LAN8720"/>
+    </RefParameter>
+    	
+    <RefParameter Name="LAN8720_Status_register" Comment="Basic mode status register" CommentCH="状态寄存器" DefaultValue="1" Max="FF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = LAN8720"/>
+    </RefParameter>
+     
+    <RefParameter Name="LAN8720_Specified_status_register" Comment="Specified Configuration and Status Register" CommentCH="特殊配置和状态寄存器" DefaultValue="1F" Max="FF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = LAN8720"/>
+    </RefParameter>
+        	
+     <RefParameter Name="LAN8720_PHY_reset_bit" Comment="PHY reset bit" CommentCH="PHY软件复位" DefaultValue="8000" Max="FFFF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = LAN8720"/>
+    </RefParameter>
+      	
+     <RefParameter Name="LAN8720_Enable_AUTO_Negotiation_bit" Comment="Enable AUTO Negotiation bit" CommentCH="使能自动协商位" DefaultValue="1000" Max="FFFF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = LAN8720"/>
+    </RefParameter>
+     
+     <RefParameter Name="LAN8720_Enable_loopback_bit" Comment="Enable loopback bit" CommentCH="使能回环模式位" DefaultValue="4000" Max="FFFF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = LAN8720"/>
+    </RefParameter>
+     	
+     <RefParameter Name="LAN8720_Link_status_bit" Comment="Link status bit" CommentCH="连接状态位" DefaultValue="0004" Max="FFFF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = LAN8720"/>
+    </RefParameter>
+     	
+     <RefParameter Name="LAN8720_Auto_negotiation_complete_bit" Comment="Auto-negotiation Complete bit" CommentCH="自动协商完成位" DefaultValue="0020" Max="FFFF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = LAN8720"/>
+    </RefParameter>
+     	
+     <RefParameter Name="LAN8720_PHY_Duplex_status" Comment="PHY Duplex status" CommentCH="PHY双工状态" DefaultValue="0100" Max="FFFF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = LAN8720"/>
+    </RefParameter>
+     		
+     <RefParameter Name="LAN8720_PHY_Speed_tatus" Comment="PHY Speed status" CommentCH="PHY速度状态" DefaultValue="2000" Max="FFFF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = LAN8720"/>
+    </RefParameter>
+    
+    <!-- IP101GR PHY Parameters -->
+    <RefParameter Name="IP101GR_PHY_name" Comment="PHY name" CommentCH="PHY名称" DefaultValue="IP101GR" Group="PHY Parameters" GroupCH="PHY参数" Type="string edit" Reload="false" Visible="false">
+        <Condition Diagnostic="" Expression="PHY = IP101GR"/>
+    </RefParameter>
+    
+    <RefParameter Name="IP101GR_PHY_address" Comment="PHY address" CommentCH="PHY地址" DefaultValue="1" Group="PHY Parameters" GroupCH="PHY参数" Max="31" Min="0" Type="integer" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = IP101GR"/>
+    </RefParameter>
+    
+    <RefParameter Name="IP101GR_Control_register" Comment="Basic mode control register" CommentCH="控制寄存器" DefaultValue="0" Max="FF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = IP101GR"/>
+    </RefParameter>
+    	
+    <RefParameter Name="IP101GR_Status_register" Comment="Basic mode status register" CommentCH="状态寄存器" DefaultValue="1" Max="FF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = IP101GR"/>
+    </RefParameter>
+     
+    <RefParameter Name="IP101GR_Specified_status_register" Comment="Specified Configuration and Status Register" CommentCH="特殊配置和状态寄存器" DefaultValue="00" Max="FF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = IP101GR"/>
+    </RefParameter>
+        	
+     <RefParameter Name="IP101GR_PHY_reset_bit" Comment="PHY reset bit" CommentCH="PHY软件复位" DefaultValue="8000" Max="FFFF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = IP101GR"/>
+    </RefParameter>
+      	
+     <RefParameter Name="IP101GR_Enable_AUTO_Negotiation_bit" Comment="Enable AUTO Negotiation bit" CommentCH="使能自动协商位" DefaultValue="1000" Max="FFFF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = IP101GR"/>
+    </RefParameter>
+     
+     <RefParameter Name="IP101GR_Enable_loopback_bit" Comment="Enable loopback bit" CommentCH="使能回环模式位" DefaultValue="4000" Max="FFFF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = IP101GR"/>
+    </RefParameter>
+     	
+     <RefParameter Name="IP101GR_Link_status_bit" Comment="Link status bit" CommentCH="连接状态位" DefaultValue="0004" Max="FFFF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = IP101GR"/>
+    </RefParameter>
+     	
+     <RefParameter Name="IP101GR_Auto_negotiation_complete_bit" Comment="Auto-negotiation Complete bit" CommentCH="自动协商完成位" DefaultValue="0020" Max="FFFF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = IP101GR"/>
+    </RefParameter>
+     	
+     <RefParameter Name="IP101GR_PHY_Duplex_status" Comment="PHY Duplex status" CommentCH="PHY双工状态" DefaultValue="0100" Max="FFFF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = IP101GR"/>
+    </RefParameter>
+     		
+     <RefParameter Name="IP101GR_PHY_Speed_tatus" Comment="PHY Speed status" CommentCH="PHY速度状态" DefaultValue="2000" Max="FFFF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = IP101GR"/>
+    </RefParameter>
+    
+    <!-- IP101GR PHY Parameters -->
+    <RefParameter Name="User_PHY_PHY_name" Comment="PHY name" CommentCH="PHY名称" DefaultValue="User_PHY" Group="PHY Parameters" GroupCH="PHY参数" Type="string edit" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = User_PHY"/>
+    </RefParameter>
+    
+    <RefParameter Name="User_PHY_PHY_address" Comment="PHY address" CommentCH="PHY地址" DefaultValue="1" Group="PHY Parameters" GroupCH="PHY参数" Max="31" Min="0" Type="integer" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = User_PHY"/>
+    </RefParameter>
+    
+    <RefParameter Name="User_PHY_Control_register" Comment="Basic mode control register" CommentCH="控制寄存器" DefaultValue="0" Max="FF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = User_PHY"/>
+    </RefParameter>
+    	
+    <RefParameter Name="User_PHY_Status_register" Comment="Basic mode status register" CommentCH="状态寄存器" DefaultValue="1" Max="FF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = User_PHY"/>
+    </RefParameter>
+     
+    <RefParameter Name="User_PHY_Specified_status_register" Comment="Specified Configuration and Status Register" CommentCH="特殊配置和状态寄存器" DefaultValue="11" Max="FF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = User_PHY"/>
+    </RefParameter>
+        	
+     <RefParameter Name="User_PHY_PHY_reset_bit" Comment="PHY reset bit" CommentCH="PHY软件复位" DefaultValue="8000" Max="FFFF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = User_PHY"/>
+    </RefParameter>
+      	
+     <RefParameter Name="User_PHY_Enable_AUTO_Negotiation_bit" Comment="Enable AUTO Negotiation bit" CommentCH="使能自动协商位" DefaultValue="1000" Max="FFFF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = User_PHY"/>
+    </RefParameter>
+     
+     <RefParameter Name="User_PHY_Enable_loopback_bit" Comment="Enable loopback bit" CommentCH="使能回环模式位" DefaultValue="4000" Max="FFFF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = User_PHY"/>
+    </RefParameter>
+     	
+     <RefParameter Name="User_PHY_Link_status_bit" Comment="Link status bit" CommentCH="连接状态位" DefaultValue="0004" Max="FFFF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = User_PHY"/>
+    </RefParameter>
+     	
+     <RefParameter Name="User_PHY_Auto_negotiation_complete_bit" Comment="Auto-negotiation Complete bit" CommentCH="自动协商完成位" DefaultValue="0020" Max="FFFF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = User_PHY"/>
+    </RefParameter>
+     	
+     <RefParameter Name="User_PHY_PHY_Duplex_status" Comment="PHY Duplex status" CommentCH="PHY双工状态" DefaultValue="0004" Max="FFFF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = User_PHY"/>
+    </RefParameter>
+     		
+     <RefParameter Name="User_PHY_PHY_Speed_tatus" Comment="PHY Speed status" CommentCH="PHY速度状态" DefaultValue="0002" Max="FFFF" Min="0" Group="PHY Parameters" GroupCH="PHY参数" Type="hexadecimal" Reload="false">
+        <Condition Diagnostic="" Expression="PHY = User_PHY"/>
+    </RefParameter>
+     	
+     	
+     	          
+    <!-- RefMode -->
+    <RefMode Name="Init" Abstract="true">
+        <Parameter Name="Instance"/>
+        <Parameter Name="Mode"/>
+        <!-- Basic Parameters -->
+        <Parameter Name="Auto_Negotiation"/>
+        <Parameter Name="Speed"/>
+        <Parameter Name="Duplex_mode"/>
+        <Parameter Name="Hardware_Checksum"/>
+        <Parameter Name="MAC_address"/>
+        <Parameter Name="EXINT19_WakeUp"/>
+        <!-- PHY Parameters -->
+        <Parameter Name="PHY"/>
+        <!-- DM9162 PHY Parameters -->
+         <Parameter Name="DM9162_PHY_name"/>
+     	<Parameter Name="DM9162_PHY_address"/>
+     	<Parameter Name="DM9162_Control_register"/>
+     	<Parameter Name="DM9162_Status_register"/>
+     	<Parameter Name="DM9162_Specified_status_register"/>     	
+     	<Parameter Name="DM9162_PHY_reset_bit"/>
+     	<Parameter Name="DM9162_Enable_AUTO_Negotiation_bit"/>
+     	<Parameter Name="DM9162_Enable_loopback_bit"/>
+     	<Parameter Name="DM9162_Link_status_bit"/>
+     	<Parameter Name="DM9162_Auto_negotiation_complete_bit"/>
+     	<Parameter Name="DM9162_PHY_Duplex_status"/>
+     	<Parameter Name="DM9162_PHY_Speed_tatus"/>
+     	 <!-- DP83848 PHY Parameters -->
+         <Parameter Name="DP83848_PHY_name"/>
+     	<Parameter Name="DP83848_PHY_address"/>
+     	<Parameter Name="DP83848_Control_register"/>
+     	<Parameter Name="DP83848_Status_register"/>
+     	<Parameter Name="DP83848_Specified_status_register"/>     	
+     	<Parameter Name="DP83848_PHY_reset_bit"/>
+     	<Parameter Name="DP83848_Enable_AUTO_Negotiation_bit"/>
+     	<Parameter Name="DP83848_Enable_loopback_bit"/>
+     	<Parameter Name="DP83848_Link_status_bit"/>
+     	<Parameter Name="DP83848_Auto_negotiation_complete_bit"/>
+     	<Parameter Name="DP83848_PHY_Duplex_status"/>
+     	<Parameter Name="DP83848_PHY_Speed_tatus"/>
+     	 <!-- AR8032 PHY Parameters -->
+         <Parameter Name="AR8032_PHY_name"/>
+     	<Parameter Name="AR8032_PHY_address"/>
+     	<Parameter Name="AR8032_Control_register"/>
+     	<Parameter Name="AR8032_Status_register"/>
+     	<Parameter Name="AR8032_Specified_status_register"/>     	
+     	<Parameter Name="AR8032_PHY_reset_bit"/>
+     	<Parameter Name="AR8032_Enable_AUTO_Negotiation_bit"/>
+     	<Parameter Name="AR8032_Enable_loopback_bit"/>
+     	<Parameter Name="AR8032_Link_status_bit"/>
+     	<Parameter Name="AR8032_Auto_negotiation_complete_bit"/>
+     	<Parameter Name="AR8032_PHY_Duplex_status"/>
+     	<Parameter Name="AR8032_PHY_Speed_tatus"/>
+     	 <!-- YT8512 PHY Parameters -->
+         <Parameter Name="YT8512_PHY_name"/>
+     	<Parameter Name="YT8512_PHY_address"/>
+     	<Parameter Name="YT8512_Control_register"/>
+     	<Parameter Name="YT8512_Status_register"/>
+     	<Parameter Name="YT8512_Specified_status_register"/>     	
+     	<Parameter Name="YT8512_PHY_reset_bit"/>
+     	<Parameter Name="YT8512_Enable_AUTO_Negotiation_bit"/>
+     	<Parameter Name="YT8512_Enable_loopback_bit"/>
+     	<Parameter Name="YT8512_Link_status_bit"/>
+     	<Parameter Name="YT8512_Auto_negotiation_complete_bit"/>
+     	<Parameter Name="YT8512_PHY_Duplex_status"/>
+     	<Parameter Name="YT8512_PHY_Speed_tatus"/>
+     	 <!-- RTL8201F PHY Parameters -->
+         <Parameter Name="RTL8201F_PHY_name"/>
+     	<Parameter Name="RTL8201F_PHY_address"/>
+     	<Parameter Name="RTL8201F_Control_register"/>
+     	<Parameter Name="RTL8201F_Status_register"/>
+     	<Parameter Name="RTL8201F_Specified_status_register"/>     	
+     	<Parameter Name="RTL8201F_PHY_reset_bit"/>
+     	<Parameter Name="RTL8201F_Enable_AUTO_Negotiation_bit"/>
+     	<Parameter Name="RTL8201F_Enable_loopback_bit"/>
+     	<Parameter Name="RTL8201F_Link_status_bit"/>
+     	<Parameter Name="RTL8201F_Auto_negotiation_complete_bit"/>
+     	<Parameter Name="RTL8201F_PHY_Duplex_status"/>
+     	<Parameter Name="RTL8201F_PHY_Speed_tatus"/>
+     	 <!-- LAN8720 PHY Parameters -->
+         <Parameter Name="LAN8720_PHY_name"/>
+     	<Parameter Name="LAN8720_PHY_address"/>
+     	<Parameter Name="LAN8720_Control_register"/>
+     	<Parameter Name="LAN8720_Status_register"/>
+     	<Parameter Name="LAN8720_Specified_status_register"/>     	
+     	<Parameter Name="LAN8720_PHY_reset_bit"/>
+     	<Parameter Name="LAN8720_Enable_AUTO_Negotiation_bit"/>
+     	<Parameter Name="LAN8720_Enable_loopback_bit"/>
+     	<Parameter Name="LAN8720_Link_status_bit"/>
+     	<Parameter Name="LAN8720_Auto_negotiation_complete_bit"/>
+     	<Parameter Name="LAN8720_PHY_Duplex_status"/>
+     	<Parameter Name="LAN8720_PHY_Speed_tatus"/>
+     	 <!-- IP101GR PHY Parameters -->
+         <Parameter Name="IP101GR_PHY_name"/>
+     	<Parameter Name="IP101GR_PHY_address"/>
+     	<Parameter Name="IP101GR_Control_register"/>
+     	<Parameter Name="IP101GR_Status_register"/>
+     	<Parameter Name="IP101GR_Specified_status_register"/>     	
+     	<Parameter Name="IP101GR_PHY_reset_bit"/>
+     	<Parameter Name="IP101GR_Enable_AUTO_Negotiation_bit"/>
+     	<Parameter Name="IP101GR_Enable_loopback_bit"/>
+     	<Parameter Name="IP101GR_Link_status_bit"/>
+     	<Parameter Name="IP101GR_Auto_negotiation_complete_bit"/>
+     	<Parameter Name="IP101GR_PHY_Duplex_status"/>
+     	<Parameter Name="IP101GR_PHY_Speed_tatus"/>
+     	<!-- IP101GR PHY Parameters -->
+         <Parameter Name="User_PHY_PHY_name"/>
+     	<Parameter Name="User_PHY_PHY_address"/>
+     	<Parameter Name="User_PHY_Control_register"/>
+     	<Parameter Name="User_PHY_Status_register"/>
+     	<Parameter Name="User_PHY_Specified_status_register"/>     	
+     	<Parameter Name="User_PHY_PHY_reset_bit"/>
+     	<Parameter Name="User_PHY_Enable_AUTO_Negotiation_bit"/> 
+     	<Parameter Name="User_PHY_Enable_loopback_bit"/>
+     	<Parameter Name="User_PHY_Link_status_bit"/>
+     	<Parameter Name="User_PHY_Auto_negotiation_complete_bit"/>
+     	<Parameter Name="User_PHY_PHY_Duplex_status"/>
+     	<Parameter Name="User_PHY_PHY_Speed_tatus"/>
+    </RefMode>                    
+
+    <ModeLogicOperator Name="OR">
+        <Mode Name="Mode" UserName="Mode" UserNameCH="模式">
+            <ModeLogicOperator Name="XOR">
+                <Mode Name="MII" UserName="MII" UserNameCH="MII">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="MDC"/>
+                        <Signal Name="MII_TXD2"/>
+                        <Signal Name="MII_TX_CLK"/>
+                        <Signal Name="MII_CRS"/>
+                        <Signal Name="MII_RX_CLK"/>
+                        <Signal Name="MDIO"/>
+                        <Signal Name="MII_COL"/>
+                        <Signal Name="MII_RX_DV"/>
+                        <Signal Name="MII_RXD0"/>
+                        <Signal Name="MII_RXD1"/>
+                        <Signal Name="MII_RXD2"/>
+                        <Signal Name="MII_RXD3"/>
+                        <Signal Name="MII_TX_EN"/>
+                        <Signal Name="MII_TXD0"/>
+                        <Signal Name="MII_TXD1"/>
+                        <Signal Name="MII_TXD3"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_MII</Semaphore>
+                </Mode>
+                <Mode Name="RMII" UserName="RMII" UserNameCH="RMII">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="MDC"/>
+                        <Signal Name="RMII_REF_CLK"/>
+                        <Signal Name="MDIO"/>
+                        <Signal Name="RMII_CRS_DV"/>
+                        <Signal Name="RMII_RXD0"/>
+                        <Signal Name="RMII_RXD1"/>
+                        <Signal Name="RMII_TX_EN"/>
+                        <Signal Name="RMII_TXD0"/>
+                        <Signal Name="RMII_TXD1"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_RMII</Semaphore>
+                </Mode>
+            </ModeLogicOperator>
+        </Mode>
+        
+         <Mode Name="MII_RX_ERR" UserName="Activated RX Err signal" UserNameCH="启用RX Err">
+             <ModeLogicOperator Name="XOR">
+               <Mode Name="MII_RX_ERR" UserName="Activated RX Err signal" UserNameCH="启用RX Err">
+                   <SignalLogicalOp Name="AND">
+                        <Signal Name="MII_RX_ER" />
+                   </SignalLogicalOp>
+               </Mode>
+             </ModeLogicOperator>
+             <Condition Expression="$IpInstance_MII" Diagnostic="Active only with MII Mode" DiagnosticCH="MII模式时有效"/>
+         </Mode>    
+    </ModeLogicOperator>
+	
+    <!-- RefSignal for USART/UART/IRDA/SmartCard -->
+    <RefSignal IOMode="MuxOutputPushPull" Name="MDC"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="MII_TXD2"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="MII_TX_CLK"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="MII_CRS"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="MII_RX_CLK"/>    
+    <RefSignal IOMode="MuxOutputPushPull" Name="MDIO"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="MII_COL"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="MII_RX_DV"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="MII_RXD0"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="MII_RXD1"/>                   
+    <RefSignal IOMode="MuxOutputPushPull" Name="MII_RXD2"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="MII_RXD3"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="MII_TX_EN"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="MII_TXD0"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="MII_TXD1"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="MII_TXD3"/>    
+    <RefSignal IOMode="MuxOutputPushPull" Name="RMII_REF_CLK"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="RMII_CRS_DV"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="RMII_RXD0"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="RMII_RXD1"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="RMII_TX_EN"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="RMII_TXD0"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="RMII_TXD1"/>    
+    <RefSignal IOMode="MuxOutputPushPull" Name="MII_RX_ER"/>
+</IP>

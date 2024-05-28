@@ -1,0 +1,681 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<IP>
+	<About>External memory controller</About>
+	<AboutCH>外部存储控制器</AboutCH>
+	
+    <RefParameter Comment="Instance" DefaultValue="XMC$Index" Name="Instance" Type="" Visible="false"/>
+	
+	<!-- NOR/PSARM control -->
+    <RefParameter Name="Memory_device_type" Comment="Memor device type" CommentCH="存储器类型" DefaultValue="XMC_DEVICE_NOR" Group="NOR/PSARM control" GroupCH="NOR/PSARM控制" Type="list">
+    	   <Condition Diagnostic="" Expression="$IpInstance_Muxed_NOR_Flash"/>
+        <PossibleValue Comment="Muxed NOR Flash" CommentCH="复用 NOR Flash" Value="XMC_DEVICE_NOR"/>
+    </RefParameter>     
+    <RefParameter Name="Memory_device_type" Comment="Memor device type" CommentCH="存储器类型" DefaultValue="XMC_DEVICE_PSRAM" Group="NOR/PSARM control" GroupCH="NOR/PSARM控制" Type="list">
+    	   <Condition Diagnostic="" Expression="$IpInstance_Muxed_PSRAM"/>
+        <PossibleValue Comment="Muxed PSRAM" CommentCH="复用 PSRAM" Value="XMC_DEVICE_PSRAM"/>
+    </RefParameter>  
+    <RefParameter Name="Memory_device_type" Comment="Memor device type" CommentCH="存储器类型" DefaultValue="XMC_DEVICE_SRAM" Group="NOR/PSARM control" GroupCH="NOR/PSARM控制" Type="list">
+    	   <Condition Diagnostic="" Expression="$IpInstance_LCD"/>
+        <PossibleValue Comment="LCD Interface" CommentCH="LCD接口" Value="XMC_DEVICE_SRAM"/>
+    </RefParameter>  
+    
+    <RefParameter Name="Bank" Comment="Bank" CommentCH="存储区块" DefaultValue="XMC_BANK1_NOR_SRAM1" Group="NOR/PSARM control" GroupCH="NOR/PSARM控制" Type="list">
+        <PossibleValue Comment="Bank1 NOR/PSRAM 1" CommentCH="存储区块1 NOR/PSRAM 1" Value="XMC_BANK1_NOR_SRAM1"/>
+    </RefParameter>  
+    
+    <RefParameter Name="LCD_RS_line" Comment="LCD RS line" CommentCH="LCD命令/数据线" DefaultValue="0" Group="NOR/PSARM control" GroupCH="NOR/PSARM控制" Type="list" Visible="false" Reload = "false">
+    	   <Condition Diagnostic="" Expression="$IpInstance_LCD_RS_line_0"/>
+        <PossibleValue Comment="0" CommentCH="0" Value="0"/>
+    </RefParameter>
+    <RefParameter Name="LCD_RS_line" Comment="LCD RS line" CommentCH="LCD命令/数据线" DefaultValue="16" Group="NOR/PSARM control" GroupCH="NOR/PSARM控制" Type="list" Visible="false" Reload = "false">
+    	   <Condition Diagnostic="" Expression="$IpInstance_LCD_RS_line_16"/>
+        <PossibleValue Comment="16" CommentCH="16" Value="16"/>
+    </RefParameter> 
+    <RefParameter Name="LCD_RS_line" Comment="LCD RS line" CommentCH="LCD命令/数据线" DefaultValue="17" Group="NOR/PSARM control" GroupCH="NOR/PSARM控制" Type="list" Visible="false" Reload = "false">
+    	   <Condition Diagnostic="" Expression="$IpInstance_LCD_RS_line_17"/>
+        <PossibleValue Comment="17" CommentCH="17" Value="17"/>
+    </RefParameter> 
+    <RefParameter Name="LCD_RS_line" Comment="LCD RS line" CommentCH="LCD命令/数据线" DefaultValue="18" Group="NOR/PSARM control" GroupCH="NOR/PSARM控制" Type="list" Visible="false" Reload = "false">
+    	   <Condition Diagnostic="" Expression="$IpInstance_LCD_RS_line_18"/>
+        <PossibleValue Comment="18" CommentCH="18" Value="18"/>
+    </RefParameter> 
+    <RefParameter Name="LCD_RS_line" Comment="LCD RS line" CommentCH="LCD命令/数据线" DefaultValue="19" Group="NOR/PSARM control" GroupCH="NOR/PSARM控制" Type="list" Visible="false" Reload = "false">
+    	   <Condition Diagnostic="" Expression="$IpInstance_LCD_RS_line_19"/>
+        <PossibleValue Comment="19" CommentCH="19" Value="19"/>
+    </RefParameter> 
+    <RefParameter Name="LCD_RS_line" Comment="LCD RS line" CommentCH="LCD命令/数据线" DefaultValue="20" Group="NOR/PSARM control" GroupCH="NOR/PSARM控制" Type="list" Visible="false" Reload = "false">
+    	   <Condition Diagnostic="" Expression="$IpInstance_LCD_RS_line_20"/>
+        <PossibleValue Comment="20" CommentCH="20" Value="20"/>
+    </RefParameter>
+    <RefParameter Name="LCD_RS_line" Comment="LCD RS line" CommentCH="LCD命令/数据线" DefaultValue="21" Group="NOR/PSARM control" GroupCH="NOR/PSARM控制" Type="list" Visible="false" Reload = "false">
+    	   <Condition Diagnostic="" Expression="$IpInstance_LCD_RS_line_21"/>
+        <PossibleValue Comment="21" CommentCH="21" Value="21"/>
+    </RefParameter>
+    <RefParameter Name="LCD_RS_line" Comment="LCD RS line" CommentCH="LCD命令/数据线" DefaultValue="22" Group="NOR/PSARM control" GroupCH="NOR/PSARM控制" Type="list" Visible="false" Reload = "false">
+    	   <Condition Diagnostic="" Expression="$IpInstance_LCD_RS_line_22"/>
+        <PossibleValue Comment="22" CommentCH="22" Value="22"/>
+    </RefParameter>
+    <RefParameter Name="LCD_RS_line" Comment="LCD RS line" CommentCH="LCD命令/数据线" DefaultValue="23" Group="NOR/PSARM control" GroupCH="NOR/PSARM控制" Type="list" Visible="false" Reload = "false">
+    	   <Condition Diagnostic="" Expression="$IpInstance_LCD_RS_line_23"/>
+        <PossibleValue Comment="23" CommentCH="23" Value="23"/>
+    </RefParameter>
+    
+    <RefParameter Name="Write_enable" Comment="Write enable" CommentCH="写使能" DefaultValue="XMC_WRITE_OPERATION_ENABLE" Group="NOR/PSARM control" GroupCH="NOR/PSARM控制" Type="list" Reload = "false">
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="XMC_WRITE_OPERATION_DISABLE"/>
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="XMC_WRITE_OPERATION_ENABLE"/>
+    </RefParameter> 
+    <RefParameter Name="Write_enable" Comment="Write enable" CommentCH="写使能" DefaultValue="XMC_WRITE_OPERATION_ENABLE" Group="NOR/PSARM control" GroupCH="NOR/PSARM控制" Type="list" Reload = "false">
+    	   <Condition Diagnostic="" Expression="$IpInstance_LCD"/>
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="XMC_WRITE_OPERATION_ENABLE"/>
+    </RefParameter>
+    
+    <RefParameter Name="RW_Timing_Diff" Comment="Read-write timing different" CommentCH="读写时序不同" DefaultValue="XMC_WRITE_TIMING_DISABLE" Group="NOR/PSARM control" GroupCH="NOR/PSARM控制" Type="list">
+    	   <Condition Diagnostic="" Expression="$IpInstance_LCD"/>
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="XMC_WRITE_TIMING_DISABLE"/>
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="XMC_WRITE_TIMING_ENABLE"/>
+    </RefParameter> 
+    <RefParameter Name="RW_Timing_Diff" Comment="Read-write timing different" CommentCH="读写时序不同" DefaultValue="XMC_WRITE_TIMING_DISABLE" Group="NOR/PSARM control" GroupCH="NOR/PSARM控制" Type="list" Visible="false">
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="XMC_WRITE_TIMING_DISABLE"/>
+    </RefParameter> 
+    
+    <RefParameter Name="Wait_signal_polarity" Comment="Wait signal polarity" CommentCH="等待信号极性" DefaultValue="XMC_WAIT_SIGNAL_LEVEL_LOW" Group="NOR/PSARM control" GroupCH="NOR/PSARM控制" Type="list" Reload = "false">
+    	   <Condition Diagnostic="" Expression="$IpInstance_WaitSignal"/>
+        <PossibleValue Comment="Wait active low" CommentCH="低有效" Value="XMC_WAIT_SIGNAL_LEVEL_LOW"/>
+        <PossibleValue Comment="Wait active high" CommentCH="高有效" Value="XMC_WAIT_SIGNAL_LEVEL_HIGH"/>
+    </RefParameter> 
+    <RefParameter Name="Wait_signal_polarity" Comment="Wait signal polarity" CommentCH="等待信号极性" DefaultValue="XMC_WAIT_SIGNAL_LEVEL_LOW" Group="NOR/PSARM control" GroupCH="NOR/PSARM控制" Type="list" Visible="false" Reload = "false">
+        <PossibleValue Comment="Wait active low" CommentCH="低有效" Value="XMC_WAIT_SIGNAL_LEVEL_LOW"/>
+    </RefParameter> 
+    
+    <RefParameter Name="Wait_timing_configuration" Comment="Wait timing configuration" CommentCH="等待时序配置" DefaultValue="XMC_WAIT_SIGNAL_SYN_BEFORE" Group="NOR/PSARM control" GroupCH="NOR/PSARM控制" Type="list" Reload = "false">
+    	   <Condition Diagnostic="" Expression="$IpInstance_Muxed_NOR_Flash &amp; $IpInstance_WaitSignal &amp; $IpInstance_Clock"/>
+        <PossibleValue Comment="Wait signal is active one data cycle before the wait state" CommentCH="等待信号在等待状态前的一个数据周期有效" Value="XMC_WAIT_SIGNAL_SYN_BEFORE"/>
+        <PossibleValue Comment="Wait signal is active during the wait state" CommentCH="等待信号在等待状态期间有效" Value="XMC_WAIT_SIGNAL_SYN_DURING"/>
+    </RefParameter> 
+    <RefParameter Name="Wait_timing_configuration" Comment="Wait timing configuration" CommentCH="等待时序配置" DefaultValue="XMC_WAIT_SIGNAL_SYN_BEFORE" Group="NOR/PSARM control" GroupCH="NOR/PSARM控制" Type="list" Visible="false" Reload = "false">
+        <PossibleValue Comment="Wait signal is active one data cycle before the wait state" CommentCH="等待信号在等待状态前的一个数据周期有效" Value="XMC_WAIT_SIGNAL_SYN_BEFORE"/>
+    </RefParameter> 
+    
+    <RefParameter Name="Data_size" Comment="Data size" CommentCH="数据宽度" DefaultValue="XMC_BUSTYPE_8_BITS" Group="NOR/PSARM control" GroupCH="NOR/PSARM控制" Type="list" Reload = "false">
+    	   <Condition Diagnostic="" Expression="$IpInstance_NORFlash_PSRAM  &amp;  $IpInstance_16_Bits_DA | $IpInstance_17_Bits_DA | $IpInstance_18_Bits_DA | $IpInstance_19_Bits_DA | $IpInstance_20_Bits_DA | $IpInstance_21_Bits_DA | $IpInstance_22_Bits_DA | $IpInstance_23_Bits_DA | $IpInstance_24_Bits_DA"/>
+        <PossibleValue Comment="8 bits" CommentCH="8位宽" Value="XMC_BUSTYPE_8_BITS"/>
+        <PossibleValue Comment="16 bits" CommentCH="16位宽" Value="XMC_BUSTYPE_16_BITS"/>
+    </RefParameter> 
+    <RefParameter Name="Data_size" Comment="Data size" CommentCH="数据宽度" DefaultValue="XMC_BUSTYPE_8_BITS" Group="NOR/PSARM control" GroupCH="NOR/PSARM控制" Type="list" Visible="false" Reload = "false">
+    	   <Condition Diagnostic="" Expression="$IpInstance_NORFlash_PSRAM  &amp;  $IpInstance_8_Bits_DA | $IpInstance_9_Bits_DA | $IpInstance_10_Bits_DA | $IpInstance_11_Bits_DA | $IpInstance_12_Bits_DA | $IpInstance_13_Bits_DA | $IpInstance_14_Bits_DA | $IpInstance_15_Bits_DA"/>
+        <PossibleValue Comment="8 bits" CommentCH="8位宽" Value="XMC_BUSTYPE_8_BITS"/>
+    </RefParameter> 
+    <RefParameter Name="Data_size" Comment="Data size" CommentCH="数据宽度" DefaultValue="XMC_BUSTYPE_8_BITS" Group="NOR/PSARM control" GroupCH="NOR/PSARM控制" Type="list" Visible="false" Reload = "false">
+    	   <Condition Diagnostic="" Expression="$IpInstance_8_Bits_Data"/>
+        <PossibleValue Comment="8 bits" CommentCH="8位宽" Value="XMC_BUSTYPE_8_BITS"/>
+    </RefParameter> 
+    <RefParameter Name="Data_size" Comment="Data size" CommentCH="数据宽度" DefaultValue="XMC_BUSTYPE_16_BITS" Group="NOR/PSARM control" GroupCH="NOR/PSARM控制" Type="list" Visible="false" Reload = "false">
+    	   <Condition Diagnostic="" Expression="$IpInstance_16_Bits_Data"/>
+        <PossibleValue Comment="16 bits" CommentCH="16位宽" Value="XMC_BUSTYPE_16_BITS"/>
+    </RefParameter> 
+    
+    <RefParameter Name="Burst_read" Comment="Burst read" CommentCH="突发读" DefaultValue="XMC_BURST_MODE_DISABLE" Group="NOR/PSARM control" GroupCH="NOR/PSARM控制" Type="list" Visible="false" Reload = "false">
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="XMC_BURST_MODE_DISABLE"/>
+    </RefParameter> 
+    <RefParameter Name="Burst_read" Comment="Burst read" CommentCH="突发读" DefaultValue="XMC_BURST_MODE_ENABLE" Group="NOR/PSARM control" GroupCH="NOR/PSARM控制" Type="list" Visible="false" Reload = "false">
+    	   <Condition Diagnostic="" Expression="$IpInstance_Burst_read | $IpInstance_Burst_read_write"/>
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="XMC_BURST_MODE_ENABLE"/>
+    </RefParameter> 
+    
+    <RefParameter Name="Burst_write" Comment="Burst write" CommentCH="突发写" DefaultValue="XMC_WRITE_BURST_SYN_DISABLE" Group="NOR/PSARM control" GroupCH="NOR/PSARM控制" Type="list" Visible="false" Reload = "false">
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="XMC_WRITE_BURST_SYN_DISABLE"/>
+    </RefParameter> 
+    <RefParameter Name="Burst_write" Comment="Burst write" CommentCH="突发写" DefaultValue="XMC_WRITE_BURST_SYN_ENABLE" Group="NOR/PSARM control" GroupCH="NOR/PSARM控制" Type="list" Visible="false" Reload = "false">
+    	   <Condition Diagnostic="" Expression="$IpInstance_Burst_write | $IpInstance_Burst_read_write"/>
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="XMC_WRITE_BURST_SYN_ENABLE"/>
+    </RefParameter> 
+    
+    <RefParameter Name="AsynchronousWait" Comment="Wait Asynchronous" CommentCH="等待信号-异步" DefaultValue="XMC_ASYN_WAIT_DISABLE" Group="NOR/PSARM control" GroupCH="NOR/PSARM控制" Type="list" Visible="false" Reload = "false">
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="XMC_ASYN_WAIT_DISABLE"/>
+    </RefParameter> 
+    <RefParameter Name="AsynchronousWait" Comment="Wait Asynchronous" CommentCH="等待信号-异步" DefaultValue="XMC_ASYN_WAIT_ENABLE" Group="NOR/PSARM control" GroupCH="NOR/PSARM控制" Type="list" Visible="false" Reload = "false">
+        <Condition Diagnostic="" Expression="$IpInstance_AsynchronousWait | $IpInstance_Asynchronous_Synchronous"/>
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="XMC_ASYN_WAIT_ENABLE"/>
+    </RefParameter> 
+    
+    <RefParameter Name="SynchronousWait" Comment="Wait Synchronous" CommentCH="等待信号-同步" DefaultValue="XMC_WAIT_SIGNAL_DISABLE" Group="NOR/PSARM control" GroupCH="NOR/PSARM控制" Type="list" Visible="false" Reload = "false">
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="XMC_WAIT_SIGNAL_DISABLE"/>
+    </RefParameter> 
+    <RefParameter Name="SynchronousWait" Comment="Wait Synchronous" CommentCH="等待信号-同步" DefaultValue="XMC_WAIT_SIGNAL_ENABLE" Group="NOR/PSARM control" GroupCH="NOR/PSARM控制" Type="list" Visible="false" Reload = "false">
+        <Condition Diagnostic="" Expression="$IpInstance_Synchronous | $IpInstance_Asynchronous_Synchronous"/>
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="XMC_WAIT_SIGNAL_ENABLE"/>
+    </RefParameter>   
+    
+    <RefParameter Name="Address_Data_Mux" Comment="Address Data Mux" CommentCH="复用" DefaultValue="XMC_DATA_ADDR_MUX_ENABLE" Group="NOR/PSARM control" GroupCH="NOR/PSARM控制" Type="list" Visible="false" Reload = "false">
+        <Condition Diagnostic="" Expression="$IpInstance_NORFlash_PSRAM"/>
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="XMC_DATA_ADDR_MUX_ENABLE"/>
+    </RefParameter>   
+    <RefParameter Name="Address_Data_Mux" Comment="Address Data Mux" CommentCH="复用" DefaultValue="XMC_DATA_ADDR_MUX_DISABLE" Group="NOR/PSARM control" GroupCH="NOR/PSARM控制" Type="list" Visible="false" Reload = "false">
+        <Condition Diagnostic="" Expression="$IpInstance_LCD"/>
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="XMC_DATA_ADDR_MUX_DISABLE"/>
+    </RefParameter> 
+     
+    
+     <!-- NOR/PSARM timing -->
+    <RefParameter Name="Asynchronous_mode" Comment="Asynchronous mode" CommentCH="异步访问模式" DefaultValue="XMC_ACCESS_MODE_A" Group="NOR/PSARM timing" GroupCH="NOR/PSARM时序" Type="list">
+    	   <Condition Diagnostic="" Expression="RW_Timing_Diff = XMC_WRITE_TIMING_ENABLE"/>
+        <PossibleValue Comment="Mode A" CommentCH="模式A" Value="XMC_ACCESS_MODE_A"/>
+        <PossibleValue Comment="Mode D" CommentCH="模式D" Value="XMC_ACCESS_MODE_D"/>
+    </RefParameter> 
+    <RefParameter Name="Asynchronous_mode" Comment="Asynchronous mode" CommentCH="异步访问模式" DefaultValue="XMC_ACCESS_MODE_A" Group="NOR/PSARM timing" GroupCH="NOR/PSARM时序" Type="list" Visible="false">
+        <PossibleValue Comment="Mode A" CommentCH="模式A" Value="XMC_ACCESS_MODE_A"/>
+    </RefParameter>
+    
+    <RefParameter Name="Data_latency" Comment="Data latency" CommentCH="数据延迟" DefaultValue="15" Group="NOR/PSARM timing" GroupCH="NOR/PSARM时序" Max="15" Min="0" Type="integer" Reload = "false">
+	    <Condition Expression="$IpInstance_Clock"/>  
+    </RefParameter> 
+    <RefParameter Name="Data_latency" Comment="Data latency" CommentCH="数据延迟" DefaultValue="15" Group="NOR/PSARM timing" GroupCH="NOR/PSARM时序" Max="15" Min="0" Type="integer" Visible="false" Reload = "false">
+    </RefParameter> 
+    
+    <RefParameter Name="Clock_prescale" Comment="Clock prescale" CommentCH="时钟分频系数" DefaultValue="3" Group="NOR/PSARM timing" GroupCH="NOR/PSARM时序" Max="16" Min="2" Type="integer" Reload = "false">
+	    <Condition Expression="$IpInstance_Clock"/>  
+    </RefParameter> 
+    <RefParameter Name="Clock_prescale" Comment="Clock prescale" CommentCH="时钟分频系数" DefaultValue="2" Group="NOR/PSARM timing" GroupCH="NOR/PSARM时序" Max="16" Min="2" Type="integer" Visible="false" Reload = "false">
+    </RefParameter>
+    
+    <RefParameter Name="Bus_latency" Comment="Bus latency" CommentCH="总线延迟时间" DefaultValue="16" Group="NOR/PSARM timing" GroupCH="NOR/PSARM时序" Max="16" Min="1" Type="integer" Reload = "false">
+    </RefParameter> 
+    
+    <RefParameter Name="Data_setup_time" Comment="Data setup time" CommentCH="数据建立时间" DefaultValue="255" Group="NOR/PSARM timing" GroupCH="NOR/PSARM时序" Max="255" Min="0" Type="integer" Reload = "false">
+	    <Condition Expression="!$IpInstance_Clock"/>  
+    </RefParameter> 
+    <RefParameter Name="Data_setup_time" Comment="Data setup time" CommentCH="数据建立时间" DefaultValue="255" Group="NOR/PSARM timing" GroupCH="NOR/PSARM时序" Max="255" Min="0" Type="integer" Visible="false" Reload = "false">
+    </RefParameter>
+    
+    <RefParameter Name="Address_hold_time" Comment="Address hold time" CommentCH="地址保持时间" DefaultValue="15" Group="NOR/PSARM timing" GroupCH="NOR/PSARM时序" Max="15" Min="0" Type="integer" Reload = "false">
+	    <Condition Expression="!$IpInstance_Clock &amp; $IpInstance_NORFlash_PSRAM"/>  
+    </RefParameter> 
+     <RefParameter Name="Address_hold_time" Comment="Address hold time" CommentCH="地址保持时间" DefaultValue="15" Group="NOR/PSARM timing" GroupCH="NOR/PSARM时序" Max="15" Min="0" Type="integer" Reload = "false">
+	    <Condition Expression="RW_Timing_Diff = XMC_WRITE_TIMING_ENABLE  &amp; Asynchronous_mode = XMC_ACCESS_MODE_D"/>  
+    </RefParameter> 
+    <RefParameter Name="Address_hold_time" Comment="Address hold time" CommentCH="地址保持时间" DefaultValue="15" Group="NOR/PSARM timing" GroupCH="NOR/PSARM时序" Max="15" Min="0" Type="integer" Visible="false" Reload = "false">
+    </RefParameter> 
+    
+    <RefParameter Name="Address_setup_time" Comment="Address setup time" CommentCH="地址建立时间" DefaultValue="15" Group="NOR/PSARM timing" GroupCH="NOR/PSARM时序" Max="15" Min="0" Type="integer" Reload = "false">
+	    <Condition Expression="!$IpInstance_Clock"/>  
+    </RefParameter> 
+    <RefParameter Name="Address_setup_time" Comment="Address setup time" CommentCH="地址建立时间" DefaultValue="15" Group="NOR/PSARM timing" GroupCH="NOR/PSARM时序" Max="15" Min="0" Type="integer" Visible="false" Reload = "false">
+    </RefParameter> 
+    
+    <!-- NOR/PSARM write timing -->
+    <RefParameter Name="Write_Asynchronous_mode" Comment="Write Asynchronous mode" CommentCH="写异步访问模式" DefaultValue="XMC_ACCESS_MODE_A" Group="NOR/PSARM write timing" GroupCH="NOR/PSARM 写时序" Type="list">
+    	   <Condition Diagnostic="" Expression="RW_Timing_Diff = XMC_WRITE_TIMING_ENABLE"/>
+        <PossibleValue Comment="Mode A" CommentCH="模式A" Value="XMC_ACCESS_MODE_A"/>
+        <PossibleValue Comment="Mode D" CommentCH="模式D" Value="XMC_ACCESS_MODE_D"/>
+    </RefParameter>  
+  
+    <RefParameter Name="Write_Data_latency" Comment="Data latency" CommentCH="数据延迟" DefaultValue="15" Group="NOR/PSARM write timing" GroupCH="NOR/PSARM 写时序" Max="15" Min="0" Type="integer" Visible="false" Reload = "false">
+       <Condition Expression="RW_Timing_Diff = XMC_WRITE_TIMING_ENABLE"/>  
+    </RefParameter> 
+    
+    <RefParameter Name="Write_Clock_prescale" Comment="Clock prescale" CommentCH="时钟分频系数" DefaultValue="2" Group="NOR/PSARM write timing" GroupCH="NOR/PSARM 写时序" Max="16" Min="2" Type="integer" Visible="false" Reload = "false">
+       <Condition Expression="RW_Timing_Diff = XMC_WRITE_TIMING_ENABLE"/>  
+    </RefParameter>
+    
+    <RefParameter Name="Write_Bus_latency" Comment="Write Bus latency" CommentCH="写总线延迟时间" DefaultValue="16" Group="NOR/PSARM write timing" GroupCH="NOR/PSARM 写时序" Max="16" Min="1" Type="integer" Reload = "false">
+        <Condition Expression="RW_Timing_Diff = XMC_WRITE_TIMING_ENABLE"/>  
+    </RefParameter> 
+    
+    <RefParameter Name="Write_Data_setup_time" Comment="Write Data setup time" CommentCH="写数据建立时间" DefaultValue="255" Group="NOR/PSARM write timing" GroupCH="NOR/PSARM 写时序" Max="255" Min="0" Type="integer" Reload = "false">
+	    <Condition Expression="RW_Timing_Diff = XMC_WRITE_TIMING_ENABLE"/>  
+    </RefParameter> 
+
+     <RefParameter Name="Write_Address_hold_time" Comment="Write Address hold time" CommentCH="写地址保持时间" DefaultValue="15" Group="NOR/PSARM write timing" GroupCH="NOR/PSARM 写时序" Max="15" Min="0" Type="integer" Reload = "false">
+	    <Condition Expression="RW_Timing_Diff = XMC_WRITE_TIMING_ENABLE  &amp; Write_Asynchronous_mode = XMC_ACCESS_MODE_D"/>  
+    </RefParameter> 
+    <RefParameter Name="Write_Address_hold_time" Comment="Write Address hold time" CommentCH="写地址保持时间" DefaultValue="15" Group="NOR/PSARM write timing" GroupCH="NOR/PSARM 写时序" Max="15" Min="0" Type="integer" Visible="false" Reload = "false">
+	    <Condition Expression="RW_Timing_Diff = XMC_WRITE_TIMING_ENABLE"/>  
+    </RefParameter> 
+    
+    <RefParameter Name="Write_Address_setup_time" Comment="Write Address setup time" CommentCH="写地址建立时间" DefaultValue="15" Group="NOR/PSARM write timing" GroupCH="NOR/PSARM 写时序" Max="15" Min="0" Type="integer" Reload = "false">
+	     <Condition Expression="RW_Timing_Diff = XMC_WRITE_TIMING_ENABLE"/>  
+    </RefParameter> 
+    
+    <!-- NOR/PSARM extra timing -->
+    <RefParameter Name="Write_duration" Comment="Bus turnaround phase for consecutive write duration" CommentCH="连续写操作恢复时间" DefaultValue="8" Group="NOR/PSARM extra timing" GroupCH="NOR/PSARM 扩展时序" Max="255" Min="0" Type="integer" Reload = "false">
+    </RefParameter> 
+    
+    <RefParameter Name="Read_duration" Comment="Bus turnaround phase for consecutive read duration" CommentCH="连续读操作恢复时间" DefaultValue="8" Group="NOR/PSARM extra timing" GroupCH="NOR/PSARM 扩展时序" Max="255" Min="0" Type="integer" Reload = "false">
+    </RefParameter> 
+    
+ 
+    <RefMode Name="XMC_Settings" Abstract="true">
+    	    <!-- NOR/PSARM control -->
+        <Parameter Name="Memory_device_type"/>
+        <Parameter Name="Bank"/>     
+        <Parameter Name="LCD_RS_line"/>   
+        <Parameter Name="Data_size"/>
+        <Parameter Name="Write_enable"/>
+        <Parameter Name="RW_Timing_Diff"/>
+        <Parameter Name="Wait_timing_configuration"/>
+        <Parameter Name="Wait_signal_polarity"/>
+        <Parameter Name="Burst_read"/>
+        <Parameter Name="Burst_write"/>
+        <Parameter Name="AsynchronousWait"/>
+        <Parameter Name="SynchronousWait"/>
+        <Parameter Name="Address_Data_Mux"/>
+        <!-- NOR/PSARM timing -->
+       <Parameter Name="Asynchronous_mode"/>
+        <Parameter Name="Address_setup_time"/>   
+        <Parameter Name="Address_hold_time"/>   
+        <Parameter Name="Data_setup_time"/> 
+        <Parameter Name="Bus_latency"/>
+        <Parameter Name="Clock_prescale"/>
+        <Parameter Name="Data_latency"/>       
+        <!-- NOR/PSARM write timing -->
+       <Parameter Name="Write_Asynchronous_mode"/>
+        <Parameter Name="Write_Address_setup_time"/>   
+        <Parameter Name="Write_Address_hold_time"/>   
+        <Parameter Name="Write_Data_setup_time"/> 
+        <Parameter Name="Write_Bus_latency"/>
+        <Parameter Name="Write_Data_latency"/>
+        <Parameter Name="Write_Clock_prescale"/>
+        <!-- NOR/PSARM extra timing -->
+       <Parameter Name="Write_duration"/>
+        <Parameter Name="Read_duration"/>   
+    </RefMode>
+                        
+    <ModeLogicOperator Name="OR">
+    	   <Mode Name="Chip_Select" UserName="Chip Select NE1" UserNameCH="片选 NE1">
+			<ModeLogicOperator Name="XOR">
+				<Mode Name="Chip_Select" UserName="Chip Select NE1" UserNameCH="片选 NE1">
+					<SignalLogicalOp Name="AND">
+						<Signal Name="NE1"/>
+					</SignalLogicalOp>
+				</Mode>
+			</ModeLogicOperator>
+			<Semaphore>$IpInstance_Chip_Select</Semaphore>
+	   </Mode>
+
+        <Mode Name="Memory_device_type" UserName="Memory device type" UserNameCH="存储器类型">
+            <Condition Expression="$IpInstance_Chip_Select" Diagnostic="Chip Select disabled" DiagnosticCH="未开启片选"/>
+            <ModeLogicOperator Name="XOR">
+                <Mode Name="Muxed NOR Flash" UserName="Muxed NOR Flash" UserNameCH="复用 NOR Flash">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="NOE"/>
+                        <Signal Name="NWE"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_Muxed_NOR_Flash</Semaphore>
+                    <Semaphore>$IpInstance_NORFlash_PSRAM</Semaphore>
+                </Mode>
+                <Mode Name="Muxed PSRAM" UserName="Muxed PSRAM" UserNameCH="复用 PSRAM">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="NOE"/>
+                        <Signal Name="NWE"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_Muxed_PSRAM</Semaphore>
+                    <Semaphore>$IpInstance_NORFlash_PSRAM</Semaphore>
+                </Mode>
+                <Mode Name="LCD" UserName="LCD Interface" UserNameCH="LCD接口">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="NOE"/>
+                        <Signal Name="NWE"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_LCD</Semaphore>
+                </Mode>
+            </ModeLogicOperator>            
+        </Mode>
+        
+        <Mode Name="Data_Bus_Width" UserName="External memory data bus width" UserNameCH="外部存储器数据总线宽度">
+            <Condition Expression="$IpInstance_LCD" Diagnostic="Only available for LCD Interface" DiagnosticCH="仅LCD接口有效"/>
+            <Semaphore>$IpInstance_Data_Enable</Semaphore>
+            <ModeLogicOperator Name="XOR">
+                <Mode Name="8_Bits" UserName="8 bits" UserNameCH="8位宽">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="D0"/>
+                        <Signal Name="D1"/>
+                        <Signal Name="D2"/>
+                        <Signal Name="D3"/>
+                        <Signal Name="D4"/>
+                        <Signal Name="D5"/>
+                        <Signal Name="D6"/>
+                        <Signal Name="D7"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_8_Bits_Data</Semaphore>
+                </Mode>
+                <Mode Name="16_Bits" UserName="16 bits" UserNameCH="16位宽">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="D0"/>
+                        <Signal Name="D1"/>
+                        <Signal Name="D2"/>
+                        <Signal Name="D3"/>
+                        <Signal Name="D4"/>
+                        <Signal Name="D5"/>
+                        <Signal Name="D6"/>
+                        <Signal Name="D7"/>
+                        <Signal Name="D8"/>
+                        <Signal Name="D9"/>
+                        <Signal Name="D10"/>
+                        <Signal Name="D11"/>
+                        <Signal Name="D12"/>
+                        <Signal Name="D13"/>
+                        <Signal Name="D14"/>
+                        <Signal Name="D15"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_16_Bits_Data</Semaphore>
+                </Mode>
+            </ModeLogicOperator>            
+        </Mode>
+        
+        <Mode Name="LCD_RS line" UserName="LCD RS line" UserNameCH="LCD命令/数据线">
+            <Condition Expression="$IpInstance_LCD" Diagnostic="Only available for LCD Interface" DiagnosticCH="仅LCD接口有效"/>
+            <ModeLogicOperator Name="XOR">
+                <Mode Name="A0" UserName="A0" UserNameCH="A0">
+                	<Condition Expression="$IpInstance_8_Bits_Data" Diagnostic="Only available for External memory data bus width 8 bits" DiagnosticCH="仅外部存储器数据总线宽度8位宽有效"/>
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="A0"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_LCD_RS_line</Semaphore>
+                    <Semaphore>$IpInstance_LCD_RS_line_0</Semaphore>
+                </Mode>
+                <Mode Name="A16" UserName="A16" UserNameCH="A16">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="A16"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_LCD_RS_line</Semaphore>
+                    <Semaphore>$IpInstance_LCD_RS_line_16</Semaphore>
+                </Mode>
+                <Mode Name="A17" UserName="A17" UserNameCH="A17">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="A17"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_LCD_RS_line</Semaphore>
+                    <Semaphore>$IpInstance_LCD_RS_line_17</Semaphore>
+                </Mode>
+                <Mode Name="A18" UserName="A18" UserNameCH="A18">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="A18"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_LCD_RS_line</Semaphore>
+                    <Semaphore>$IpInstance_LCD_RS_line_18</Semaphore>
+                </Mode>
+                <Mode Name="A19" UserName="A19" UserNameCH="A19">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="A19"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_LCD_RS_line</Semaphore>
+                    <Semaphore>$IpInstance_LCD_RS_line_19</Semaphore>
+                </Mode>
+                <Mode Name="A20" UserName="A20" UserNameCH="A20">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="A20"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_LCD_RS_line</Semaphore>
+                    <Semaphore>$IpInstance_LCD_RS_line_20</Semaphore>
+                </Mode>
+                <Mode Name="A21" UserName="A21" UserNameCH="A21">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="A21"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_LCD_RS_line</Semaphore>
+                    <Semaphore>$IpInstance_LCD_RS_line_21</Semaphore>
+                </Mode>
+                <Mode Name="A22" UserName="A22" UserNameCH="A22">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="A22"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_LCD_RS_line</Semaphore>
+                    <Semaphore>$IpInstance_LCD_RS_line_22</Semaphore>
+                </Mode>
+                <Mode Name="A23" UserName="A23" UserNameCH="A23">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="A23"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_LCD_RS_line</Semaphore>
+                    <Semaphore>$IpInstance_LCD_RS_line_23</Semaphore>
+                </Mode>
+            </ModeLogicOperator>            
+        </Mode>
+        
+        <Mode Name="Data_Address_Bus" UserName="Data/Address" UserNameCH="数据/地址线">
+            <Condition Expression="$IpInstance_NORFlash_PSRAM" Diagnostic="Memory device type should be Muxed NOR Flash or Muxed PSRAM" DiagnosticCH="存储器类型必须为复用 NOR Flash或者复用 PSRAM"/>
+            <Semaphore>$IpInstance_Data_Address_Bus</Semaphore>
+            <ModeLogicOperator Name="XOR">
+                <Mode Name="8_Bits" UserName="8 bits" UserNameCH="8位宽">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="D0--D7"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_8_Bits_DA</Semaphore>
+                </Mode>
+                <Mode Name="9_Bits" UserName="9 bits" UserNameCH="9位宽">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="D0--D8"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_9_Bits_DA</Semaphore>
+                </Mode>
+                <Mode Name="10_Bits" UserName="10 bits" UserNameCH="10位宽">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="D0--D9"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_10_Bits_DA</Semaphore>
+                </Mode>
+                <Mode Name="11_Bits" UserName="11 bits" UserNameCH="11位宽">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="D0--D10"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_11_Bits_DA</Semaphore>
+                </Mode>
+                <Mode Name="12_Bits" UserName="12 bits" UserNameCH="12位宽">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="D0--D11"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_12_Bits_DA</Semaphore>
+                </Mode>
+                <Mode Name="13_Bits" UserName="13 bits" UserNameCH="13位宽">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="D0--D12"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_13_Bits_DA</Semaphore>
+                </Mode>
+                <Mode Name="14_Bits" UserName="14 bits" UserNameCH="14位宽">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="D0--D13"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_14_Bits_DA</Semaphore>
+                </Mode>
+                <Mode Name="15_Bits" UserName="15 bits" UserNameCH="15位宽">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="D0--D14"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_15_Bits_DA</Semaphore>
+                </Mode>
+                <Mode Name="16_Bits" UserName="16 bits" UserNameCH="16位宽">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="D0--D15"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_16_Bits_DA</Semaphore>
+                </Mode>
+                
+                <Mode Name="17_Bits" UserName="17 bits" UserNameCH="17位宽">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="D0--D15"/>
+                        <Signal Name="A16"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_17_Bits_DA</Semaphore>
+                </Mode>
+                <Mode Name="18_Bits" UserName="18 bits" UserNameCH="18位宽">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="D0--D15"/>
+                        <Signal Name="A16--A17"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_18_Bits_DA</Semaphore>
+                </Mode>
+                <Mode Name="19_Bits" UserName="19 bits" UserNameCH="19位宽">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="D0--D15"/>
+                        <Signal Name="A16--A18"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_19_Bits_DA</Semaphore>
+                </Mode>
+                <Mode Name="20_Bits" UserName="20 bits" UserNameCH="20位宽">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="D0--D15"/>
+                        <Signal Name="A16--A19"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_20_Bits_DA</Semaphore>
+                </Mode>
+                <Mode Name="21_Bits" UserName="21 bits" UserNameCH="21位宽">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="D0--D15"/>
+                        <Signal Name="A16--A20"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_21_Bits_DA</Semaphore>
+                </Mode>
+                <Mode Name="22_Bits" UserName="22 bits" UserNameCH="22位宽">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="D0--D15"/>
+                        <Signal Name="A16--A21"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_22_Bits_DA</Semaphore>
+                </Mode>
+                <Mode Name="23_Bits" UserName="23 bits" UserNameCH="23位宽">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="D0--D15"/>
+                        <Signal Name="A16--A22"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_23_Bits_DA</Semaphore>
+                </Mode>
+                <Mode Name="24_Bits" UserName="24 bits" UserNameCH="24位宽">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="D0--D15"/>
+                        <Signal Name="A16--A23"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_24_Bits_DA</Semaphore>
+                </Mode>
+            </ModeLogicOperator>            
+        </Mode>
+        
+        <Mode Name="Clock" UserName="Clock" UserNameCH="时钟">
+            <Condition Expression="$IpInstance_NORFlash_PSRAM" Diagnostic="Only for NOR Flash and PSRAM" DiagnosticCH="仅在NOR Flash和PSRAM时有效"/>
+            <ModeLogicOperator Name="XOR">
+                <Mode Name="Burst_read" UserName="Burst read" UserNameCH="突发读">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="CLK"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_Burst_read</Semaphore>
+                    <Semaphore>$IpInstance_Clock</Semaphore>
+                </Mode>
+                <Mode Name="Burst_write" UserName="Burst write" UserNameCH="突发写">
+                	  <Condition Expression="$IpInstance_Muxed_PSRAM" Diagnostic="Only for PSRAM" DiagnosticCH="仅在PSRAM时有效"/>
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="CLK"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_Burst_write</Semaphore>
+                    <Semaphore>$IpInstance_Clock</Semaphore>
+                </Mode>
+                <Mode Name="Burst_read_write" UserName="Burst read write" UserNameCH="突发读/写">
+                	  <Condition Expression="$IpInstance_Muxed_PSRAM" Diagnostic="Only for PSRAM" DiagnosticCH="仅在PSRAM时有效"/>
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="CLK"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_Burst_read_write</Semaphore>
+                    <Semaphore>$IpInstance_Clock</Semaphore>
+                </Mode>
+            </ModeLogicOperator>            
+        </Mode>
+        
+        <Mode Name="Address_valid" UserName="Address valid" UserNameCH="地址有效">
+        	     <Condition Expression="$IpInstance_NORFlash_PSRAM" Diagnostic="Only for NOR Flash and PSRAM" DiagnosticCH="仅在NOR Flash和PSRAM时有效"/>
+			<ModeLogicOperator Name="XOR">
+				<Mode Name="Address_valid" UserName="Address valid" UserNameCH="地址有效">
+					<SignalLogicalOp Name="AND">
+						<Signal Name="NADV"/>
+					</SignalLogicalOp>
+				</Mode>
+			</ModeLogicOperator>
+			<Semaphore>$IpInstance_Address_valid</Semaphore>
+	   </Mode>
+	   
+	   <Mode Name="Wait_signal" UserName="Wait signal" UserNameCH="等待信号">
+            <Condition Expression="$IpInstance_NORFlash_PSRAM" Diagnostic="Only for NOR Flash and PSRAM" DiagnosticCH="仅在NOR Flash和PSRAM时有效"/>
+            <ModeLogicOperator Name="XOR">
+                <Mode Name="AsynchronousWait" UserName="Asynchronous" UserNameCH="异步">
+                	 <Condition Expression="!$IpInstance_Clock | !$IpInstance_Burst_read_write &amp; $IpInstance_Muxed_PSRAM" 
+                	 	                  AndFlag = "false" 
+                	  	                  Diagnostic="Only for asynchronous accesses"
+                	  	                  DiagnosticCH="仅用于异步访问"/>
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="NWAIT"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_AsynchronousWait</Semaphore>
+                    <Semaphore>$IpInstance_WaitSignal</Semaphore>
+                </Mode>
+                <Mode Name="Synchronous" UserName="Synchronous" UserNameCH="同步">
+                	  <Condition Expression="$IpInstance_Clock" 
+                	  	                   Diagnostic="Only for synchronous accesses"
+                	  	                   DiagnosticCH="仅用于同步访问"/>
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="NWAIT"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_Synchronous</Semaphore>
+                    <Semaphore>$IpInstance_WaitSignal</Semaphore>
+                </Mode>
+                <Mode Name="Asynchronous_Synchronous" UserName="Asynchronous Synchronous" UserNameCH="异步/同步">
+                	  <Condition Expression="$IpInstance_Burst_read | $IpInstance_Burst_write &amp; $IpInstance_Muxed_PSRAM" 
+                	  	                   Diagnostic="Only for PSRAM with either asynchronous read and synchronous write accesses or synchronous read and asynchronous write accesses"
+                	  	                   DiagnosticCH="仅用于PSRAM等待信号异步读和同步写或者同步读和异步写"/>
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="NWAIT"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_Asynchronous_Synchronous</Semaphore>
+                    <Semaphore>$IpInstance_WaitSignal</Semaphore>
+                </Mode>
+            </ModeLogicOperator>            
+        </Mode>
+        
+        <Mode Name="Byte_select" UserName="Byte select signal" UserNameCH="字节选择信号">
+        	     <Condition Expression="$IpInstance_Muxed_PSRAM &amp;  $IpInstance_16_Bits_DA | $IpInstance_17_Bits_DA | $IpInstance_18_Bits_DA | $IpInstance_19_Bits_DA | $IpInstance_20_Bits_DA | $IpInstance_21_Bits_DA | $IpInstance_22_Bits_DA | $IpInstance_23_Bits_DA | $IpInstance_24_Bits_DA" 
+        	     	                 Diagnostic="Only for 16-bit PSRAM"
+        	     	                 DiagnosticCH="仅用于16位宽PSRAM"/>
+			<ModeLogicOperator Name="XOR">
+				<Mode Name="Byte_select" UserName="Byte select signal" UserNameCH="字节选择信号">
+					<SignalLogicalOp Name="AND">
+						<Signal Name="LB"/>
+						<Signal Name="UB"/>
+					</SignalLogicalOp>
+				</Mode>
+			</ModeLogicOperator>
+			<Semaphore>$IpInstance_Address_valid</Semaphore>
+	   </Mode>
+        
+    </ModeLogicOperator>
+	
+    <RefSignal IOMode="MuxOutputPushPull1" Name="NE1"/>
+    <RefSignal IOMode="MuxOutputPushPull1" Name="NOE"/>
+    <RefSignal IOMode="MuxOutputPushPull1" Name="NWE"/>
+    <RefSignal IOMode="MuxOutputPushPull1" Name="CLK"/>
+    <RefSignal IOMode="MuxOutputPushPull1" Name="NADV"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="NWAIT"/>       
+    <RefSignal IOMode="MuxOutputPushPull1" Name="LB"/>       
+    <RefSignal IOMode="MuxOutputPushPull1" Name="UB"/>                              
+    <RefSignal IOMode="MuxOutputPushPull1" Name="D0"/>       
+    <RefSignal IOMode="MuxOutputPushPull1" Name="D1"/> 
+    <RefSignal IOMode="MuxOutputPushPull1" Name="D2"/> 
+    <RefSignal IOMode="MuxOutputPushPull1" Name="D3"/>       
+    <RefSignal IOMode="MuxOutputPushPull1" Name="D4"/> 
+    <RefSignal IOMode="MuxOutputPushPull1" Name="D5"/> 
+    <RefSignal IOMode="MuxOutputPushPull1" Name="D6"/>       
+    <RefSignal IOMode="MuxOutputPushPull1" Name="D7"/> 
+    <RefSignal IOMode="MuxOutputPushPull1" Name="D8"/> 
+    <RefSignal IOMode="MuxOutputPushPull1" Name="D9"/>       
+    <RefSignal IOMode="MuxOutputPushPull1" Name="D10"/> 
+    <RefSignal IOMode="MuxOutputPushPull1" Name="D11"/> 
+    <RefSignal IOMode="MuxOutputPushPull1" Name="D12"/> 
+    <RefSignal IOMode="MuxOutputPushPull1" Name="D13"/>
+    <RefSignal IOMode="MuxOutputPushPull1" Name="D14"/> 
+    <RefSignal IOMode="MuxOutputPushPull1" Name="D15"/>
+    <RefSignal IOMode="MuxOutputPushPull1" Name="A0"/>  
+    <RefSignal IOMode="MuxOutputPushPull1" Name="A16"/> 
+    <RefSignal IOMode="MuxOutputPushPull1" Name="A17"/> 
+    <RefSignal IOMode="MuxOutputPushPull1" Name="A18"/> 
+    <RefSignal IOMode="MuxOutputPushPull1" Name="A19"/>
+    <RefSignal IOMode="MuxOutputPushPull1" Name="A20"/> 
+    <RefSignal IOMode="MuxOutputPushPull1" Name="A21"/>
+    <RefSignal IOMode="MuxOutputPushPull1" Name="A22"/>
+    <RefSignal IOMode="MuxOutputPushPull1" Name="A23"/>
+</IP>

@@ -1,0 +1,1170 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<IP>
+  <About>Controller Area Network</About>
+  <AboutCH>CAN 总线控制器</AboutCH>
+	
+     <RefParameter Name="Instance" DefaultValue="CAN$Index" Comment="Instance" Type="" Visible="false" Group="Basic Parameters"/>
+
+    <!-- CAN BaudRate Settings -->
+    <RefParameter Name="BaudRate" Comment="Baud Rate" CommentCH="波特率" DefaultValue="500" Group="BaudRate Settings" GroupCH="波特率配置" Max="1000" Min="5" Type="integer" Unit="KBits/s"/>
+	
+    <RefParameter Name="Sample_Point" Comment="Sample point" CommentCH="采样位置" DefaultValue="87.5" Group="BaudRate Settings" GroupCH="波特率配置" Max="90" Min="50" Type="double" Unit="%"/>
+		
+	<RefParameter Name="BaudRate_Deviation_Tolerance" Comment="BaudRate Deviation Tolerance" CommentCH="允许波特率偏差" DefaultValue="FALSE" Group="BaudRate Settings" GroupCH="波特率配置" Type="list">
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE"/>
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE"/>
+    </RefParameter>  
+    
+	<RefParameter Name="BaudRate_Deviation" Comment="BaudRate Deviation" CommentCH="波特率偏差" DefaultValue="0" Group="BaudRate Settings" GroupCH="波特率配置" Max="5" Min="0" Type="double" Unit="%">
+	    <Condition Expression="BaudRate_Deviation_Tolerance = TRUE"/>  
+    </RefParameter> 
+    
+	<RefParameter Name="BaudRate_Result_Select" Comment="BaudRate Configuration Result" CommentCH="波特率配置结果可选项" DefaultValue="1" Group="BaudRate Settings" GroupCH="波特率配置" Type="list">
+        <PossibleValue Comment="No result, please modify settings" CommentCH="无计算结果，请修改参数" Value="0"/>
+        <PossibleValue Comment="Result 1" CommentCH="计算结果 1" Value="1"/>
+        <PossibleValue Comment="Result 2" CommentCH="计算结果 2" Value="2"/>
+        <PossibleValue Comment="Result 3" CommentCH="计算结果 3" Value="3"/>
+        <PossibleValue Comment="Result 4" CommentCH="计算结果 4" Value="4"/>
+        <PossibleValue Comment="Result 5" CommentCH="计算结果 5" Value="5"/>
+        <PossibleValue Comment="Result 6" CommentCH="计算结果 6" Value="6"/>
+        <PossibleValue Comment="Result 7" CommentCH="计算结果 7" Value="7"/>
+        <PossibleValue Comment="Result 8" CommentCH="计算结果 8" Value="8"/>
+     </RefParameter>   
+     
+     <RefParameter Name="BaudRate_Division" Comment="Baud rate division" CommentCH="波特率分频" DefaultValue="1" Group="BaudRate Settings" GroupCH="波特率配置" Max="4095" Min="1" Type="integer"  Enable="false" Reload = "false"/>
+     
+     <RefParameter Name="BTS1" Comment="Bit time segment 1 (BSEG1)" CommentCH="位时间段1 (BSEG1)" DefaultValue="CAN_BTS1_1TQ" Group="BaudRate Settings" GroupCH="波特率配置" Type="list"  Enable="false" Reload = "false">
+        <PossibleValue Comment="1 time quantum" CommentCH="1个时间单元" Value="CAN_BTS1_1TQ"/>
+        <PossibleValue Comment="2 time quantum" CommentCH="2个时间单元" Value="CAN_BTS1_2TQ"/>
+        <PossibleValue Comment="3 time quantum" CommentCH="3个时间单元" Value="CAN_BTS1_3TQ"/>
+        <PossibleValue Comment="4 time quantum" CommentCH="4个时间单元" Value="CAN_BTS1_4TQ"/>
+        <PossibleValue Comment="5 time quantum" CommentCH="5个时间单元" Value="CAN_BTS1_5TQ"/>
+        <PossibleValue Comment="6 time quantum" CommentCH="6个时间单元" Value="CAN_BTS1_6TQ"/>
+        <PossibleValue Comment="7 time quantum" CommentCH="7个时间单元" Value="CAN_BTS1_7TQ"/>
+        <PossibleValue Comment="8 time quantum" CommentCH="8个时间单元" Value="CAN_BTS1_8TQ"/>
+        <PossibleValue Comment="9 time quantum" CommentCH="9个时间单元" Value="CAN_BTS1_9TQ"/>
+        <PossibleValue Comment="10 time quantum" CommentCH="10个时间单元" Value="CAN_BTS1_10TQ"/>
+        <PossibleValue Comment="11 time quantum" CommentCH="11个时间单元" Value="CAN_BTS1_11TQ"/>
+        <PossibleValue Comment="12 time quantum" CommentCH="12个时间单元" Value="CAN_BTS1_12TQ"/>
+        <PossibleValue Comment="13 time quantum" CommentCH="13个时间单元" Value="CAN_BTS1_13TQ"/>
+        <PossibleValue Comment="14 time quantum" CommentCH="14个时间单元" Value="CAN_BTS1_14TQ"/>
+        <PossibleValue Comment="15 time quantum" CommentCH="15个时间单元" Value="CAN_BTS1_15TQ"/>
+        <PossibleValue Comment="16 time quantum" CommentCH="16个时间单元" Value="CAN_BTS1_16TQ"/>
+    </RefParameter>   
+    
+     <RefParameter Name="BTS2" Comment="Bit time segment 2 (BSEG2)" CommentCH="位时间段2 (BSEG2)" DefaultValue="CAN_BTS1_1TQ" Group="BaudRate Settings" GroupCH="波特率配置" Type="list"  Enable="false" Reload = "false">
+        <PossibleValue Comment="1 time quantum" CommentCH="1个时间单元" Value="CAN_BTS2_1TQ"/>
+        <PossibleValue Comment="2 time quantum" CommentCH="2个时间单元" Value="CAN_BTS2_2TQ"/>
+        <PossibleValue Comment="3 time quantum" CommentCH="3个时间单元" Value="CAN_BTS2_3TQ"/>
+        <PossibleValue Comment="4 time quantum" CommentCH="4个时间单元" Value="CAN_BTS2_4TQ"/>
+        <PossibleValue Comment="5 time quantum" CommentCH="5个时间单元" Value="CAN_BTS2_5TQ"/>
+        <PossibleValue Comment="6 time quantum" CommentCH="6个时间单元" Value="CAN_BTS2_6TQ"/>
+        <PossibleValue Comment="7 time quantum" CommentCH="7个时间单元" Value="CAN_BTS2_7TQ"/>
+        <PossibleValue Comment="8 time quantum" CommentCH="8个时间单元" Value="CAN_BTS2_8TQ"/>
+    </RefParameter>
+    
+    <RefParameter Name="RSAW" Comment="Resynchronization adjust width" CommentCH="重新同步调整宽度 (rsaw)" DefaultValue="CAN_BTS1_1TQ" Group="BaudRate Settings" GroupCH="波特率配置" Type="list"  Enable="false" Reload = "false">
+        <PossibleValue Comment="1 time quantum" CommentCH="1个时间单元" Value="CAN_RSAW_1TQ"/>
+        <PossibleValue Comment="2 time quantum" CommentCH="2个时间单元" Value="CAN_RSAW_2TQ"/>
+        <PossibleValue Comment="3 time quantum" CommentCH="3个时间单元" Value="CAN_RSAW_3TQ"/>
+        <PossibleValue Comment="4 time quantum" CommentCH="4个时间单元" Value="CAN_RSAW_4TQ"/>
+    </RefParameter>
+
+	<!-- CAN Basic Parameters -->
+    <RefParameter Name="CAN_Mode" Comment="CAN Mode" CommentCH="CAN模式" DefaultValue="CAN_MODE_COMMUNICATE" Group="Basic Parameters" GroupCH="基础参数" Type="list" Reload = "false">
+        <PossibleValue Comment="Communication mode" CommentCH="正常通信模式" Value="CAN_MODE_COMMUNICATE"/>
+        <PossibleValue Comment="Loop back mode" CommentCH="环回模式" Value="CAN_MODE_LOOPBACK"/>
+        <PossibleValue Comment="Listen-Only mode" CommentCH="只听模式" Value="CAN_MODE_LISTENONLY"/>
+        <PossibleValue Comment="Loopback combined with Listen-Only mode" CommentCH="环回只听模式" Value="CAN_MODE_LISTENONLY_LOOPBACK"/>
+    </RefParameter>   
+    <RefParameter Name="TTC_mode" Comment="Time triggered communication mode" CommentCH="时间触发通信模式" DefaultValue="FALSE" Group="Basic Parameters" GroupCH="基础参数" Type="list" Reload = "false">
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE"/>
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE"/>
+    </RefParameter>   
+    <RefParameter Name="Auto_Exit_Bus-off" Comment="Automatic exit bus-off" CommentCH="自动退出离线状态" DefaultValue="TRUE" Group="Basic Parameters" GroupCH="基础参数" Type="list" Reload = "false">
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE"/>
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE"/>
+    </RefParameter>  
+    <RefParameter Name="Auto_Exit_Doze" Comment="Automatic exit doze mode" CommentCH="自动退出睡眠模式" DefaultValue="TRUE" Group="Basic Parameters" GroupCH="基础参数" Type="list" Reload = "false">
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE"/>
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE"/>
+    </RefParameter>  
+    <RefParameter Name="Prohibit_Retrans" Comment="Prohibit retransmission when sending fails" CommentCH="发送失败时禁止重传" DefaultValue="FALSE" Group="Basic Parameters" GroupCH="基础参数" Type="list" Reload = "false">
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE"/>
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE"/>
+    </RefParameter>  
+     <RefParameter Name="Message_Discarding_Rule" Comment="Message discarding rule select when overflow" CommentCH="接收溢出时报文丢弃规则" DefaultValue="CAN_DISCARDING_FIRST_RECEIVED" Group="Basic Parameters" GroupCH="基础参数" Type="list" Reload = "false">
+        <PossibleValue Comment="The previous message is discarded" CommentCH="上一帧收到的报文被丢弃" Value="CAN_DISCARDING_FIRST_RECEIVED"/>
+        <PossibleValue Comment="The new incoming message is discarded" CommentCH="新收到的报文被丢弃" Value="CAN_DISCARDING_LAST_RECEIVED"/>
+    </RefParameter>  
+    <RefParameter Name="Transmit_Sequence_Rule" Comment="Multiple message transmit sequence rule" CommentCH="多报文发送顺序规则选择" DefaultValue="CAN_SENDING_BY_ID" Group="Basic Parameters" GroupCH="基础参数" Type="list" Reload = "false">
+        <PossibleValue Comment="The smallest identifier is first transmitted" CommentCH="标识符最小的最先被发送" Value="CAN_SENDING_BY_ID"/>
+        <PossibleValue Comment="The first request order is first transmitted" CommentCH="最先请求的最先被发送" Value="CAN_SENDING_BY_REQUEST"/>
+    </RefParameter> 
+    
+   <RefParameter Name="Filter_Num" Comment="Filter Number" CommentCH="过滤器数量" DefaultValue="14" Group="Basic Parameters" GroupCH="基础参数" Max="14" Min="14" Type="integer" Visible="false" Reload = "false"/>
+     
+    <!-- Filter 0-->
+    <RefParameter Name="Filter_0_Enable" Comment="Enable Filter 0" CommentCH="过滤器0使能" DefaultValue="TRUE" Group="Filter 0 Configuration" GroupCH="过滤器0配置" Type="list">
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE"/>
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE"/>
+    </RefParameter>   
+    <RefParameter Name="Filter_0_FIFO_select" Comment="FIFO select" CommentCH="FIFO选择" DefaultValue="CAN_FILTER_FIFO0" Group="Filter 0 Configuration" GroupCH="过滤器0配置" Type="list" Reload = "false">
+        <Condition Expression="Filter_0_Enable = TRUE"/>  
+        <PossibleValue Comment="FIFO0" CommentCH="FIFO0" Value="CAN_FILTER_FIFO0"/>
+        <PossibleValue Comment="FIFO1" CommentCH="FIFO1" Value="CAN_FILTER_FIFO1"/>
+    </RefParameter> 
+    <RefParameter Name="Filter_0_Identifier_Type" Comment="Identifier Type Select" CommentCH="标识符类型选择" DefaultValue="CAN_ID_STANDARD" Group="Filter 0 Configuration" GroupCH="过滤器0配置" Type="list">
+        <Condition Expression="Filter_0_Enable = TRUE"/>  
+        <PossibleValue Comment="Standard identifier" CommentCH="标准标识符" Value="CAN_ID_STANDARD"/>
+        <PossibleValue Comment="Extended identifier" CommentCH="扩展标识符" Value="CAN_ID_EXTENDED"/>
+    </RefParameter> 
+    <RefParameter Name="Filter_0_Mode" Comment="Filter Mode Configuration" CommentCH="过滤器模式选择" DefaultValue="CAN_FILTER_MODE_ID_MASK" Group="Filter 0 Configuration" GroupCH="过滤器0配置" Type="list">
+        <Condition Expression="Filter_0_Enable = TRUE"/>  
+        <PossibleValue Comment="Identifier Mask Mode" CommentCH="掩码模式" Value="CAN_FILTER_MODE_ID_MASK"/>
+        <PossibleValue Comment="Identifier List Mode" CommentCH="列表模式" Value="CAN_FILTER_MODE_ID_LIST"/>
+    </RefParameter> 
+    <RefParameter Name="Filter_0_Frame_Type" Comment="Frame Type" CommentCH="帧类型" DefaultValue="DATA_REMOTE_FRAME" Group="Filter 0 Configuration" GroupCH="过滤器0配置" Type="list">
+        <Condition Expression="Filter_0_Enable = TRUE"/>  
+        <PossibleValue Comment="Data/Remote frame" CommentCH="数据/远程帧" Value="DATA_REMOTE_FRAME"/>
+        <PossibleValue Comment="Data frame" CommentCH="数据帧" Value="DATA_FRAME"/>
+        <PossibleValue Comment="Remote frame" CommentCH="远程帧" Value="REMOTE_FRAME"/>
+    </RefParameter> 
+    
+    <RefParameter Name="Filter_0_ID1" Comment="ID1 (11bit)" CommentCH="标识符1 (11bit)" DefaultValue="0" Group="Filter 0 Configuration" GroupCH="过滤器0配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_0_Enable = TRUE &amp; Filter_0_Identifier_Type = CAN_ID_STANDARD"/>  
+    </RefParameter> 
+    <RefParameter Name="Filter_0_ID1" Comment="ID1 (29bit)" CommentCH="标识符1 (29bit)" DefaultValue="0" Group="Filter 0 Configuration" GroupCH="过滤器0配置" Max="1FFFFFFF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_0_Enable = TRUE &amp; Filter_0_Identifier_Type = CAN_ID_EXTENDED"/>  
+    </RefParameter> 
+    
+    <RefParameter Name="Filter_0_ID2" Comment="ID2 (11bit)" CommentCH="标识符2 (11bit)" DefaultValue="0" Group="Filter 0 Configuration" GroupCH="过滤器0配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_0_Enable = TRUE &amp; Filter_0_Identifier_Type = CAN_ID_STANDARD"/>  
+    </RefParameter> 
+    <RefParameter Name="Filter_0_ID2" Comment="ID2 (29bit)" CommentCH="标识符2 (29bit)" DefaultValue="0" Group="Filter 0 Configuration" GroupCH="过滤器0配置" Max="1FFFFFFF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_0_Enable = TRUE &amp; Filter_0_Identifier_Type = CAN_ID_EXTENDED &amp; Filter_0_Mode = CAN_FILTER_MODE_ID_LIST"/>  
+    </RefParameter> 
+    
+    <RefParameter Name="Filter_0_ID3" Comment="ID3 (11bit)" CommentCH="标识符3 (11bit)" DefaultValue="0" Group="Filter 0 Configuration" GroupCH="过滤器0配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_0_Enable = TRUE &amp; Filter_0_Identifier_Type = CAN_ID_STANDARD &amp; Filter_0_Mode = CAN_FILTER_MODE_ID_LIST"/>  
+    </RefParameter>
+    
+     <RefParameter Name="Filter_0_ID4" Comment="ID4 (11bit)" CommentCH="标识符4 (11bit)" DefaultValue="0" Group="Filter 0 Configuration" GroupCH="过滤器0配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_0_Enable = TRUE &amp; Filter_0_Identifier_Type = CAN_ID_STANDARD &amp; Filter_0_Mode = CAN_FILTER_MODE_ID_LIST"/>  
+    </RefParameter>
+    
+    <RefParameter Name="Filter_0_Mask1" Comment="Mask1 (11bit)" CommentCH="掩码1 (11bit)" DefaultValue="0" Group="Filter 0 Configuration" GroupCH="过滤器0配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_0_Enable = TRUE &amp; Filter_0_Identifier_Type = CAN_ID_STANDARD  &amp; Filter_0_Mode = CAN_FILTER_MODE_ID_MASK"/>  
+    </RefParameter>
+    <RefParameter Name="Filter_0_Mask1" Comment="Mask1 (29bit)" CommentCH="掩码1 (29bit)" DefaultValue="0" Group="Filter 0 Configuration" GroupCH="过滤器0配置" Max="1FFFFFFF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_0_Enable = TRUE &amp; Filter_0_Identifier_Type = CAN_ID_EXTENDED  &amp; Filter_0_Mode = CAN_FILTER_MODE_ID_MASK"/>  
+    </RefParameter>
+    
+     <RefParameter Name="Filter_0_Mask2" Comment="Mask2 (11bit)" CommentCH="掩码2 (11bit)" DefaultValue="0" Group="Filter 0 Configuration" GroupCH="过滤器0配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_0_Enable = TRUE &amp; Filter_0_Identifier_Type = CAN_ID_STANDARD  &amp; Filter_0_Mode = CAN_FILTER_MODE_ID_MASK"/>  
+    </RefParameter>
+    
+     <!-- Filter 1-->
+    <RefParameter Name="Filter_1_Enable" Comment="Enable Filter 1" CommentCH="过滤器1使能" DefaultValue="FALSE" Group="Filter 1 Configuration" GroupCH="过滤器1配置" Type="list">
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE"/>
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE"/>
+    </RefParameter>   
+    <RefParameter Name="Filter_1_FIFO_select" Comment="FIFO select" CommentCH="FIFO选择" DefaultValue="CAN_FILTER_FIFO0" Group="Filter 1 Configuration" GroupCH="过滤器1配置" Type="list" Reload = "false">
+        <Condition Expression="Filter_1_Enable = TRUE"/>  
+        <PossibleValue Comment="FIFO0" CommentCH="FIFO0" Value="CAN_FILTER_FIFO0"/>
+        <PossibleValue Comment="FIFO1" CommentCH="FIFO1" Value="CAN_FILTER_FIFO1"/>
+    </RefParameter> 
+    <RefParameter Name="Filter_1_Identifier_Type" Comment="Identifier Type Select" CommentCH="标识符类型选择" DefaultValue="CAN_ID_STANDARD" Group="Filter 1 Configuration" GroupCH="过滤器1配置" Type="list">
+        <Condition Expression="Filter_1_Enable = TRUE"/>  
+        <PossibleValue Comment="Standard identifier" CommentCH="标准标识符" Value="CAN_ID_STANDARD"/>
+        <PossibleValue Comment="Extended identifier" CommentCH="扩展标识符" Value="CAN_ID_EXTENDED"/>
+    </RefParameter> 
+    <RefParameter Name="Filter_1_Mode" Comment="Filter Mode Configuration" CommentCH="过滤器模式选择" DefaultValue="CAN_FILTER_MODE_ID_MASK" Group="Filter 1 Configuration" GroupCH="过滤器1配置" Type="list">
+        <Condition Expression="Filter_1_Enable = TRUE"/>  
+        <PossibleValue Comment="Identifier Mask Mode" CommentCH="掩码模式" Value="CAN_FILTER_MODE_ID_MASK"/>
+        <PossibleValue Comment="Identifier List Mode" CommentCH="列表模式" Value="CAN_FILTER_MODE_ID_LIST"/>
+    </RefParameter> 
+    <RefParameter Name="Filter_1_Frame_Type" Comment="Frame Type" CommentCH="帧类型" DefaultValue="DATA_REMOTE_FRAME" Group="Filter 1 Configuration" GroupCH="过滤器1配置" Type="list">
+        <Condition Expression="Filter_1_Enable = TRUE"/>  
+        <PossibleValue Comment="Data/Remote frame" CommentCH="数据/远程帧" Value="DATA_REMOTE_FRAME"/>
+        <PossibleValue Comment="Data frame" CommentCH="数据帧" Value="DATA_FRAME"/>
+        <PossibleValue Comment="Remote frame" CommentCH="远程帧" Value="REMOTE_FRAME"/>
+    </RefParameter> 
+    
+    <RefParameter Name="Filter_1_ID1" Comment="ID1 (11bit)" CommentCH="标识符1 (11bit)" DefaultValue="0" Group="Filter 1 Configuration" GroupCH="过滤器1配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_1_Enable = TRUE &amp; Filter_1_Identifier_Type = CAN_ID_STANDARD"/>  
+    </RefParameter> 
+    <RefParameter Name="Filter_1_ID1" Comment="ID1 (29bit)" CommentCH="标识符1 (29bit)" DefaultValue="0" Group="Filter 1 Configuration" GroupCH="过滤器1配置" Max="1FFFFFFF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_1_Enable = TRUE &amp; Filter_1_Identifier_Type = CAN_ID_EXTENDED"/>  
+    </RefParameter> 
+    
+    <RefParameter Name="Filter_1_ID2" Comment="ID2 (11bit)" CommentCH="标识符2 (11bit)" DefaultValue="0" Group="Filter 1 Configuration" GroupCH="过滤器1配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_1_Enable = TRUE &amp; Filter_1_Identifier_Type = CAN_ID_STANDARD"/>  
+    </RefParameter> 
+    <RefParameter Name="Filter_1_ID2" Comment="ID2 (29bit)" CommentCH="标识符2 (29bit)" DefaultValue="0" Group="Filter 1 Configuration" GroupCH="过滤器1配置" Max="1FFFFFFF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_1_Enable = TRUE &amp; Filter_1_Identifier_Type = CAN_ID_EXTENDED &amp; Filter_1_Mode = CAN_FILTER_MODE_ID_LIST"/>  
+    </RefParameter> 
+    
+    <RefParameter Name="Filter_1_ID3" Comment="ID3 (11bit)" CommentCH="标识符3 (11bit)" DefaultValue="0" Group="Filter 1 Configuration" GroupCH="过滤器1配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_1_Enable = TRUE &amp; Filter_1_Identifier_Type = CAN_ID_STANDARD &amp; Filter_1_Mode = CAN_FILTER_MODE_ID_LIST"/>  
+    </RefParameter>
+    
+     <RefParameter Name="Filter_1_ID4" Comment="ID4 (11bit)" CommentCH="标识符4 (11bit)" DefaultValue="0" Group="Filter 1 Configuration" GroupCH="过滤器1配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_1_Enable = TRUE &amp; Filter_1_Identifier_Type = CAN_ID_STANDARD &amp; Filter_1_Mode = CAN_FILTER_MODE_ID_LIST"/>  
+    </RefParameter>
+    
+    <RefParameter Name="Filter_1_Mask1" Comment="Mask1 (11bit)" CommentCH="掩码1 (11bit)" DefaultValue="0" Group="Filter 1 Configuration" GroupCH="过滤器1配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_1_Enable = TRUE &amp; Filter_1_Identifier_Type = CAN_ID_STANDARD  &amp; Filter_1_Mode = CAN_FILTER_MODE_ID_MASK"/>  
+    </RefParameter>
+    <RefParameter Name="Filter_1_Mask1" Comment="Mask1 (29bit)" CommentCH="掩码1 (29bit)" DefaultValue="0" Group="Filter 1 Configuration" GroupCH="过滤器1配置" Max="1FFFFFFF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_1_Enable = TRUE &amp; Filter_1_Identifier_Type = CAN_ID_EXTENDED  &amp; Filter_1_Mode = CAN_FILTER_MODE_ID_MASK"/>  
+    </RefParameter>
+    
+     <RefParameter Name="Filter_1_Mask2" Comment="Mask2 (11bit)" CommentCH="掩码2 (11bit)" DefaultValue="0" Group="Filter 1 Configuration" GroupCH="过滤器1配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_1_Enable = TRUE &amp; Filter_1_Identifier_Type = CAN_ID_STANDARD  &amp; Filter_1_Mode = CAN_FILTER_MODE_ID_MASK"/>  
+    </RefParameter>
+    
+    
+     <!-- Filter 2-->
+    <RefParameter Name="Filter_2_Enable" Comment="Enable Filter 2" CommentCH="过滤器2使能" DefaultValue="FALSE" Group="Filter 2 Configuration" GroupCH="过滤器2配置" Type="list">
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE"/>
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE"/>
+    </RefParameter>   
+    <RefParameter Name="Filter_2_FIFO_select" Comment="FIFO select" CommentCH="FIFO选择" DefaultValue="CAN_FILTER_FIFO0" Group="Filter 2 Configuration" GroupCH="过滤器2配置" Type="list" Reload = "false">
+        <Condition Expression="Filter_2_Enable = TRUE"/>  
+        <PossibleValue Comment="FIFO0" CommentCH="FIFO0" Value="CAN_FILTER_FIFO0"/>
+        <PossibleValue Comment="FIFO1" CommentCH="FIFO1" Value="CAN_FILTER_FIFO1"/>
+    </RefParameter> 
+    <RefParameter Name="Filter_2_Identifier_Type" Comment="Identifier Type Select" CommentCH="标识符类型选择" DefaultValue="CAN_ID_STANDARD" Group="Filter 2 Configuration" GroupCH="过滤器2配置" Type="list">
+        <Condition Expression="Filter_2_Enable = TRUE"/>  
+        <PossibleValue Comment="Standard identifier" CommentCH="标准标识符" Value="CAN_ID_STANDARD"/>
+        <PossibleValue Comment="Extended identifier" CommentCH="扩展标识符" Value="CAN_ID_EXTENDED"/>
+    </RefParameter> 
+    <RefParameter Name="Filter_2_Mode" Comment="Filter Mode Configuration" CommentCH="过滤器模式选择" DefaultValue="CAN_FILTER_MODE_ID_MASK" Group="Filter 2 Configuration" GroupCH="过滤器2配置" Type="list">
+        <Condition Expression="Filter_2_Enable = TRUE"/>  
+        <PossibleValue Comment="Identifier Mask Mode" CommentCH="掩码模式" Value="CAN_FILTER_MODE_ID_MASK"/>
+        <PossibleValue Comment="Identifier List Mode" CommentCH="列表模式" Value="CAN_FILTER_MODE_ID_LIST"/>
+    </RefParameter> 
+    <RefParameter Name="Filter_2_Frame_Type" Comment="Frame Type" CommentCH="帧类型" DefaultValue="DATA_REMOTE_FRAME" Group="Filter 2 Configuration" GroupCH="过滤器2配置" Type="list">
+        <Condition Expression="Filter_2_Enable = TRUE"/>  
+        <PossibleValue Comment="Data/Remote frame" CommentCH="数据/远程帧" Value="DATA_REMOTE_FRAME"/>
+        <PossibleValue Comment="Data frame" CommentCH="数据帧" Value="DATA_FRAME"/>
+        <PossibleValue Comment="Remote frame" CommentCH="远程帧" Value="REMOTE_FRAME"/>
+    </RefParameter> 
+    
+    <RefParameter Name="Filter_2_ID1" Comment="ID1 (11bit)" CommentCH="标识符1 (11bit)" DefaultValue="0" Group="Filter 2 Configuration" GroupCH="过滤器2配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_2_Enable = TRUE &amp; Filter_2_Identifier_Type = CAN_ID_STANDARD"/>  
+    </RefParameter> 
+    <RefParameter Name="Filter_2_ID1" Comment="ID1 (29bit)" CommentCH="标识符1 (29bit)" DefaultValue="0" Group="Filter 2 Configuration" GroupCH="过滤器2配置" Max="1FFFFFFF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_2_Enable = TRUE &amp; Filter_2_Identifier_Type = CAN_ID_EXTENDED"/>  
+    </RefParameter> 
+    
+    <RefParameter Name="Filter_2_ID2" Comment="ID2 (11bit)" CommentCH="标识符2 (11bit)" DefaultValue="0" Group="Filter 2 Configuration" GroupCH="过滤器2配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_2_Enable = TRUE &amp; Filter_2_Identifier_Type = CAN_ID_STANDARD"/>  
+    </RefParameter> 
+    <RefParameter Name="Filter_2_ID2" Comment="ID2 (29bit)" CommentCH="标识符2 (29bit)" DefaultValue="0" Group="Filter 2 Configuration" GroupCH="过滤器2配置" Max="1FFFFFFF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_2_Enable = TRUE &amp; Filter_2_Identifier_Type = CAN_ID_EXTENDED &amp; Filter_2_Mode = CAN_FILTER_MODE_ID_LIST"/>  
+    </RefParameter> 
+    
+    <RefParameter Name="Filter_2_ID3" Comment="ID3 (11bit)" CommentCH="标识符3 (11bit)" DefaultValue="0" Group="Filter 2 Configuration" GroupCH="过滤器2配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_2_Enable = TRUE &amp; Filter_2_Identifier_Type = CAN_ID_STANDARD &amp; Filter_2_Mode = CAN_FILTER_MODE_ID_LIST"/>  
+    </RefParameter>
+    
+     <RefParameter Name="Filter_2_ID4" Comment="ID4 (11bit)" CommentCH="标识符4 (11bit)" DefaultValue="0" Group="Filter 2 Configuration" GroupCH="过滤器2配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_2_Enable = TRUE &amp; Filter_2_Identifier_Type = CAN_ID_STANDARD &amp; Filter_2_Mode = CAN_FILTER_MODE_ID_LIST"/>  
+    </RefParameter>
+    
+    <RefParameter Name="Filter_2_Mask1" Comment="Mask1 (11bit)" CommentCH="掩码1 (11bit)" DefaultValue="0" Group="Filter 2 Configuration" GroupCH="过滤器2配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_2_Enable = TRUE &amp; Filter_2_Identifier_Type = CAN_ID_STANDARD  &amp; Filter_2_Mode = CAN_FILTER_MODE_ID_MASK"/>  
+    </RefParameter>
+    <RefParameter Name="Filter_2_Mask1" Comment="Mask1 (29bit)" CommentCH="掩码1 (29bit)" DefaultValue="0" Group="Filter 2 Configuration" GroupCH="过滤器2配置" Max="1FFFFFFF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_2_Enable = TRUE &amp; Filter_2_Identifier_Type = CAN_ID_EXTENDED  &amp; Filter_2_Mode = CAN_FILTER_MODE_ID_MASK"/>  
+    </RefParameter>
+    
+     <RefParameter Name="Filter_2_Mask2" Comment="Mask2 (11bit)" CommentCH="掩码2 (11bit)" DefaultValue="0" Group="Filter 2 Configuration" GroupCH="过滤器2配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_2_Enable = TRUE &amp; Filter_2_Identifier_Type = CAN_ID_STANDARD  &amp; Filter_2_Mode = CAN_FILTER_MODE_ID_MASK"/>  
+    </RefParameter>
+    
+    
+    <!-- Filter 3-->
+    <RefParameter Name="Filter_3_Enable" Comment="Enable Filter 3" CommentCH="过滤器3使能" DefaultValue="FALSE" Group="Filter 3 Configuration" GroupCH="过滤器3配置" Type="list">
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE"/>
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE"/>
+    </RefParameter>   
+    <RefParameter Name="Filter_3_FIFO_select" Comment="FIFO select" CommentCH="FIFO选择" DefaultValue="CAN_FILTER_FIFO0" Group="Filter 3 Configuration" GroupCH="过滤器3配置" Type="list" Reload = "false">
+        <Condition Expression="Filter_3_Enable = TRUE"/>  
+        <PossibleValue Comment="FIFO0" CommentCH="FIFO0" Value="CAN_FILTER_FIFO0"/>
+        <PossibleValue Comment="FIFO1" CommentCH="FIFO1" Value="CAN_FILTER_FIFO1"/>
+    </RefParameter> 
+    <RefParameter Name="Filter_3_Identifier_Type" Comment="Identifier Type Select" CommentCH="标识符类型选择" DefaultValue="CAN_ID_STANDARD" Group="Filter 3 Configuration" GroupCH="过滤器3配置" Type="list">
+        <Condition Expression="Filter_3_Enable = TRUE"/>  
+        <PossibleValue Comment="Standard identifier" CommentCH="标准标识符" Value="CAN_ID_STANDARD"/>
+        <PossibleValue Comment="Extended identifier" CommentCH="扩展标识符" Value="CAN_ID_EXTENDED"/>
+    </RefParameter> 
+    <RefParameter Name="Filter_3_Mode" Comment="Filter Mode Configuration" CommentCH="过滤器模式选择" DefaultValue="CAN_FILTER_MODE_ID_MASK" Group="Filter 3 Configuration" GroupCH="过滤器3配置" Type="list">
+        <Condition Expression="Filter_3_Enable = TRUE"/>  
+        <PossibleValue Comment="Identifier Mask Mode" CommentCH="掩码模式" Value="CAN_FILTER_MODE_ID_MASK"/>
+        <PossibleValue Comment="Identifier List Mode" CommentCH="列表模式" Value="CAN_FILTER_MODE_ID_LIST"/>
+    </RefParameter> 
+    <RefParameter Name="Filter_3_Frame_Type" Comment="Frame Type" CommentCH="帧类型" DefaultValue="DATA_REMOTE_FRAME" Group="Filter 3 Configuration" GroupCH="过滤器3配置" Type="list">
+        <Condition Expression="Filter_3_Enable = TRUE"/>  
+        <PossibleValue Comment="Data/Remote frame" CommentCH="数据/远程帧" Value="DATA_REMOTE_FRAME"/>
+        <PossibleValue Comment="Data frame" CommentCH="数据帧" Value="DATA_FRAME"/>
+        <PossibleValue Comment="Remote frame" CommentCH="远程帧" Value="REMOTE_FRAME"/>
+    </RefParameter> 
+    
+    <RefParameter Name="Filter_3_ID1" Comment="ID1 (11bit)" CommentCH="标识符1 (11bit)" DefaultValue="0" Group="Filter 3 Configuration" GroupCH="过滤器3配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_3_Enable = TRUE &amp; Filter_3_Identifier_Type = CAN_ID_STANDARD"/>  
+    </RefParameter> 
+    <RefParameter Name="Filter_3_ID1" Comment="ID1 (29bit)" CommentCH="标识符1 (29bit)" DefaultValue="0" Group="Filter 3 Configuration" GroupCH="过滤器3配置" Max="1FFFFFFF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_3_Enable = TRUE &amp; Filter_3_Identifier_Type = CAN_ID_EXTENDED"/>  
+    </RefParameter> 
+    
+    <RefParameter Name="Filter_3_ID2" Comment="ID2 (11bit)" CommentCH="标识符2 (11bit)" DefaultValue="0" Group="Filter 3 Configuration" GroupCH="过滤器3配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_3_Enable = TRUE &amp; Filter_3_Identifier_Type = CAN_ID_STANDARD"/>  
+    </RefParameter> 
+    <RefParameter Name="Filter_3_ID2" Comment="ID2 (29bit)" CommentCH="标识符2 (29bit)" DefaultValue="0" Group="Filter 3 Configuration" GroupCH="过滤器3配置" Max="1FFFFFFF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_3_Enable = TRUE &amp; Filter_3_Identifier_Type = CAN_ID_EXTENDED &amp; Filter_3_Mode = CAN_FILTER_MODE_ID_LIST"/>  
+    </RefParameter> 
+    
+    <RefParameter Name="Filter_3_ID3" Comment="ID3 (11bit)" CommentCH="标识符3 (11bit)" DefaultValue="0" Group="Filter 3 Configuration" GroupCH="过滤器3配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_3_Enable = TRUE &amp; Filter_3_Identifier_Type = CAN_ID_STANDARD &amp; Filter_3_Mode = CAN_FILTER_MODE_ID_LIST"/>  
+    </RefParameter>
+    
+     <RefParameter Name="Filter_3_ID4" Comment="ID4 (11bit)" CommentCH="标识符4 (11bit)" DefaultValue="0" Group="Filter 3 Configuration" GroupCH="过滤器3配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_3_Enable = TRUE &amp; Filter_3_Identifier_Type = CAN_ID_STANDARD &amp; Filter_3_Mode = CAN_FILTER_MODE_ID_LIST"/>  
+    </RefParameter>
+    
+    <RefParameter Name="Filter_3_Mask1" Comment="Mask1 (11bit)" CommentCH="掩码1 (11bit)" DefaultValue="0" Group="Filter 3 Configuration" GroupCH="过滤器3配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_3_Enable = TRUE &amp; Filter_3_Identifier_Type = CAN_ID_STANDARD  &amp; Filter_3_Mode = CAN_FILTER_MODE_ID_MASK"/>  
+    </RefParameter>
+    <RefParameter Name="Filter_3_Mask1" Comment="Mask1 (29bit)" CommentCH="掩码1 (29bit)" DefaultValue="0" Group="Filter 3 Configuration" GroupCH="过滤器3配置" Max="1FFFFFFF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_3_Enable = TRUE &amp; Filter_3_Identifier_Type = CAN_ID_EXTENDED  &amp; Filter_3_Mode = CAN_FILTER_MODE_ID_MASK"/>  
+    </RefParameter>
+    
+     <RefParameter Name="Filter_3_Mask2" Comment="Mask2 (11bit)" CommentCH="掩码2 (11bit)" DefaultValue="0" Group="Filter 3 Configuration" GroupCH="过滤器3配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_3_Enable = TRUE &amp; Filter_3_Identifier_Type = CAN_ID_STANDARD  &amp; Filter_3_Mode = CAN_FILTER_MODE_ID_MASK"/>  
+    </RefParameter>
+    
+    
+    <!-- Filter 4-->
+    <RefParameter Name="Filter_4_Enable" Comment="Enable Filter 4" CommentCH="过滤器4使能" DefaultValue="FALSE" Group="Filter 4 Configuration" GroupCH="过滤器4配置" Type="list">
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE"/>
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE"/>
+    </RefParameter>   
+    <RefParameter Name="Filter_4_FIFO_select" Comment="FIFO select" CommentCH="FIFO选择" DefaultValue="CAN_FILTER_FIFO0" Group="Filter 4 Configuration" GroupCH="过滤器4配置" Type="list" Reload = "false">
+        <Condition Expression="Filter_4_Enable = TRUE"/>  
+        <PossibleValue Comment="FIFO0" CommentCH="FIFO0" Value="CAN_FILTER_FIFO0"/>
+        <PossibleValue Comment="FIFO1" CommentCH="FIFO1" Value="CAN_FILTER_FIFO1"/>
+    </RefParameter> 
+    <RefParameter Name="Filter_4_Identifier_Type" Comment="Identifier Type Select" CommentCH="标识符类型选择" DefaultValue="CAN_ID_STANDARD" Group="Filter 4 Configuration" GroupCH="过滤器4配置" Type="list">
+        <Condition Expression="Filter_4_Enable = TRUE"/>  
+        <PossibleValue Comment="Standard identifier" CommentCH="标准标识符" Value="CAN_ID_STANDARD"/>
+        <PossibleValue Comment="Extended identifier" CommentCH="扩展标识符" Value="CAN_ID_EXTENDED"/>
+    </RefParameter> 
+    <RefParameter Name="Filter_4_Mode" Comment="Filter Mode Configuration" CommentCH="过滤器模式选择" DefaultValue="CAN_FILTER_MODE_ID_MASK" Group="Filter 4 Configuration" GroupCH="过滤器4配置" Type="list">
+        <Condition Expression="Filter_4_Enable = TRUE"/>  
+        <PossibleValue Comment="Identifier Mask Mode" CommentCH="掩码模式" Value="CAN_FILTER_MODE_ID_MASK"/>
+        <PossibleValue Comment="Identifier List Mode" CommentCH="列表模式" Value="CAN_FILTER_MODE_ID_LIST"/>
+    </RefParameter> 
+    <RefParameter Name="Filter_4_Frame_Type" Comment="Frame Type" CommentCH="帧类型" DefaultValue="DATA_REMOTE_FRAME" Group="Filter 4 Configuration" GroupCH="过滤器4配置" Type="list">
+        <Condition Expression="Filter_4_Enable = TRUE"/>  
+        <PossibleValue Comment="Data/Remote frame" CommentCH="数据/远程帧" Value="DATA_REMOTE_FRAME"/>
+        <PossibleValue Comment="Data frame" CommentCH="数据帧" Value="DATA_FRAME"/>
+        <PossibleValue Comment="Remote frame" CommentCH="远程帧" Value="REMOTE_FRAME"/>
+    </RefParameter> 
+    
+    <RefParameter Name="Filter_4_ID1" Comment="ID1 (11bit)" CommentCH="标识符1 (11bit)" DefaultValue="0" Group="Filter 4 Configuration" GroupCH="过滤器4配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_4_Enable = TRUE &amp; Filter_4_Identifier_Type = CAN_ID_STANDARD"/>  
+    </RefParameter> 
+    <RefParameter Name="Filter_4_ID1" Comment="ID1 (29bit)" CommentCH="标识符1 (29bit)" DefaultValue="0" Group="Filter 4 Configuration" GroupCH="过滤器4配置" Max="1FFFFFFF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_4_Enable = TRUE &amp; Filter_4_Identifier_Type = CAN_ID_EXTENDED"/>  
+    </RefParameter> 
+    
+    <RefParameter Name="Filter_4_ID2" Comment="ID2 (11bit)" CommentCH="标识符2 (11bit)" DefaultValue="0" Group="Filter 4 Configuration" GroupCH="过滤器4配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_4_Enable = TRUE &amp; Filter_4_Identifier_Type = CAN_ID_STANDARD"/>  
+    </RefParameter> 
+    <RefParameter Name="Filter_4_ID2" Comment="ID2 (29bit)" CommentCH="标识符2 (29bit)" DefaultValue="0" Group="Filter 4 Configuration" GroupCH="过滤器4配置" Max="1FFFFFFF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_4_Enable = TRUE &amp; Filter_4_Identifier_Type = CAN_ID_EXTENDED &amp; Filter_4_Mode = CAN_FILTER_MODE_ID_LIST"/>  
+    </RefParameter> 
+    
+    <RefParameter Name="Filter_4_ID3" Comment="ID3 (11bit)" CommentCH="标识符3 (11bit)" DefaultValue="0" Group="Filter 4 Configuration" GroupCH="过滤器4配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_4_Enable = TRUE &amp; Filter_4_Identifier_Type = CAN_ID_STANDARD &amp; Filter_4_Mode = CAN_FILTER_MODE_ID_LIST"/>  
+    </RefParameter>
+    
+     <RefParameter Name="Filter_4_ID4" Comment="ID4 (11bit)" CommentCH="标识符4 (11bit)" DefaultValue="0" Group="Filter 4 Configuration" GroupCH="过滤器4配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_4_Enable = TRUE &amp; Filter_4_Identifier_Type = CAN_ID_STANDARD &amp; Filter_4_Mode = CAN_FILTER_MODE_ID_LIST"/>  
+    </RefParameter>
+    
+    <RefParameter Name="Filter_4_Mask1" Comment="Mask1 (11bit)" CommentCH="掩码1 (11bit)" DefaultValue="0" Group="Filter 4 Configuration" GroupCH="过滤器4配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_4_Enable = TRUE &amp; Filter_4_Identifier_Type = CAN_ID_STANDARD  &amp; Filter_4_Mode = CAN_FILTER_MODE_ID_MASK"/>  
+    </RefParameter>
+    <RefParameter Name="Filter_4_Mask1" Comment="Mask1 (29bit)" CommentCH="掩码1 (29bit)" DefaultValue="0" Group="Filter 4 Configuration" GroupCH="过滤器4配置" Max="1FFFFFFF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_4_Enable = TRUE &amp; Filter_4_Identifier_Type = CAN_ID_EXTENDED  &amp; Filter_4_Mode = CAN_FILTER_MODE_ID_MASK"/>  
+    </RefParameter>
+    
+     <RefParameter Name="Filter_4_Mask2" Comment="Mask2 (11bit)" CommentCH="掩码2 (11bit)" DefaultValue="0" Group="Filter 4 Configuration" GroupCH="过滤器4配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_4_Enable = TRUE &amp; Filter_4_Identifier_Type = CAN_ID_STANDARD  &amp; Filter_4_Mode = CAN_FILTER_MODE_ID_MASK"/>  
+    </RefParameter>
+    
+    <!-- Filter 5-->
+    <RefParameter Name="Filter_5_Enable" Comment="Enable Filter 5" CommentCH="过滤器5使能" DefaultValue="FALSE" Group="Filter 5 Configuration" GroupCH="过滤器5配置" Type="list">
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE"/>
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE"/>
+    </RefParameter>   
+    <RefParameter Name="Filter_5_FIFO_select" Comment="FIFO select" CommentCH="FIFO选择" DefaultValue="CAN_FILTER_FIFO0" Group="Filter 5 Configuration" GroupCH="过滤器5配置" Type="list" Reload = "false">
+        <Condition Expression="Filter_5_Enable = TRUE"/>  
+        <PossibleValue Comment="FIFO0" CommentCH="FIFO0" Value="CAN_FILTER_FIFO0"/>
+        <PossibleValue Comment="FIFO1" CommentCH="FIFO1" Value="CAN_FILTER_FIFO1"/>
+    </RefParameter> 
+    <RefParameter Name="Filter_5_Identifier_Type" Comment="Identifier Type Select" CommentCH="标识符类型选择" DefaultValue="CAN_ID_STANDARD" Group="Filter 5 Configuration" GroupCH="过滤器5配置" Type="list">
+        <Condition Expression="Filter_5_Enable = TRUE"/>  
+        <PossibleValue Comment="Standard identifier" CommentCH="标准标识符" Value="CAN_ID_STANDARD"/>
+        <PossibleValue Comment="Extended identifier" CommentCH="扩展标识符" Value="CAN_ID_EXTENDED"/>
+    </RefParameter> 
+    <RefParameter Name="Filter_5_Mode" Comment="Filter Mode Configuration" CommentCH="过滤器模式选择" DefaultValue="CAN_FILTER_MODE_ID_MASK" Group="Filter 5 Configuration" GroupCH="过滤器5配置" Type="list">
+        <Condition Expression="Filter_5_Enable = TRUE"/>  
+        <PossibleValue Comment="Identifier Mask Mode" CommentCH="掩码模式" Value="CAN_FILTER_MODE_ID_MASK"/>
+        <PossibleValue Comment="Identifier List Mode" CommentCH="列表模式" Value="CAN_FILTER_MODE_ID_LIST"/>
+    </RefParameter> 
+    <RefParameter Name="Filter_5_Frame_Type" Comment="Frame Type" CommentCH="帧类型" DefaultValue="DATA_REMOTE_FRAME" Group="Filter 5 Configuration" GroupCH="过滤器5配置" Type="list">
+        <Condition Expression="Filter_5_Enable = TRUE"/>  
+        <PossibleValue Comment="Data/Remote frame" CommentCH="数据/远程帧" Value="DATA_REMOTE_FRAME"/>
+        <PossibleValue Comment="Data frame" CommentCH="数据帧" Value="DATA_FRAME"/>
+        <PossibleValue Comment="Remote frame" CommentCH="远程帧" Value="REMOTE_FRAME"/>
+    </RefParameter> 
+    
+    <RefParameter Name="Filter_5_ID1" Comment="ID1 (11bit)" CommentCH="标识符1 (11bit)" DefaultValue="0" Group="Filter 5 Configuration" GroupCH="过滤器5配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_5_Enable = TRUE &amp; Filter_5_Identifier_Type = CAN_ID_STANDARD"/>  
+    </RefParameter> 
+    <RefParameter Name="Filter_5_ID1" Comment="ID1 (29bit)" CommentCH="标识符1 (29bit)" DefaultValue="0" Group="Filter 5 Configuration" GroupCH="过滤器5配置" Max="1FFFFFFF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_5_Enable = TRUE &amp; Filter_5_Identifier_Type = CAN_ID_EXTENDED"/>  
+    </RefParameter> 
+    
+    <RefParameter Name="Filter_5_ID2" Comment="ID2 (11bit)" CommentCH="标识符2 (11bit)" DefaultValue="0" Group="Filter 5 Configuration" GroupCH="过滤器5配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_5_Enable = TRUE &amp; Filter_5_Identifier_Type = CAN_ID_STANDARD"/>  
+    </RefParameter> 
+    <RefParameter Name="Filter_5_ID2" Comment="ID2 (29bit)" CommentCH="标识符2 (29bit)" DefaultValue="0" Group="Filter 5 Configuration" GroupCH="过滤器5配置" Max="1FFFFFFF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_5_Enable = TRUE &amp; Filter_5_Identifier_Type = CAN_ID_EXTENDED &amp; Filter_5_Mode = CAN_FILTER_MODE_ID_LIST"/>  
+    </RefParameter> 
+    
+    <RefParameter Name="Filter_5_ID3" Comment="ID3 (11bit)" CommentCH="标识符3 (11bit)" DefaultValue="0" Group="Filter 5 Configuration" GroupCH="过滤器5配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_5_Enable = TRUE &amp; Filter_5_Identifier_Type = CAN_ID_STANDARD &amp; Filter_5_Mode = CAN_FILTER_MODE_ID_LIST"/>  
+    </RefParameter>
+    
+     <RefParameter Name="Filter_5_ID4" Comment="ID4 (11bit)" CommentCH="标识符4 (11bit)" DefaultValue="0" Group="Filter 5 Configuration" GroupCH="过滤器5配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_5_Enable = TRUE &amp; Filter_5_Identifier_Type = CAN_ID_STANDARD &amp; Filter_5_Mode = CAN_FILTER_MODE_ID_LIST"/>  
+    </RefParameter>
+    
+    <RefParameter Name="Filter_5_Mask1" Comment="Mask1 (11bit)" CommentCH="掩码1 (11bit)" DefaultValue="0" Group="Filter 5 Configuration" GroupCH="过滤器5配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_5_Enable = TRUE &amp; Filter_5_Identifier_Type = CAN_ID_STANDARD  &amp; Filter_5_Mode = CAN_FILTER_MODE_ID_MASK"/>  
+    </RefParameter>
+    <RefParameter Name="Filter_5_Mask1" Comment="Mask1 (29bit)" CommentCH="掩码1 (29bit)" DefaultValue="0" Group="Filter 5 Configuration" GroupCH="过滤器5配置" Max="1FFFFFFF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_5_Enable = TRUE &amp; Filter_5_Identifier_Type = CAN_ID_EXTENDED  &amp; Filter_5_Mode = CAN_FILTER_MODE_ID_MASK"/>  
+    </RefParameter>
+    
+     <RefParameter Name="Filter_5_Mask2" Comment="Mask2 (11bit)" CommentCH="掩码2 (11bit)" DefaultValue="0" Group="Filter 5 Configuration" GroupCH="过滤器5配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_5_Enable = TRUE &amp; Filter_5_Identifier_Type = CAN_ID_STANDARD  &amp; Filter_5_Mode = CAN_FILTER_MODE_ID_MASK"/>  
+    </RefParameter>
+    
+    
+    <!-- Filter 6-->
+    <RefParameter Name="Filter_6_Enable" Comment="Enable Filter 6" CommentCH="过滤器6使能" DefaultValue="FALSE" Group="Filter 6 Configuration" GroupCH="过滤器6配置" Type="list">
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE"/>
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE"/>
+    </RefParameter>   
+    <RefParameter Name="Filter_6_FIFO_select" Comment="FIFO select" CommentCH="FIFO选择" DefaultValue="CAN_FILTER_FIFO0" Group="Filter 6 Configuration" GroupCH="过滤器6配置" Type="list" Reload = "false">
+        <Condition Expression="Filter_6_Enable = TRUE"/>  
+        <PossibleValue Comment="FIFO0" CommentCH="FIFO0" Value="CAN_FILTER_FIFO0"/>
+        <PossibleValue Comment="FIFO1" CommentCH="FIFO1" Value="CAN_FILTER_FIFO1"/>
+    </RefParameter> 
+    <RefParameter Name="Filter_6_Identifier_Type" Comment="Identifier Type Select" CommentCH="标识符类型选择" DefaultValue="CAN_ID_STANDARD" Group="Filter 6 Configuration" GroupCH="过滤器6配置" Type="list">
+        <Condition Expression="Filter_6_Enable = TRUE"/>  
+        <PossibleValue Comment="Standard identifier" CommentCH="标准标识符" Value="CAN_ID_STANDARD"/>
+        <PossibleValue Comment="Extended identifier" CommentCH="扩展标识符" Value="CAN_ID_EXTENDED"/>
+    </RefParameter> 
+    <RefParameter Name="Filter_6_Mode" Comment="Filter Mode Configuration" CommentCH="过滤器模式选择" DefaultValue="CAN_FILTER_MODE_ID_MASK" Group="Filter 6 Configuration" GroupCH="过滤器6配置" Type="list">
+        <Condition Expression="Filter_6_Enable = TRUE"/>  
+        <PossibleValue Comment="Identifier Mask Mode" CommentCH="掩码模式" Value="CAN_FILTER_MODE_ID_MASK"/>
+        <PossibleValue Comment="Identifier List Mode" CommentCH="列表模式" Value="CAN_FILTER_MODE_ID_LIST"/>
+    </RefParameter> 
+    <RefParameter Name="Filter_6_Frame_Type" Comment="Frame Type" CommentCH="帧类型" DefaultValue="DATA_REMOTE_FRAME" Group="Filter 6 Configuration" GroupCH="过滤器6配置" Type="list">
+        <Condition Expression="Filter_6_Enable = TRUE"/>  
+        <PossibleValue Comment="Data/Remote frame" CommentCH="数据/远程帧" Value="DATA_REMOTE_FRAME"/>
+        <PossibleValue Comment="Data frame" CommentCH="数据帧" Value="DATA_FRAME"/>
+        <PossibleValue Comment="Remote frame" CommentCH="远程帧" Value="REMOTE_FRAME"/>
+    </RefParameter> 
+    
+    <RefParameter Name="Filter_6_ID1" Comment="ID1 (11bit)" CommentCH="标识符1 (11bit)" DefaultValue="0" Group="Filter 6 Configuration" GroupCH="过滤器6配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_6_Enable = TRUE &amp; Filter_6_Identifier_Type = CAN_ID_STANDARD"/>  
+    </RefParameter> 
+    <RefParameter Name="Filter_6_ID1" Comment="ID1 (29bit)" CommentCH="标识符1 (29bit)" DefaultValue="0" Group="Filter 6 Configuration" GroupCH="过滤器6配置" Max="1FFFFFFF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_6_Enable = TRUE &amp; Filter_6_Identifier_Type = CAN_ID_EXTENDED"/>  
+    </RefParameter> 
+    
+    <RefParameter Name="Filter_6_ID2" Comment="ID2 (11bit)" CommentCH="标识符2 (11bit)" DefaultValue="0" Group="Filter 6 Configuration" GroupCH="过滤器6配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_6_Enable = TRUE &amp; Filter_6_Identifier_Type = CAN_ID_STANDARD"/>  
+    </RefParameter> 
+    <RefParameter Name="Filter_6_ID2" Comment="ID2 (29bit)" CommentCH="标识符2 (29bit)" DefaultValue="0" Group="Filter 6 Configuration" GroupCH="过滤器6配置" Max="1FFFFFFF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_6_Enable = TRUE &amp; Filter_6_Identifier_Type = CAN_ID_EXTENDED &amp; Filter_6_Mode = CAN_FILTER_MODE_ID_LIST"/>  
+    </RefParameter> 
+    
+    <RefParameter Name="Filter_6_ID3" Comment="ID3 (11bit)" CommentCH="标识符3 (11bit)" DefaultValue="0" Group="Filter 6 Configuration" GroupCH="过滤器6配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_6_Enable = TRUE &amp; Filter_6_Identifier_Type = CAN_ID_STANDARD &amp; Filter_6_Mode = CAN_FILTER_MODE_ID_LIST"/>  
+    </RefParameter>
+    
+     <RefParameter Name="Filter_6_ID4" Comment="ID4 (11bit)" CommentCH="标识符4 (11bit)" DefaultValue="0" Group="Filter 6 Configuration" GroupCH="过滤器6配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_6_Enable = TRUE &amp; Filter_6_Identifier_Type = CAN_ID_STANDARD &amp; Filter_6_Mode = CAN_FILTER_MODE_ID_LIST"/>  
+    </RefParameter>
+    
+    <RefParameter Name="Filter_6_Mask1" Comment="Mask1 (11bit)" CommentCH="掩码1 (11bit)" DefaultValue="0" Group="Filter 6 Configuration" GroupCH="过滤器6配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_6_Enable = TRUE &amp; Filter_6_Identifier_Type = CAN_ID_STANDARD  &amp; Filter_6_Mode = CAN_FILTER_MODE_ID_MASK"/>  
+    </RefParameter>
+    <RefParameter Name="Filter_6_Mask1" Comment="Mask1 (29bit)" CommentCH="掩码1 (29bit)" DefaultValue="0" Group="Filter 6 Configuration" GroupCH="过滤器6配置" Max="1FFFFFFF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_6_Enable = TRUE &amp; Filter_6_Identifier_Type = CAN_ID_EXTENDED  &amp; Filter_6_Mode = CAN_FILTER_MODE_ID_MASK"/>  
+    </RefParameter>
+    
+     <RefParameter Name="Filter_6_Mask2" Comment="Mask2 (11bit)" CommentCH="掩码2 (11bit)" DefaultValue="0" Group="Filter 6 Configuration" GroupCH="过滤器6配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_6_Enable = TRUE &amp; Filter_6_Identifier_Type = CAN_ID_STANDARD  &amp; Filter_6_Mode = CAN_FILTER_MODE_ID_MASK"/>  
+    </RefParameter>
+    
+    
+        <!-- Filter 7-->
+    <RefParameter Name="Filter_7_Enable" Comment="Enable Filter 7" CommentCH="过滤器7使能" DefaultValue="FALSE" Group="Filter 7 Configuration" GroupCH="过滤器7配置" Type="list">
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE"/>
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE"/>
+    </RefParameter>   
+    <RefParameter Name="Filter_7_FIFO_select" Comment="FIFO select" CommentCH="FIFO选择" DefaultValue="CAN_FILTER_FIFO0" Group="Filter 7 Configuration" GroupCH="过滤器7配置" Type="list" Reload = "false">
+        <Condition Expression="Filter_7_Enable = TRUE"/>  
+        <PossibleValue Comment="FIFO0" CommentCH="FIFO0" Value="CAN_FILTER_FIFO0"/>
+        <PossibleValue Comment="FIFO1" CommentCH="FIFO1" Value="CAN_FILTER_FIFO1"/>
+    </RefParameter> 
+    <RefParameter Name="Filter_7_Identifier_Type" Comment="Identifier Type Select" CommentCH="标识符类型选择" DefaultValue="CAN_ID_STANDARD" Group="Filter 7 Configuration" GroupCH="过滤器7配置" Type="list">
+        <Condition Expression="Filter_7_Enable = TRUE"/>  
+        <PossibleValue Comment="Standard identifier" CommentCH="标准标识符" Value="CAN_ID_STANDARD"/>
+        <PossibleValue Comment="Extended identifier" CommentCH="扩展标识符" Value="CAN_ID_EXTENDED"/>
+    </RefParameter> 
+    <RefParameter Name="Filter_7_Mode" Comment="Filter Mode Configuration" CommentCH="过滤器模式选择" DefaultValue="CAN_FILTER_MODE_ID_MASK" Group="Filter 7 Configuration" GroupCH="过滤器7配置" Type="list">
+        <Condition Expression="Filter_7_Enable = TRUE"/>  
+        <PossibleValue Comment="Identifier Mask Mode" CommentCH="掩码模式" Value="CAN_FILTER_MODE_ID_MASK"/>
+        <PossibleValue Comment="Identifier List Mode" CommentCH="列表模式" Value="CAN_FILTER_MODE_ID_LIST"/>
+    </RefParameter> 
+    <RefParameter Name="Filter_7_Frame_Type" Comment="Frame Type" CommentCH="帧类型" DefaultValue="DATA_REMOTE_FRAME" Group="Filter 7 Configuration" GroupCH="过滤器7配置" Type="list">
+        <Condition Expression="Filter_7_Enable = TRUE"/>  
+        <PossibleValue Comment="Data/Remote frame" CommentCH="数据/远程帧" Value="DATA_REMOTE_FRAME"/>
+        <PossibleValue Comment="Data frame" CommentCH="数据帧" Value="DATA_FRAME"/>
+        <PossibleValue Comment="Remote frame" CommentCH="远程帧" Value="REMOTE_FRAME"/>
+    </RefParameter> 
+    
+    <RefParameter Name="Filter_7_ID1" Comment="ID1 (11bit)" CommentCH="标识符1 (11bit)" DefaultValue="0" Group="Filter 7 Configuration" GroupCH="过滤器7配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_7_Enable = TRUE &amp; Filter_7_Identifier_Type = CAN_ID_STANDARD"/>  
+    </RefParameter> 
+    <RefParameter Name="Filter_7_ID1" Comment="ID1 (29bit)" CommentCH="标识符1 (29bit)" DefaultValue="0" Group="Filter 7 Configuration" GroupCH="过滤器7配置" Max="1FFFFFFF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_7_Enable = TRUE &amp; Filter_7_Identifier_Type = CAN_ID_EXTENDED"/>  
+    </RefParameter> 
+    
+    <RefParameter Name="Filter_7_ID2" Comment="ID2 (11bit)" CommentCH="标识符2 (11bit)" DefaultValue="0" Group="Filter 7 Configuration" GroupCH="过滤器7配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_7_Enable = TRUE &amp; Filter_7_Identifier_Type = CAN_ID_STANDARD"/>  
+    </RefParameter> 
+    <RefParameter Name="Filter_7_ID2" Comment="ID2 (29bit)" CommentCH="标识符2 (29bit)" DefaultValue="0" Group="Filter 7 Configuration" GroupCH="过滤器7配置" Max="1FFFFFFF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_7_Enable = TRUE &amp; Filter_7_Identifier_Type = CAN_ID_EXTENDED &amp; Filter_7_Mode = CAN_FILTER_MODE_ID_LIST"/>  
+    </RefParameter> 
+    
+    <RefParameter Name="Filter_7_ID3" Comment="ID3 (11bit)" CommentCH="标识符3 (11bit)" DefaultValue="0" Group="Filter 7 Configuration" GroupCH="过滤器7配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_7_Enable = TRUE &amp; Filter_7_Identifier_Type = CAN_ID_STANDARD &amp; Filter_7_Mode = CAN_FILTER_MODE_ID_LIST"/>  
+    </RefParameter>
+    
+     <RefParameter Name="Filter_7_ID4" Comment="ID4 (11bit)" CommentCH="标识符4 (11bit)" DefaultValue="0" Group="Filter 7 Configuration" GroupCH="过滤器7配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_7_Enable = TRUE &amp; Filter_7_Identifier_Type = CAN_ID_STANDARD &amp; Filter_7_Mode = CAN_FILTER_MODE_ID_LIST"/>  
+    </RefParameter>
+    
+    <RefParameter Name="Filter_7_Mask1" Comment="Mask1 (11bit)" CommentCH="掩码1 (11bit)" DefaultValue="0" Group="Filter 7 Configuration" GroupCH="过滤器7配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_7_Enable = TRUE &amp; Filter_7_Identifier_Type = CAN_ID_STANDARD  &amp; Filter_7_Mode = CAN_FILTER_MODE_ID_MASK"/>  
+    </RefParameter>
+    <RefParameter Name="Filter_7_Mask1" Comment="Mask1 (29bit)" CommentCH="掩码1 (29bit)" DefaultValue="0" Group="Filter 7 Configuration" GroupCH="过滤器7配置" Max="1FFFFFFF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_7_Enable = TRUE &amp; Filter_7_Identifier_Type = CAN_ID_EXTENDED  &amp; Filter_7_Mode = CAN_FILTER_MODE_ID_MASK"/>  
+    </RefParameter>
+    
+     <RefParameter Name="Filter_7_Mask2" Comment="Mask2 (11bit)" CommentCH="掩码2 (11bit)" DefaultValue="0" Group="Filter 7 Configuration" GroupCH="过滤器7配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_7_Enable = TRUE &amp; Filter_7_Identifier_Type = CAN_ID_STANDARD  &amp; Filter_7_Mode = CAN_FILTER_MODE_ID_MASK"/>  
+    </RefParameter>
+    
+    
+      <!-- Filter 8-->
+    <RefParameter Name="Filter_8_Enable" Comment="Enable Filter 8" CommentCH="过滤器8使能" DefaultValue="FALSE" Group="Filter 8 Configuration" GroupCH="过滤器8配置" Type="list">
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE"/>
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE"/>
+    </RefParameter>   
+    <RefParameter Name="Filter_8_FIFO_select" Comment="FIFO select" CommentCH="FIFO选择" DefaultValue="CAN_FILTER_FIFO0" Group="Filter 8 Configuration" GroupCH="过滤器8配置" Type="list" Reload = "false">
+        <Condition Expression="Filter_8_Enable = TRUE"/>  
+        <PossibleValue Comment="FIFO0" CommentCH="FIFO0" Value="CAN_FILTER_FIFO0"/>
+        <PossibleValue Comment="FIFO1" CommentCH="FIFO1" Value="CAN_FILTER_FIFO1"/>
+    </RefParameter> 
+    <RefParameter Name="Filter_8_Identifier_Type" Comment="Identifier Type Select" CommentCH="标识符类型选择" DefaultValue="CAN_ID_STANDARD" Group="Filter 8 Configuration" GroupCH="过滤器8配置" Type="list">
+        <Condition Expression="Filter_8_Enable = TRUE"/>  
+        <PossibleValue Comment="Standard identifier" CommentCH="标准标识符" Value="CAN_ID_STANDARD"/>
+        <PossibleValue Comment="Extended identifier" CommentCH="扩展标识符" Value="CAN_ID_EXTENDED"/>
+    </RefParameter> 
+    <RefParameter Name="Filter_8_Mode" Comment="Filter Mode Configuration" CommentCH="过滤器模式选择" DefaultValue="CAN_FILTER_MODE_ID_MASK" Group="Filter 8 Configuration" GroupCH="过滤器8配置" Type="list">
+        <Condition Expression="Filter_8_Enable = TRUE"/>  
+        <PossibleValue Comment="Identifier Mask Mode" CommentCH="掩码模式" Value="CAN_FILTER_MODE_ID_MASK"/>
+        <PossibleValue Comment="Identifier List Mode" CommentCH="列表模式" Value="CAN_FILTER_MODE_ID_LIST"/>
+    </RefParameter> 
+    <RefParameter Name="Filter_8_Frame_Type" Comment="Frame Type" CommentCH="帧类型" DefaultValue="DATA_REMOTE_FRAME" Group="Filter 8 Configuration" GroupCH="过滤器8配置" Type="list">
+        <Condition Expression="Filter_8_Enable = TRUE"/>  
+        <PossibleValue Comment="Data/Remote frame" CommentCH="数据/远程帧" Value="DATA_REMOTE_FRAME"/>
+        <PossibleValue Comment="Data frame" CommentCH="数据帧" Value="DATA_FRAME"/>
+        <PossibleValue Comment="Remote frame" CommentCH="远程帧" Value="REMOTE_FRAME"/>
+    </RefParameter> 
+    
+    <RefParameter Name="Filter_8_ID1" Comment="ID1 (11bit)" CommentCH="标识符1 (11bit)" DefaultValue="0" Group="Filter 8 Configuration" GroupCH="过滤器8配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_8_Enable = TRUE &amp; Filter_8_Identifier_Type = CAN_ID_STANDARD"/>  
+    </RefParameter> 
+    <RefParameter Name="Filter_8_ID1" Comment="ID1 (29bit)" CommentCH="标识符1 (29bit)" DefaultValue="0" Group="Filter 8 Configuration" GroupCH="过滤器8配置" Max="1FFFFFFF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_8_Enable = TRUE &amp; Filter_8_Identifier_Type = CAN_ID_EXTENDED"/>  
+    </RefParameter> 
+    
+    <RefParameter Name="Filter_8_ID2" Comment="ID2 (11bit)" CommentCH="标识符2 (11bit)" DefaultValue="0" Group="Filter 8 Configuration" GroupCH="过滤器8配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_8_Enable = TRUE &amp; Filter_8_Identifier_Type = CAN_ID_STANDARD"/>  
+    </RefParameter> 
+    <RefParameter Name="Filter_8_ID2" Comment="ID2 (29bit)" CommentCH="标识符2 (29bit)" DefaultValue="0" Group="Filter 8 Configuration" GroupCH="过滤器8配置" Max="1FFFFFFF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_8_Enable = TRUE &amp; Filter_8_Identifier_Type = CAN_ID_EXTENDED &amp; Filter_8_Mode = CAN_FILTER_MODE_ID_LIST"/>  
+    </RefParameter> 
+    
+    <RefParameter Name="Filter_8_ID3" Comment="ID3 (11bit)" CommentCH="标识符3 (11bit)" DefaultValue="0" Group="Filter 8 Configuration" GroupCH="过滤器8配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_8_Enable = TRUE &amp; Filter_8_Identifier_Type = CAN_ID_STANDARD &amp; Filter_8_Mode = CAN_FILTER_MODE_ID_LIST"/>  
+    </RefParameter>
+    
+     <RefParameter Name="Filter_8_ID4" Comment="ID4 (11bit)" CommentCH="标识符4 (11bit)" DefaultValue="0" Group="Filter 8 Configuration" GroupCH="过滤器8配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_8_Enable = TRUE &amp; Filter_8_Identifier_Type = CAN_ID_STANDARD &amp; Filter_8_Mode = CAN_FILTER_MODE_ID_LIST"/>  
+    </RefParameter>
+    
+    <RefParameter Name="Filter_8_Mask1" Comment="Mask1 (11bit)" CommentCH="掩码1 (11bit)" DefaultValue="0" Group="Filter 8 Configuration" GroupCH="过滤器8配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_8_Enable = TRUE &amp; Filter_8_Identifier_Type = CAN_ID_STANDARD  &amp; Filter_8_Mode = CAN_FILTER_MODE_ID_MASK"/>  
+    </RefParameter>
+    <RefParameter Name="Filter_8_Mask1" Comment="Mask1 (29bit)" CommentCH="掩码1 (29bit)" DefaultValue="0" Group="Filter 8 Configuration" GroupCH="过滤器8配置" Max="1FFFFFFF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_8_Enable = TRUE &amp; Filter_8_Identifier_Type = CAN_ID_EXTENDED  &amp; Filter_8_Mode = CAN_FILTER_MODE_ID_MASK"/>  
+    </RefParameter>
+    
+     <RefParameter Name="Filter_8_Mask2" Comment="Mask2 (11bit)" CommentCH="掩码2 (11bit)" DefaultValue="0" Group="Filter 8 Configuration" GroupCH="过滤器8配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_8_Enable = TRUE &amp; Filter_8_Identifier_Type = CAN_ID_STANDARD  &amp; Filter_8_Mode = CAN_FILTER_MODE_ID_MASK"/>  
+    </RefParameter>
+    
+    
+          <!-- Filter 9-->
+    <RefParameter Name="Filter_9_Enable" Comment="Enable Filter 9" CommentCH="过滤器9使能" DefaultValue="FALSE" Group="Filter 9 Configuration" GroupCH="过滤器9配置" Type="list">
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE"/>
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE"/>
+    </RefParameter>   
+    <RefParameter Name="Filter_9_FIFO_select" Comment="FIFO select" CommentCH="FIFO选择" DefaultValue="CAN_FILTER_FIFO0" Group="Filter 9 Configuration" GroupCH="过滤器9配置" Type="list" Reload = "false">
+        <Condition Expression="Filter_9_Enable = TRUE"/>  
+        <PossibleValue Comment="FIFO0" CommentCH="FIFO0" Value="CAN_FILTER_FIFO0"/>
+        <PossibleValue Comment="FIFO1" CommentCH="FIFO1" Value="CAN_FILTER_FIFO1"/>
+    </RefParameter> 
+    <RefParameter Name="Filter_9_Identifier_Type" Comment="Identifier Type Select" CommentCH="标识符类型选择" DefaultValue="CAN_ID_STANDARD" Group="Filter 9 Configuration" GroupCH="过滤器9配置" Type="list">
+        <Condition Expression="Filter_9_Enable = TRUE"/>  
+        <PossibleValue Comment="Standard identifier" CommentCH="标准标识符" Value="CAN_ID_STANDARD"/>
+        <PossibleValue Comment="Extended identifier" CommentCH="扩展标识符" Value="CAN_ID_EXTENDED"/>
+    </RefParameter> 
+    <RefParameter Name="Filter_9_Mode" Comment="Filter Mode Configuration" CommentCH="过滤器模式选择" DefaultValue="CAN_FILTER_MODE_ID_MASK" Group="Filter 9 Configuration" GroupCH="过滤器9配置" Type="list">
+        <Condition Expression="Filter_9_Enable = TRUE"/>  
+        <PossibleValue Comment="Identifier Mask Mode" CommentCH="掩码模式" Value="CAN_FILTER_MODE_ID_MASK"/>
+        <PossibleValue Comment="Identifier List Mode" CommentCH="列表模式" Value="CAN_FILTER_MODE_ID_LIST"/>
+    </RefParameter> 
+    <RefParameter Name="Filter_9_Frame_Type" Comment="Frame Type" CommentCH="帧类型" DefaultValue="DATA_REMOTE_FRAME" Group="Filter 9 Configuration" GroupCH="过滤器9配置" Type="list">
+        <Condition Expression="Filter_9_Enable = TRUE"/>  
+        <PossibleValue Comment="Data/Remote frame" CommentCH="数据/远程帧" Value="DATA_REMOTE_FRAME"/>
+        <PossibleValue Comment="Data frame" CommentCH="数据帧" Value="DATA_FRAME"/>
+        <PossibleValue Comment="Remote frame" CommentCH="远程帧" Value="REMOTE_FRAME"/>
+    </RefParameter> 
+    
+    <RefParameter Name="Filter_9_ID1" Comment="ID1 (11bit)" CommentCH="标识符1 (11bit)" DefaultValue="0" Group="Filter 9 Configuration" GroupCH="过滤器9配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_9_Enable = TRUE &amp; Filter_9_Identifier_Type = CAN_ID_STANDARD"/>  
+    </RefParameter> 
+    <RefParameter Name="Filter_9_ID1" Comment="ID1 (29bit)" CommentCH="标识符1 (29bit)" DefaultValue="0" Group="Filter 9 Configuration" GroupCH="过滤器9配置" Max="1FFFFFFF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_9_Enable = TRUE &amp; Filter_9_Identifier_Type = CAN_ID_EXTENDED"/>  
+    </RefParameter> 
+    
+    <RefParameter Name="Filter_9_ID2" Comment="ID2 (11bit)" CommentCH="标识符2 (11bit)" DefaultValue="0" Group="Filter 9 Configuration" GroupCH="过滤器9配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_9_Enable = TRUE &amp; Filter_9_Identifier_Type = CAN_ID_STANDARD"/>  
+    </RefParameter> 
+    <RefParameter Name="Filter_9_ID2" Comment="ID2 (29bit)" CommentCH="标识符2 (29bit)" DefaultValue="0" Group="Filter 9 Configuration" GroupCH="过滤器9配置" Max="1FFFFFFF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_9_Enable = TRUE &amp; Filter_9_Identifier_Type = CAN_ID_EXTENDED &amp; Filter_9_Mode = CAN_FILTER_MODE_ID_LIST"/>  
+    </RefParameter> 
+    
+    <RefParameter Name="Filter_9_ID3" Comment="ID3 (11bit)" CommentCH="标识符3 (11bit)" DefaultValue="0" Group="Filter 9 Configuration" GroupCH="过滤器9配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_9_Enable = TRUE &amp; Filter_9_Identifier_Type = CAN_ID_STANDARD &amp; Filter_9_Mode = CAN_FILTER_MODE_ID_LIST"/>  
+    </RefParameter>
+    
+     <RefParameter Name="Filter_9_ID4" Comment="ID4 (11bit)" CommentCH="标识符4 (11bit)" DefaultValue="0" Group="Filter 9 Configuration" GroupCH="过滤器9配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_9_Enable = TRUE &amp; Filter_9_Identifier_Type = CAN_ID_STANDARD &amp; Filter_9_Mode = CAN_FILTER_MODE_ID_LIST"/>  
+    </RefParameter>
+    
+    <RefParameter Name="Filter_9_Mask1" Comment="Mask1 (11bit)" CommentCH="掩码1 (11bit)" DefaultValue="0" Group="Filter 9 Configuration" GroupCH="过滤器9配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_9_Enable = TRUE &amp; Filter_9_Identifier_Type = CAN_ID_STANDARD  &amp; Filter_9_Mode = CAN_FILTER_MODE_ID_MASK"/>  
+    </RefParameter>
+    <RefParameter Name="Filter_9_Mask1" Comment="Mask1 (29bit)" CommentCH="掩码1 (29bit)" DefaultValue="0" Group="Filter 9 Configuration" GroupCH="过滤器9配置" Max="1FFFFFFF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_9_Enable = TRUE &amp; Filter_9_Identifier_Type = CAN_ID_EXTENDED  &amp; Filter_9_Mode = CAN_FILTER_MODE_ID_MASK"/>  
+    </RefParameter>
+    
+     <RefParameter Name="Filter_9_Mask2" Comment="Mask2 (11bit)" CommentCH="掩码2 (11bit)" DefaultValue="0" Group="Filter 9 Configuration" GroupCH="过滤器9配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_9_Enable = TRUE &amp; Filter_9_Identifier_Type = CAN_ID_STANDARD  &amp; Filter_9_Mode = CAN_FILTER_MODE_ID_MASK"/>  
+    </RefParameter>
+    
+    
+              <!-- Filter 10-->
+    <RefParameter Name="Filter_10_Enable" Comment="Enable Filter 10" CommentCH="过滤器10使能" DefaultValue="FALSE" Group="Filter 10 Configuration" GroupCH="过滤器10配置" Type="list">
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE"/>
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE"/>
+    </RefParameter>   
+    <RefParameter Name="Filter_10_FIFO_select" Comment="FIFO select" CommentCH="FIFO选择" DefaultValue="CAN_FILTER_FIFO0" Group="Filter 10 Configuration" GroupCH="过滤器10配置" Type="list" Reload = "false">
+        <Condition Expression="Filter_10_Enable = TRUE"/>  
+        <PossibleValue Comment="FIFO0" CommentCH="FIFO0" Value="CAN_FILTER_FIFO0"/>
+        <PossibleValue Comment="FIFO1" CommentCH="FIFO1" Value="CAN_FILTER_FIFO1"/>
+    </RefParameter> 
+    <RefParameter Name="Filter_10_Identifier_Type" Comment="Identifier Type Select" CommentCH="标识符类型选择" DefaultValue="CAN_ID_STANDARD" Group="Filter 10 Configuration" GroupCH="过滤器10配置" Type="list">
+        <Condition Expression="Filter_10_Enable = TRUE"/>  
+        <PossibleValue Comment="Standard identifier" CommentCH="标准标识符" Value="CAN_ID_STANDARD"/>
+        <PossibleValue Comment="Extended identifier" CommentCH="扩展标识符" Value="CAN_ID_EXTENDED"/>
+    </RefParameter> 
+    <RefParameter Name="Filter_10_Mode" Comment="Filter Mode Configuration" CommentCH="过滤器模式选择" DefaultValue="CAN_FILTER_MODE_ID_MASK" Group="Filter 10 Configuration" GroupCH="过滤器10配置" Type="list">
+        <Condition Expression="Filter_10_Enable = TRUE"/>  
+        <PossibleValue Comment="Identifier Mask Mode" CommentCH="掩码模式" Value="CAN_FILTER_MODE_ID_MASK"/>
+        <PossibleValue Comment="Identifier List Mode" CommentCH="列表模式" Value="CAN_FILTER_MODE_ID_LIST"/>
+    </RefParameter> 
+    <RefParameter Name="Filter_10_Frame_Type" Comment="Frame Type" CommentCH="帧类型" DefaultValue="DATA_REMOTE_FRAME" Group="Filter 10 Configuration" GroupCH="过滤器10配置" Type="list">
+        <Condition Expression="Filter_10_Enable = TRUE"/>  
+        <PossibleValue Comment="Data/Remote frame" CommentCH="数据/远程帧" Value="DATA_REMOTE_FRAME"/>
+        <PossibleValue Comment="Data frame" CommentCH="数据帧" Value="DATA_FRAME"/>
+        <PossibleValue Comment="Remote frame" CommentCH="远程帧" Value="REMOTE_FRAME"/>
+    </RefParameter> 
+    
+    <RefParameter Name="Filter_10_ID1" Comment="ID1 (11bit)" CommentCH="标识符1 (11bit)" DefaultValue="0" Group="Filter 10 Configuration" GroupCH="过滤器10配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_10_Enable = TRUE &amp; Filter_10_Identifier_Type = CAN_ID_STANDARD"/>  
+    </RefParameter> 
+    <RefParameter Name="Filter_10_ID1" Comment="ID1 (29bit)" CommentCH="标识符1 (29bit)" DefaultValue="0" Group="Filter 10 Configuration" GroupCH="过滤器10配置" Max="1FFFFFFF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_10_Enable = TRUE &amp; Filter_10_Identifier_Type = CAN_ID_EXTENDED"/>  
+    </RefParameter> 
+    
+    <RefParameter Name="Filter_10_ID2" Comment="ID2 (11bit)" CommentCH="标识符2 (11bit)" DefaultValue="0" Group="Filter 10 Configuration" GroupCH="过滤器10配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_10_Enable = TRUE &amp; Filter_10_Identifier_Type = CAN_ID_STANDARD"/>  
+    </RefParameter> 
+    <RefParameter Name="Filter_10_ID2" Comment="ID2 (29bit)" CommentCH="标识符2 (29bit)" DefaultValue="0" Group="Filter 10 Configuration" GroupCH="过滤器10配置" Max="1FFFFFFF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_10_Enable = TRUE &amp; Filter_10_Identifier_Type = CAN_ID_EXTENDED &amp; Filter_10_Mode = CAN_FILTER_MODE_ID_LIST"/>  
+    </RefParameter> 
+    
+    <RefParameter Name="Filter_10_ID3" Comment="ID3 (11bit)" CommentCH="标识符3 (11bit)" DefaultValue="0" Group="Filter 10 Configuration" GroupCH="过滤器10配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_10_Enable = TRUE &amp; Filter_10_Identifier_Type = CAN_ID_STANDARD &amp; Filter_10_Mode = CAN_FILTER_MODE_ID_LIST"/>  
+    </RefParameter>
+    
+     <RefParameter Name="Filter_10_ID4" Comment="ID4 (11bit)" CommentCH="标识符4 (11bit)" DefaultValue="0" Group="Filter 10 Configuration" GroupCH="过滤器10配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_10_Enable = TRUE &amp; Filter_10_Identifier_Type = CAN_ID_STANDARD &amp; Filter_10_Mode = CAN_FILTER_MODE_ID_LIST"/>  
+    </RefParameter>
+    
+    <RefParameter Name="Filter_10_Mask1" Comment="Mask1 (11bit)" CommentCH="掩码1 (11bit)" DefaultValue="0" Group="Filter 10 Configuration" GroupCH="过滤器10配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_10_Enable = TRUE &amp; Filter_10_Identifier_Type = CAN_ID_STANDARD  &amp; Filter_10_Mode = CAN_FILTER_MODE_ID_MASK"/>  
+    </RefParameter>
+    <RefParameter Name="Filter_10_Mask1" Comment="Mask1 (29bit)" CommentCH="掩码1 (29bit)" DefaultValue="0" Group="Filter 10 Configuration" GroupCH="过滤器10配置" Max="1FFFFFFF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_10_Enable = TRUE &amp; Filter_10_Identifier_Type = CAN_ID_EXTENDED  &amp; Filter_10_Mode = CAN_FILTER_MODE_ID_MASK"/>  
+    </RefParameter>
+    
+     <RefParameter Name="Filter_10_Mask2" Comment="Mask2 (11bit)" CommentCH="掩码2 (11bit)" DefaultValue="0" Group="Filter 10 Configuration" GroupCH="过滤器10配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_10_Enable = TRUE &amp; Filter_10_Identifier_Type = CAN_ID_STANDARD  &amp; Filter_10_Mode = CAN_FILTER_MODE_ID_MASK"/>  
+    </RefParameter>
+    
+    
+                  <!-- Filter 11-->
+    <RefParameter Name="Filter_11_Enable" Comment="Enable Filter 11" CommentCH="过滤器11使能" DefaultValue="FALSE" Group="Filter 11 Configuration" GroupCH="过滤器11配置" Type="list">
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE"/>
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE"/>
+    </RefParameter>   
+    <RefParameter Name="Filter_11_FIFO_select" Comment="FIFO select" CommentCH="FIFO选择" DefaultValue="CAN_FILTER_FIFO0" Group="Filter 11 Configuration" GroupCH="过滤器11配置" Type="list" Reload = "false">
+        <Condition Expression="Filter_11_Enable = TRUE"/>  
+        <PossibleValue Comment="FIFO0" CommentCH="FIFO0" Value="CAN_FILTER_FIFO0"/>
+        <PossibleValue Comment="FIFO1" CommentCH="FIFO1" Value="CAN_FILTER_FIFO1"/>
+    </RefParameter> 
+    <RefParameter Name="Filter_11_Identifier_Type" Comment="Identifier Type Select" CommentCH="标识符类型选择" DefaultValue="CAN_ID_STANDARD" Group="Filter 11 Configuration" GroupCH="过滤器11配置" Type="list">
+        <Condition Expression="Filter_11_Enable = TRUE"/>  
+        <PossibleValue Comment="Standard identifier" CommentCH="标准标识符" Value="CAN_ID_STANDARD"/>
+        <PossibleValue Comment="Extended identifier" CommentCH="扩展标识符" Value="CAN_ID_EXTENDED"/>
+    </RefParameter> 
+    <RefParameter Name="Filter_11_Mode" Comment="Filter Mode Configuration" CommentCH="过滤器模式选择" DefaultValue="CAN_FILTER_MODE_ID_MASK" Group="Filter 11 Configuration" GroupCH="过滤器11配置" Type="list">
+        <Condition Expression="Filter_11_Enable = TRUE"/>  
+        <PossibleValue Comment="Identifier Mask Mode" CommentCH="掩码模式" Value="CAN_FILTER_MODE_ID_MASK"/>
+        <PossibleValue Comment="Identifier List Mode" CommentCH="列表模式" Value="CAN_FILTER_MODE_ID_LIST"/>
+    </RefParameter> 
+    <RefParameter Name="Filter_11_Frame_Type" Comment="Frame Type" CommentCH="帧类型" DefaultValue="DATA_REMOTE_FRAME" Group="Filter 11 Configuration" GroupCH="过滤器11配置" Type="list">
+        <Condition Expression="Filter_11_Enable = TRUE"/>  
+        <PossibleValue Comment="Data/Remote frame" CommentCH="数据/远程帧" Value="DATA_REMOTE_FRAME"/>
+        <PossibleValue Comment="Data frame" CommentCH="数据帧" Value="DATA_FRAME"/>
+        <PossibleValue Comment="Remote frame" CommentCH="远程帧" Value="REMOTE_FRAME"/>
+    </RefParameter> 
+    
+    <RefParameter Name="Filter_11_ID1" Comment="ID1 (11bit)" CommentCH="标识符1 (11bit)" DefaultValue="0" Group="Filter 11 Configuration" GroupCH="过滤器11配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_11_Enable = TRUE &amp; Filter_11_Identifier_Type = CAN_ID_STANDARD"/>  
+    </RefParameter> 
+    <RefParameter Name="Filter_11_ID1" Comment="ID1 (29bit)" CommentCH="标识符1 (29bit)" DefaultValue="0" Group="Filter 11 Configuration" GroupCH="过滤器11配置" Max="1FFFFFFF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_11_Enable = TRUE &amp; Filter_11_Identifier_Type = CAN_ID_EXTENDED"/>  
+    </RefParameter> 
+    
+    <RefParameter Name="Filter_11_ID2" Comment="ID2 (11bit)" CommentCH="标识符2 (11bit)" DefaultValue="0" Group="Filter 11 Configuration" GroupCH="过滤器11配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_11_Enable = TRUE &amp; Filter_11_Identifier_Type = CAN_ID_STANDARD"/>  
+    </RefParameter> 
+    <RefParameter Name="Filter_11_ID2" Comment="ID2 (29bit)" CommentCH="标识符2 (29bit)" DefaultValue="0" Group="Filter 11 Configuration" GroupCH="过滤器11配置" Max="1FFFFFFF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_11_Enable = TRUE &amp; Filter_11_Identifier_Type = CAN_ID_EXTENDED &amp; Filter_11_Mode = CAN_FILTER_MODE_ID_LIST"/>  
+    </RefParameter> 
+    
+    <RefParameter Name="Filter_11_ID3" Comment="ID3 (11bit)" CommentCH="标识符3 (11bit)" DefaultValue="0" Group="Filter 11 Configuration" GroupCH="过滤器11配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_11_Enable = TRUE &amp; Filter_11_Identifier_Type = CAN_ID_STANDARD &amp; Filter_11_Mode = CAN_FILTER_MODE_ID_LIST"/>  
+    </RefParameter>
+    
+     <RefParameter Name="Filter_11_ID4" Comment="ID4 (11bit)" CommentCH="标识符4 (11bit)" DefaultValue="0" Group="Filter 11 Configuration" GroupCH="过滤器11配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_11_Enable = TRUE &amp; Filter_11_Identifier_Type = CAN_ID_STANDARD &amp; Filter_11_Mode = CAN_FILTER_MODE_ID_LIST"/>  
+    </RefParameter>
+    
+    <RefParameter Name="Filter_11_Mask1" Comment="Mask1 (11bit)" CommentCH="掩码1 (11bit)" DefaultValue="0" Group="Filter 11 Configuration" GroupCH="过滤器11配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_11_Enable = TRUE &amp; Filter_11_Identifier_Type = CAN_ID_STANDARD  &amp; Filter_11_Mode = CAN_FILTER_MODE_ID_MASK"/>  
+    </RefParameter>
+    <RefParameter Name="Filter_11_Mask1" Comment="Mask1 (29bit)" CommentCH="掩码1 (29bit)" DefaultValue="0" Group="Filter 11 Configuration" GroupCH="过滤器11配置" Max="1FFFFFFF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_11_Enable = TRUE &amp; Filter_11_Identifier_Type = CAN_ID_EXTENDED  &amp; Filter_11_Mode = CAN_FILTER_MODE_ID_MASK"/>  
+    </RefParameter>
+    
+     <RefParameter Name="Filter_11_Mask2" Comment="Mask2 (11bit)" CommentCH="掩码2 (11bit)" DefaultValue="0" Group="Filter 11 Configuration" GroupCH="过滤器11配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_11_Enable = TRUE &amp; Filter_11_Identifier_Type = CAN_ID_STANDARD  &amp; Filter_11_Mode = CAN_FILTER_MODE_ID_MASK"/>  
+    </RefParameter>
+    
+    
+    <!-- Filter 12-->
+    <RefParameter Name="Filter_12_Enable" Comment="Enable Filter 12" CommentCH="过滤器12使能" DefaultValue="FALSE" Group="Filter 12 Configuration" GroupCH="过滤器12配置" Type="list">
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE"/>
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE"/>
+    </RefParameter>   
+    <RefParameter Name="Filter_12_FIFO_select" Comment="FIFO select" CommentCH="FIFO选择" DefaultValue="CAN_FILTER_FIFO0" Group="Filter 12 Configuration" GroupCH="过滤器12配置" Type="list" Reload = "false">
+        <Condition Expression="Filter_12_Enable = TRUE"/>  
+        <PossibleValue Comment="FIFO0" CommentCH="FIFO0" Value="CAN_FILTER_FIFO0"/>
+        <PossibleValue Comment="FIFO1" CommentCH="FIFO1" Value="CAN_FILTER_FIFO1"/>
+    </RefParameter> 
+    <RefParameter Name="Filter_12_Identifier_Type" Comment="Identifier Type Select" CommentCH="标识符类型选择" DefaultValue="CAN_ID_STANDARD" Group="Filter 12 Configuration" GroupCH="过滤器12配置" Type="list">
+        <Condition Expression="Filter_12_Enable = TRUE"/>  
+        <PossibleValue Comment="Standard identifier" CommentCH="标准标识符" Value="CAN_ID_STANDARD"/>
+        <PossibleValue Comment="Extended identifier" CommentCH="扩展标识符" Value="CAN_ID_EXTENDED"/>
+    </RefParameter> 
+    <RefParameter Name="Filter_12_Mode" Comment="Filter Mode Configuration" CommentCH="过滤器模式选择" DefaultValue="CAN_FILTER_MODE_ID_MASK" Group="Filter 12 Configuration" GroupCH="过滤器12配置" Type="list">
+        <Condition Expression="Filter_12_Enable = TRUE"/>  
+        <PossibleValue Comment="Identifier Mask Mode" CommentCH="掩码模式" Value="CAN_FILTER_MODE_ID_MASK"/>
+        <PossibleValue Comment="Identifier List Mode" CommentCH="列表模式" Value="CAN_FILTER_MODE_ID_LIST"/>
+    </RefParameter> 
+    <RefParameter Name="Filter_12_Frame_Type" Comment="Frame Type" CommentCH="帧类型" DefaultValue="DATA_REMOTE_FRAME" Group="Filter 12 Configuration" GroupCH="过滤器12配置" Type="list">
+        <Condition Expression="Filter_12_Enable = TRUE"/>  
+        <PossibleValue Comment="Data/Remote frame" CommentCH="数据/远程帧" Value="DATA_REMOTE_FRAME"/>
+        <PossibleValue Comment="Data frame" CommentCH="数据帧" Value="DATA_FRAME"/>
+        <PossibleValue Comment="Remote frame" CommentCH="远程帧" Value="REMOTE_FRAME"/>
+    </RefParameter> 
+    
+    <RefParameter Name="Filter_12_ID1" Comment="ID1 (11bit)" CommentCH="标识符1 (11bit)" DefaultValue="0" Group="Filter 12 Configuration" GroupCH="过滤器12配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_12_Enable = TRUE &amp; Filter_12_Identifier_Type = CAN_ID_STANDARD"/>  
+    </RefParameter> 
+    <RefParameter Name="Filter_12_ID1" Comment="ID1 (29bit)" CommentCH="标识符1 (29bit)" DefaultValue="0" Group="Filter 12 Configuration" GroupCH="过滤器12配置" Max="1FFFFFFF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_12_Enable = TRUE &amp; Filter_12_Identifier_Type = CAN_ID_EXTENDED"/>  
+    </RefParameter> 
+    
+    <RefParameter Name="Filter_12_ID2" Comment="ID2 (11bit)" CommentCH="标识符2 (11bit)" DefaultValue="0" Group="Filter 12 Configuration" GroupCH="过滤器12配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_12_Enable = TRUE &amp; Filter_12_Identifier_Type = CAN_ID_STANDARD"/>  
+    </RefParameter> 
+    <RefParameter Name="Filter_12_ID2" Comment="ID2 (29bit)" CommentCH="标识符2 (29bit)" DefaultValue="0" Group="Filter 12 Configuration" GroupCH="过滤器12配置" Max="1FFFFFFF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_12_Enable = TRUE &amp; Filter_12_Identifier_Type = CAN_ID_EXTENDED &amp; Filter_12_Mode = CAN_FILTER_MODE_ID_LIST"/>  
+    </RefParameter> 
+    
+    <RefParameter Name="Filter_12_ID3" Comment="ID3 (11bit)" CommentCH="标识符3 (11bit)" DefaultValue="0" Group="Filter 12 Configuration" GroupCH="过滤器12配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_12_Enable = TRUE &amp; Filter_12_Identifier_Type = CAN_ID_STANDARD &amp; Filter_12_Mode = CAN_FILTER_MODE_ID_LIST"/>  
+    </RefParameter>
+    
+     <RefParameter Name="Filter_12_ID4" Comment="ID4 (11bit)" CommentCH="标识符4 (11bit)" DefaultValue="0" Group="Filter 12 Configuration" GroupCH="过滤器12配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_12_Enable = TRUE &amp; Filter_12_Identifier_Type = CAN_ID_STANDARD &amp; Filter_12_Mode = CAN_FILTER_MODE_ID_LIST"/>  
+    </RefParameter>
+    
+    <RefParameter Name="Filter_12_Mask1" Comment="Mask1 (11bit)" CommentCH="掩码1 (11bit)" DefaultValue="0" Group="Filter 12 Configuration" GroupCH="过滤器12配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_12_Enable = TRUE &amp; Filter_12_Identifier_Type = CAN_ID_STANDARD  &amp; Filter_12_Mode = CAN_FILTER_MODE_ID_MASK"/>  
+    </RefParameter>
+    <RefParameter Name="Filter_12_Mask1" Comment="Mask1 (29bit)" CommentCH="掩码1 (29bit)" DefaultValue="0" Group="Filter 12 Configuration" GroupCH="过滤器12配置" Max="1FFFFFFF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_12_Enable = TRUE &amp; Filter_12_Identifier_Type = CAN_ID_EXTENDED  &amp; Filter_12_Mode = CAN_FILTER_MODE_ID_MASK"/>  
+    </RefParameter>
+    
+     <RefParameter Name="Filter_12_Mask2" Comment="Mask2 (11bit)" CommentCH="掩码2 (11bit)" DefaultValue="0" Group="Filter 12 Configuration" GroupCH="过滤器12配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_12_Enable = TRUE &amp; Filter_12_Identifier_Type = CAN_ID_STANDARD  &amp; Filter_12_Mode = CAN_FILTER_MODE_ID_MASK"/>  
+    </RefParameter>
+    
+    
+        <!-- Filter 13-->
+    <RefParameter Name="Filter_13_Enable" Comment="Enable Filter 13" CommentCH="过滤器13使能" DefaultValue="FALSE" Group="Filter 13 Configuration" GroupCH="过滤器13配置" Type="list">
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE"/>
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE"/>
+    </RefParameter>   
+    <RefParameter Name="Filter_13_FIFO_select" Comment="FIFO select" CommentCH="FIFO选择" DefaultValue="CAN_FILTER_FIFO0" Group="Filter 13 Configuration" GroupCH="过滤器13配置" Type="list" Reload = "false">
+        <Condition Expression="Filter_13_Enable = TRUE"/>  
+        <PossibleValue Comment="FIFO0" CommentCH="FIFO0" Value="CAN_FILTER_FIFO0"/>
+        <PossibleValue Comment="FIFO1" CommentCH="FIFO1" Value="CAN_FILTER_FIFO1"/>
+    </RefParameter> 
+    <RefParameter Name="Filter_13_Identifier_Type" Comment="Identifier Type Select" CommentCH="标识符类型选择" DefaultValue="CAN_ID_STANDARD" Group="Filter 13 Configuration" GroupCH="过滤器13配置" Type="list">
+        <Condition Expression="Filter_13_Enable = TRUE"/>  
+        <PossibleValue Comment="Standard identifier" CommentCH="标准标识符" Value="CAN_ID_STANDARD"/>
+        <PossibleValue Comment="Extended identifier" CommentCH="扩展标识符" Value="CAN_ID_EXTENDED"/>
+    </RefParameter> 
+    <RefParameter Name="Filter_13_Mode" Comment="Filter Mode Configuration" CommentCH="过滤器模式选择" DefaultValue="CAN_FILTER_MODE_ID_MASK" Group="Filter 13 Configuration" GroupCH="过滤器13配置" Type="list">
+        <Condition Expression="Filter_13_Enable = TRUE"/>  
+        <PossibleValue Comment="Identifier Mask Mode" CommentCH="掩码模式" Value="CAN_FILTER_MODE_ID_MASK"/>
+        <PossibleValue Comment="Identifier List Mode" CommentCH="列表模式" Value="CAN_FILTER_MODE_ID_LIST"/>
+    </RefParameter> 
+    <RefParameter Name="Filter_13_Frame_Type" Comment="Frame Type" CommentCH="帧类型" DefaultValue="DATA_REMOTE_FRAME" Group="Filter 13 Configuration" GroupCH="过滤器13配置" Type="list">
+        <Condition Expression="Filter_13_Enable = TRUE"/>  
+        <PossibleValue Comment="Data/Remote frame" CommentCH="数据/远程帧" Value="DATA_REMOTE_FRAME"/>
+        <PossibleValue Comment="Data frame" CommentCH="数据帧" Value="DATA_FRAME"/>
+        <PossibleValue Comment="Remote frame" CommentCH="远程帧" Value="REMOTE_FRAME"/>
+    </RefParameter> 
+    
+    <RefParameter Name="Filter_13_ID1" Comment="ID1 (11bit)" CommentCH="标识符1 (11bit)" DefaultValue="0" Group="Filter 13 Configuration" GroupCH="过滤器13配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_13_Enable = TRUE &amp; Filter_13_Identifier_Type = CAN_ID_STANDARD"/>  
+    </RefParameter> 
+    <RefParameter Name="Filter_13_ID1" Comment="ID1 (29bit)" CommentCH="标识符1 (29bit)" DefaultValue="0" Group="Filter 13 Configuration" GroupCH="过滤器13配置" Max="1FFFFFFF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_13_Enable = TRUE &amp; Filter_13_Identifier_Type = CAN_ID_EXTENDED"/>  
+    </RefParameter> 
+    
+    <RefParameter Name="Filter_13_ID2" Comment="ID2 (11bit)" CommentCH="标识符2 (11bit)" DefaultValue="0" Group="Filter 13 Configuration" GroupCH="过滤器13配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_13_Enable = TRUE &amp; Filter_13_Identifier_Type = CAN_ID_STANDARD"/>  
+    </RefParameter> 
+    <RefParameter Name="Filter_13_ID2" Comment="ID2 (29bit)" CommentCH="标识符2 (29bit)" DefaultValue="0" Group="Filter 13 Configuration" GroupCH="过滤器13配置" Max="1FFFFFFF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_13_Enable = TRUE &amp; Filter_13_Identifier_Type = CAN_ID_EXTENDED &amp; Filter_13_Mode = CAN_FILTER_MODE_ID_LIST"/>  
+    </RefParameter> 
+    
+    <RefParameter Name="Filter_13_ID3" Comment="ID3 (11bit)" CommentCH="标识符3 (11bit)" DefaultValue="0" Group="Filter 13 Configuration" GroupCH="过滤器13配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_13_Enable = TRUE &amp; Filter_13_Identifier_Type = CAN_ID_STANDARD &amp; Filter_13_Mode = CAN_FILTER_MODE_ID_LIST"/>  
+    </RefParameter>
+    
+     <RefParameter Name="Filter_13_ID4" Comment="ID4 (11bit)" CommentCH="标识符4 (11bit)" DefaultValue="0" Group="Filter 13 Configuration" GroupCH="过滤器13配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_13_Enable = TRUE &amp; Filter_13_Identifier_Type = CAN_ID_STANDARD &amp; Filter_13_Mode = CAN_FILTER_MODE_ID_LIST"/>  
+    </RefParameter>
+    
+    <RefParameter Name="Filter_13_Mask1" Comment="Mask1 (11bit)" CommentCH="掩码1 (11bit)" DefaultValue="0" Group="Filter 13 Configuration" GroupCH="过滤器13配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_13_Enable = TRUE &amp; Filter_13_Identifier_Type = CAN_ID_STANDARD  &amp; Filter_13_Mode = CAN_FILTER_MODE_ID_MASK"/>  
+    </RefParameter>
+    <RefParameter Name="Filter_13_Mask1" Comment="Mask1 (29bit)" CommentCH="掩码1 (29bit)" DefaultValue="0" Group="Filter 13 Configuration" GroupCH="过滤器13配置" Max="1FFFFFFF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_13_Enable = TRUE &amp; Filter_13_Identifier_Type = CAN_ID_EXTENDED  &amp; Filter_13_Mode = CAN_FILTER_MODE_ID_MASK"/>  
+    </RefParameter>
+    
+     <RefParameter Name="Filter_13_Mask2" Comment="Mask2 (11bit)" CommentCH="掩码2 (11bit)" DefaultValue="0" Group="Filter 13 Configuration" GroupCH="过滤器13配置" Max="7FF" Min="0" Type="hexadecimal" Reload = "false">
+      	<Condition Expression="Filter_13_Enable = TRUE &amp; Filter_13_Identifier_Type = CAN_ID_STANDARD  &amp; Filter_13_Mode = CAN_FILTER_MODE_ID_MASK"/>  
+    </RefParameter>
+    
+    
+	
+      <RefMode Name="CAN_Activate" BaseMode="CAN_Activate">
+        <Parameter Name="Instance"/>
+        <!-- CAN BaudRate Settings -->
+        <Parameter Name="BaudRate"/>
+        <Parameter Name="Sample_Point"/>
+        <Parameter Name="BaudRate_Deviation_Tolerance"/>
+        <Parameter Name="BaudRate_Deviation"/>
+        <Parameter Name="BaudRate_Result_Select"/>
+        <Parameter Name="BaudRate_Division"/>
+        <Parameter Name="BTS1"/>
+        <Parameter Name="BTS2"/>
+        <Parameter Name="RSAW"/>
+        <!-- CAN Basic Parameters -->
+        <Parameter Name="CAN_Mode"/>
+        <Parameter Name="TTC_mode"/>
+        <Parameter Name="Auto_Exit_Bus-off"/>
+        <Parameter Name="Auto_Exit_Doze"/>
+        <Parameter Name="Prohibit_Retrans"/>
+        <Parameter Name="Message_Discarding_Rule"/>
+        <Parameter Name="Transmit_Sequence_Rule"/>
+        <Parameter Name="Filter_Num"/>
+        <!-- Filter 0-->
+        <Parameter Name="Filter_0_Enable"/>
+        <Parameter Name="Filter_0_FIFO_select"/>
+        <Parameter Name="Filter_0_Identifier_Type"/>
+        <Parameter Name="Filter_0_Mode"/>
+        <Parameter Name="Filter_0_Frame_Type"/>
+        <Parameter Name="Filter_0_ID1"/>
+        <Parameter Name="Filter_0_Mask1"/>
+        <Parameter Name="Filter_0_ID2"/>
+        <Parameter Name="Filter_0_Mask2"/>
+        <Parameter Name="Filter_0_ID3"/>
+        <Parameter Name="Filter_0_ID4"/>   
+         <!-- Filter 1-->
+        <Parameter Name="Filter_1_Enable"/>
+        <Parameter Name="Filter_1_FIFO_select"/>
+        <Parameter Name="Filter_1_Identifier_Type"/>
+        <Parameter Name="Filter_1_Mode"/>
+        <Parameter Name="Filter_1_Frame_Type"/>
+        <Parameter Name="Filter_1_ID1"/>
+        <Parameter Name="Filter_1_Mask1"/>
+        <Parameter Name="Filter_1_ID2"/>
+        <Parameter Name="Filter_1_Mask2"/>
+        <Parameter Name="Filter_1_ID3"/>
+        <Parameter Name="Filter_1_ID4"/>  
+         <!-- Filter 2-->
+        <Parameter Name="Filter_2_Enable"/>
+        <Parameter Name="Filter_2_FIFO_select"/>
+        <Parameter Name="Filter_2_Identifier_Type"/>
+        <Parameter Name="Filter_2_Mode"/>
+        <Parameter Name="Filter_2_Frame_Type"/>
+        <Parameter Name="Filter_2_ID1"/>
+        <Parameter Name="Filter_2_Mask1"/>
+        <Parameter Name="Filter_2_ID2"/>
+        <Parameter Name="Filter_2_Mask2"/>
+        <Parameter Name="Filter_2_ID3"/>
+        <Parameter Name="Filter_2_ID4"/>  
+         <!-- Filter 3-->
+        <Parameter Name="Filter_3_Enable"/>
+        <Parameter Name="Filter_3_FIFO_select"/>
+        <Parameter Name="Filter_3_Identifier_Type"/>
+        <Parameter Name="Filter_3_Mode"/>
+        <Parameter Name="Filter_3_Frame_Type"/>
+        <Parameter Name="Filter_3_ID1"/>
+        <Parameter Name="Filter_3_Mask1"/>
+        <Parameter Name="Filter_3_ID2"/>
+        <Parameter Name="Filter_3_Mask2"/>
+        <Parameter Name="Filter_3_ID3"/>
+        <Parameter Name="Filter_3_ID4"/>  
+         <!-- Filter 4-->
+        <Parameter Name="Filter_4_Enable"/>
+        <Parameter Name="Filter_4_FIFO_select"/>
+        <Parameter Name="Filter_4_Identifier_Type"/>
+        <Parameter Name="Filter_4_Mode"/>
+        <Parameter Name="Filter_4_Frame_Type"/>
+        <Parameter Name="Filter_4_ID1"/>
+        <Parameter Name="Filter_4_Mask1"/>
+        <Parameter Name="Filter_4_ID2"/>
+        <Parameter Name="Filter_4_Mask2"/>
+        <Parameter Name="Filter_4_ID3"/>
+        <Parameter Name="Filter_4_ID4"/>  
+         <!-- Filter 5-->
+        <Parameter Name="Filter_5_Enable"/>
+        <Parameter Name="Filter_5_FIFO_select"/>
+        <Parameter Name="Filter_5_Identifier_Type"/>
+        <Parameter Name="Filter_5_Mode"/>
+        <Parameter Name="Filter_5_Frame_Type"/>
+        <Parameter Name="Filter_5_ID1"/>
+        <Parameter Name="Filter_5_Mask1"/>
+        <Parameter Name="Filter_5_ID2"/>
+        <Parameter Name="Filter_5_Mask2"/>
+        <Parameter Name="Filter_5_ID3"/>
+        <Parameter Name="Filter_5_ID4"/>  
+         <!-- Filter 6-->
+        <Parameter Name="Filter_6_Enable"/>
+        <Parameter Name="Filter_6_FIFO_select"/>
+        <Parameter Name="Filter_6_Identifier_Type"/>
+        <Parameter Name="Filter_6_Mode"/>
+        <Parameter Name="Filter_6_Frame_Type"/>
+        <Parameter Name="Filter_6_ID1"/>
+        <Parameter Name="Filter_6_Mask1"/>
+        <Parameter Name="Filter_6_ID2"/>
+        <Parameter Name="Filter_6_Mask2"/>
+        <Parameter Name="Filter_6_ID3"/>
+        <Parameter Name="Filter_6_ID4"/>  
+         <!-- Filter 7-->
+        <Parameter Name="Filter_7_Enable"/>
+        <Parameter Name="Filter_7_FIFO_select"/>
+        <Parameter Name="Filter_7_Identifier_Type"/>
+        <Parameter Name="Filter_7_Mode"/>
+        <Parameter Name="Filter_7_Frame_Type"/>
+        <Parameter Name="Filter_7_ID1"/>
+        <Parameter Name="Filter_7_Mask1"/>
+        <Parameter Name="Filter_7_ID2"/>
+        <Parameter Name="Filter_7_Mask2"/>
+        <Parameter Name="Filter_7_ID3"/>
+        <Parameter Name="Filter_7_ID4"/>  
+         <!-- Filter 8-->
+        <Parameter Name="Filter_8_Enable"/>
+        <Parameter Name="Filter_8_FIFO_select"/>
+        <Parameter Name="Filter_8_Identifier_Type"/>
+        <Parameter Name="Filter_8_Mode"/>
+        <Parameter Name="Filter_8_Frame_Type"/>
+        <Parameter Name="Filter_8_ID1"/>
+        <Parameter Name="Filter_8_Mask1"/>
+        <Parameter Name="Filter_8_ID2"/>
+        <Parameter Name="Filter_8_Mask2"/>
+        <Parameter Name="Filter_8_ID3"/>
+        <Parameter Name="Filter_8_ID4"/>  
+         <!-- Filter 9-->
+        <Parameter Name="Filter_9_Enable"/>
+        <Parameter Name="Filter_9_FIFO_select"/>
+        <Parameter Name="Filter_9_Identifier_Type"/>
+        <Parameter Name="Filter_9_Mode"/>
+        <Parameter Name="Filter_9_Frame_Type"/>
+        <Parameter Name="Filter_9_ID1"/>
+        <Parameter Name="Filter_9_Mask1"/>
+        <Parameter Name="Filter_9_ID2"/>
+        <Parameter Name="Filter_9_Mask2"/>
+        <Parameter Name="Filter_9_ID3"/>
+        <Parameter Name="Filter_9_ID4"/>  
+         <!-- Filter 10-->
+        <Parameter Name="Filter_10_Enable"/>
+        <Parameter Name="Filter_10_FIFO_select"/>
+        <Parameter Name="Filter_10_Identifier_Type"/>
+        <Parameter Name="Filter_10_Mode"/>
+        <Parameter Name="Filter_10_Frame_Type"/>
+        <Parameter Name="Filter_10_ID1"/>
+        <Parameter Name="Filter_10_Mask1"/>
+        <Parameter Name="Filter_10_ID2"/>
+        <Parameter Name="Filter_10_Mask2"/>
+        <Parameter Name="Filter_10_ID3"/>
+        <Parameter Name="Filter_10_ID4"/>  
+         <!-- Filter 11-->
+        <Parameter Name="Filter_11_Enable"/>
+        <Parameter Name="Filter_11_FIFO_select"/>
+        <Parameter Name="Filter_11_Identifier_Type"/>
+        <Parameter Name="Filter_11_Mode"/>
+        <Parameter Name="Filter_11_Frame_Type"/>
+        <Parameter Name="Filter_11_ID1"/>
+        <Parameter Name="Filter_11_Mask1"/>
+        <Parameter Name="Filter_11_ID2"/>
+        <Parameter Name="Filter_11_Mask2"/>
+        <Parameter Name="Filter_11_ID3"/>
+        <Parameter Name="Filter_11_ID4"/>  
+         <!-- Filter 12-->
+        <Parameter Name="Filter_12_Enable"/>
+        <Parameter Name="Filter_12_FIFO_select"/>
+        <Parameter Name="Filter_12_Identifier_Type"/>
+        <Parameter Name="Filter_12_Mode"/>
+        <Parameter Name="Filter_12_Frame_Type"/>
+        <Parameter Name="Filter_12_ID1"/>
+        <Parameter Name="Filter_12_Mask1"/>
+        <Parameter Name="Filter_12_ID2"/>
+        <Parameter Name="Filter_12_Mask2"/>
+        <Parameter Name="Filter_12_ID3"/>
+        <Parameter Name="Filter_12_ID4"/>  
+        <!-- Filter 13-->
+        <Parameter Name="Filter_13_Enable"/>
+        <Parameter Name="Filter_13_FIFO_select"/>
+        <Parameter Name="Filter_13_Identifier_Type"/>
+        <Parameter Name="Filter_13_Mode"/>
+        <Parameter Name="Filter_13_Frame_Type"/>
+        <Parameter Name="Filter_13_ID1"/>
+        <Parameter Name="Filter_13_Mask1"/>
+        <Parameter Name="Filter_13_ID2"/>
+        <Parameter Name="Filter_13_Mask2"/>
+        <Parameter Name="Filter_13_ID3"/>
+        <Parameter Name="Filter_13_ID4"/>     
+    </RefMode>
+    
+       
+        <!-- ModeLogicOperator for CAN -->
+        <ModeLogicOperator Name="OR">
+            <Mode Name="CAN_Activate" UserName="Activated" UserNameCH="启用">
+                <ModeLogicOperator Name="XOR">
+                    <Mode Name="CAN_Activate" UserName="Activated" UserNameCH="启用">
+                        <SignalLogicalOp Name="AND">
+                            <Signal Name="RX"/>
+                            <Signal Name="TX"/>
+                        </SignalLogicalOp>
+                    </Mode>
+                </ModeLogicOperator>
+                <Semaphore>$IpInstance_Enable</Semaphore>
+            </Mode>
+        </ModeLogicOperator>
+		
+	<!-- RefSignal for CAN -->
+	<RefSignal IOMode="Input" Name="RX"/>
+	<RefSignal IOMode="MuxOutputPushPull" Name="TX"/>
+</IP>

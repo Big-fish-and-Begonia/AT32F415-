@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<IP>
+    <About>External interrupt/Event controller</About>
+    <AboutCH>外部中断/事件控制器</AboutCH>   
+    
+    <RefParameter Name="InterruptEvent_0" Comment="Interrupt/Event" CommentCH="中断/事件" DefaultValue="EXINT_LINE_INTERRUPUT" Type="list" Group="EXINT0" GroupCH="EXINT0">
+        <PossibleValue Value="EXINT_LINE_INTERRUPUT" Comment="Interrupt" CommentCH="中断"/>
+        <PossibleValue Value="EXINT_LINE_EVENT" Comment="Event" CommentCH="事件"/>
+        <Condition Diagnostic="" Expression="$IpInstance_0"/>
+    </RefParameter>
+    <RefParameter Name="TriggerPolarity_0" Comment="Trigger Polarity" CommentCH="触发极性" DefaultValue="EXINT_TRIGGER_RISING_EDGE" Group="EXINT0" GroupCH="EXINT0" Type="list">
+		    <PossibleValue Comment="Rising Edge" CommentCH="上升沿" Value="EXINT_TRIGGER_RISING_EDGE"/>
+		    <PossibleValue Comment="Falling Edge" CommentCH="下降沿" Value="EXINT_TRIGGER_FALLING_EDGE"/>
+		    <PossibleValue Comment="Rising/Falling Edge" CommentCH="上升沿/下降沿" Value="EXINT_TRIGGER_BOTH_EDGE"/>
+		    <Condition Diagnostic="" Expression = "$IpInstance_0"/>
+    </RefParameter>
+    
+    <RefParameter Name="InterruptEvent_1" Comment="Interrupt/Event" CommentCH="中断/事件" DefaultValue="EXINT_LINE_INTERRUPUT" Type="list" Group="EXINT1" GroupCH="EXINT1">
+        <PossibleValue Value="EXINT_LINE_INTERRUPUT" Comment="Interrupt" CommentCH="中断"/>
+        <PossibleValue Value="EXINT_LINE_EVENT" Comment="Event" CommentCH="事件"/>
+        <Condition Diagnostic="" Expression="$IpInstance_1"/>
+    </RefParameter>
+    <RefParameter Name="TriggerPolarity_1" Comment="Trigger Polarity" CommentCH="触发极性" DefaultValue="EXINT_TRIGGER_RISING_EDGE" Group="EXINT1" GroupCH="EXINT1" Type="list">
+		    <PossibleValue Comment="Rising Edge" CommentCH="上升沿" Value="EXINT_TRIGGER_RISING_EDGE"/>
+		    <PossibleValue Comment="Falling Edge" CommentCH="下降沿" Value="EXINT_TRIGGER_FALLING_EDGE"/>
+		    <PossibleValue Comment="Rising/Falling Edge" CommentCH="上升沿/下降沿" Value="EXINT_TRIGGER_BOTH_EDGE"/>
+		    <Condition Diagnostic="" Expression = "$IpInstance_1"/>
+    </RefParameter>
+    
+   <RefParameter Name="InterruptEvent_2" Comment="Interrupt/Event" CommentCH="中断/事件" DefaultValue="EXINT_LINE_INTERRUPUT" Type="list" Group="EXINT2" GroupCH="EXINT2">
+        <PossibleValue Value="EXINT_LINE_INTERRUPUT" Comment="Interrupt" CommentCH="中断"/>
+        <PossibleValue Value="EXINT_LINE_EVENT" Comment="Event" CommentCH="事件"/>
+        <Condition Diagnostic="" Expression="$IpInstance_2"/>
+    </RefParameter>
+    <RefParameter Name="TriggerPolarity_2" Comment="Trigger Polarity" CommentCH="触发极性" DefaultValue="EXINT_TRIGGER_RISING_EDGE" Group="EXINT2" GroupCH="EXINT2" Type="list">
+		    <PossibleValue Comment="Rising Edge" CommentCH="上升沿" Value="EXINT_TRIGGER_RISING_EDGE"/>
+		    <PossibleValue Comment="Falling Edge" CommentCH="下降沿" Value="EXINT_TRIGGER_FALLING_EDGE"/>
+		    <PossibleValue Comment="Rising/Falling Edge" CommentCH="上升沿/下降沿" Value="EXINT_TRIGGER_BOTH_EDGE"/>
+		    <Condition Diagnostic="" Expression = "$IpInstance_2"/>
+    </RefParameter>
+    
+    <RefParameter Name="InterruptEvent_3" Comment="Interrupt/Event" CommentCH="中断/事件" DefaultValue="EXINT_LINE_INTERRUPUT" Type="list" Group="EXINT3" GroupCH="EXINT3">
+        <PossibleValue Value="EXINT_LINE_INTERRUPUT" Comment="Interrupt" CommentCH="中断"/>
+        <PossibleValue Value="EXINT_LINE_EVENT" Comment="Event" CommentCH="事件"/>
+        <Condition Diagnostic="" Expression="$IpInstance_3"/>
+    </RefParameter>
+    <RefParameter Name="TriggerPolarity_3" Comment="Trigger Polarity" CommentCH="触发极性" DefaultValue="EXINT_TRIGGER_RISING_EDGE" Group="EXINT3" GroupCH="EXINT3" Type="list">
+		    <PossibleValue Comment="Rising Edge" CommentCH="上升沿" Value="EXINT_TRIGGER_RISING_EDGE"/>
+		    <PossibleValue Comment="Falling Edge" CommentCH="下降沿" Value="EXINT_TRIGGER_FALLING_EDGE"/>
+		    <PossibleValue Comment="Rising/Falling Edge" CommentCH="上升沿/下降沿" Value="EXINT_TRIGGER_BOTH_EDGE"/>
+		    <Condition Diagnostic="" Expression = "$IpInstance_3"/>
+    </RefParameter>
+    
+    <RefParameter Name="InterruptEvent_4" Comment="Interrupt/Event" CommentCH="中断/事件" DefaultValue="EXINT_LINE_INTERRUPUT" Type="list" Group="EXINT4" GroupCH="EXINT4">
+        <PossibleValue Value="EXINT_LINE_INTERRUPUT" Comment="Interrupt" CommentCH="中断"/>
+        <PossibleValue Value="EXINT_LINE_EVENT" Comment="Event" CommentCH="事件"/>
+        <Condition Diagnostic="" Expression="$IpInstance_4"/>
+    </RefParameter>
+    <RefParameter Name="TriggerPolarity_4" Comment="Trigger Polarity" CommentCH="触发极性" DefaultValue="EXINT_TRIGGER_RISING_EDGE" Group="EXINT4" GroupCH="EXINT4" Type="list">
+		    <PossibleValue Comment="Rising Edge" CommentCH="上升沿" Value="EXINT_TRIGGER_RISING_EDGE"/>
+		    <PossibleValue Comment="Falling Edge" CommentCH="下降沿" Value="EXINT_TRIGGER_FALLING_EDGE"/>
+		    <PossibleValue Comment="Rising/Falling Edge" CommentCH="上升沿/下降沿" Value="EXINT_TRIGGER_BOTH_EDGE"/>
+		    <Condition Diagnostic="" Expression = "$IpInstance_4"/>
+    </RefParameter>
+    
+    <RefParameter Name="InterruptEvent_5" Comment="Interrupt/Event" CommentCH="中断/事件" DefaultValue="EXINT_LINE_INTERRUPUT" Type="list" Group="EXINT5" GroupCH="EXINT5">
+        <PossibleValue Value="EXINT_LINE_INTERRUPUT" Comment="Interrupt" CommentCH="中断"/>
+        <PossibleValue Value="EXINT_LINE_EVENT" Comment="Event" CommentCH="事件"/>
+        <Condition Diagnostic="" Expression="$IpInstance_5"/>
+    </RefParameter>
+    <RefParameter Name="TriggerPolarity_5" Comment="Trigger Polarity" CommentCH="触发极性" DefaultValue="EXINT_TRIGGER_RISING_EDGE" Group="EXINT5" GroupCH="EXINT5" Type="list">
+		    <PossibleValue Comment="Rising Edge" CommentCH="上升沿" Value="EXINT_TRIGGER_RISING_EDGE"/>
+		    <PossibleValue Comment="Falling Edge" CommentCH="下降沿" Value="EXINT_TRIGGER_FALLING_EDGE"/>
+		    <PossibleValue Comment="Rising/Falling Edge" CommentCH="上升沿/下降沿" Value="EXINT_TRIGGER_BOTH_EDGE"/>
+		    <Condition Diagnostic="" Expression = "$IpInstance_5"/>
+    </RefParameter>
+    
+    <RefParameter Name="InterruptEvent_6" Comment="Interrupt/Event" CommentCH="中断/事件" DefaultValue="EXINT_LINE_INTERRUPUT" Type="list" Group="EXINT6" GroupCH="EXINT6">
+        <PossibleValue Value="EXINT_LINE_INTERRUPUT" Comment="Interrupt" CommentCH="中断"/>
+        <PossibleValue Value="EXINT_LINE_EVENT" Comment="Event" CommentCH="事件"/>
+        <Condition Diagnostic="" Expression="$IpInstance_6"/>
+    </RefParameter>
+    <RefParameter Name="TriggerPolarity_6" Comment="Trigger Polarity" CommentCH="触发极性" DefaultValue="EXINT_TRIGGER_RISING_EDGE" Group="EXINT6" GroupCH="EXINT6" Type="list">
+		    <PossibleValue Comment="Rising Edge" CommentCH="上升沿" Value="EXINT_TRIGGER_RISING_EDGE"/>
+		    <PossibleValue Comment="Falling Edge" CommentCH="下降沿" Value="EXINT_TRIGGER_FALLING_EDGE"/>
+		    <PossibleValue Comment="Rising/Falling Edge" CommentCH="上升沿/下降沿" Value="EXINT_TRIGGER_BOTH_EDGE"/>
+		    <Condition Diagnostic="" Expression = "$IpInstance_6"/>
+    </RefParameter>
+    
+    <RefParameter Name="InterruptEvent_7" Comment="Interrupt/Event" CommentCH="中断/事件" DefaultValue="EXINT_LINE_INTERRUPUT" Type="list" Group="EXINT7" GroupCH="EXINT7">
+        <PossibleValue Value="EXINT_LINE_INTERRUPUT" Comment="Interrupt" CommentCH="中断"/>
+        <PossibleValue Value="EXINT_LINE_EVENT" Comment="Event" CommentCH="事件"/>
+        <Condition Diagnostic="" Expression="$IpInstance_7"/>
+    </RefParameter>
+    <RefParameter Name="TriggerPolarity_7" Comment="Trigger Polarity" CommentCH="触发极性" DefaultValue="EXINT_TRIGGER_RISING_EDGE" Group="EXINT7" GroupCH="EXINT7" Type="list">
+		    <PossibleValue Comment="Rising Edge" CommentCH="上升沿" Value="EXINT_TRIGGER_RISING_EDGE"/>
+		    <PossibleValue Comment="Falling Edge" CommentCH="下降沿" Value="EXINT_TRIGGER_FALLING_EDGE"/>
+		    <PossibleValue Comment="Rising/Falling Edge" CommentCH="上升沿/下降沿" Value="EXINT_TRIGGER_BOTH_EDGE"/>
+		    <Condition Diagnostic="" Expression = "$IpInstance_7"/>
+    </RefParameter>
+    
+    <RefParameter Name="InterruptEvent_8" Comment="Interrupt/Event" CommentCH="中断/事件" DefaultValue="EXINT_LINE_INTERRUPUT" Type="list" Group="EXINT8" GroupCH="EXINT8">
+        <PossibleValue Value="EXINT_LINE_INTERRUPUT" Comment="Interrupt" CommentCH="中断"/>
+        <PossibleValue Value="EXINT_LINE_EVENT" Comment="Event" CommentCH="事件"/>
+        <Condition Diagnostic="" Expression="$IpInstance_8"/>
+    </RefParameter>
+    <RefParameter Name="TriggerPolarity_8" Comment="Trigger Polarity" CommentCH="触发极性" DefaultValue="EXINT_TRIGGER_RISING_EDGE" Group="EXINT8" GroupCH="EXINT8" Type="list">
+		    <PossibleValue Comment="Rising Edge" CommentCH="上升沿" Value="EXINT_TRIGGER_RISING_EDGE"/>
+		    <PossibleValue Comment="Falling Edge" CommentCH="下降沿" Value="EXINT_TRIGGER_FALLING_EDGE"/>
+		    <PossibleValue Comment="Rising/Falling Edge" CommentCH="上升沿/下降沿" Value="EXINT_TRIGGER_BOTH_EDGE"/>
+		    <Condition Diagnostic="" Expression = "$IpInstance_8"/>
+    </RefParameter>
+    
+    <RefParameter Name="InterruptEvent_9" Comment="Interrupt/Event" CommentCH="中断/事件" DefaultValue="EXINT_LINE_INTERRUPUT" Type="list" Group="EXINT9" GroupCH="EXINT9">
+        <PossibleValue Value="EXINT_LINE_INTERRUPUT" Comment="Interrupt" CommentCH="中断"/>
+        <PossibleValue Value="EXINT_LINE_EVENT" Comment="Event" CommentCH="事件"/>
+        <Condition Diagnostic="" Expression="$IpInstance_9"/>
+    </RefParameter>
+    <RefParameter Name="TriggerPolarity_9" Comment="Trigger Polarity" CommentCH="触发极性" DefaultValue="EXINT_TRIGGER_RISING_EDGE" Group="EXINT9" GroupCH="EXINT9" Type="list">
+		    <PossibleValue Comment="Rising Edge" CommentCH="上升沿" Value="EXINT_TRIGGER_RISING_EDGE"/>
+		    <PossibleValue Comment="Falling Edge" CommentCH="下降沿" Value="EXINT_TRIGGER_FALLING_EDGE"/>
+		    <PossibleValue Comment="Rising/Falling Edge" CommentCH="上升沿/下降沿" Value="EXINT_TRIGGER_BOTH_EDGE"/>
+		    <Condition Diagnostic="" Expression = "$IpInstance_9"/>
+    </RefParameter>
+    
+    <RefParameter Name="InterruptEvent_10" Comment="Interrupt/Event" CommentCH="中断/事件" DefaultValue="EXINT_LINE_INTERRUPUT" Type="list" Group="EXINT10" GroupCH="EXINT10">
+        <PossibleValue Value="EXINT_LINE_INTERRUPUT" Comment="Interrupt" CommentCH="中断"/>
+        <PossibleValue Value="EXINT_LINE_EVENT" Comment="Event" CommentCH="事件"/>
+        <Condition Diagnostic="" Expression="$IpInstance_10"/>
+    </RefParameter>
+    <RefParameter Name="TriggerPolarity_10" Comment="Trigger Polarity" CommentCH="触发极性" DefaultValue="EXINT_TRIGGER_RISING_EDGE" Group="EXINT10" GroupCH="EXINT10" Type="list">
+		    <PossibleValue Comment="Rising Edge" CommentCH="上升沿" Value="EXINT_TRIGGER_RISING_EDGE"/>
+		    <PossibleValue Comment="Falling Edge" CommentCH="下降沿" Value="EXINT_TRIGGER_FALLING_EDGE"/>
+		    <PossibleValue Comment="Rising/Falling Edge" CommentCH="上升沿/下降沿" Value="EXINT_TRIGGER_BOTH_EDGE"/>
+		    <Condition Diagnostic="" Expression = "$IpInstance_10"/>
+    </RefParameter>
+    
+    <RefParameter Name="InterruptEvent_11" Comment="Interrupt/Event" CommentCH="中断/事件" DefaultValue="EXINT_LINE_INTERRUPUT" Type="list" Group="EXINT11" GroupCH="EXINT11">
+        <PossibleValue Value="EXINT_LINE_INTERRUPUT" Comment="Interrupt" CommentCH="中断"/>
+        <PossibleValue Value="EXINT_LINE_EVENT" Comment="Event" CommentCH="事件"/>
+        <Condition Diagnostic="" Expression="$IpInstance_11"/>
+    </RefParameter>
+    <RefParameter Name="TriggerPolarity_11" Comment="Trigger Polarity" CommentCH="触发极性" DefaultValue="EXINT_TRIGGER_RISING_EDGE" Group="EXINT11" GroupCH="EXINT11" Type="list">
+		    <PossibleValue Comment="Rising Edge" CommentCH="上升沿" Value="EXINT_TRIGGER_RISING_EDGE"/>
+		    <PossibleValue Comment="Falling Edge" CommentCH="下降沿" Value="EXINT_TRIGGER_FALLING_EDGE"/>
+		    <PossibleValue Comment="Rising/Falling Edge" CommentCH="上升沿/下降沿" Value="EXINT_TRIGGER_BOTH_EDGE"/>
+		    <Condition Diagnostic="" Expression = "$IpInstance_11"/>
+    </RefParameter>
+    
+    <RefParameter Name="InterruptEvent_12" Comment="Interrupt/Event" CommentCH="中断/事件" DefaultValue="EXINT_LINE_INTERRUPUT" Type="list" Group="EXINT12" GroupCH="EXINT12">
+        <PossibleValue Value="EXINT_LINE_INTERRUPUT" Comment="Interrupt" CommentCH="中断"/>
+        <PossibleValue Value="EXINT_LINE_EVENT" Comment="Event" CommentCH="事件"/>
+        <Condition Diagnostic="" Expression="$IpInstance_12"/>
+    </RefParameter>
+    <RefParameter Name="TriggerPolarity_12" Comment="Trigger Polarity" CommentCH="触发极性" DefaultValue="EXINT_TRIGGER_RISING_EDGE" Group="EXINT12" GroupCH="EXINT12" Type="list">
+		    <PossibleValue Comment="Rising Edge" CommentCH="上升沿" Value="EXINT_TRIGGER_RISING_EDGE"/>
+		    <PossibleValue Comment="Falling Edge" CommentCH="下降沿" Value="EXINT_TRIGGER_FALLING_EDGE"/>
+		    <PossibleValue Comment="Rising/Falling Edge" CommentCH="上升沿/下降沿" Value="EXINT_TRIGGER_BOTH_EDGE"/>
+		    <Condition Diagnostic="" Expression = "$IpInstance_12"/>
+    </RefParameter>
+    
+    <RefParameter Name="InterruptEvent_13" Comment="Interrupt/Event" CommentCH="中断/事件" DefaultValue="EXINT_LINE_INTERRUPUT" Type="list" Group="EXINT13" GroupCH="EXINT13">
+        <PossibleValue Value="EXINT_LINE_INTERRUPUT" Comment="Interrupt" CommentCH="中断"/>
+        <PossibleValue Value="EXINT_LINE_EVENT" Comment="Event" CommentCH="事件"/>
+        <Condition Diagnostic="" Expression="$IpInstance_13"/>
+    </RefParameter>
+    <RefParameter Name="TriggerPolarity_13" Comment="Trigger Polarity" CommentCH="触发极性" DefaultValue="EXINT_TRIGGER_RISING_EDGE" Group="EXINT13" GroupCH="EXINT13" Type="list">
+		    <PossibleValue Comment="Rising Edge" CommentCH="上升沿" Value="EXINT_TRIGGER_RISING_EDGE"/>
+		    <PossibleValue Comment="Falling Edge" CommentCH="下降沿" Value="EXINT_TRIGGER_FALLING_EDGE"/>
+		    <PossibleValue Comment="Rising/Falling Edge" CommentCH="上升沿/下降沿" Value="EXINT_TRIGGER_BOTH_EDGE"/>
+		    <Condition Diagnostic="" Expression = "$IpInstance_13"/>
+    </RefParameter>
+    
+    <RefParameter Name="InterruptEvent_14" Comment="Interrupt/Event" CommentCH="中断/事件" DefaultValue="EXINT_LINE_INTERRUPUT" Type="list" Group="EXINT14" GroupCH="EXINT14">
+        <PossibleValue Value="EXINT_LINE_INTERRUPUT" Comment="Interrupt" CommentCH="中断"/>
+        <PossibleValue Value="EXINT_LINE_EVENT" Comment="Event" CommentCH="事件"/>
+        <Condition Diagnostic="" Expression="$IpInstance_14"/>
+    </RefParameter>
+    <RefParameter Name="TriggerPolarity_14" Comment="Trigger Polarity" CommentCH="触发极性" DefaultValue="EXINT_TRIGGER_RISING_EDGE" Group="EXINT14" GroupCH="EXINT14" Type="list">
+		    <PossibleValue Comment="Rising Edge" CommentCH="上升沿" Value="EXINT_TRIGGER_RISING_EDGE"/>
+		    <PossibleValue Comment="Falling Edge" CommentCH="下降沿" Value="EXINT_TRIGGER_FALLING_EDGE"/>
+		    <PossibleValue Comment="Rising/Falling Edge" CommentCH="上升沿/下降沿" Value="EXINT_TRIGGER_BOTH_EDGE"/>
+		    <Condition Diagnostic="" Expression = "$IpInstance_14"/>
+    </RefParameter>
+    
+    <RefParameter Name="InterruptEvent_15" Comment="Interrupt/Event" CommentCH="中断/事件" DefaultValue="EXINT_LINE_INTERRUPUT" Type="list" Group="EXINT15" GroupCH="EXINT15">
+        <PossibleValue Value="EXINT_LINE_INTERRUPUT" Comment="Interrupt" CommentCH="中断"/>
+        <PossibleValue Value="EXINT_LINE_EVENT" Comment="Event" CommentCH="事件"/>
+        <Condition Diagnostic="" Expression="$IpInstance_15"/>
+    </RefParameter>
+    <RefParameter Name="TriggerPolarity_15" Comment="Trigger Polarity" CommentCH="触发极性" DefaultValue="EXINT_TRIGGER_RISING_EDGE" Group="EXINT15" GroupCH="EXINT15" Type="list">
+		    <PossibleValue Comment="Rising Edge" CommentCH="上升沿" Value="EXINT_TRIGGER_RISING_EDGE"/>
+		    <PossibleValue Comment="Falling Edge" CommentCH="下降沿" Value="EXINT_TRIGGER_FALLING_EDGE"/>
+		    <PossibleValue Comment="Rising/Falling Edge" CommentCH="上升沿/下降沿" Value="EXINT_TRIGGER_BOTH_EDGE"/>
+		    <Condition Diagnostic="" Expression = "$IpInstance_15"/>
+    </RefParameter>
+    
+    <RefMode Name="EXINT_State" Abstract="true">
+        <Parameter Name="InterruptEvent_0"/>
+        <Parameter Name="TriggerPolarity_0"/>
+        <Parameter Name="InterruptEvent_1"/>
+        <Parameter Name="TriggerPolarity_1"/>
+        <Parameter Name="InterruptEvent_2"/>
+        <Parameter Name="TriggerPolarity_2"/>
+        <Parameter Name="InterruptEvent_3"/>
+        <Parameter Name="TriggerPolarity_3"/>
+        <Parameter Name="InterruptEvent_4"/>
+        <Parameter Name="TriggerPolarity_4"/>
+        <Parameter Name="InterruptEvent_5"/>
+        <Parameter Name="TriggerPolarity_5"/>
+        <Parameter Name="InterruptEvent_6"/>
+        <Parameter Name="TriggerPolarity_6"/>
+        <Parameter Name="InterruptEvent_7"/>
+        <Parameter Name="TriggerPolarity_7"/>
+        <Parameter Name="InterruptEvent_8"/>
+        <Parameter Name="TriggerPolarity_8"/>
+        <Parameter Name="InterruptEvent_9"/>
+        <Parameter Name="TriggerPolarity_9"/>
+        <Parameter Name="InterruptEvent_10"/>
+        <Parameter Name="TriggerPolarity_10"/>
+        <Parameter Name="InterruptEvent_11"/>
+        <Parameter Name="TriggerPolarity_11"/>
+        <Parameter Name="InterruptEvent_12"/>
+        <Parameter Name="TriggerPolarity_12"/>
+        <Parameter Name="InterruptEvent_13"/>
+        <Parameter Name="TriggerPolarity_13"/>        
+        <Parameter Name="InterruptEvent_14"/>
+        <Parameter Name="TriggerPolarity_14"/>
+        <Parameter Name="InterruptEvent_15"/>
+        <Parameter Name="TriggerPolarity_15"/>
+    </RefMode>
+    <!-- Modes -->
+    <ModeLogicOperator Name="OR">
+        <Mode Name="EXINT0" UserName="EXINT0" UserNameCH="EXINT0">
+            <ModeLogicOperator Name="OR">
+                <Mode Name="EXINT0" UserName="EXINT0" UserNameCH="EXINT0">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="EXINT0"/>
+                    </SignalLogicalOp>
+                </Mode>
+            </ModeLogicOperator>
+            <Semaphore>$IpInstance_0</Semaphore>
+        </Mode>
+        <Mode Name="EXINT1" UserName="EXINT1" UserNameCH="EXINT1">
+            <ModeLogicOperator Name="OR">
+                <Mode Name="EXINT1" UserName="EXINT1" UserNameCH="EXINT1">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="EXINT1"/>
+                    </SignalLogicalOp>
+                </Mode>
+            </ModeLogicOperator>
+            <Semaphore>$IpInstance_1</Semaphore>
+        </Mode>
+        <Mode Name="EXINT2" UserName="EXINT2" UserNameCH="EXINT2">
+            <ModeLogicOperator Name="OR">
+                <Mode Name="EXINT2" UserName="EXINT2" UserNameCH="EXINT2">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="EXINT2"/>
+                    </SignalLogicalOp>
+                </Mode>
+            </ModeLogicOperator>
+            <Semaphore>$IpInstance_2</Semaphore>
+        </Mode>
+        <Mode Name="EXINT3" UserName="EXINT3" UserNameCH="EXINT3">
+            <ModeLogicOperator Name="OR">
+                <Mode Name="EXINT3" UserName="EXINT3" UserNameCH="EXINT3">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="EXINT3"/>
+                    </SignalLogicalOp>
+                </Mode>
+            </ModeLogicOperator>
+            <Semaphore>$IpInstance_3</Semaphore>
+        </Mode>
+        <Mode Name="EXINT4" UserName="EXINT4" UserNameCH="EXINT4">
+            <ModeLogicOperator Name="OR">
+                <Mode Name="EXINT4" UserName="EXINT4" UserNameCH="EXINT4">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="EXINT4"/>
+                    </SignalLogicalOp>
+                </Mode>
+            </ModeLogicOperator>
+            <Semaphore>$IpInstance_4</Semaphore>
+        </Mode>
+        <Mode Name="EXINT5" UserName="EXINT5" UserNameCH="EXINT5">
+            <ModeLogicOperator Name="OR">
+                <Mode Name="EXINT5" UserName="EXINT5" UserNameCH="EXINT5">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="EXINT5"/>
+                    </SignalLogicalOp>
+                </Mode>
+            </ModeLogicOperator>
+            <Semaphore>$IpInstance_5</Semaphore>
+        </Mode>
+        <Mode Name="EXINT6" UserName="EXINT6" UserNameCH="EXINT6">
+            <ModeLogicOperator Name="OR">
+                <Mode Name="EXINT6" UserName="EXINT6" UserNameCH="EXINT6">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="EXINT6"/>
+                    </SignalLogicalOp>
+                </Mode>
+            </ModeLogicOperator>
+            <Semaphore>$IpInstance_6</Semaphore>
+        </Mode>
+        <Mode Name="EXINT7" UserName="EXINT7" UserNameCH="EXINT7">
+            <ModeLogicOperator Name="OR">
+                <Mode Name="EXINT7" UserName="EXINT7" UserNameCH="EXINT7">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="EXINT7"/>
+                    </SignalLogicalOp>
+                </Mode>
+            </ModeLogicOperator>
+            <Semaphore>$IpInstance_7</Semaphore>
+        </Mode>
+        <Mode Name="EXINT8" UserName="EXINT8" UserNameCH="EXINT8">
+            <ModeLogicOperator Name="OR">
+                <Mode Name="EXINT8" UserName="EXINT8" UserNameCH="EXINT8">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="EXINT8"/>
+                    </SignalLogicalOp>
+                </Mode>
+            </ModeLogicOperator>
+            <Semaphore>$IpInstance_8</Semaphore>
+        </Mode>
+        <Mode Name="EXINT9" UserName="EXINT9" UserNameCH="EXINT9">
+            <ModeLogicOperator Name="OR">
+                <Mode Name="EXINT9" UserName="EXINT9" UserNameCH="EXINT9">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="EXINT9"/>
+                    </SignalLogicalOp>
+                </Mode>
+            </ModeLogicOperator>
+            <Semaphore>$IpInstance_9</Semaphore>
+        </Mode>
+        <Mode Name="EXINT10" UserName="EXINT10" UserNameCH="EXINT10">
+            <ModeLogicOperator Name="OR">
+                <Mode Name="EXINT10" UserName="EXINT10" UserNameCH="EXINT10">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="EXINT10"/>
+                    </SignalLogicalOp>
+                </Mode>
+            </ModeLogicOperator>
+            <Semaphore>$IpInstance_10</Semaphore>
+        </Mode>
+        <Mode Name="EXINT11" UserName="EXINT11" UserNameCH="EXINT11">
+            <ModeLogicOperator Name="OR">
+                <Mode Name="EXINT11" UserName="EXINT11" UserNameCH="EXINT11">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="EXINT11"/>
+                    </SignalLogicalOp>
+                </Mode>
+            </ModeLogicOperator>
+            <Semaphore>$IpInstance_11</Semaphore>
+        </Mode>
+        <Mode Name="EXINT12" UserName="EXINT12" UserNameCH="EXINT12">
+            <ModeLogicOperator Name="OR">
+                <Mode Name="EXINT12" UserName="EXINT12" UserNameCH="EXINT12">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="EXINT12"/>
+                    </SignalLogicalOp>
+                </Mode>
+            </ModeLogicOperator>
+            <Semaphore>$IpInstance_12</Semaphore>
+        </Mode>
+        <Mode Name="EXINT13" UserName="EXINT13" UserNameCH="EXINT13">
+            <ModeLogicOperator Name="OR">
+                <Mode Name="EXINT13" UserName="EXINT13" UserNameCH="EXINT13">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="EXINT13"/>
+                    </SignalLogicalOp>
+                </Mode>
+            </ModeLogicOperator>
+            <Semaphore>$IpInstance_13</Semaphore>
+        </Mode>
+        <Mode Name="EXINT14" UserName="EXINT14" UserNameCH="EXINT14">
+            <ModeLogicOperator Name="OR">
+                <Mode Name="EXINT14" UserName="EXINT14" UserNameCH="EXINT14">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="EXINT14"/>
+                    </SignalLogicalOp>
+                </Mode>
+            </ModeLogicOperator>
+            <Semaphore>$IpInstance_14</Semaphore>
+        </Mode>
+        <Mode Name="EXINT15" UserName="EXINT15" UserNameCH="EXINT15">
+            <ModeLogicOperator Name="OR">
+                <Mode Name="EXINT15" UserName="EXINT15" UserNameCH="EXINT15">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="EXINT15"/>
+                    </SignalLogicalOp>
+                </Mode>
+            </ModeLogicOperator>
+            <Semaphore>$IpInstance_15</Semaphore>
+        </Mode>
+
+    </ModeLogicOperator>
+	
+    <RefSignal IOMode="Input" Name="EXINT0"/>
+    <RefSignal IOMode="Input" Name="EXINT1"/>
+    <RefSignal IOMode="Input" Name="EXINT2"/>
+    <RefSignal IOMode="Input" Name="EXINT3"/>
+    <RefSignal IOMode="Input" Name="EXINT4"/>
+    <RefSignal IOMode="Input" Name="EXINT5"/>
+    <RefSignal IOMode="Input" Name="EXINT6"/>
+    <RefSignal IOMode="Input" Name="EXINT7"/>
+    <RefSignal IOMode="Input" Name="EXINT8"/>
+    <RefSignal IOMode="Input" Name="EXINT9"/>
+    <RefSignal IOMode="Input" Name="EXINT10"/>
+    <RefSignal IOMode="Input" Name="EXINT11"/>
+    <RefSignal IOMode="Input" Name="EXINT12"/>
+    <RefSignal IOMode="Input" Name="EXINT13"/>
+    <RefSignal IOMode="Input" Name="EXINT14"/>
+    <RefSignal IOMode="Input" Name="EXINT15"/>
+    <Semaphore>USE_$IpInstance</Semaphore>
+</IP>

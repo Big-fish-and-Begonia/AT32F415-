@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<IP>
+    <About>Clock and reset manage</About>
+    <AboutCH>时钟和复位管理</AboutCH>		
+    
+    <!--HEXT-->
+    <RefParameter Comment="High speed external clock (HEXT)" CommentCH="高速外部晶振(HEXT)" DefaultValue="HEXT_DISABLE" Name="HEXT" Type="list" Visible="false">
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="HEXT_DISABLE"/>
+        <PossibleValue Comment="BYPASS Clock Source" CommentCH="时钟旁路" Value="HEXT_BYPASS"/>
+        <PossibleValue Comment="Crystal/Ceramic Resonator" CommentCH="时钟振荡器" Value="HEXT_CRYSTAL"/>
+    </RefParameter>
+        
+    <!--LEXT-->
+    <RefParameter Comment="Low speed external clock (LEXT)" CommentCH="低速外部晶振(LEXT)" DefaultValue="HEXT_DISABLE" Name="LEXT" Type="list" Visible="false">
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="LEXT_DISABLE"/>
+        <PossibleValue Comment="BYPASS Clock Source" CommentCH="时钟旁路" Value="LEXT_BYPASS"/>
+        <PossibleValue Comment="Crystal/Ceramic Resonator" CommentCH="时钟振荡器" Value="LEXT_CRYSTAL"/>
+    </RefParameter>
+        
+    <!--Clock-out-->
+    <RefParameter Comment="Clock Output" CommentCH="时钟输出" DefaultValue="CLKOUT_DISABLE" Name="Clock-out" Type="list" Visible="false">
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="CLKOUT_DISABLE"/>
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="CLKOUT_ENABLE"/>
+    </RefParameter>
+        
+    <RefMode Abstract="true" BaseMode="HEXT" Name="HEXT-External-Clock-Source">
+        <Parameter Name="HEXT">
+            <PossibleValue>HEXT_BYPASS</PossibleValue>
+        </Parameter>
+    </RefMode>
+    
+    <RefMode Abstract="true" BaseMode="HEXT" Name="HEXT-External-Oscillator">
+        <Parameter Name="HEXT">
+            <PossibleValue>HEXT_CRYSTAL</PossibleValue>
+        </Parameter>
+    </RefMode>
+    
+    <RefMode Abstract="true" BaseMode="LEXT" Name="LEXT-External-Clock-Source">
+        <Parameter Name="LEXT">
+            <PossibleValue>LEXT_BYPASS</PossibleValue>
+        </Parameter>
+    </RefMode>
+    
+    <RefMode Abstract="true" BaseMode="LEXT" Name="LEXT-External-Oscillator">
+        <Parameter Name="LEXT">
+            <PossibleValue>LEXT_CRYSTAL</PossibleValue>
+        </Parameter>
+    </RefMode>
+    
+    <RefMode Abstract="true" BaseMode="Clock-out" Name="Clock-out">
+        <Parameter Name="Clock-out">
+            <PossibleValue>CLKOUT_ENABLE</PossibleValue>
+        </Parameter>
+    </RefMode>
+    
+    <ModeLogicOperator Name="OR">
+        <!-- Modes for Oscillators & Clocks -->
+        <Mode Name="HEXT" UserName="High speed external crystal (HEXT)" UserNameCH="高速外部晶振(HEXT)">
+            <ModeLogicOperator Name="XOR">
+                <Mode Name="HEXT-External-Clock-Source" UserName="BYPASS Clock Source" UserNameCH="时钟旁路">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="HEXT_IN"/>
+                        <Signal Name="HEXT_OUT"/>
+                    </SignalLogicalOp>
+                    <Semaphore>HEXTByPass</Semaphore>
+                </Mode>
+                <Mode Name="HEXT-External-Oscillator" UserName="Crystal/Ceramic Resonator" UserNameCH="时钟振荡器">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="HEXT_IN"/>
+                        <Signal Name="HEXT_OUT"/>
+                    </SignalLogicalOp>
+                    <Semaphore>HEXTOscillator</Semaphore>
+                </Mode>
+            </ModeLogicOperator>
+        </Mode>
+        <Mode Name="LEXT" UserName="Low speed external crystal (LEXT)" UserNameCH="低速外部晶振(LEXT)">
+            <ModeLogicOperator Name="XOR">
+                <Mode Name="LEXT-External-Clock-Source" UserName="BYPASS Clock Source" UserNameCH="时钟旁路">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="LEXT_IN"/>
+                        <Signal Name="LEXT_OUT"/>
+                    </SignalLogicalOp>
+                    <Semaphore>LEXTByPass</Semaphore>
+                </Mode>
+                <Mode Name="LEXT-External-Oscillator" UserName="Crystal/Ceramic Resonator" UserNameCH="时钟振荡器">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="LEXT_IN"/>
+                        <Signal Name="LEXT_OUT"/>
+                    </SignalLogicalOp>
+                    <Semaphore>LEXTOscillator</Semaphore>
+                </Mode>
+            </ModeLogicOperator>
+        </Mode>
+        <Mode Name="Clock-out" UserName="Clock Output" UserNameCH="时钟输出">
+            <ModeLogicOperator Name="OR">
+                <Mode Name="Clock-out" UserName="Clock Output" UserNameCH="时钟输出">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="CLKOUT"/>
+                    </SignalLogicalOp>
+                    <Semaphore>CLKOUTConfig</Semaphore>
+                </Mode>
+            </ModeLogicOperator>
+        </Mode>
+    </ModeLogicOperator>
+    <RefSignal IOMode="MuxOutputPushPull2" Name="CLKOUT"/>
+    <RefSignal IOMode="System" Name="LEXT_IN"/>
+    <RefSignal IOMode="System" Name="LEXT_OUT"/>
+    <RefSignal IOMode="System" Name="HEXT_IN"/>
+    <RefSignal IOMode="System" Name="HEXT_OUT"/>
+</IP>

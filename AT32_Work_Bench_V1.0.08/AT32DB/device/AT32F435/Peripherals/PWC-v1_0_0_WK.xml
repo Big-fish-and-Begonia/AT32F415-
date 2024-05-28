@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<IP>
+    <About>Power control</About>
+    <AboutCH>电源控制</AboutCH>
+
+    <RefParameter Comment="PWC instance" DefaultValue="PWC" Name="Instance" Type="list" Visible="false"/>
+
+    <RefParameter Name="BoundarySelect" Comment="Power voltage monitoring boundary select" CommentCH="电压监测临界值选择" DefaultValue="DISABLE" Type="list" Group="Basic Parameters" GroupCH="基础参数">
+        <PossibleValue Value="DISABLE" Comment="Unused" CommentCH="未使用"/>
+        <PossibleValue Value="PWC_PVM_VOLTAGE_2V3" Comment="2.3V" CommentCH="2.3V"/>
+        <PossibleValue Value="PWC_PVM_VOLTAGE_2V4" Comment="2.4V" CommentCH="2.4V"/>
+        <PossibleValue Value="PWC_PVM_VOLTAGE_2V5" Comment="2.5V" CommentCH="2.5V"/>
+        <PossibleValue Value="PWC_PVM_VOLTAGE_2V6" Comment="2.6V" CommentCH="2.6V"/>
+        <PossibleValue Value="PWC_PVM_VOLTAGE_2V7" Comment="2.7V" CommentCH="2.7V"/>
+        <PossibleValue Value="PWC_PVM_VOLTAGE_2V8" Comment="2.8V" CommentCH="2.8V"/>
+        <PossibleValue Value="PWC_PVM_VOLTAGE_2V9" Comment="2.9V" CommentCH="2.9V"/>
+        <Condition Diagnostic="" Expression="VoltageMonitoring = TRUE"/>
+    </RefParameter>
+
+    <RefParameter Name="VoltageMonitoring" Comment="Power voltage monitoring enable" CommentCH="电压监测使能" DefaultValue="TRUE" Type="list" Group="Basic Parameters" GroupCH="基础参数">
+    	   <Condition Diagnostic="" Expression="PWC_VM_ENABLE"/>
+        <PossibleValue Value="TRUE" Comment="Enable" CommentCH="开启"/>
+    </RefParameter>
+    <RefParameter Name="VoltageMonitoring" Comment="Power voltage monitoring enable" CommentCH="电压监测使能" DefaultValue="FALSE" Type="list" Group="Basic Parameters" GroupCH="基础参数" Visible="false">
+        <PossibleValue Value="FALSE" Comment="Disable" CommentCH="关闭"/>
+    </RefParameter>
+    <RefParameter Name="InterruptEvent" Comment="Interrupt/Event" CommentCH="中断/事件" DefaultValue="EXINT_LINE_INTERRUPUT" Type="list" Group="Basic Parameters" GroupCH="基础参数">
+        <PossibleValue Value="EXINT_LINE_INTERRUPUT" Comment="Interrupt" CommentCH="中断"/>
+        <PossibleValue Value="EXINT_LINE_EVENT" Comment="Event" CommentCH="事件"/>
+        <Condition Diagnostic="" Expression="VoltageMonitoring = TRUE"/>
+    </RefParameter>
+    <RefParameter Name="TriggerPolarity" Comment="Trigger Polarity" CommentCH="触发极性" DefaultValue="EXINT_TRIGGER_RISING_EDGE" Group="Basic Parameters" GroupCH="基础参数" Type="list">
+		    <PossibleValue Comment="Rising Edge" CommentCH="上升沿" Value="EXINT_TRIGGER_RISING_EDGE"/>
+		    <PossibleValue Comment="Falling Edge" CommentCH="下降沿" Value="EXINT_TRIGGER_FALLING_EDGE"/>
+		    <PossibleValue Comment="Rising/Falling Edge" CommentCH="上升沿/下降沿" Value="EXINT_TRIGGER_BOTH_EDGE"/>
+		    <Condition Diagnostic="" Expression = "VoltageMonitoring = TRUE"/>
+	  </RefParameter>
+	
+	  <RefParameter Name="Wkup1" Comment="wake-up pin 1 enable" CommentCH="待机唤醒管脚 1 使能" DefaultValue="PWC_WAKEUP_PIN_1" Type="list" Group="Basic Parameters" GroupCH="基础参数" Visible="false">
+        <PossibleValue Value="PWC_WAKEUP_PIN_1" Comment="Enable" CommentCH="开启"/>
+        <Condition Diagnostic="" Expression="WKUP1_ENABLED"/>
+    </RefParameter>
+    <RefParameter Name="Wkup2" Comment="wake-up pin 2 enable" CommentCH="待机唤醒管脚 2 使能" DefaultValue="PWC_WAKEUP_PIN_2" Type="list" Group="Basic Parameters" GroupCH="基础参数" Visible="false">
+        <PossibleValue Value="PWC_WAKEUP_PIN_2" Comment="Enable" CommentCH="开启"/>
+        <Condition Diagnostic="" Expression="WKUP2_ENABLED"/>
+    </RefParameter>
+
+     <RefMode Name="PWC_State" Abstract="true">
+        <Parameter Name="VoltageMonitoring"/>
+        <Parameter Name="BoundarySelect"/>
+        <Parameter Name="InterruptEvent"/>
+        <Parameter Name="TriggerPolarity"/>
+        <Parameter Name="Wkup1"/>
+        <Parameter Name="Wkup2"/>
+    </RefMode>
+
+   <!-- ModeLogicOperator for PWC -->
+    <ModeLogicOperator Name="OR">
+      <Mode Name="VoltageMonitoring" UserName="Power voltage monitoring enable" UserNameCH="电压监测使能">
+        <ModeLogicOperator Name="XOR">
+          <Mode Name="VoltageMonitoring" UserName="Power voltage monitoring enable" UserNameCH="电压监测使能">
+            <SignalLogicalOp Name="AND">
+              <Signal Name="VS_VM" />
+            </SignalLogicalOp>
+           <Semaphore>PWC_VM_ENABLE</Semaphore>
+           </Mode>
+        </ModeLogicOperator>
+      </Mode>
+      
+      <Mode Name="Wake-up pin1" UserName="Standby wake-up pin 1 enable" UserNameCH="待机唤醒管脚 1 使能">  
+			  <ModeLogicOperator Name="XOR">
+				  <Mode Name="Wake-up pin1" UserName="Standby wake-up pin 1 enable" UserNameCH="待机唤醒管脚 1 使能">
+					  <SignalLogicalOp Name="AND">
+						  <Signal Name="WKUP1"/>
+					  </SignalLogicalOp>
+					  <Semaphore>WKUP1_ENABLED</Semaphore>
+				  </Mode>
+			  </ModeLogicOperator>			
+		  </Mode>
+		  
+		  <Mode Name="Wake-up pin2" UserName="Standby wake-up pin 2 enable" UserNameCH="待机唤醒管脚 2 使能">              
+			  <ModeLogicOperator Name="XOR">
+				  <Mode Name="Wake-up pin2" UserName="Standby wake-up pin 2 enable" UserNameCH="待机唤醒管脚 2 使能">
+					  <SignalLogicalOp Name="AND">
+						  <Signal Name="WKUP2"/>
+					  </SignalLogicalOp>
+					  <Semaphore>WKUP2_ENABLED</Semaphore>
+				  </Mode>
+			  </ModeLogicOperator>			
+		  </Mode>	
+
+    </ModeLogicOperator>
+
+    <!-- RefSignal for PWC -->
+    <RefSignal Name="VS_VM" Virtual="true"/>
+    
+    <RefSignal IOMode="System" Name="WKUP1"/>
+    <RefSignal IOMode="System" Name="WKUP2"/>
+</IP>

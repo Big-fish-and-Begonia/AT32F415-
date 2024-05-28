@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<IP>
+	<About>External memory controller</About>
+	<AboutCH>外部存储控制器</AboutCH>
+	
+    <RefParameter Comment="Instance" DefaultValue="XMC$Index" Name="Instance" Type="" Visible="false"/>
+	
+    <RefParameter Name="Bank" Comment="Bank" CommentCH="存储区块" DefaultValue="XMC_SDRAM_BANK2" Group="SDRAM control" GroupCH="SDRAM控制" Type="list">
+        <PossibleValue Comment="SDRAM Bank2" CommentCH="SDRAM 存储区块2" Value="XMC_SDRAM_BANK2"/>
+    </RefParameter>  
+    
+    <RefParameter Name="Internel_Banks" Comment="Internel banks" CommentCH="内部区块" DefaultValue="XMC_INBK_2" Group="SDRAM control" GroupCH="SDRAM控制" Type="list" Visible="false" Reload = "false">
+    	   <Condition Diagnostic="" Expression="$IpInstance_Internal_Banks2"/>
+        <PossibleValue Comment="Bank 2" CommentCH="区块2" Value="XMC_INBK_2"/>
+    </RefParameter> 
+    <RefParameter Name="Internel_Banks" Comment="Internel banks" CommentCH="内部区块" DefaultValue="XMC_INBK_4" Group="SDRAM control" GroupCH="SDRAM控制" Type="list" Visible="false" Reload = "false">
+    	   <Condition Diagnostic="" Expression="$IpInstance_Internal_Banks4"/>
+        <PossibleValue Comment="Bank 4" CommentCH="区块4" Value="XMC_INBK_4"/>
+    </RefParameter> 
+   
+    <RefParameter Name="Data_size" Comment="Data size" CommentCH="数据宽度" DefaultValue="XMC_MEM_WIDTH_8" Group="SDRAM control" GroupCH="SDRAM控制" Type="list" Visible="false" Reload = "false">
+    	   <Condition Diagnostic="" Expression="$IpInstance_8_Bits_DA"/>
+        <PossibleValue Comment="8 bits" CommentCH="8位宽" Value="XMC_MEM_WIDTH_8"/>
+    </RefParameter> 
+    <RefParameter Name="Data_size" Comment="Data size" CommentCH="数据宽度" DefaultValue="XMC_MEM_WIDTH_16" Group="SDRAM control" GroupCH="SDRAM控制" Type="list" Visible="false" Reload = "false">
+    	   <Condition Diagnostic="" Expression="$IpInstance_16_Bits_DA"/>
+        <PossibleValue Comment="16 bits" CommentCH="16位宽" Value="XMC_MEM_WIDTH_16"/>
+    </RefParameter> 
+    
+    <RefParameter Name="Clock_Division" Comment="Clock division configuration" CommentCH="时钟分频配置" DefaultValue="XMC_NO_CLK" Group="SDRAM control" GroupCH="SDRAM控制" Type="list" Reload = "false">
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="XMC_NO_CLK"/>
+        <PossibleValue Comment="HCLK/2" CommentCH="2分频HCLK" Value="XMC_CLKDIV_2"/>
+        <PossibleValue Comment="HCLK/3" CommentCH="3分频HCLK" Value="XMC_CLKDIV_3"/>
+        <PossibleValue Comment="HCLK/4" CommentCH="4分频HCLK" Value="XMC_CLKDIV_4"/>
+    </RefParameter> 
+    
+    <RefParameter Name="Write_Protection" Comment="Write protection" CommentCH="写保护" DefaultValue="FALSE" Group="SDRAM control" GroupCH="SDRAM控制" Type="list" Reload = "false">
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE"/>
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE"/>
+    </RefParameter> 
+    
+    <RefParameter Name="Burst_Read" Comment="Burst read" CommentCH="突发读" DefaultValue="FALSE" Group="SDRAM control" GroupCH="SDRAM控制" Type="list" Reload = "false">
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE"/>
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE"/>
+    </RefParameter> 
+    
+    <RefParameter Name="Read_Delay" Comment="Read delay" CommentCH="读延时" DefaultValue="XMC_READ_DELAY_0" Group="SDRAM control" GroupCH="SDRAM控制" Type="list" Reload = "false">
+        <PossibleValue Comment="No HCLK clock cycle delay" CommentCH="0个HCLK延迟" Value="XMC_READ_DELAY_0"/>
+        <PossibleValue Comment="1 HCLK clock cycle delay" CommentCH="1个HCLK延迟" Value="XMC_READ_DELAY_1"/>
+        <PossibleValue Comment="2 HCLK clock cycle delay" CommentCH="2个HCLK延迟" Value="XMC_READ_DELAY_2"/>
+    </RefParameter> 
+    
+    <RefParameter Name="Column_Address" Comment="Column address" CommentCH="列地址" DefaultValue="XMC_COLUMN_8" Group="SDRAM control" GroupCH="SDRAM控制" Type="list" Reload = "false">
+        <PossibleValue Comment="8 bits" CommentCH="8位" Value="XMC_COLUMN_8"/>
+        <PossibleValue Comment="9 bits" CommentCH="9位" Value="XMC_COLUMN_9"/>
+        <PossibleValue Comment="10 bits" CommentCH="10位" Value="XMC_COLUMN_10"/>
+        <PossibleValue Comment="11 bits" CommentCH="11位" Value="XMC_COLUMN_11"/>
+    </RefParameter> 
+    
+    <RefParameter Name="Row_Address" Comment="Row address" CommentCH="行地址" DefaultValue="XMC_ROW_11" Group="SDRAM control" GroupCH="SDRAM控制" Type="list" Reload = "false">
+        <PossibleValue Comment="11 bits" CommentCH="11位" Value="XMC_ROW_11"/>
+        <PossibleValue Comment="12 bits" CommentCH="12位" Value="XMC_ROW_12"/>
+        <PossibleValue Comment="13 bits" CommentCH="13位" Value="XMC_ROW_13"/>
+    </RefParameter> 
+    
+    <RefParameter Name="CAS_Latency" Comment="CAS latency" CommentCH="列地址选通延迟" DefaultValue="XMC_CAS_1" Group="SDRAM control" GroupCH="SDRAM控制" Type="list" Reload = "false">
+        <PossibleValue Comment="1 cycle"  CommentCH="1个周期" Value="XMC_CAS_1"/>
+        <PossibleValue Comment="2 cycles" CommentCH="2个周期" Value="XMC_CAS_2"/>
+        <PossibleValue Comment="3 cycles" CommentCH="3个周期" Value="XMC_CAS_3"/>
+    </RefParameter> 
+
+
+     <!-- SDRAM timing -->
+    <RefParameter Name="TMRD" Comment="Mode register program to active delay" CommentCH="加载模式寄存器到激活" DefaultValue="16" Group="SDRAM timing" GroupCH="SDRAM时序" Max="16" Min="1" Type="integer" Reload = "false">
+    </RefParameter> 
+    
+    <RefParameter Name="TXSR" Comment="Exit Self-refresh to active delay" CommentCH="退出自刷新延迟 " DefaultValue="16" Group="SDRAM timing" GroupCH="SDRAM时序" Max="16" Min="1" Type="integer" Reload = "false">
+    </RefParameter> 
+    
+    <RefParameter Name="TRAS" Comment="Self refresh" CommentCH="自刷新周期" DefaultValue="16" Group="SDRAM timing" GroupCH="SDRAM时序" Max="16" Min="1" Type="integer" Reload = "false">
+    </RefParameter> 
+    
+    <RefParameter Name="TRC" Comment="Refresh to active delay" CommentCH="刷新命令到激活命令延迟" DefaultValue="16" Group="SDRAM timing" GroupCH="SDRAM时序" Max="16" Min="1" Type="integer" Reload = "false">
+    </RefParameter> 
+    
+    <RefParameter Name="TWR" Comment="Write Recovery delay" CommentCH="写命令到预充电延迟" DefaultValue="16" Group="SDRAM timing" GroupCH="SDRAM时序" Max="16" Min="1" Type="integer" Reload = "false">
+    </RefParameter> 
+    
+    <RefParameter Name="TRP" Comment="Precharge to active delay" CommentCH="预充电到激活延迟" DefaultValue="16" Group="SDRAM timing" GroupCH="SDRAM时序" Max="16" Min="1" Type="integer" Reload = "false">
+    </RefParameter> 
+    
+    <RefParameter Name="TRCD" Comment="Row active to Read/Write delay" CommentCH="行激活到列延迟" DefaultValue="16" Group="SDRAM timing" GroupCH="SDRAM时序" Max="16" Min="1" Type="integer" Reload = "false">
+    </RefParameter> 
+    
+ 
+    <RefMode Name="XMC_Settings" Abstract="true">
+    	    <!-- NOR/PSARM control -->
+        <Parameter Name="Bank"/>        
+        <Parameter Name="Data_size"/>
+        <Parameter Name="Internel_Banks"/>
+        <Parameter Name="Clock_Division"/>
+        <Parameter Name="Write_Protection"/>
+       <Parameter Name="Burst_Read"/>
+        <Parameter Name="Read_Delay"/>   
+        <Parameter Name="Column_Address"/>   
+        <Parameter Name="Row_Address"/>
+        <Parameter Name="CAS_Latency"/>
+        <!-- SDRAM timing -->
+        <Parameter Name="TMRD"/>
+        <Parameter Name="TXSR"/>   
+        <Parameter Name="TRAS"/>   
+        <Parameter Name="TRC"/> 
+        <Parameter Name="TWR"/>
+        <Parameter Name="TRP"/>   
+        <Parameter Name="TRCD"/>   
+    </RefMode>
+                        
+    <ModeLogicOperator Name="OR">
+    	   <Mode Name="Activated" UserName="Activated" UserNameCH="启用">
+			<ModeLogicOperator Name="XOR">
+				<Mode Name="Activated" UserName="Activated" UserNameCH="启用">
+					<SignalLogicalOp Name="AND">
+						<Signal Name="SDCKE1"/>
+						<Signal Name="SDCS1"/>
+						<Signal Name="SDCLK"/>
+                           <Signal Name="SDNRAS"/>
+                           <Signal Name="SDNCAS"/>
+                           <Signal Name="SDNWE"/>
+					</SignalLogicalOp>
+				</Mode>
+			</ModeLogicOperator>
+			<Semaphore>$IpInstance_Chip_Select</Semaphore>
+	   </Mode>
+
+        <Mode Name="Internal_Banks" UserName="Internal banks" UserNameCH="内部区块">
+            <Condition Expression="$IpInstance_Chip_Select" Diagnostic="Need to select &quot;Activated&quot;" DiagnosticCH="需要选择 &quot;启用&quot;"/>
+            <ModeLogicOperator Name="XOR">
+                <Mode Name="2_Banks" UserName="2 banks" UserNameCH="2个区块">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="A14_SDBA0"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_Internal_Banks2</Semaphore>
+                    <Semaphore>$IpInstance_Internal_Banks</Semaphore>
+                </Mode>
+                <Mode Name="4_Banks" UserName="4 banks" UserNameCH="4个区块">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="A14_SDBA0"/>
+                        <Signal Name="A15_SDBA1"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_Internal_Banks4</Semaphore>
+                    <Semaphore>$IpInstance_Internal_Banks</Semaphore>
+                </Mode>
+            </ModeLogicOperator>            
+        </Mode>
+        
+        <Mode Name="Address_Bus" UserName="Address" UserNameCH="地址线">
+            <Condition Expression="$IpInstance_Internal_Banks" Diagnostic="&quot;Internal banks&quot; disabled" DiagnosticCH="未开启&quot;内部区块&quot;"/>
+            <ModeLogicOperator Name="XOR">
+                <Mode Name="11_Bits" UserName="11 bits" UserNameCH="11位宽">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="A0--A10"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_Address_Range</Semaphore>
+                </Mode>
+                <Mode Name="12_Bits" UserName="12 bits" UserNameCH="12位宽">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="A0--A11"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_Address_Range</Semaphore>
+                </Mode>
+                <Mode Name="13_Bits" UserName="13 bits" UserNameCH="13位宽">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="A0--A12"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_Address_Range</Semaphore>
+                </Mode>
+            </ModeLogicOperator>            
+        </Mode>
+        
+        <Mode Name="Data_Bus" UserName="Data" UserNameCH="数据线">
+            <Condition Expression="$IpInstance_Internal_Banks" Diagnostic="&quot;Internal banks&quot; disabled" DiagnosticCH="未开启&quot;内部区块&quot;"/>
+            <ModeLogicOperator Name="XOR">
+                <Mode Name="8_Bits" UserName="8 bits" UserNameCH="8位宽">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="D0--D7"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_8_Bits_DA</Semaphore>
+                </Mode>
+                <Mode Name="16_Bits" UserName="16 bits" UserNameCH="16位宽">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="D0--D15"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_16_Bits_DA</Semaphore>
+                </Mode>
+            </ModeLogicOperator>            
+        </Mode>
+        
+	   <Mode Name="Byte_Enable" UserName="16-bit byte enable" UserNameCH="16位字节选择">
+        	     <Condition Expression="$IpInstance_16_Bits_DA" Diagnostic="Only for 16-bit or 32-bit SDRAM" DiagnosticCH="仅用于16位或32位SDRAM"/>
+			<ModeLogicOperator Name="XOR">
+				<Mode Name="Byte_Enable" UserName="16-bit byte enable" UserNameCH="16位字节选择">
+					<SignalLogicalOp Name="AND">
+						<Signal Name="UB_SDDQMH"/>
+						<Signal Name="LB_SDDQML"/>
+					</SignalLogicalOp>
+				</Mode>
+			</ModeLogicOperator>			
+	   </Mode>
+        
+    </ModeLogicOperator>
+	
+                        
+    <!-- RefSignal -->
+    <RefSignal IOMode="MuxOutputPushPull" Name="SDCKE1"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="SDCS1"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="SDCLK"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="SDNRAS"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="SDNCAS"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="SDNWE"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="A14_SDBA0"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="A15_SDBA1"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="UB_SDDQMH"/>       
+    <RefSignal IOMode="MuxOutputPushPull" Name="LB_SDDQML"/>      
+    <RefSignal IOMode="MuxOutputPushPull" Name="D0"/>       
+    <RefSignal IOMode="MuxOutputPushPull" Name="D1"/> 
+    <RefSignal IOMode="MuxOutputPushPull" Name="D2"/> 
+    <RefSignal IOMode="MuxOutputPushPull" Name="D3"/>       
+    <RefSignal IOMode="MuxOutputPushPull" Name="D4"/> 
+    <RefSignal IOMode="MuxOutputPushPull" Name="D5"/> 
+    <RefSignal IOMode="MuxOutputPushPull" Name="D6"/>       
+    <RefSignal IOMode="MuxOutputPushPull" Name="D7"/> 
+    <RefSignal IOMode="MuxOutputPushPull" Name="D8"/> 
+    <RefSignal IOMode="MuxOutputPushPull" Name="D9"/>       
+    <RefSignal IOMode="MuxOutputPushPull" Name="D10"/> 
+    <RefSignal IOMode="MuxOutputPushPull" Name="D11"/> 
+    <RefSignal IOMode="MuxOutputPushPull" Name="D12"/> 
+    <RefSignal IOMode="MuxOutputPushPull" Name="D13"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="D14"/> 
+    <RefSignal IOMode="MuxOutputPushPull" Name="D15"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="A0"/>       
+    <RefSignal IOMode="MuxOutputPushPull" Name="A1"/> 
+    <RefSignal IOMode="MuxOutputPushPull" Name="A2"/> 
+    <RefSignal IOMode="MuxOutputPushPull" Name="A3"/>       
+    <RefSignal IOMode="MuxOutputPushPull" Name="A4"/> 
+    <RefSignal IOMode="MuxOutputPushPull" Name="A5"/> 
+    <RefSignal IOMode="MuxOutputPushPull" Name="A6"/>       
+    <RefSignal IOMode="MuxOutputPushPull" Name="A7"/> 
+    <RefSignal IOMode="MuxOutputPushPull" Name="A8"/> 
+    <RefSignal IOMode="MuxOutputPushPull" Name="A9"/>       
+    <RefSignal IOMode="MuxOutputPushPull" Name="A10"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="A11"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="A12"/>
+</IP>

@@ -1,0 +1,511 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<IP>
+   <About>Serial peripheral interface</About>
+   <AboutCH>串行外设接口</AboutCH>
+	
+	<!-- Generic RefParameters for SPI --> 
+	<RefParameter Comment="Instance" DefaultValue="SPI$Index" Name="Instance" Type="" Visible="false"/>
+	
+	<!-- Virtual Mode Parameter, to define RefParameter in function of CS -->
+	<RefParameter Comment="" DefaultValue="SPI_CS_SOFTWARE_MODE" Group="Basic Parameters" GroupCH="基础参数" Name="VirtualCS" Type="list" Visible="false">
+		<PossibleValue Comment="" Value="SPI_CS_SOFTWARE_MODE"/>
+		<PossibleValue Comment="" Value="SPI_CS_HARDWARE_MODE"/>
+	</RefParameter>
+	
+	<!-- Virtual Type Parameter, to define RefParameter in function of Master/Slave -->
+	<RefParameter Comment="" DefaultValue="VM_MASTER" Group="Basic Parameters" GroupCH="基础参数" Name="TransmissionMode" Type="list" Visible="false">
+		<PossibleValue Comment="" Value="SPI_TRANSMIT_FULL_DUPLEX"/>
+		<PossibleValue Comment="" Value="SPI_TRANSMIT_SIMPLEX_RX"/>
+		<PossibleValue Comment="" Value="SPI_TRANSMIT_HALF_DUPLEX_RX"/>
+		<PossibleValue Comment="" Value="SPI_TRANSMIT_HALF_DUPLEX_TX"/>
+	</RefParameter>
+	
+	<RefParameter Comment="Mode" CommentCH="工作模式" DefaultValue="SPI_MODE_SLAVE" Group="Basic Parameters" GroupCH="基础参数" Name="Mode" Type="list" Visible="false">
+		<PossibleValue Comment="Slave" CommentCH="从机" Value="SPI_MODE_SLAVE"/>
+		<PossibleValue Comment="Master" CommentCH="主机" Value="SPI_MODE_MASTER"/>
+	</RefParameter>
+	
+	<RefParameter Comment="Interface protocol" CommentCH="接口协议" DefaultValue="SPI_TIMODE_DISABLE" Group="Basic Parameters" GroupCH="基础参数" Name="TIMode" Type="list">
+		<PossibleValue Comment="Motorola" CommentCH="Motorola" Value="SPI_TIMODE_DISABLE"/>
+	</RefParameter>
+	
+	<RefParameter Comment="Frame bit num" CommentCH="帧位个数" DefaultValue="SPI_FRAME_8BIT" Group="Basic Parameters" GroupCH="基础参数" Name="DataSize" Type="list">
+		<PossibleValue Comment="8 Bits" CommentCH="8位" Semaphore="$IpInstance_DATASIZE_BYTE" Value="SPI_FRAME_8BIT"/>
+		<PossibleValue Comment="16 Bits" CommentCH="16位" Semaphore="$IpInstance_DATASIZE_HALFWORD" Value="SPI_FRAME_16BIT"/>
+	</RefParameter>
+	
+	<RefParameter Comment="First Bit" CommentCH="最先传输位" DefaultValue="SPI_FIRSTBIT_MSB" Group="Basic Parameters" GroupCH="基础参数" Name="FirstBit" Type="list">
+		<Condition Diagnostic="" Expression="TIMode = SPI_TIMODE_DISABLE"/>
+		<PossibleValue Comment="MSB First" CommentCH="MSB先传输" Value="SPI_FIRST_BIT_MSB"/>
+		<PossibleValue Comment="LSB First" CommentCH="LSB先传输" Value="SPI_FIRST_BIT_LSB"/>
+	</RefParameter>
+
+	<!-- Clock RefParameters for SPI --> 
+	<RefParameter Comment="Clock frequency division" CommentCH="时钟频率分频系数" DefaultValue="SPI_MCLK_DIV_4" Group="Clock Parameters" GroupCH="时钟参数" Name="ClkDivision" Type="list">
+		<Condition Diagnostic="" Expression="$IpInstance_Master"/>
+		<PossibleValue Comment="2" CommentCH="2" Value="SPI_MCLK_DIV_2"/>
+		<PossibleValue Comment="4" CommentCH="4" Value="SPI_MCLK_DIV_4"/>
+		<PossibleValue Comment="8" CommentCH="8" Value="SPI_MCLK_DIV_8"/>
+		<PossibleValue Comment="16" CommentCH="16" Value="SPI_MCLK_DIV_16"/>
+		<PossibleValue Comment="32" CommentCH="32" Value="SPI_MCLK_DIV_32"/>
+		<PossibleValue Comment="64" CommentCH="64" Value="SPI_MCLK_DIV_64"/>
+		<PossibleValue Comment="128" CommentCH="128" Value="SPI_MCLK_DIV_128"/>
+		<PossibleValue Comment="256" CommentCH="256" Value="SPI_MCLK_DIV_256"/>
+		<PossibleValue Comment="512" CommentCH="512" Value="SPI_MCLK_DIV_512"/>
+		<PossibleValue Comment="1024" CommentCH="1024" Value="SPI_MCLK_DIV_1024"/>
+	</RefParameter> 
+	
+	<RefParameter Comment="Clock Source" CommentCH="时钟源" DefaultValue="APB2" Group="Clock Parameters" GroupCH="时钟参数" Name="CLOCK_SOURCE" Type="list" Visible="false">
+        <Condition Diagnostic="" Expression="Instance = SPI1"/>
+        <PossibleValue Comment="APB2" CommentCH="APB2" Value="APB2"/>
+    </RefParameter>
+    
+    <RefParameter Comment="Clock Source" CommentCH="时钟源" DefaultValue="APB1" Group="BaClocksic Parameters" GroupCH="时钟参数" Name="CLOCK_SOURCE" Type="list" Visible="false">
+        <Condition Diagnostic="" Expression="Instance = SPI2"/>
+        <PossibleValue Comment="APB1" CommentCH="APB1" Value="APB1"/>
+    </RefParameter>
+	
+	<RefParameter Comment="Clock frequency" CommentCH="时钟频率" DefaultValue="37500000" Max="37500000" Min="0" Name="ClockFrequency" Group="Clock Parameters" GroupCH="时钟参数" Type="string" Unit="Hz">
+		<Condition Diagnostic="" Expression="$IpInstance_Master"/>
+	</RefParameter>
+
+	<RefParameter Comment="Clock Polarity (CPOL)" CommentCH="时钟极性" DefaultValue="SPI_CLOCK_POLARITY_LOW" Group="Clock Parameters" GroupCH="时钟参数" Name="CLKPolarity" Type="list">
+		<Condition Diagnostic="" Expression="TIMode = SPI_TIMODE_DISABLE"/>
+		<PossibleValue Comment="Low" CommentCH="低电平" Value="SPI_CLOCK_POLARITY_LOW"/>
+		<PossibleValue Comment="High" CommentCH="高电平" Value="SPI_CLOCK_POLARITY_HIGH"/>
+	</RefParameter>
+	
+	<RefParameter Comment="Clock Phase (CPHA)" CommentCH="时钟相位" DefaultValue="SPI_CLOCK_PHASE_1EDGE" Group="Clock Parameters" GroupCH="时钟参数" Name="CLKPhase" Type="list">
+		<Condition Diagnostic="" Expression="TIMode = SPI_TIMODE_DISABLE"/>
+		<PossibleValue Comment="1 Edge" CommentCH="第一个边沿进行数据捕获" Value="SPI_CLOCK_PHASE_1EDGE"/>
+		<PossibleValue Comment="2 Edge" CommentCH="第二个边沿进行数据捕获" Value="SPI_CLOCK_PHASE_2EDGE"/>
+	</RefParameter>
+	
+	<!-- Advanced RefParameters for SPI --> 
+	<RefParameter Comment="CRC Calculation" CommentCH="CRC校验" DefaultValue="SPI_CRC_DISABLE" Group="Advanced Parameters" GroupCH="高级参数" Name="CRCCalculation" Type="list">
+		<PossibleValue Comment="Disable" CommentCH="关闭" Value="SPI_CRC_DISABLE"/>
+		<PossibleValue Comment="Enable" CommentCH="开启" Value="SPI_CRC_ENABLE"/>
+	</RefParameter>
+	
+	<RefParameter Comment="CRC Polynomial" CommentCH="CRC多项式" DefaultValue="7" Group="Advanced Parameters" GroupCH="高级参数" Max="FFFF" Min="1" Name="CRCPolynomial" Type="hexadecimal">
+		<Condition Diagnostic="" Expression="CRCCalculation = SPI_CRC_ENABLE &amp; DataSize = SPI_FRAME_8BIT"/>
+	</RefParameter>
+	<RefParameter Comment="CRC Polynomial" CommentCH="CRC多项式" DefaultValue="7" Group="Advanced Parameters" GroupCH="高级参数" Max="FFFFFFFF" Min="1" Name="CRCPolynomial" Type="hexadecimal">
+		<Condition Diagnostic="" Expression="CRCCalculation = SPI_CRC_ENABLE &amp; DataSize = SPI_FRAME_16BIT"/>
+	</RefParameter>
+	
+	<RefParameter Comment="CS Signal Type" CommentCH="CS信号类型" DefaultValue="CSHARD_Output" Group="Advanced Parameters" GroupCH="高级参数" Name="CS" Type="list">
+		<Condition Diagnostic="" Expression="$IpInstance_CSHARD_Output"/>
+		<PossibleValue Comment="Output Hardware" CommentCH="硬件CS输出" Value="CSHARD_Output"/>
+	</RefParameter>
+	<RefParameter Comment="CS Signal Type" CommentCH="CS信号类型" DefaultValue="CSHARD_Input" Group="Advanced Parameters" GroupCH="高级参数" Name="CS" Type="list">
+		<Condition Diagnostic="" Expression="$IpInstance_CSHARD_Input"/>
+		<PossibleValue Comment="Input Hardware" CommentCH="硬件CS输入" Value="CSHARD_Input"/>
+	</RefParameter>
+  <RefParameter Comment="CS Signal Type" CommentCH="CS信号类型" DefaultValue="CSSOFT" Group="Advanced Parameters" GroupCH="高级参数" Name="CS" Type="list">
+		<PossibleValue Comment="Software" CommentCH="软件CS" Value="CSSOFT"/>
+	</RefParameter>
+	
+	<!-- RefModes for Hardware CS -->
+	<RefMode Name="CS_Signal_Hard_Input" BaseMode="CS_Signal">
+		<Parameter Name="VirtualCS">
+			<PossibleValue>SPI_CS_HARDWARE_MODE</PossibleValue>
+		</Parameter>
+	</RefMode>
+  <RefMode Name="CS_Signal_Hard_Output" BaseMode="CS_Signal">
+		<Parameter Name="VirtualCS">
+			<PossibleValue>SPI_CS_HARDWARE_MODE</PossibleValue>
+		</Parameter>
+	</RefMode>
+	
+	
+	<!-- RefModes for 'Full-Duplex Master' SPI -->
+	<RefMode Name="Full_Duplex_Master" BaseMode="Mode">
+		<Parameter Name="Instance"/>
+		<!-- Selected Mode Fixed Parameters -->
+		<Parameter Name="TransmissionMode">
+			<PossibleValue>SPI_TRANSMIT_FULL_DUPLEX</PossibleValue>
+		</Parameter>
+		<Parameter Name="Mode">
+			<PossibleValue>SPI_MODE_MASTER</PossibleValue>
+		</Parameter>
+		<!-- Selected Mode User Generic Parameters -->
+		<Parameter Name="TIMode"/>
+		<Parameter Name="DataSize"/>
+		<Parameter Name="FirstBit"/>
+		<!-- Selected Mode User Clock Parameters -->
+		<Parameter Name="CLOCK_SOURCE"/>
+		<Parameter Name="ClkDivision"/>
+		<Parameter Name="ClockFrequency"/>
+		<Parameter Name="CLKPolarity"/>
+		<Parameter Name="CLKPhase"/>
+		<!-- Selected Mode User Advanced Parameters -->
+		<Parameter Name="CRCCalculation"/>
+		<Parameter Name="CRCPolynomial"/>
+		<Parameter Name="CS"/>
+	</RefMode>
+	
+	<!-- RefModes for 'Full-Duplex Slave' SPI -->
+	<RefMode Name="Full_Duplex_Slave" BaseMode="Mode">
+		<Parameter Name="Instance"/>
+		<!-- Selected Mode Fixed Parameters -->
+		<Parameter Name="TransmissionMode">
+			<PossibleValue>SPI_TRANSMIT_FULL_DUPLEX</PossibleValue>
+		</Parameter>
+		<Parameter Name="Mode">
+			<PossibleValue>SPI_MODE_SLAVE</PossibleValue>
+		</Parameter>
+		<!-- Selected Mode User Generic Parameters -->
+		<Parameter Name="TIMode"/>
+		<Parameter Name="DataSize"/>
+		<Parameter Name="FirstBit"/>
+		<!-- Selected Mode User Clock Parameters -->
+		<Parameter Name="CLOCK_SOURCE"/>
+		<Parameter Name="ClkDivision"/>
+		<Parameter Name="ClockFrequency"/>
+		<Parameter Name="CLKPolarity"/>
+		<Parameter Name="CLKPhase"/>
+		<!-- Selected Mode User Advanced Parameters -->
+		<Parameter Name="CRCCalculation"/>
+		<Parameter Name="CRCPolynomial"/>
+		<Parameter Name="CS"/>
+	</RefMode>
+	
+	<!-- RefModes for 'Half-Duplex Master Receive' SPI -->
+	<RefMode Name="Simplex_Bidirectional_Master_RX" BaseMode="Mode">
+		<Parameter Name="Instance"/>
+		<!-- Selected Mode Fixed Parameters -->
+		<Parameter Name="TransmissionMode">
+			<PossibleValue>SPI_TRANSMIT_HALF_DUPLEX_RX</PossibleValue>
+		</Parameter>
+		<Parameter Name="Mode">
+			<PossibleValue>SPI_MODE_MASTER</PossibleValue>
+		</Parameter>
+		<!-- Selected Mode User Generic Parameters -->
+		<Parameter Name="TIMode"/>
+		<Parameter Name="DataSize"/>
+		<Parameter Name="FirstBit"/>
+		<!-- Selected Mode User Clock Parameters -->
+		<Parameter Name="CLOCK_SOURCE"/>
+		<Parameter Name="ClkDivision"/>
+		<Parameter Name="ClockFrequency"/>
+		<Parameter Name="CLKPolarity"/>
+		<Parameter Name="CLKPhase"/>
+		<!-- Selected Mode User Advanced Parameters -->
+		<Parameter Name="CRCCalculation"/>
+		<Parameter Name="CRCPolynomial"/>
+		<Parameter Name="CS"/>
+	</RefMode>
+	
+		<!-- RefModes for 'Half-Duplex Master Transmit' SPI -->
+	<RefMode Name="Simplex_Bidirectional_Master_TX" BaseMode="Mode">
+		<Parameter Name="Instance"/>
+		<!-- Selected Mode Fixed Parameters -->
+		<Parameter Name="TransmissionMode">
+			<PossibleValue>SPI_TRANSMIT_HALF_DUPLEX_TX</PossibleValue>
+		</Parameter>
+		<Parameter Name="Mode">
+			<PossibleValue>SPI_MODE_MASTER</PossibleValue>
+		</Parameter>
+		<!-- Selected Mode User Generic Parameters -->
+		<Parameter Name="TIMode"/>
+		<Parameter Name="DataSize"/>
+		<Parameter Name="FirstBit"/>
+		<!-- Selected Mode User Clock Parameters -->
+		<Parameter Name="CLOCK_SOURCE"/>
+		<Parameter Name="ClkDivision"/>
+		<Parameter Name="ClockFrequency"/>
+		<Parameter Name="CLKPolarity"/>
+		<Parameter Name="CLKPhase"/>
+		<!-- Selected Mode User Advanced Parameters -->
+		<Parameter Name="CRCCalculation"/>
+		<Parameter Name="CRCPolynomial"/>
+		<Parameter Name="CS"/>
+	</RefMode>
+	
+	<!-- RefModes for 'Half-Duplex Slave Receive' SPI -->
+	<RefMode Name="Simplex_Bidirectional_Slave_RX" BaseMode="Mode">
+		<Parameter Name="Instance"/>
+		<!-- Selected Mode Fixed Parameters -->
+		<Parameter Name="TransmissionMode">
+			<PossibleValue>SPI_TRANSMIT_HALF_DUPLEX_RX</PossibleValue>
+		</Parameter>
+		<Parameter Name="Mode">
+			<PossibleValue>SPI_MODE_SLAVE</PossibleValue>
+		</Parameter>
+		<!-- Selected Mode User Generic Parameters -->
+		<Parameter Name="TIMode"/>
+		<Parameter Name="DataSize"/>
+		<Parameter Name="FirstBit"/>
+		<!-- Selected Mode User Clock Parameters -->
+		<Parameter Name="CLOCK_SOURCE"/>
+		<Parameter Name="ClkDivision"/>
+		<Parameter Name="ClockFrequency"/>
+		<Parameter Name="CLKPolarity"/>
+		<Parameter Name="CLKPhase"/>
+		<!-- Selected Mode User Advanced Parameters -->
+		<Parameter Name="CRCCalculation"/>
+		<Parameter Name="CRCPolynomial"/>
+		<Parameter Name="CS"/>
+	</RefMode>
+	
+		<!-- RefModes for 'Half-Duplex Slave Transmit' SPI -->
+	<RefMode Name="Simplex_Bidirectional_Slave_TX" BaseMode="Mode">
+		<Parameter Name="Instance"/>
+		<!-- Selected Mode Fixed Parameters -->
+    <Parameter Name="TransmissionMode">
+			<PossibleValue>SPI_TRANSMIT_HALF_DUPLEX_TX</PossibleValue>
+		</Parameter>
+		<Parameter Name="Mode">
+			<PossibleValue>SPI_MODE_SLAVE</PossibleValue>
+		</Parameter>
+		<!-- Selected Mode User Generic Parameters -->
+		<Parameter Name="TIMode"/>
+		<Parameter Name="DataSize"/>
+		<Parameter Name="FirstBit"/>
+		<!-- Selected Mode User Clock Parameters -->
+		<Parameter Name="CLOCK_SOURCE"/>
+		<Parameter Name="ClkDivision"/>
+		<Parameter Name="ClockFrequency"/>
+		<Parameter Name="CLKPolarity"/>
+		<Parameter Name="CLKPhase"/>
+		<!-- Selected Mode User Advanced Parameters -->
+		<Parameter Name="CRCCalculation"/>
+		<Parameter Name="CRCPolynomial"/>
+		<Parameter Name="CS"/>
+	</RefMode>
+	
+	<!-- RefModes for 'Receive Only Master' SPI -->
+	<RefMode Name="RX_Only_Simplex_Unidirect_Master" BaseMode="Mode">
+		<Parameter Name="Instance"/>
+		<!-- Selected Mode Fixed Parameters -->
+		<Parameter Name="TransmissionMode">
+			<PossibleValue>SPI_TRANSMIT_SIMPLEX_RX</PossibleValue>
+		</Parameter>
+		<Parameter Name="Mode">
+			<PossibleValue>SPI_MODE_MASTER</PossibleValue>
+		</Parameter>
+		<!-- Selected Mode User Generic Parameters -->
+		<Parameter Name="TIMode"/>
+		<Parameter Name="DataSize"/>
+		<Parameter Name="FirstBit"/>
+		<!-- Selected Mode User Clock Parameters -->
+		<Parameter Name="CLOCK_SOURCE"/>
+		<Parameter Name="ClkDivision"/>
+		<Parameter Name="ClockFrequency"/>
+		<Parameter Name="CLKPolarity"/>
+		<Parameter Name="CLKPhase"/>
+		<!-- Selected Mode User Advanced Parameters -->
+		<Parameter Name="CRCCalculation"/>
+		<Parameter Name="CRCPolynomial"/>
+		<Parameter Name="CS"/>
+	</RefMode>
+	
+	<!-- RefModes for 'Receive Only Slave' SPI -->
+	<RefMode Name="RX_Only_Simplex_Unidirect_Slave" BaseMode="Mode">
+		<Parameter Name="Instance"/>
+		<!-- Selected Mode Fixed Parameters -->
+		<Parameter Name="TransmissionMode">
+			<PossibleValue>SPI_TRANSMIT_SIMPLEX_RX</PossibleValue>
+		</Parameter>
+		<Parameter Name="Mode">
+			<PossibleValue>SPI_MODE_SLAVE</PossibleValue>
+		</Parameter>
+		<!-- Selected Mode User Generic Parameters -->
+		<Parameter Name="TIMode"/>
+		<Parameter Name="DataSize"/>
+		<Parameter Name="FirstBit"/>
+		<!-- Selected Mode User Clock Parameters -->
+		<Parameter Name="CLOCK_SOURCE"/>
+		<Parameter Name="ClkDivision"/>
+		<Parameter Name="ClockFrequency"/>
+		<Parameter Name="CLKPolarity"/>
+		<Parameter Name="CLKPhase"/>
+		<!-- Selected Mode User Advanced Parameters -->
+		<Parameter Name="CRCCalculation"/>
+		<Parameter Name="CRCPolynomial"/>
+		<Parameter Name="CS"/>
+	</RefMode>
+	
+	<!-- RefModes for 'Transmit Only Master' SPI -->
+	<RefMode Name="TX_Only_Simplex_Unidirect_Master" BaseMode="Mode">
+		<Parameter Name="Instance"/>
+		<!-- Selected Mode Fixed Parameters -->
+		<Parameter Name="TransmissionMode">
+			<PossibleValue>SPI_TRANSMIT_FULL_DUPLEX</PossibleValue>
+		</Parameter>
+		<Parameter Name="Mode">
+			<PossibleValue>SPI_MODE_MASTER</PossibleValue>
+		</Parameter>
+		<!-- Selected Mode User Generic Parameters -->
+		<Parameter Name="TIMode"/>
+		<Parameter Name="DataSize"/>
+		<Parameter Name="FirstBit"/>
+		<!-- Selected Mode User Clock Parameters -->
+		<Parameter Name="CLOCK_SOURCE"/>
+		<Parameter Name="ClkDivision"/>
+		<Parameter Name="ClockFrequency"/>
+		<Parameter Name="CLKPolarity"/>
+		<Parameter Name="CLKPhase"/>
+		<!-- Selected Mode User Advanced Parameters -->
+		<Parameter Name="CRCCalculation"/>
+		<Parameter Name="CRCPolynomial"/>
+		<Parameter Name="CS"/>
+	</RefMode>
+	
+	<!-- RefModes for 'Transmit Only Slave' SPI -->
+	<RefMode Name="TX_Only_Simplex_Unidirect_Slave" BaseMode="Mode">
+		<Parameter Name="Instance"/>
+		<!-- Selected Mode Fixed Parameters -->
+		<Parameter Name="TransmissionMode">
+			<PossibleValue>SPI_TRANSMIT_FULL_DUPLEX</PossibleValue>
+		</Parameter>
+		<Parameter Name="Mode">
+			<PossibleValue>SPI_MODE_SLAVE</PossibleValue>
+		</Parameter>
+		<!-- Selected Mode User Generic Parameters -->
+		<Parameter Name="TIMode"/>
+		<Parameter Name="DataSize"/>
+		<Parameter Name="FirstBit"/>
+		<!-- Selected Mode User Clock Parameters -->
+		<Parameter Name="CLOCK_SOURCE"/>
+		<Parameter Name="ClkDivision"/>
+		<Parameter Name="ClockFrequency"/>
+		<Parameter Name="CLKPolarity"/>
+		<Parameter Name="CLKPhase"/>
+		<!-- Selected Mode User Advanced Parameters -->
+		<Parameter Name="CRCCalculation"/>
+		<Parameter Name="CRCPolynomial"/>
+		<Parameter Name="CS"/>
+	</RefMode>
+	
+	
+	
+	<!-- ModeLogicOperator for SPI -->
+	<ModeLogicOperator Name="OR">
+		<Mode Name="Mode" UserName="Mode" UserNameCH="模式">
+			<Condition Expression="!I2S$Index" Diagnostic="SPI and I2S cannot be used at the same time. The corresponding I2S needs to be disabled" DiagnosticCH="SPI与I2S不能同时使用，需关闭对应I2S"/>
+              <ModeLogicOperator Name="XOR">
+				<Mode Name="Full_Duplex_Master" UserName="Full-Duplex Master" UserNameCH="主机双线单向全双工模式">
+					<SignalLogicalOp Name="AND">
+						<Signal Name="MISO"  IOMode="Input"/>
+						<Signal Name="MOSI"  IOMode="MuxOutputPushPull"/>
+						<Signal Name="SCK"  IOMode="MuxOutputPushPull"/>
+					</SignalLogicalOp>
+                       <Semaphore>$IpInstance_Master</Semaphore>
+					<Semaphore>$IpInstance_DmaTransmit</Semaphore>
+					<Semaphore>$IpInstance_DmaReceive</Semaphore>		
+					<Semaphore>$IpInstance</Semaphore>			
+				</Mode>
+				<Mode Name="Full_Duplex_Slave" UserName="Full-Duplex Slave" UserNameCH="从机双线单向全双工模式">
+					<SignalLogicalOp Name="AND">
+						<Signal Name="MISO" IOMode="MuxOutputPushPull"/>
+						<Signal Name="MOSI" IOMode="Input"/>
+						<Signal Name="SCK" IOMode="Input"/>
+					</SignalLogicalOp>
+					<Semaphore>$IpInstance_DmaTransmit</Semaphore>
+					<Semaphore>$IpInstance_DmaReceive</Semaphore>
+					<Semaphore>$IpInstance_Slave</Semaphore>	
+					<Semaphore>$IpInstance</Semaphore>
+				</Mode>
+                  <Mode Name="Simplex_Bidirectional_Master_RX" UserName="Half-Duplex Master Receive" UserNameCH="主机单线双向只收模式">
+					<SignalLogicalOp Name="AND">
+						<Signal Name="MOSI"  IOMode="MuxOutputPushPull"/>
+						<Signal Name="SCK"  IOMode="MuxOutputPushPull"/>
+					</SignalLogicalOp>
+                       <Semaphore>$IpInstance_Master</Semaphore>
+                       <Semaphore>$IpInstance_DmaReceive</Semaphore> 
+                       <Semaphore>$IpInstance</Semaphore>          		
+				</Mode>
+				<Mode Name="Simplex_Bidirectional_Master_TX" UserName="Half-Duplex Master Transmit" UserNameCH="主机单线双向只发模式">
+					<SignalLogicalOp Name="AND">
+						<Signal Name="MOSI"  IOMode="MuxOutputPushPull"/>
+						<Signal Name="SCK"  IOMode="MuxOutputPushPull"/>
+					</SignalLogicalOp>
+                       <Semaphore>$IpInstance_Master</Semaphore>
+                       <Semaphore>$IpInstance_DmaTransmit</Semaphore>
+                        <Semaphore>$IpInstance</Semaphore>          		
+				</Mode>
+                  <Mode Name="Simplex_Bidirectional_Slave_RX" UserName="Half-Duplex Slave Receive" UserNameCH="从机单线双向只收模式">
+					<SignalLogicalOp Name="AND">
+					<Signal Name="MISO" IOMode="MuxOutputPushPull"/>
+					<Signal Name="SCK" IOMode="Input"/>
+					</SignalLogicalOp>
+                       <Semaphore>$IpInstance_DmaReceive</Semaphore>
+                       <Semaphore>$IpInstance</Semaphore>
+				</Mode>
+				<Mode Name="Simplex_Bidirectional_Slave_TX" UserName="Half-Duplex Slave Transmit" UserNameCH="从机单线双向只发模式">
+					<SignalLogicalOp Name="AND">
+					<Signal Name="MISO" IOMode="MuxOutputPushPull"/>
+					<Signal Name="SCK" IOMode="Input"/>
+					</SignalLogicalOp>
+                       <Semaphore>$IpInstance_DmaTransmit</Semaphore>
+                       <Semaphore>$IpInstance</Semaphore>
+				</Mode>
+                  <Mode Name="RX_Only_Simplex_Unidirect_Master" UserName="Receive Only Master" UserNameCH="主机双线单向只收模式">
+					<SignalLogicalOp Name="AND">
+						<Signal Name="MISO" IOMode="Input"/> 	 
+						<Signal Name="SCK"  IOMode="MuxOutputPushPull"/>
+					</SignalLogicalOp>
+                       <Semaphore>$IpInstance_Master</Semaphore>
+                       <Semaphore>$IpInstance_DmaReceive</Semaphore>
+                       <Semaphore>$IpInstance</Semaphore>
+				</Mode>
+				<Mode Name="TX_Only_Simplex_Unidirect_Master" UserName="Transmit Only Master" UserNameCH="主机双线单向只发模式">
+					<SignalLogicalOp Name="AND">
+						<Signal Name="MOSI" IOMode="MuxOutputPushPull"/>
+						<Signal Name="SCK" IOMode="MuxOutputPushPull"/>
+					</SignalLogicalOp>
+                       <Semaphore>$IpInstance_Master</Semaphore>
+                       <Semaphore>$IpInstance_DmaTransmit</Semaphore>
+                       <Semaphore>$IpInstance</Semaphore>
+				</Mode>
+                  <Mode Name="RX_Only_Simplex_Unidirect_Slave" UserName="Receive Only Slave" UserNameCH="从机双线单向只收模式">
+					<SignalLogicalOp Name="AND">
+						<Signal Name="MOSI" IOMode="Input"/>	
+						<Signal Name="SCK" IOMode="Input"/>
+					</SignalLogicalOp>
+                       <Semaphore>$IpInstance_DmaReceive</Semaphore>
+                       <Semaphore>$IpInstance</Semaphore>
+				</Mode>
+                  <Mode Name="TX_Only_Simplex_Unidirect_Slave" UserName="Transmit Only Slave" UserNameCH="从机双线单向只发模式">
+          <!-- SPI is in 'Full-Duplex' Mode, but only 'Slave Out' line is on pinout -->
+					<SignalLogicalOp Name="AND">
+						<Signal Name="MISO" IOMode="MuxOutputPushPull"/>
+						<Signal Name="SCK" IOMode="Input"/>
+					</SignalLogicalOp>
+                       <Semaphore>$IpInstance_DmaTransmit</Semaphore>
+					<Semaphore>$IpInstance_Slave</Semaphore>
+					<Semaphore>$IpInstance_Transmit</Semaphore>
+					<Semaphore>$IpInstance</Semaphore>
+				</Mode>
+			</ModeLogicOperator>			
+		</Mode>
+		
+		<Mode Name="CS_Signal" UserName="Hardware CS Signal" UserNameCH="硬件CS信号">
+			<ModeLogicOperator Name="XOR">
+				<Mode Name="CS_Signal_Hard_Input" UserName="Hardware CS Input Signal" UserNameCH="硬件CS输入信号">
+					<SignalLogicalOp Name="AND">
+						<Signal Name="CS" IOMode="Input"/>
+					</SignalLogicalOp>
+                       <Semaphore>$IpInstance_CSHARD_Input</Semaphore>
+				</Mode>
+			
+				<Mode Name="CS_Signal_Hard_Output" UserName="Hardware CS Output Signal" UserNameCH="硬件CS输出信号"> UserNameCH=""
+					<SignalLogicalOp Name="AND">
+						<Signal Name="CS" IOMode="MuxOutputPushPull"/>
+					</SignalLogicalOp>
+                       <Semaphore>$IpInstance_CSHARD_Output</Semaphore>
+                       <Condition Diagnostic="Must have a master mode selected" DiagnosticCH="需选择主机模式" Expression="$IpInstance_Master"/>
+				</Mode>
+			</ModeLogicOperator>
+			<Condition Diagnostic="Must have a mode selected" DiagnosticCH="需选择一种模式" Expression="$IpInstance"/>
+		</Mode>
+	</ModeLogicOperator>
+	
+	<!-- RefSignal for SPI -->
+	<RefSignal IOMode="MuxOutputPushPull" Name="MISO"/>
+	<RefSignal IOMode="MuxOutputPushPull" Name="MOSI"/>
+	<RefSignal IOMode="MuxOutputPushPull" Name="SCK"/>
+	<RefSignal IOMode="MuxOutputPushPull" Name="CS"/>
+</IP>

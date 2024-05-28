@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<IP>
+    <About>SPI Memory</About>
+    <AboutCH>外部存储器</AboutCH>
+
+    <RefParameter Name="Instance" Comment="SPIM instance" DefaultValue="SPIM" Type="list" Visible="false"/>
+
+    <RefParameter Comment="SPIM Clock Speed" CommentCH="SPIM时钟频率(sclk/2)" DefaultValue="60000000" Max="60000000" Min="0" Name="ClockSpeed" Group="Basic Parameterss" GroupCH="基础参数" Type="string" Unit="Hz">
+	</RefParameter>
+	
+    <RefParameter Name="Type" Comment="Type" CommentCH="类型" DefaultValue="FLASH_SPIM_MODEL1" Type="list" Group="Basic Parameters" GroupCH="基础参数">
+        <PossibleValue Value="FLASH_SPIM_MODEL1" Comment="Common Type 1" CommentCH="通用类型1"/>
+        <PossibleValue Value="FLASH_SPIM_MODEL2" Comment="Common Type 2" CommentCH="通用类型2"/>
+    </RefParameter>
+
+    <RefParameter Name="FLASH_DA" Comment="FLASH_DA" CommentCH="加密范围" DefaultValue="0" Max="1000000" Min="0" Type="hexadecimal" Group="Basic Parameters" GroupCH="基础参数">
+    </RefParameter>
+
+
+    <RefMode Name="SPIM_State" BaseMode="SPIM_State">
+    	   <Parameter Name="ClockSpeed"/>
+        <Parameter Name="Type"/>
+        <Parameter Name="FLASH_DA"/>
+    </RefMode>
+
+    <!-- ModeLogicOperator for SPIM -->
+    <ModeLogicOperator Name="OR">
+      <Mode Name="SPIM_State" UserName="Activated" UserNameCH="启用">
+        <ModeLogicOperator Name="XOR">
+          <Mode Name="SPIM_State" UserName="Activated" UserNameCH="启用">
+            <SignalLogicalOp Name="AND">
+              <Signal Name="CS" />
+              <Signal Name="SCK" />
+              <Signal Name="IO0" />
+              <Signal Name="IO1" />
+              <Signal Name="IO2" />
+              <Signal Name="IO3" />
+            </SignalLogicalOp>
+          </Mode>
+        </ModeLogicOperator>
+      </Mode>
+    </ModeLogicOperator>
+
+    <!-- RefSignal for SPIM -->
+    <RefSignal IOMode="MuxOutputPushPull" Name="CS"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="SCK"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="IO0"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="IO1"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="IO2"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="IO3"/>
+</IP>

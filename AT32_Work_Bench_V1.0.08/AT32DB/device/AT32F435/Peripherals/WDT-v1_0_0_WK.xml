@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<IP>
+  <About>Watchdog timer</About>
+  <AboutCH>看门狗</AboutCH>
+
+  <RefParameter Name="Instance" Comment="WDT instance" DefaultValue="WDT" Type="list" Visible="false"/> 
+  <RefParameter Name="Prescaler" Comment="WDT counter clock prescaler" CommentCH="WDT计数时钟分频" DefaultValue="WDT_CLK_DIV_4" Type="list" Group="Clocking" GroupCH="时钟">
+    <PossibleValue Value="WDT_CLK_DIV_4" Comment="4" CommentCH="4"/>
+    <PossibleValue Value="WDT_CLK_DIV_8" Comment="8" CommentCH="8"/>
+    <PossibleValue Value="WDT_CLK_DIV_16" Comment="16" CommentCH="16"/>
+    <PossibleValue Value="WDT_CLK_DIV_32" Comment="32" CommentCH="32"/>
+    <PossibleValue Value="WDT_CLK_DIV_64" Comment="64" CommentCH="64"/>
+    <PossibleValue Value="WDT_CLK_DIV_128" Comment="128" CommentCH="128"/>
+    <PossibleValue Value="WDT_CLK_DIV_256" Comment="256" CommentCH="256"/>
+  </RefParameter> 
+  
+  <RefParameter Name="Reload" Comment="WDT down-counter reload value" CommentCH="WDT向下计数重载值" DefaultValue="FFF" Max="FFF" Min="0" Type="hexadecimal" Group="Clocking" GroupCH="时钟"/>
+
+  <RefParameter Name="Window" Comment="Window" CommentCH="窗口功能" DefaultValue="FALSE" Type="list" Group="Clocking" GroupCH="时钟">
+    <PossibleValue Value="FALSE" Comment="Disable" CommentCH="关闭"/>
+    <PossibleValue Value="TRUE" Comment="Enable" CommentCH="开启"/>
+  </RefParameter> 
+  
+  <RefParameter Name="WindowValue" Comment="Window value" CommentCH="窗口值" DefaultValue="FFF" Max="FFF" Min="0" Type="hexadecimal" Group="Clocking" GroupCH="时钟">
+  <Condition Diagnostic="" Expression="Window = TRUE"/>
+  </RefParameter> 
+  
+  
+  <RefMode Name="WDT_State" BaseMode="WDT_State">
+    <Parameter Name="Prescaler"/>
+    <Parameter Name="Reload"/>
+    <Parameter Name="Window"/>
+    <Parameter Name="WindowValue"/>
+  </RefMode>
+
+	<!-- ModeLogicOperator for IWDG -->
+  <ModeLogicOperator Name="OR">
+    <Mode Name="WDT_State" UserName="Activated" UserNameCH="启用">
+      <ModeLogicOperator Name="XOR">
+        <Mode Name="WDT_State" UserName="Activated" UserNameCH="启用">
+          <SignalLogicalOp Name="AND">
+            <Signal Name="VS_WDT" />
+          </SignalLogicalOp>
+        </Mode>
+      </ModeLogicOperator>
+    </Mode>
+  </ModeLogicOperator>
+
+  <!-- RefSignal for IWDG -->
+  <RefSignal Name="VS_WDT" Virtual="true"/>
+
+  <Semaphore>WDTUsed_ForRCC</Semaphore>
+</IP>

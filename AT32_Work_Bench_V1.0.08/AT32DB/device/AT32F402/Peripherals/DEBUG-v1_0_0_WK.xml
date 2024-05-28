@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<IP>
+    <About>Debug interface</About>
+    <AboutCH>调试接口</AboutCH>
+
+   <!-- ModeLogicOperator for DEBUG -->
+    <ModeLogicOperator Name="OR">
+      <Mode Name="SWD" UserName="SWD" UserNameCH="SWD">  
+			  <ModeLogicOperator Name="XOR">
+				  <Mode Name="SWD" UserName="SWD" UserNameCH="SWD">
+					  <SignalLogicalOp Name="AND">
+						  <Signal Name="SWDIO"/>
+						  <Signal Name="SWCLK"/>
+					  </SignalLogicalOp>
+					  <Semaphore>SWD$IpInstance</Semaphore>
+				  </Mode>
+			  </ModeLogicOperator>			
+	 </Mode>
+      <Mode Name="SWO" UserName="SWO" UserNameCH="SWO">  
+      	        <Condition Expression="SWD$IpInstance"
+                    	                   Diagnostic="&quot;SWD&quot; must be selected as &quot;Debug interface&quot;" 
+                    	                   DiagnosticCH="&quot;调试接口&quot;需设置为&quot;SWD&quot;"/>
+			  <ModeLogicOperator Name="XOR">
+				  <Mode Name="SWO" UserName="SWO" UserNameCH="SWO">
+					  <SignalLogicalOp Name="AND">
+						  <Signal Name="SWO"/>
+					  </SignalLogicalOp>
+				  </Mode>
+			  </ModeLogicOperator>			
+	 </Mode>
+    </ModeLogicOperator>
+
+    <!-- RefSignal for DEBUG -->
+    <RefSignal IOMode="System" Name="SWDIO"/>
+    <RefSignal IOMode="System" Name="SWCLK"/>
+    <RefSignal IOMode="System" Name="SWO"/>
+</IP>

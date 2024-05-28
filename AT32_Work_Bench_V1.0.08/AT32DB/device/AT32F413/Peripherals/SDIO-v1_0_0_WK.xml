@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<IP>
+	<About>SDIO interface</About>
+	<AboutCH>SDIO接口</AboutCH>
+	
+    <RefParameter Comment="Instance" DefaultValue="SDIO$Index" Name="Instance" Type="" Visible="false"/>
+
+    <RefParameter Name="Clock_division" Comment="Clock division" CommentCH="时钟分频系数" DefaultValue="0" Group="Basic Parameters" GroupCH="基础参数" Max="1023" Min="0" Type="integer"/>
+
+     <RefParameter Comment="Clock frequency" CommentCH="时钟频率" DefaultValue="0" Max="" Min="" Name="ClockFrequency" Group="Basic Parameters" GroupCH="基础参数" Type="string" Unit="Hz">
+	</RefParameter>
+				
+    <RefParameter Name="SDIO_CK_edge" Comment="SDIO_CK edge selection" CommentCH="SDIO_CK边沿选择" DefaultValue="SDIO_CLOCK_EDGE_RISING" Group="Basic Parameters" GroupCH="基础参数" Type="list" Reload = "false">
+        <PossibleValue Comment="SDIO_CK generated on the rising edge" CommentCH="SDIOCLK上升沿产生" Value="SDIO_CLOCK_EDGE_RISING"/>
+        <PossibleValue Comment="SDIO_CK generated on the falling edge" CommentCH="SDIOCLK下降沿产生" Value="SDIO_CLOCK_EDGE_FALLING"/>
+    </RefParameter>
+    
+    <RefParameter Name="Power_saving_mode" Comment="Power saving mode enable" CommentCH="省电模式使能" DefaultValue="FALSE" Group="Basic Parameters" GroupCH="基础参数" Type="list" Reload = "false">
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE"/>
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE"/>
+    </RefParameter>
+    
+    <RefParameter Name="Hardware_flow_control" Comment="Hardware flow control enable" CommentCH="硬件流控制使能" DefaultValue="FALSE" Group="Basic Parameters" GroupCH="基础参数" Type="list" Reload = "false">
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE"/>
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE"/>
+    </RefParameter>
+    
+    <RefParameter Name="Clock_divider_bypass" Comment="Clock divider bypass" CommentCH="时钟分频器旁路" DefaultValue="FALSE" Group="Basic Parameters" GroupCH="基础参数" Type="list">
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE"/>
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE"/>
+    </RefParameter>
+    
+    <RefParameter Name="BusWide" Comment="Bus Wide" CommentCH="线宽" DefaultValue="SDIO_BUS_WIDTH_D1" Group="Basic Parameters" GroupCH="基础参数" Type="list" Visible="false" Reload = "false">
+        <Condition Diagnostic="" Expression="$IpInstance_Bus1Bit"/>
+        <PossibleValue Comment="Bus wide 1-bit data" CommentCH="线宽1位" Value="SDIO_BUS_WIDTH_D1"/>
+    </RefParameter>
+     <RefParameter Name="BusWide" Comment="Bus Wide" CommentCH="线宽" DefaultValue="SDIO_BUS_WIDTH_D4" Group="Basic Parameters" GroupCH="基础参数" Type="list" Visible="false" Reload = "false">
+        <Condition Diagnostic="" Expression="$IpInstance_Bus4Bits"/>
+        <PossibleValue Comment="Bus wide 4-bit data" CommentCH="线宽4位" Value="SDIO_BUS_WIDTH_D4"/>
+    </RefParameter>
+     <RefParameter Name="BusWide" Comment="Bus Wide" CommentCH="线宽" DefaultValue="SDIO_BUS_WIDTH_D8" Group="Basic Parameters" GroupCH="基础参数" Type="list" Visible="false" Reload = "false">
+        <Condition Diagnostic="" Expression="$IpInstance_Bus8Bits"/>
+        <PossibleValue Comment="Bus wide 8-bit data" CommentCH="线宽8位" Value="SDIO_BUS_WIDTH_D8"/>
+    </RefParameter>
+
+    <!-- RefMode-->
+    <RefMode Name="SDIO_init" Abstract="true">
+        <Parameter Name="Instance"/>
+        <Parameter Name="Clock_division"/>
+        <Parameter Name="ClockFrequency"/>
+        <Parameter Name="SDIO_CK_edge"/>
+        <Parameter Name="Power_saving_mode"/>
+        <Parameter Name="Hardware_flow_control"/>
+        <Parameter Name="Clock_divider_bypass"/>
+        <Parameter Name="BusWide"/>
+    </RefMode>
+    		                        
+    <ModeLogicOperator Name="OR">
+        <Mode Name="Mode" UserName="Mode" UserNameCH="模式">
+            <ModeLogicOperator Name="XOR">
+                <Mode Name="SD_1_bit" UserName="SD Card 1bit bus width" UserNameCH="SD卡1bit线宽">
+                    <Semaphore>$IpInstance_Bus1Bit</Semaphore>
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="CK"/>
+                        <Signal Name="CMD"/>
+                        <Signal Name="D0"/>
+                    </SignalLogicalOp>
+                </Mode>
+                <Mode Name="SD_4_bit" UserName="SD Card 4bit bus width" UserNameCH="SD卡4bit线宽">
+                    <Semaphore>$IpInstance_Bus4Bits</Semaphore>
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="CK"/>
+                        <Signal Name="CMD"/>
+                        <Signal Name="D0"/>
+                        <Signal Name="D1"/>
+                        <Signal Name="D2"/>
+                        <Signal Name="D3"/>
+                    </SignalLogicalOp>
+                </Mode>
+                <Mode Name="MMC_1_bit" UserName="MMC Card 1bit bus width" UserNameCH="MMC卡1bit线宽">
+                    <Semaphore>$IpInstance_Bus1Bit</Semaphore>
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="CK"/>
+                        <Signal Name="CMD"/>
+                        <Signal Name="D0"/>
+                    </SignalLogicalOp>
+                </Mode>
+                <Mode Name="MMC_4_bit" UserName="MMC Card 4bit bus width" UserNameCH="MMC卡4bit线宽">
+                    <Semaphore>$IpInstance_Bus4Bits</Semaphore>
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="CK"/>
+                        <Signal Name="CMD"/>
+                        <Signal Name="D0"/>
+                        <Signal Name="D1"/>
+                        <Signal Name="D2"/>
+                        <Signal Name="D3"/>
+                    </SignalLogicalOp>
+                </Mode>
+                <Mode Name="MMC_8_bit" UserName="MMC Card 8bit bus width" UserNameCH="MMC卡8bit线宽">
+                    <Semaphore>$IpInstance_Bus8Bits</Semaphore>
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="CK"/>
+                        <Signal Name="CMD"/>
+                        <Signal Name="D0"/>
+                        <Signal Name="D1"/>
+                        <Signal Name="D2"/>
+                        <Signal Name="D3"/>
+                        <Signal Name="D4"/>
+                        <Signal Name="D5"/>
+                        <Signal Name="D6"/>
+                        <Signal Name="D7"/>
+                    </SignalLogicalOp>
+                </Mode>
+              </ModeLogicOperator>
+        </Mode>
+        
+    </ModeLogicOperator>
+	
+    <RefSignal IOMode="MuxOutputPushPull" Name="CK"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="CMD"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="D0"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="D1"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="D2"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="D3"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="D4"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="D5"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="D6"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="D7"/>                 
+</IP>

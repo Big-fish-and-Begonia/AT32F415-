@@ -1,0 +1,811 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<IP>
+  <About>Real-Time Clock</About>
+  <AboutCH>实时时钟</AboutCH>
+	
+	<!-- Generic RefParameters for ERTC -->
+	
+	<RefParameter Comment="Instance" DefaultValue="ERTC" Name="Instance" Type="" Visible="false"/>
+	
+	<!-- General parameters -->
+	
+	<RefParameter Comment="Hour Format" CommentCH="小时模式" DefaultValue="ERTC_HOUR_MODE_24" Group="General" GroupCH="通用参数" Name="HourFormat" Type="list">
+		<PossibleValue Comment="Hourformat 12" CommentCH="12小时制" Value="ERTC_HOUR_MODE_12"/>
+		<PossibleValue Comment="Hourformat 24" CommentCH="24小时制" Value="ERTC_HOUR_MODE_24"/>
+	</RefParameter>
+	
+	<RefParameter Comment="Predivider A value" CommentCH="分频器A" DefaultValue="127" Group="General" GroupCH="通用参数" Max="127" Min="127" Name="AsynchPrediv" Type="integer">
+		<Condition Diagnostic="" Expression="ERTC_RECLOCK_With_REFIN"/>
+	</RefParameter>
+	<RefParameter Comment="Predivider A value" CommentCH="分频器A" DefaultValue="127" Group="General" GroupCH="通用参数" Max="127" Min="0" Name="AsynchPrediv" Type="integer"/>
+	
+	<RefParameter Comment="Predivider B value" CommentCH="分频器B" DefaultValue="255" Group="General" GroupCH="通用参数" Max="255" Min="255" Name="SynchPrediv" Type="integer">
+		<Condition Diagnostic="" Expression="ERTC_RECLOCK_With_REFIN"/>
+	</RefParameter>
+	<RefParameter Comment="Predivider B value" CommentCH="分频器B" DefaultValue="255" Group="General" GroupCH="通用参数" Max="32767" Min="0" Name="SynchPrediv" Type="integer"/>
+	
+	<!-- Output Signal for Alarm A, Alarm B, WAKEUP -->
+	<RefParameter Comment="Output" CommentCH="输出选择" DefaultValue="ERTC_OUTPUT_ALARM_A" Group="General" GroupCH="通用参数" Name="OutPut_Alarm_A" Type="list" Visible="false" Reload = "false">
+		<Condition Diagnostic="Alarms A outputed" Expression = "AlarmA_Outputed"/>
+		<PossibleValue Comment="Output Alarm A" CommentCH="输出闹钟A" Value="ERTC_OUTPUT_ALARM_A"/>
+	</RefParameter>
+	<RefParameter Comment="Output" CommentCH="输出选择" DefaultValue="ERTC_OUTPUT_DISABLE" Group="General" GroupCH="通用参数" Name="OutPut_Alarm_A" Type="list" Visible="false" Reload = "false">
+		<PossibleValue Comment="Output Disable" CommentCH="输出关闭" Value="ERTC_OUTPUT_DISABLE"/>
+	</RefParameter>
+	
+	<RefParameter Comment="Output" CommentCH="输出选择" DefaultValue="ERTC_OUTPUT_ALARM_B" Group="General" GroupCH="通用参数" Name="OutPut_Alarm_B" Type="list" Visible="false" Reload = "false">
+		<Condition Diagnostic="Alarms A outputed" Expression = "AlarmB_Outputed"/>
+		<PossibleValue Comment="Output Alarm B" CommentCH="输出闹钟B" Value="ERTC_OUTPUT_ALARM_B"/>
+	</RefParameter>
+	<RefParameter Comment="Output" CommentCH="输出选择" DefaultValue="ERTC_OUTPUT_DISABLE" Group="General" GroupCH="通用参数" Name="OutPut_Alarm_B" Type="list" Visible="false" Reload = "false">
+		<PossibleValue Comment="Output Disable" CommentCH="输出关闭" Value="ERTC_OUTPUT_DISABLE"/>
+	</RefParameter>
+	
+	<RefParameter Comment="Output" CommentCH="输出选择" DefaultValue="ERTC_OUTPUT_WAKEUP" Group="General" GroupCH="通用参数" Name="OutPut_Wakeup" Type="list" Visible="false" Reload = "false">
+		<Condition Diagnostic="Alarms A outputed" Expression = "Wakeup_Outputed"/>
+		<PossibleValue Comment="Output Wakeup" CommentCH="唤醒输出" Value="ERTC_OUTPUT_WAKEUP"/>
+	</RefParameter>
+	<RefParameter Comment="Output" CommentCH="输出选择" DefaultValue="ERTC_OUTPUT_DISABLE" Group="General" GroupCH="通用参数" Name="OutPut_Wakeup" Type="list" Visible="false" Reload = "false">
+		<PossibleValue Comment="Output Disable" CommentCH="输出关闭" Value="ERTC_OUTPUT_DISABLE"/>
+	</RefParameter>
+	
+	<RefParameter Comment="Output Polarity" CommentCH="输出极性" DefaultValue="ERTC_OUTPUT_POLARITY_HIGH" Group="General" GroupCH="通用参数" Name="OutPutPolarity" Type="list" Reload = "false">
+		<Condition Diagnostic="" Expression="AlarmA_Outputed | AlarmB_Outputed | Wakeup_Outputed"/>
+		<PossibleValue Comment="High" CommentCH="高" Value="ERTC_OUTPUT_POLARITY_HIGH"/>
+		<PossibleValue Comment="Low" CommentCH="低" Value="ERTC_OUTPUT_POLARITY_LOW"/>
+	</RefParameter>
+	<RefParameter Comment="Output Type" CommentCH="输出类型" DefaultValue="ERTC_OUTPUT_TYPE_OPEN_DRAIN" Group="General" GroupCH="通用参数" Name="OutPutType" Type="list" Reload = "false">
+		<Condition Diagnostic="" Expression="AlarmA_Outputed | AlarmB_Outputed | Wakeup_Outputed"/>
+		<PossibleValue Comment="Opendrain" CommentCH="开漏输出" Value="ERTC_OUTPUT_TYPE_OPEN_DRAIN"/>
+		<PossibleValue Comment="Pushpull" CommentCH="推挽输出" Value="ERTC_OUTPUT_TYPE_PUSH_PULL"/>
+	</RefParameter>
+	
+	
+	<!-- Hours -->
+	<RefParameter Comment="Hours" CommentCH="小时" DefaultValue="1" Group="Calendar Time" GroupCH="日历-时间" Max="12" Min="1" Name="Hours_12" Type="integer">
+		<Condition Diagnostic="Hour Format is 12H" Expression="HourFormat = ERTC_HOUR_MODE_12"/>
+	</RefParameter>
+	<RefParameter Comment="Hours" CommentCH="小时" DefaultValue="0" Group="Calendar Time" GroupCH="日历-时间" Max="23" Min="0" Name="Hours_24" Type="integer">
+	    <Condition Diagnostic="Hour Format is 24H" Expression="HourFormat = ERTC_HOUR_MODE_24"/>
+	</RefParameter>
+	
+	<!-- Minutes -->
+	<RefParameter Comment="Minutes" CommentCH="分钟" DefaultValue="0" Group="Calendar Time" GroupCH="日历-时间" Max="59" Min="0" Name="Minutes" Type="integer" Reload = "false"/>
+	
+	<!-- Seconds -->
+	<RefParameter Comment="Seconds" CommentCH="秒钟" DefaultValue="0" Group="Calendar Time" GroupCH="日历-时间" Max="59" Min="0" Name="Seconds" Type="integer" Reload = "false"/>
+	
+	<!-- Subseconds -->
+	<!-- RefParameter Comment="Sub Seconds" CommentCH="亚秒" DefaultValue="0x0" Name="SubSeconds" Type="string" Group="Calendar Time" GroupCH="日历-时间" Visible="false"/-->
+	
+	<RefParameter Comment="Time Format" CommentCH="时间格式" DefaultValue="ERTC_AM" Group="Calendar Time" GroupCH="日历-时间" Name="TimeFormat" Type="list" Reload = "false">
+	<Condition Diagnostic="Hour Format is 12H" Expression="HourFormat = ERTC_HOUR_MODE_12"/>
+		<PossibleValue Comment="12 AM" CommentCH="12小时制 上午" Value="ERTC_AM"/>
+		<PossibleValue Comment="12 PM" CommentCH="12小时制 下午" Value="ERTC_PM"/>	
+	</RefParameter>
+	<RefParameter Comment="Time Format" CommentCH="时间格式" DefaultValue="ERTC_24H" Group="Calendar Time" GroupCH="日历-时间" Name="TimeFormat" Type="list" Visible="false" Reload = "false"/>
+	
+	<RefParameter Comment="Day Light Saving Time Config" CommentCH="夏令时设置" DefaultValue="ERTC_DST_NONE" Group="Calendar Time" GroupCH="日历-时间" Name="DayLightSaving" Type="list">
+		<PossibleValue Comment="Daylightsaving None" CommentCH="无" Value="ERTC_DST_NONE"/>
+		<PossibleValue Comment="Daylightsaving Sub1h" CommentCH="减少1小时" Value="ERTC_DST_DEC_1H"/>
+		<PossibleValue Comment="Daylightsaving Add1h" CommentCH="增加1小时" Value="ERTC_DST_ADD_1H"/>
+	</RefParameter>
+	<RefParameter Comment="Store Operation" CommentCH="操作存储" DefaultValue="ERTC_DST_SAVE_0" Group="Calendar Time" GroupCH="日历-时间" Name="StoreOperation" Type="list" Reload = "false">
+		<Condition Expression="DayLightSaving = ERTC_DST_DEC_1H | DayLightSaving = ERTC_DST_ADD_1H"/>
+		<PossibleValue Comment="Storeoperation Reset" CommentCH="存储0" Value="ERTC_DST_SAVE_0"/>
+		<PossibleValue Comment="Storeoperation Set" CommentCH="存储1" Value="ERTC_DST_SAVE_1"/>
+	</RefParameter>
+	
+	<!-- Calendar Date parameters -->
+	<RefParameter Comment="Year" CommentCH="年份" DefaultValue="0" Group="Calendar Date" GroupCH="日历-日期" Max="99" Min="0" Name="Year" Type="integer"/>
+	
+	<RefParameter Comment="Month" CommentCH="月份" DefaultValue="1" Group="Calendar Date" GroupCH="日历-日期" Name="Month" Type="list">
+		<PossibleValue Comment="January" CommentCH="一月" Value="1" Semaphore="Jan"/>
+		<PossibleValue Comment="February" CommentCH="二月" Value="2" Semaphore="Feb"/>
+		<PossibleValue Comment="March" CommentCH="三月" Value="3" Semaphore="Mar"/>
+		<PossibleValue Comment="April" CommentCH="四月" Value="4" Semaphore="Apr"/>
+		<PossibleValue Comment="May" CommentCH="五月" Value="5" Semaphore="May"/>
+		<PossibleValue Comment="June" CommentCH="六月" Value="6" Semaphore="Jun"/>
+		<PossibleValue Comment="July" CommentCH="七月" Value="7" Semaphore="Jul"/>
+		<PossibleValue Comment="August" CommentCH="八月" Value="8" Semaphore="Aug"/>
+		<PossibleValue Comment="September" CommentCH="九月" Value="9" Semaphore="Sep"/>
+		<PossibleValue Comment="October" CommentCH="十月" Value="10" Semaphore="Oct"/>
+		<PossibleValue Comment="November" CommentCH="十一月" Value="11" Semaphore="Nov"/>
+		<PossibleValue Comment="December" CommentCH="十二月" Value="12" Semaphore="Dec"/>
+	</RefParameter>
+	
+	<RefParameter Comment="Week Day" CommentCH="星期" DefaultValue="1" Group="Calendar Date" GroupCH="日历-日期" Name="WeekDay" Type="list" Reload = "false">
+		<PossibleValue Comment="Monday" CommentCH="星期一" Value="1"/>
+		<PossibleValue Comment="Tuesday" CommentCH="星期二" Value="2"/>
+		<PossibleValue Comment="Wednesday" CommentCH="星期三" Value="3"/>
+		<PossibleValue Comment="Thursday" CommentCH="星期四" Value="4"/>
+		<PossibleValue Comment="Friday" CommentCH="星期五" Value="5"/>
+		<PossibleValue Comment="Saturday" CommentCH="星期六" Value="6"/>
+		<PossibleValue Comment="Sunday" CommentCH="星期日" Value="7"/>
+	</RefParameter>
+	
+	<RefParameter Comment="Date" CommentCH="日期" DefaultValue="1" Group="Calendar Date" GroupCH="日历-日期" Max="29" Min="1" Name="Date" Type="integer">
+		<Condition Diagnostic="" Expression="Feb &amp; Year = 0 |Year = 4 | Year = 8 | Year = 12 | Year = 16 | Year = 20 | Year = 24 | Year = 28 | Year = 32 |Year = 36 | Year = 40 | Year = 44 | Year = 48 | Year = 52 | Year = 56 | Year = 60 | Year = 64 | Year = 68 | Year = 72 | Year = 76 | Year = 80 | Year = 84 | Year = 88 | Year = 92 | Year = 96"/>
+	</RefParameter>
+	<RefParameter Comment="Date" CommentCH="日期" DefaultValue="1" Group="Calendar Date" GroupCH="日历-日期" Max="28" Min="1" Name="Date" Type="integer">
+		<Condition Diagnostic="" Expression="Feb"/>
+	</RefParameter>
+	<RefParameter Comment="Date" CommentCH="日期" DefaultValue="1" Group="Calendar Date" GroupCH="日历-日期" Max="30" Min="1" Name="Date" Type="integer">
+		<Condition Diagnostic="" Expression="Apr | Jun | Sep | Nov"/>
+	</RefParameter>
+	<RefParameter Comment="Date" CommentCH="日期" DefaultValue="1" Group="Calendar Date" GroupCH="日历-日期" Max="31" Min="1" Name="Date" Type="integer"/>
+	
+	
+	
+	<!-- Alarm A parameters -->
+	
+	<!-- Hours -->
+	<RefParameter Comment="Hours" CommentCH="小时" DefaultValue="1" Group="Alarm A" GroupCH="闹钟A" Max="12" Min="1" Name="Hours_12_A" Type="integer">
+	<Condition Diagnostic="Hour Format is 12H" Expression="HourFormat = ERTC_HOUR_MODE_12"/>
+	</RefParameter>
+	<RefParameter Comment="Hours" CommentCH="小时" DefaultValue="0" Group="Alarm A" GroupCH="闹钟A" Max="23" Min="0" Name="Hours_24_A" Type="integer">
+		<Condition Diagnostic="Hour Format is 24H" Expression="HourFormat = ERTC_HOUR_MODE_24"/>
+	</RefParameter>
+	
+	
+	<!-- Minutes -->
+	<RefParameter Comment="Minutes" CommentCH="分钟" DefaultValue="0" Group="Alarm A" GroupCH="闹钟A" Max="59" Min="0" Name="Minutes_A" Type="integer" Reload = "false" Reload = "false"/>
+	
+	<!-- Seconds -->
+	<RefParameter Comment="Seconds" CommentCH="秒钟" DefaultValue="0" Group="Alarm A" GroupCH="闹钟A" Max="59" Min="0" Name="Seconds_A" Type="integer" Reload = "false" Reload = "false"/>
+	
+	<RefParameter Comment="Sub Seconds" CommentCH="亚秒" DefaultValue="0" Group="Alarm A" GroupCH="闹钟A" Max="32767" Min="0" Name="SubSeconds_A" Type="integer" Reload = "false" Reload = "false"/>
+	
+	<RefParameter Comment="Time Format" CommentCH="时间格式" DefaultValue="ERTC_AM" Group="Alarm A" GroupCH="闹钟A" Name="TimeFormat_A" Type="list" Reload = "false">
+	    <Condition Diagnostic="Hour Format is 12H" Expression="HourFormat = ERTC_HOUR_MODE_12"/>
+		<PossibleValue Comment="12 AM" CommentCH="12小时制 上午" Value="ERTC_AM"/>
+		<PossibleValue Comment="12 PM" CommentCH="12小时制 下午" Value="ERTC_PM"/>	
+	</RefParameter>
+	<RefParameter Comment="Time Format" CommentCH="时间格式" DefaultValue="ERTC_24H" Group="Alarm A" GroupCH="闹钟A" Name="TimeFormat_A" Type="list" Visible="false" Reload = "false"/>
+	
+	<!-- ************************************ Alarm mask for Alarm A************************************************************** -->
+	
+	<RefParameter Comment="Alarm Mask Date Week day" CommentCH="日期/星期屏蔽" DefaultValue="ERTC_ALARM_MASK_NONE" Group="Alarm A" GroupCH="闹钟A" Name="AlarmMaskDateWeekDay_A" Type="list" Reload = "false">
+		<PossibleValue Comment="Disable" CommentCH="关闭" Value="ERTC_ALARM_MASK_NONE"/>
+		<PossibleValue Comment="Enable" CommentCH="开启" Value="ERTC_ALARM_MASK_DATE_WEEK"/>
+	</RefParameter>
+	
+	<RefParameter Comment="Alarm Mask Hours" CommentCH="小时屏蔽" DefaultValue="ERTC_ALARM_MASK_NONE" Group="Alarm A" GroupCH="闹钟A" Name="AlarmMaskHours_A" Type="list" Reload = "false">
+		<PossibleValue Comment="Disable" CommentCH="关闭" Value="ERTC_ALARM_MASK_NONE"/>
+		<PossibleValue Comment="Enable" CommentCH="开启" Value="ERTC_ALARM_MASK_HOUR"/>
+	</RefParameter>
+	
+	<RefParameter Comment="Alarm Mask Minutes" CommentCH="分钟屏蔽" DefaultValue="ERTC_ALARM_MASK_NONE" Group="Alarm A" GroupCH="闹钟A" Name="AlarmMaskMinutes_A" Type="list" Reload = "false">
+		<PossibleValue Comment="Disable" CommentCH="关闭" Value="ERTC_ALARM_MASK_NONE"/>
+		<PossibleValue Comment="Enable" CommentCH="开启" Value="ERTC_ALARM_MASK_MIN"/>
+	</RefParameter>
+	
+	<RefParameter Comment="Alarm Mask Seconds" CommentCH="秒钟屏蔽" DefaultValue="ERTC_ALARM_MASK_NONE" Group="Alarm A" GroupCH="闹钟A" Name="AlarmMaskSeconds_A" Type="list" Reload = "false">
+		<PossibleValue Comment="Disable" CommentCH="关闭" Value="ERTC_ALARM_MASK_NONE"/>
+		<PossibleValue Comment="Enable" CommentCH="开启" Value="ERTC_ALARM_MASK_SEC"/>
+	</RefParameter>
+	
+	<RefParameter Comment="Alarm Sub Second Mask" CommentCH="亚秒屏蔽" DefaultValue="ERTC_ALARM_SBS_MASK_ALL" Group="Alarm A" GroupCH="闹钟A" Name="AlarmSubSecondMask_A" Type="list" Reload = "false">
+		<PossibleValue Comment="All Alarm SBS fields are masked." CommentCH="不匹配亚秒" Value="ERTC_ALARM_SBS_MASK_ALL"/>
+		<PossibleValue Comment="Only SBS[0] is compared." CommentCH="只匹配SBS[0]" Value="ERTC_ALARM_SBS_MASK_14_1"/>
+		<PossibleValue Comment="Only SBS[1:0] are compared" CommentCH="只匹配SBS[1:0]" Value="ERTC_ALARM_SBS_MASK_14_2"/>
+		<PossibleValue Comment="Only SBS[2:0] are compared" CommentCH="只匹配SBS[2:0]" Value="ERTC_ALARM_SBS_MASK_14_3"/>
+		<PossibleValue Comment="Only SBS[3:0] are compared" CommentCH="只匹配SBS[3:0]" Value="ERTC_ALARM_SBS_MASK_14_4"/>
+		<PossibleValue Comment="Only SBS[4:0] are compared" CommentCH="只匹配SBS[4:0]" Value="ERTC_ALARM_SBS_MASK_14_5"/>
+		<PossibleValue Comment="Only SBS[5:0] are compared" CommentCH="只匹配SBS[5:0]" Value="ERTC_ALARM_SBS_MASK_14_6"/>
+		<PossibleValue Comment="Only SBS[6:0] are compared" CommentCH="只匹配SBS[6:0]" Value="ERTC_ALARM_SBS_MASK_14_7"/>
+		<PossibleValue Comment="Only SBS[7:0] are compared" CommentCH="只匹配SBS[7:0]" Value="ERTC_ALARM_SBS_MASK_14_8"/>
+		<PossibleValue Comment="Only SBS[8:0] are compared" CommentCH="只匹配SBS[8:0]" Value="ERTC_ALARM_SBS_MASK_14_9"/>
+		<PossibleValue Comment="Only SBS[9:0] are compared" CommentCH="只匹配SBS[9:0]" Value="ERTC_ALARM_SBS_MASK_14_10"/>
+		<PossibleValue Comment="Only SBS[10:0] are compared" CommentCH="只匹配SBS[10:0]" Value="ERTC_ALARM_SBS_MASK_14_11"/>
+		<PossibleValue Comment="Only SBS[11:0] are compared" CommentCH="只匹配SBS[11:0]" Value="ERTC_ALARM_SBS_MASK_14_12"/>
+		<PossibleValue Comment="Only SBS[12:0] are compared" CommentCH="只匹配SBS[12:0]" Value="ERTC_ALARM_SBS_MASK_14_13"/>
+		<PossibleValue Comment="Only SBS[13:0] are compared" CommentCH="只匹配SBS[13:0]" Value="ERTC_ALARM_SBS_MASK_14_14"/>
+		<PossibleValue Comment="SBS[14:0] are compared" CommentCH="匹配SBS[14:0]" Value="ERTC_ALARM_SBS_MASK_NONE"/>
+	</RefParameter>
+	<RefParameter Comment="Alarm Date Week Day Sel" CommentCH="日期/星期选择" DefaultValue="ERTC_SLECT_DATE" Group="Alarm A" GroupCH="闹钟A" Name="AlarmDateWeekDaySel_A" Type="list">
+		<PossibleValue Comment="Date" CommentCH="日期" Value="ERTC_SLECT_DATE"/>
+		<PossibleValue Comment="Weekday" CommentCH="星期" Value="ERTC_SLECT_WEEK"/>
+	</RefParameter>	
+	<RefParameter Comment="Alarm Week Day" CommentCH="星期" DefaultValue="ERTC_WEEKDAY_MONDAY" Group="Alarm A" GroupCH="闹钟A" Name="AlarmDateWeekDay_A" Type="list" Reload = "false">
+		<Condition Diagnostic="" Expression="AlarmDateWeekDaySel_A = ERTC_SLECT_WEEK"/>
+		<PossibleValue Comment="Monday" CommentCH="星期一" Value="1"/>
+		<PossibleValue Comment="Tuesday" CommentCH="星期二" Value="2"/>
+		<PossibleValue Comment="Wednesday" CommentCH="星期三" Value="3"/>
+		<PossibleValue Comment="Thursday" CommentCH="星期四" Value="4"/>
+		<PossibleValue Comment="Friday" CommentCH="星期五" Value="5"/>
+		<PossibleValue Comment="Saturday" CommentCH="星期六" Value="6"/>
+		<PossibleValue Comment="Sunday" CommentCH="星期日" Value="7"/>
+	</RefParameter>	
+	
+	<RefParameter Comment="Alarm Date" CommentCH="日期" DefaultValue="1" Group="Alarm A" GroupCH="闹钟A" Max="31" Min="1" Name="AlarmDateWeekDay_A" Type="integer" Reload = "false" Reload = "false"/>
+
+	<RefParameter Comment="Alarm" CommentCH="闹钟" DefaultValue="ERTC_ALARM_A" Group="Alarm A" GroupCH="闹钟A" Name="Alarm_A" Type="list" Visible="false" Reload = "false">
+		<PossibleValue Comment="ALARM A" CommentCH="闹钟A" Value="ERTC_ALARM_A"/>
+	</RefParameter>
+	
+	
+	
+	<!-- Alarm B parameters -->
+	
+	<!-- Hours -->
+	<RefParameter Comment="Hours" CommentCH="小时" DefaultValue="1" Group="Alarm B" GroupCH="闹钟B" Max="12" Min="1" Name="Hours_12_B" Type="integer">
+	<Condition Diagnostic="Hour Format is 12H" Expression="HourFormat = ERTC_HOUR_MODE_12"/>
+	</RefParameter>
+	<RefParameter Comment="Hours" CommentCH="小时" DefaultValue="0" Group="Alarm B" GroupCH="闹钟B" Max="23" Min="0" Name="Hours_24_B" Type="integer">
+		<Condition Diagnostic="Hour Format is 24H" Expression="HourFormat = ERTC_HOUR_MODE_24"/>
+	</RefParameter>
+	
+	
+	<!-- Minutes -->
+	<RefParameter Comment="Minutes" CommentCH="分钟" DefaultValue="0" Group="Alarm B" GroupCH="闹钟B" Max="59" Min="0" Name="Minutes_B" Type="integer" Reload = "false" Reload = "false"/>
+	
+	<!-- Seconds -->
+	<RefParameter Comment="Seconds" CommentCH="秒钟" DefaultValue="0" Group="Alarm B" GroupCH="闹钟B" Max="59" Min="0" Name="Seconds_B" Type="integer" Reload = "false" Reload = "false"/>
+	
+	<RefParameter Comment="Sub Seconds" CommentCH="亚秒" DefaultValue="0" Group="Alarm B" GroupCH="闹钟B" Max="32767" Min="0" Name="SubSeconds_B" Type="integer" Reload = "false" Reload = "false"/>
+	
+	<RefParameter Comment="Time Format" CommentCH="时间格式" DefaultValue="ERTC_AM" Group="Alarm B" GroupCH="闹钟B" Name="TimeFormat_B" Type="list" Reload = "false">
+	    <Condition Diagnostic="Hour Format is 12H" Expression="HourFormat = ERTC_HOUR_MODE_12"/>
+		<PossibleValue Comment="12 AM" CommentCH="12小时制 上午" Value="ERTC_AM"/>
+		<PossibleValue Comment="12 PM" CommentCH="12小时制 下午" Value="ERTC_PM"/>	
+	</RefParameter>
+	<RefParameter Comment="Time Format" CommentCH="时间格式" DefaultValue="ERTC_24H" Group="Alarm B" GroupCH="闹钟B" Name="TimeFormat_B" Type="list" Visible="false" Reload = "false"/>
+	
+	<!-- ************************************ Alarm mask for Alarm A************************************************************** -->
+	
+	<RefParameter Comment="Alarm Mask Date Week day" CommentCH="日期/星期屏蔽" DefaultValue="ERTC_ALARM_MASK_NONE" Group="Alarm B" GroupCH="闹钟B" Name="AlarmMaskDateWeekDay_B" Type="list" Reload = "false">
+		<PossibleValue Comment="Disable" CommentCH="关闭" Value="ERTC_ALARM_MASK_NONE"/>
+		<PossibleValue Comment="Enable" CommentCH="开启" Value="ERTC_ALARM_MASK_DATE_WEEK"/>
+	</RefParameter>
+	
+	<RefParameter Comment="Alarm Mask Hours" CommentCH="小时屏蔽" DefaultValue="ERTC_ALARM_MASK_NONE" Group="Alarm B" GroupCH="闹钟B" Name="AlarmMaskHours_B" Type="list" Reload = "false">
+		<PossibleValue Comment="Disable" CommentCH="关闭" Value="ERTC_ALARM_MASK_NONE"/>
+		<PossibleValue Comment="Enable" CommentCH="开启" Value="ERTC_ALARM_MASK_HOUR"/>
+	</RefParameter>
+	
+	<RefParameter Comment="Alarm Mask Minutes" CommentCH="分钟屏蔽" DefaultValue="ERTC_ALARM_MASK_NONE" Group="Alarm B" GroupCH="闹钟B" Name="AlarmMaskMinutes_B" Type="list" Reload = "false">
+		<PossibleValue Comment="Disable" CommentCH="关闭" Value="ERTC_ALARM_MASK_NONE"/>
+		<PossibleValue Comment="Enable" CommentCH="开启" Value="ERTC_ALARM_MASK_MIN"/>
+	</RefParameter>
+	
+	<RefParameter Comment="Alarm Mask Seconds" CommentCH="秒钟屏蔽" DefaultValue="ERTC_ALARM_MASK_NONE" Group="Alarm B" GroupCH="闹钟B" Name="AlarmMaskSeconds_B" Type="list" Reload = "false">
+		<PossibleValue Comment="Disable" CommentCH="关闭" Value="ERTC_ALARM_MASK_NONE"/>
+		<PossibleValue Comment="Enable" CommentCH="开启" Value="ERTC_ALARM_MASK_SEC"/>
+	</RefParameter>
+	
+	<RefParameter Comment="Alarm Sub Second Mask" CommentCH="亚秒屏蔽" DefaultValue="ERTC_ALARM_SBS_MASK_ALL" Group="Alarm B" GroupCH="闹钟B" Name="AlarmSubSecondMask_B" Type="list" Reload = "false">
+		<PossibleValue Comment="All Alarm SBS fields are masked." CommentCH="不匹配亚秒" Value="ERTC_ALARM_SBS_MASK_ALL"/>
+		<PossibleValue Comment="Only SBS[0] is compared." CommentCH="只匹配SBS[0]" Value="ERTC_ALARM_SBS_MASK_14_1"/>
+		<PossibleValue Comment="Only SBS[1:0] are compared" CommentCH="只匹配SBS[1:0]" Value="ERTC_ALARM_SBS_MASK_14_2"/>
+		<PossibleValue Comment="Only SBS[2:0] are compared" CommentCH="只匹配SBS[2:0]" Value="ERTC_ALARM_SBS_MASK_14_3"/>
+		<PossibleValue Comment="Only SBS[3:0] are compared" CommentCH="只匹配SBS[3:0]" Value="ERTC_ALARM_SBS_MASK_14_4"/>
+		<PossibleValue Comment="Only SBS[4:0] are compared" CommentCH="只匹配SBS[4:0]" Value="ERTC_ALARM_SBS_MASK_14_5"/>
+		<PossibleValue Comment="Only SBS[5:0] are compared" CommentCH="只匹配SBS[5:0]" Value="ERTC_ALARM_SBS_MASK_14_6"/>
+		<PossibleValue Comment="Only SBS[6:0] are compared" CommentCH="只匹配SBS[6:0]" Value="ERTC_ALARM_SBS_MASK_14_7"/>
+		<PossibleValue Comment="Only SBS[7:0] are compared" CommentCH="只匹配SBS[7:0]" Value="ERTC_ALARM_SBS_MASK_14_8"/>
+		<PossibleValue Comment="Only SBS[8:0] are compared" CommentCH="只匹配SBS[8:0]" Value="ERTC_ALARM_SBS_MASK_14_9"/>
+		<PossibleValue Comment="Only SBS[9:0] are compared" CommentCH="只匹配SBS[9:0]" Value="ERTC_ALARM_SBS_MASK_14_10"/>
+		<PossibleValue Comment="Only SBS[10:0] are compared" CommentCH="只匹配SBS[10:0]" Value="ERTC_ALARM_SBS_MASK_14_11"/>
+		<PossibleValue Comment="Only SBS[11:0] are compared" CommentCH="只匹配SBS[11:0]" Value="ERTC_ALARM_SBS_MASK_14_12"/>
+		<PossibleValue Comment="Only SBS[12:0] are compared" CommentCH="只匹配SBS[12:0]" Value="ERTC_ALARM_SBS_MASK_14_13"/>
+		<PossibleValue Comment="Only SBS[13:0] are compared" CommentCH="只匹配SBS[13:0]" Value="ERTC_ALARM_SBS_MASK_14_14"/>
+		<PossibleValue Comment="SBS[14:0] are compared" CommentCH="匹配SBS[14:0]" Value="ERTC_ALARM_SBS_MASK_NONE"/>
+	</RefParameter>
+	<RefParameter Comment="Alarm Date Week Day Sel" CommentCH="日期/星期选择" DefaultValue="ERTC_SLECT_DATE" Group="Alarm B" GroupCH="闹钟B" Name="AlarmDateWeekDaySel_B" Type="list">
+		<PossibleValue Comment="Date" CommentCH="日期" Value="ERTC_SLECT_DATE"/>
+		<PossibleValue Comment="Weekday" CommentCH="星期" Value="ERTC_SLECT_WEEK"/>
+	</RefParameter>	
+	<RefParameter Comment="Alarm Week Day" CommentCH="星期" DefaultValue="ERTC_WEEKDAY_MONDAY" Group="Alarm B" GroupCH="闹钟B" Name="AlarmDateWeekDay_B" Type="list" Reload = "false">
+		<Condition Diagnostic="" Expression="AlarmDateWeekDaySel_B = ERTC_SLECT_WEEK"/>
+		<PossibleValue Comment="Monday" CommentCH="星期一" Value="1"/>
+		<PossibleValue Comment="Tuesday" CommentCH="星期二" Value="2"/>
+		<PossibleValue Comment="Wednesday" CommentCH="星期三" Value="3"/>
+		<PossibleValue Comment="Thursday" CommentCH="星期四" Value="4"/>
+		<PossibleValue Comment="Friday" CommentCH="星期五" Value="5"/>
+		<PossibleValue Comment="Saturday" CommentCH="星期六" Value="6"/>
+		<PossibleValue Comment="Sunday" CommentCH="星期日" Value="7"/>
+	</RefParameter>	
+	
+	<RefParameter Comment="Alarm Date" CommentCH="日期" DefaultValue="1" Group="Alarm B" GroupCH="闹钟B" Max="31" Min="1" Name="AlarmDateWeekDay_B" Type="integer" Reload = "false" Reload = "false"/>
+
+	<RefParameter Comment="Alarm" CommentCH="闹钟" DefaultValue="ERTC_ALARM_B" Group="Alarm B" GroupCH="闹钟B" Name="Alarm_B" Type="list" Visible="false">
+		<PossibleValue Comment="ALARM B" CommentCH="闹钟B" Value="ERTC_ALARM_B"/>
+	</RefParameter>
+
+
+
+
+	<!-- Time Stamp parameters -->
+	<RefParameter Comment="Timestamp" CommentCH="时间戳开启" DefaultValue="ERTC_PIN_PC13" Group="Time Stamp" GroupCH="时间戳" Name="Timestamp" Type="list" Visible="false" Reload = "false">
+		<Condition Diagnostic="" Expression="ERTC_TIMESTAMP_PC13"/>
+		<PossibleValue Comment="PC13 as timestamp input pin" CommentCH="PC13作为时间戳输入引脚" Value="ERTC_PIN_PC13"/>
+	</RefParameter>
+	<RefParameter Comment="Time Stamp Pin Valid Edge" CommentCH="时间戳检测边沿" DefaultValue="ERTC_TIMESTAMP_EDGE_RISING" Group="Time Stamp" GroupCH="时间戳" Name="TimeStampEdge" Type="list" Reload = "false">
+		<PossibleValue Comment="Rising edge" CommentCH="上升沿" Value="ERTC_TIMESTAMP_EDGE_RISING"/>
+		<PossibleValue Comment="Falling edge" CommentCH="下降沿" Value="ERTC_TIMESTAMP_EDGE_FALLING"/>
+	</RefParameter>
+	
+	<!-- ################################## Tamper parameters ##################################################-->
+	<RefParameter Comment="Tamper" CommentCH="入侵" DefaultValue="ERTC_TAMPER_1" Group="Tamper" GroupCH="入侵" Name="Tamper_1" Type="list" Visible="false" Reload = "false">
+		<PossibleValue Comment="Tamper 1" CommentCH="入侵1" Value="ERTC_TAMPER_1"/>
+	</RefParameter>
+	
+	<RefParameter Comment="Tamper1 Enable" CommentCH="入侵检测1开启" DefaultValue="ERTC_PIN_PC13" Group="Tamper" GroupCH="入侵" Name="Tamper1Enable" Type="list" Visible="false" Reload = "false">
+		<Condition Diagnostic="" Expression="ERTC_TAMPER1_PC13"/>
+		<PossibleValue Comment="PC13 as tamper 1 input pin" CommentCH="PC13作为入侵检测1引脚" Value="ERTC_PIN_PC13"/>
+	</RefParameter>
+	
+	<RefParameter Comment="Filter" CommentCH="滤波" DefaultValue="ERTC_TAMPER_FILTER_DISABLE" Group="Tamper" GroupCH="入侵" Name="Filter" Type="list">
+		<Condition Diagnostic="" Expression="ERTC_TAMPER"/>
+		<PossibleValue Comment="Disable" CommentCH="关闭" Value="ERTC_TAMPER_FILTER_DISABLE"/>
+		<PossibleValue Comment="Tamper activated after 2 consecutive samples" CommentCH="连续2次采样有效，判定发生入侵事件" Value="ERTC_TAMPER_FILTER_2"/>
+		<PossibleValue Comment="Tamper activated after 4 consecutive samples" CommentCH="连续4次采样有效，判定发生入侵事件" Value="ERTC_TAMPER_FILTER_4"/>
+		<PossibleValue Comment="Tamper activated after 8 consecutive samples" CommentCH="连续8次采样有效，判定发生入侵事件" Value="ERTC_TAMPER_FILTER_8"/>
+	</RefParameter>
+	<RefParameter Comment="Sampling Frequency" CommentCH="采样频率" DefaultValue="ERTC_TAMPER_FREQ_DIV_32768" Group="Tamper" GroupCH="入侵" Name="SamplingFrequency" Type="list" Reload = "false">
+		<Condition Diagnostic="" Expression="ERTC_TAMPER"/>
+		<PossibleValue Comment="ERTCCLK / 32768" CommentCH="ERTCCLK / 32768" Value="ERTC_TAMPER_FREQ_DIV_32768"/>
+		<PossibleValue Comment="ERTCCLK / 16384" CommentCH="ERTCCLK / 16384" Value="ERTC_TAMPER_FREQ_DIV_16384"/>
+		<PossibleValue Comment="ERTCCLK / 8192" CommentCH="ERTCCLK / 8192" Value="ERTC_TAMPER_FREQ_DIV_8192"/>
+		<PossibleValue Comment="ERTCCLK / 4096" CommentCH="ERTCCLK / 4096" Value="ERTC_TAMPER_FREQ_DIV_4096"/>
+		<PossibleValue Comment="ERTCCLK / 2048" CommentCH="ERTCCLK / 2048" Value="ERTC_TAMPER_FREQ_DIV_2048"/>
+		<PossibleValue Comment="ERTCCLK / 1024" CommentCH="ERTCCLK / 1024" Value="ERTC_TAMPER_FREQ_DIV_1024"/>
+		<PossibleValue Comment="ERTCCLK / 512" CommentCH="ERTCCLK / 512" Value="ERTC_TAMPER_FREQ_DIV_512"/>
+		<PossibleValue Comment="ERTCCLK / 256" CommentCH="ERTCCLK / 256" Value="ERTC_TAMPER_FREQ_DIV_256"/>
+	</RefParameter>
+	<RefParameter Comment="Tamper detection pre-charge time" CommentCH="入侵检测预充电时间" DefaultValue="ERTC_TAMPER_PR_1_ERTCCLK" Group="Tamper" GroupCH="入侵" Name="PrechargeDuration" Type="list" Reload = "false">
+		<Condition Diagnostic="" Expression="ERTC_TAMPER"/>
+		<PossibleValue Comment="1 ERTCCLK" CommentCH="1 ERTCCLK" Value="ERTC_TAMPER_PR_1_ERTCCLK"/>
+		<PossibleValue Comment="2 ERTCCLK" CommentCH="2 ERTCCLK" Value="ERTC_TAMPER_PR_2_ERTCCLK"/>
+		<PossibleValue Comment="4 ERTCCLK" CommentCH="4 ERTCCLK" Value="ERTC_TAMPER_PR_4_ERTCCLK"/>
+		<PossibleValue Comment="8 ERTCCLK" CommentCH="8 ERTCCLK" Value="ERTC_TAMPER_PR_8_ERTCCLK"/>
+	</RefParameter>
+	<RefParameter Comment="Tamper Pin Pull Up" CommentCH="入侵检测引脚上拉电阻" DefaultValue="TRUE" Group="Tamper" GroupCH="入侵" Name="TamperPullUp" Type="list" Reload = "false">
+		<Condition Diagnostic="" Expression="ERTC_TAMPER"/>
+		<PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE"/>
+		<PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE"/>
+	</RefParameter>
+	<RefParameter Comment="Time Stamp On Tamper Detection" CommentCH="入侵检测保存时间戳" DefaultValue="TRUE" Group="Tamper" GroupCH="入侵" Name="TimeStampOnTamperDetection" Type="list" Reload = "false">
+		<Condition Diagnostic="" Expression="ERTC_TAMPER"/>
+		<PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE"/>
+		<PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE"/>
+	</RefParameter>
+	
+	<RefParameter Comment="Tamper 1 Trigger Edge" CommentCH="入侵检测1触发边沿" DefaultValue="ERTC_TAMPER_EDGE_RISING" Group="Tamper" GroupCH="入侵" Name="Trigger_1" Type="list" Reload = "false">
+			<Condition Diagnostic="" Expression="ERTC_TAMPER &amp; Filter = ERTC_TAMPER_FILTER_DISABLE"/>
+			<PossibleValue Comment="Rising Edge" CommentCH="上升沿" Value="ERTC_TAMPER_EDGE_RISING"/>
+			<PossibleValue Comment="Falling Edge" CommentCH="下降沿" Value="ERTC_TAMPER_EDGE_FALLING"/>
+	</RefParameter>
+	<RefParameter Comment="Tamper 1 Trigger Edge" CommentCH="入侵检测1触发边沿" DefaultValue="ERTC_TAMPER_EDGE_LOW" Group="Tamper" GroupCH="入侵" Name="Trigger_1" Type="list" Reload = "false">
+		<PossibleValue Comment="Low Level" CommentCH="低电平" Value="ERTC_TAMPER_EDGE_LOW"/>
+		<PossibleValue Comment="High Level" CommentCH="高电平" Value="ERTC_TAMPER_EDGE_HIGH"/>
+	</RefParameter>
+	
+	<!-- Calibration -->
+	<RefParameter Comment="Calibration Output" CommentCH="校准输出" DefaultValue="ERTC_CAL_OUTPUT_512HZ" Group="Calibration" GroupCH="校准" Name="CalibOutput" Type="list" Reload = "false">
+		<Condition Diagnostic="" Expression="CALIB_512"/>
+		<PossibleValue Comment="512Hz" CommentCH="512Hz" Value="ERTC_CAL_OUTPUT_512HZ"/>
+	</RefParameter>
+	<RefParameter Comment="Calibration Output" CommentCH="校准输出" DefaultValue="ERTC_CAL_OUTPUT_1HZ" Group="Calibration" GroupCH="校准" Name="CalibOutput" Type="list" Reload = "false">
+		<Condition Diagnostic="" Expression="CALIB_1024"/>
+		<PossibleValue Comment="1Hz" CommentCH="1Hz" Value="ERTC_CAL_OUTPUT_1HZ"/>
+	</RefParameter>
+	
+	<RefParameter Comment="Interrupt" CommentCH="中断" DefaultValue="DISABLE" Group="Alarm A" GroupCH="闹钟A" Name="InterruptAlarmA" Type="list" Reload = "false">
+		<Condition Diagnostic="" Expression = "ERTC_ALARM_A_INTERRUPT"/>
+		<PossibleValue Comment="Disable" CommentCH="关闭" Value="DISABLE"/>
+		<PossibleValue Comment="Enable" CommentCH="开启" Value="ENABLE"/>
+	</RefParameter>
+	<RefParameter Comment="Interrupt Trigger Polarity" CommentCH="中断触发极性" DefaultValue="EXINT_TRIGGER_RISING_EDGE" Group="Alarm A" GroupCH="闹钟A" Name="TriggerPolarity_AlarmA" Type="list">
+		<Condition Diagnostic="" Expression = "InterruptAlarmA = ENABLE"/>
+		<PossibleValue Comment="Rising Edge" CommentCH="上升沿" Value="EXINT_TRIGGER_RISING_EDGE"/>
+		<PossibleValue Comment="Falling Edge" CommentCH="下降沿" Value="EXINT_TRIGGER_FALLING_EDGE"/>
+		<PossibleValue Comment="Rising/Falling Edge" CommentCH="上升沿/下降沿" Value="EXINT_TRIGGER_BOTH_EDGE"/>
+	</RefParameter>
+	
+	<RefParameter Comment="Interrupt" CommentCH="中断" DefaultValue="DISABLE" Group="Alarm B" GroupCH="闹钟B" Name="InterruptAlarmB" Type="list" Reload = "false">
+		<Condition Diagnostic="" Expression = "ERTC_ALARM_B_INTERRUPT"/>
+		<PossibleValue Comment="Disable" CommentCH="关闭" Value="DISABLE"/>
+		<PossibleValue Comment="Enable" CommentCH="开启" Value="ENABLE"/>
+	</RefParameter>
+	<RefParameter Comment="Interrupt Trigger Polarity" CommentCH="中断触发极性" DefaultValue="EXINT_TRIGGER_RISING_EDGE" Group="Alarm B" GroupCH="闹钟B" Name="TriggerPolarity_AlarmB" Type="list">
+		<Condition Diagnostic="" Expression = "InterruptAlarmB = ENABLE"/>
+		<PossibleValue Comment="Rising Edge" CommentCH="上升沿" Value="EXINT_TRIGGER_RISING_EDGE"/>
+		<PossibleValue Comment="Falling Edge" CommentCH="下降沿" Value="EXINT_TRIGGER_FALLING_EDGE"/>
+		<PossibleValue Comment="Rising/Falling Edge" CommentCH="上升沿/下降沿" Value="EXINT_TRIGGER_BOTH_EDGE"/>
+	</RefParameter>
+	
+	<RefParameter Comment="Interrupt" CommentCH="中断" DefaultValue="DISABLE" Group="Time Stamp" GroupCH="时间戳" Name="InterruptTimestamp" Type="list" Reload = "false">
+		<Condition Diagnostic="" Expression = "ERTC_TIMESTAMP_INTERRUPT"/>
+		<PossibleValue Comment="Disable" CommentCH="关闭" Value="DISABLE"/>
+		<PossibleValue Comment="Enable" CommentCH="开启" Value="ENABLE"/>
+	</RefParameter>
+	<RefParameter Comment="Interrupt Trigger Polarity" CommentCH="中断触发极性" DefaultValue="EXINT_TRIGGER_RISING_EDGE" Group="Time Stamp" GroupCH="时间戳" Name="TriggerPolarity_TimeStamp" Type="list">
+		<Condition Diagnostic="" Expression = "InterruptTimestamp = ENABLE"/>
+		<PossibleValue Comment="Rising Edge" CommentCH="上升沿" Value="EXINT_TRIGGER_RISING_EDGE"/>
+		<PossibleValue Comment="Falling Edge" CommentCH="下降沿" Value="EXINT_TRIGGER_FALLING_EDGE"/>
+		<PossibleValue Comment="Rising/Falling Edge" CommentCH="上升沿/下降沿" Value="EXINT_TRIGGER_BOTH_EDGE"/>
+	</RefParameter>
+	
+	<RefParameter Comment="Tamper Interrupt" CommentCH="入侵检测中断" DefaultValue="DISABLE" Group="Tamper" GroupCH="入侵" Name="InterruptTamper" Type="list" Reload = "false">
+		<Condition Diagnostic="" Expression = "ERTC_TAMPER_INTERRUPT"/>
+		<PossibleValue Comment="Disable" CommentCH="关闭" Value="DISABLE"/>
+		<PossibleValue Comment="Enable" CommentCH="开启" Value="ENABLE"/>
+	</RefParameter>
+	<RefParameter Comment="Interrupt Trigger Polarity" CommentCH="入侵检测中断触发极性" DefaultValue="EXINT_TRIGGER_RISING_EDGE" Group="Tamper" GroupCH="入侵" Name="TriggerPolarity_Tamper" Type="list">
+		<Condition Diagnostic="" Expression = "InterruptTamper = ENABLE"/>
+		<PossibleValue Comment="Rising Edge" CommentCH="上升沿" Value="EXINT_TRIGGER_RISING_EDGE"/>
+		<PossibleValue Comment="Falling Edge" CommentCH="下降沿" Value="EXINT_TRIGGER_FALLING_EDGE"/>
+		<PossibleValue Comment="Rising/Falling Edge" CommentCH="上升沿/下降沿" Value="EXINT_TRIGGER_BOTH_EDGE"/>
+	</RefParameter>
+	
+	<RefParameter Comment="Reference clock detection" CommentCH="参考时钟检测" DefaultValue="ENABLE" Group="General" GroupCH="通用参数" Name="RefClockDetection" Type="list" Visible="false" Reload = "false">
+		<Condition Diagnostic="" Expression = "ERTC_RECLOCK_With_REFIN"/>
+		<PossibleValue Comment="Enable" CommentCH="开启" Value="ENABLE"/>
+	</RefParameter>
+	<RefParameter Comment="Reference clock detection" CommentCH="参考时钟检测" DefaultValue="DISABLE" Group="General" GroupCH="通用参数" Name="RefclockDetection" Type="list" Visible="false" Reload = "false">
+		<PossibleValue Comment="Disable" CommentCH="关闭" Value="DISABLE"/>
+	</RefParameter>
+	
+	
+	<RefParameter Comment="Clock Source Select" CommentCH="时钟源选择" DefaultValue="EXINT_TRIGGER_RISING_EDGE" Group="Wakeup timer" GroupCH="周期性唤醒定时器" Name="ClockSourceSelect" Type="list" Reload = "false">
+		<PossibleValue Comment="ERTC_CLK/16" CommentCH="ERTC_CLK/16" Value="ERTC_WAT_CLK_ERTCCLK_DIV16"/>
+		<PossibleValue Comment="ERTC_CLK/8" CommentCH="ERTC_CLK/8" Value="ERTC_WAT_CLK_ERTCCLK_DIV8"/>
+		<PossibleValue Comment="ERTC_CLK/4" CommentCH="ERTC_CLK/4" Value="ERTC_WAT_CLK_ERTCCLK_DIV4"/>
+		<PossibleValue Comment="ERTC_CLK/2" CommentCH="ERTC_CLK/2" Value="ERTC_WAT_CLK_ERTCCLK_DIV2"/>
+		<PossibleValue Comment="1Hz(16bit Counter)" CommentCH="1Hz(16bit 计数器)" Value="ERTC_WAT_CLK_CK_B_16BITS"/>
+		<PossibleValue Comment="1Hz(17bit Counter)" CommentCH="1Hz(17bit 计数器)" Value="ERTC_WAT_CLK_CK_B_17BITS"/>
+	</RefParameter>
+	
+	<RefParameter Comment="Counter" CommentCH="计数值" DefaultValue="0" Group="Wakeup timer" GroupCH="周期性唤醒定时器" Max="65535" Min="0" Name="Counter" Type="integer" Reload = "false" Reload = "false"/>
+	
+	<RefParameter Comment="Interrupt" CommentCH="中断" DefaultValue="DISABLE" Group="Wakeup timer" GroupCH="周期性唤醒定时器" Name="InterruptWakeupTimer" Type="list" Reload = "false">
+		<PossibleValue Comment="Disable" CommentCH="关闭" Value="DISABLE"/>
+		<PossibleValue Comment="Enable" CommentCH="开启" Value="ENABLE"/>
+	</RefParameter>
+	
+	
+		
+
+	<!-- RefMode for intern -->
+	<RefMode Name="ERTC_Enabled"  Abstract = "true">
+		<!-- Basic Parameters -->
+		<Parameter Name="HourFormat"/>
+		<Parameter Name="AsynchPrediv"/>
+		<Parameter Name="SynchPrediv"/>
+		<Parameter Name="OutPut_Alarm_A"/>
+		<Parameter Name="OutPut_Alarm_B"/>
+		<Parameter Name="OutPut_Wakeup"/>
+		<Parameter Name="OutPutPolarity"/>
+		<Parameter Name="OutPutType"/>
+		<Parameter Name="RefClockDetection"/>
+		<Parameter Name="Filter"/>
+		<Parameter Name="SamplingFrequency"/>
+		<Parameter Name="PrechargeDuration"/>
+		<Parameter Name="TamperPullUp"/>
+		<Parameter Name="TimeStampOnTamperDetection"/>
+		<Parameter Name="InterruptTamper"/>
+		<!--<Parameter Name="TriggerPolarity_Tamper"/>-->
+	</RefMode>
+	
+	<RefMode Name="ERTC_Calendar" BaseMode="ERTC_Calendar">
+		<!-- Calendar Settings -->
+		<Parameter Name="Hours_12"/>
+		<Parameter Name="Hours_24"/>
+		<Parameter Name="Minutes"/>
+		<Parameter Name="Seconds"/>
+		<!-- Parameter Name="SubSeconds"/-->
+		<Parameter Name="TimeFormat"/>
+		<Parameter Name="DayLightSaving"/>
+		<Parameter Name="StoreOperation"/>
+		<Parameter Name="Year"/>
+		<Parameter Name="Month"/>
+		<Parameter Name="Date"/>	
+		<Parameter Name="WeekDay"/>			
+	</RefMode>
+	
+	<!-- Alarm A-->
+	<RefMode BaseMode="Alarm A" Name="Alarm A">
+		<!-- Basic Parameters -->
+		<Parameter Name="Hours_12_A"/>
+		<Parameter Name="Hours_24_A"/>
+		<Parameter Name="Minutes_A"/>
+		<Parameter Name="Seconds_A"/>
+		<Parameter Name="SubSeconds_A"/>
+		<Parameter Name="TimeFormat_A"/>
+		<!-- Alarm Mask Parameters -->
+		<Parameter Name="AlarmMaskDateWeekDay_A"/>
+		<Parameter Name="AlarmMaskHours_A"/>
+		<Parameter Name="AlarmMaskMinutes_A"/>
+		<Parameter Name="AlarmMaskSeconds_A"/>
+		
+		<Parameter Name="AlarmSubSecondMask_A"/>
+		<Parameter Name="AlarmDateWeekDaySel_A"/>
+		<Parameter Name="AlarmDateWeekDay_A"/>
+		<Parameter Name="InterruptAlarmA"/>
+		<!--<Parameter Name="TriggerPolarity_AlarmA"/>-->
+		<Parameter Name="Alarm_A"/>
+	</RefMode>
+ 	<RefMode BaseMode="Alarm A" Name="AlarmA_Eventoutput">
+		<!-- Basic Parameters -->
+		<Parameter Name="Hours_12_A"/>
+		<Parameter Name="Hours_24_A"/>
+		<Parameter Name="Minutes_A"/>
+		<Parameter Name="Seconds_A"/>
+		<Parameter Name="SubSeconds_A"/>
+		<Parameter Name="TimeFormat_A"/>
+		<!-- Alarm Mask Parameters -->
+		<Parameter Name="AlarmMaskDateWeekDay_A"/>
+		<Parameter Name="AlarmMaskHours_A"/>
+		<Parameter Name="AlarmMaskMinutes_A"/>
+		<Parameter Name="AlarmMaskSeconds_A"/>
+		
+		<Parameter Name="AlarmSubSecondMask_A"/>
+		<Parameter Name="AlarmDateWeekDaySel_A"/>
+		<Parameter Name="AlarmDateWeekDay_A"/>
+		<Parameter Name="InterruptAlarmA"/>
+		<!--<Parameter Name="TriggerPolarity_AlarmA"/>-->
+		<Parameter Name="Alarm_A"/>
+	</RefMode>
+	
+	
+		<!-- Alarm B-->
+	<RefMode BaseMode="Alarm B" Name="Alarm B">
+		<!-- Basic Parameters -->
+		<Parameter Name="Hours_12_B"/>
+		<Parameter Name="Hours_24_B"/>
+		<Parameter Name="Minutes_B"/>
+		<Parameter Name="Seconds_B"/>
+		<Parameter Name="SubSeconds_B"/>
+		<Parameter Name="TimeFormat_B"/>
+		<!-- Alarm Mask Parameters -->
+		<Parameter Name="AlarmMaskDateWeekDay_B"/>
+		<Parameter Name="AlarmMaskHours_B"/>
+		<Parameter Name="AlarmMaskMinutes_B"/>
+		<Parameter Name="AlarmMaskSeconds_B"/>
+		
+		<Parameter Name="AlarmSubSecondMask_B"/>
+		<Parameter Name="AlarmDateWeekDaySel_B"/>
+		<Parameter Name="AlarmDateWeekDay_B"/>
+		<Parameter Name="InterruptAlarmB"/>
+		<!--<Parameter Name="TriggerPolarity_AlarmB"/>-->
+		<Parameter Name="Alarm_B"/>
+	</RefMode>
+ 	<RefMode BaseMode="Alarm B" Name="AlarmB_Eventoutput">
+		<!-- Basic Parameters -->
+		<Parameter Name="Hours_12_B"/>
+		<Parameter Name="Hours_24_B"/>
+		<Parameter Name="Minutes_B"/>
+		<Parameter Name="Seconds_B"/>
+		<Parameter Name="SubSeconds_B"/>
+		<Parameter Name="TimeFormat_B"/>
+		<!-- Alarm Mask Parameters -->
+		<Parameter Name="AlarmMaskDateWeekDay_B"/>
+		<Parameter Name="AlarmMaskHours_B"/>
+		<Parameter Name="AlarmMaskMinutes_B"/>
+		<Parameter Name="AlarmMaskSeconds_B"/>
+		
+		<Parameter Name="AlarmSubSecondMask_B"/>
+		<Parameter Name="AlarmDateWeekDaySel_B"/>
+		<Parameter Name="AlarmDateWeekDay_B"/>
+		<Parameter Name="InterruptAlarmB"/>
+		<!--<Parameter Name="TriggerPolarity_AlarmB"/>-->
+		<Parameter Name="Alarm_B"/>
+	</RefMode>
+	
+	
+	  <!-- Timestamp-->
+	<RefMode BaseMode="Timestamp" Name="Timestamp">
+		<!-- Basic Parameters -->
+		<Parameter Name="Timestamp"/>
+		<Parameter Name="TimeStampEdge"/>
+		<Parameter Name="InterruptTimestamp"/>				
+		<!--<Parameter Name="TriggerPolarity_TimeStamp"/>-->
+	</RefMode>
+
+	<RefMode BaseMode="Tamper 1" Name="Tamper 1">
+		<Parameter Name="Tamper1Enable"/>
+		<Parameter Name="Tamper_1">
+			<PossibleValue>ERTC_TAMPER_1</PossibleValue>
+		</Parameter>
+		<Parameter Name="Trigger_1"/>
+	</RefMode>
+
+	<RefMode BaseMode="Calibration" Name="Calibration_512Hz">
+		<Parameter Name="CalibOutput"/>
+	</RefMode>
+	<RefMode BaseMode="Calibration" Name="Calibration_1Hz">
+		<Parameter Name="CalibOutput"/>
+	</RefMode>
+	
+	<RefMode BaseMode="Wakeup timer" Name="Wakeup timer">
+		<Parameter Name="ClockSourceSelect"/>
+		<Parameter Name="Counter"/>
+		<Parameter Name="InterruptWakeupTimer"/>
+	</RefMode>
+	<RefMode BaseMode="Wakeup timer" Name="Wakeup timer Event">
+		<Parameter Name="ClockSourceSelect"/>
+		<Parameter Name="Counter"/>
+		<Parameter Name="InterruptWakeupTimer"/>
+	</RefMode>
+
+	
+
+        
+	<!--#####################################################################################################-->
+	<!--############################################# Modes Definition ######################################-->
+	<!--#####################################################################################################-->
+	<ModeLogicOperator Name="OR">
+	
+		<Mode Name="ERTC_Enabled" UserName="Activate Clock Source" UserNameCH="开启时钟源">
+			<ModeLogicOperator Name="XOR">
+				<Mode Name="ERTC_Enabled" UserName="Activate Clock Source" UserNameCH="开启时钟源">
+					<SignalLogicalOp Name="AND">
+						<Signal Name="VS_ERTC_Activate"/>
+					</SignalLogicalOp>
+					<Semaphore>ERTC_ENABLED</Semaphore>
+				</Mode>
+			</ModeLogicOperator>
+		</Mode>
+		
+		<Mode Name="ERTC_Calendar" UserName="Activate Calendar" UserNameCH="开启日历">
+			<Condition Expression="ERTC_ENABLED" Diagnostic="Need to select &quot;Activate Clock Source&quot;" DiagnosticCH="需要 &quot;开启时钟源&quot;"/>
+			<ModeLogicOperator Name="XOR">
+				<Mode Name="ERTC_Calendar" UserName="Activate Calendar" UserNameCH="开启日历">
+					<SignalLogicalOp Name="AND">
+						<Signal Name="VS_ERTC_Calendar"/>
+					</SignalLogicalOp>
+					<Semaphore>ERTC_CALENDAR</Semaphore>
+				</Mode>
+			</ModeLogicOperator>
+		</Mode>
+		
+		<Mode Name="Alarm A" UserName="Alarm A" UserNameCH="闹钟 A">
+			<Condition Expression="ERTC_CALENDAR" Diagnostic="Need to select &quot;Activate Calendar&quot;" DiagnosticCH="需要 &quot;开启日历&quot;"/>
+			<ModeLogicOperator Name="XOR">
+				<Mode Name="Alarm A" UserName="Internal Alarm" UserNameCH="闹钟">
+					<SignalLogicalOp Name="AND">
+						<Signal Name="VS_ERTC_Alarm_A_Intern"/>
+					</SignalLogicalOp>
+					<Semaphore>AlarmA_Intern</Semaphore>
+					<Semaphore>ERTC_ALARM_A_INTERRUPT</Semaphore>
+				</Mode>
+				<Mode Name="AlarmA_Eventoutput" UserName="Internal Alarm Event output" UserNameCH="闹钟事件输出">
+					<Condition Expression="!ERTC_ALARM_B_TAMPER&amp;!ERTC_TIMESTAMP_TAMPER&amp;!ERTC_TAMPER1_TAMPER&amp;!ERTC_CALIB_TAMPER&amp;!ERTC_Wakeup_TAMPER" 
+         	                  Diagnostic="Need &quot;ERTC_TAMPER&quot; not used by other functions" 
+            	                   DiagnosticCH="需要 &quot;ERTC_TAMPER&quot; 未被其他功能使用"/>
+					<SignalLogicalOp Name="AND">
+						<Signal Name="TAMPER"/>
+					</SignalLogicalOp>
+					<Semaphore>AlarmA_Outputed</Semaphore>
+					<Semaphore>ERTC_ALARM_A_INTERRUPT</Semaphore>
+					<Semaphore>ERTC_ALARM_A_TAMPER</Semaphore>
+				</Mode>
+			</ModeLogicOperator>			
+		</Mode>
+		
+		<Mode Name="Alarm B" UserName="Alarm B" UserNameCH="闹钟 B">
+			<Condition Expression="ERTC_CALENDAR" Diagnostic="Need to select &quot;Activate Calendar&quot;" DiagnosticCH="需要 &quot;开启日历&quot;"/>
+			<ModeLogicOperator Name="XOR">
+				<Mode Name="Alarm B" UserName="Internal Alarm" UserNameCH="闹钟">
+					<SignalLogicalOp Name="AND">
+						<Signal Name="VS_ERTC_Alarm_B_Intern"/>
+					</SignalLogicalOp>
+					<Semaphore>AlarmB_Intern</Semaphore>
+					<Semaphore>ERTC_ALARM_B_INTERRUPT</Semaphore>
+				</Mode>
+				<Mode Name="AlarmB_Eventoutput" UserName="Internal Alarm Event output" UserNameCH="闹钟事件输出">
+					<Condition Expression="!ERTC_ALARM_A_TAMPER&amp;!ERTC_TIMESTAMP_TAMPER&amp;!ERTC_TAMPER1_TAMPER&amp;!ERTC_CALIB_TAMPER&amp;!ERTC_Wakeup_TAMPER" 
+         	                  Diagnostic="Need &quot;ERTC_TAMPER&quot; not used by other functions" 
+            	                   DiagnosticCH="需要 &quot;ERTC_TAMPER&quot; 未被其他功能使用"/>
+					<SignalLogicalOp Name="AND">
+						<Signal Name="TAMPER"/>
+					</SignalLogicalOp>
+					<Semaphore>AlarmB_Outputed</Semaphore>
+					<Semaphore>ERTC_ALARM_B_INTERRUPT</Semaphore>
+					<Semaphore>ERTC_ALARM_B_TAMPER</Semaphore>
+				</Mode>
+			</ModeLogicOperator>			
+		</Mode>
+		
+		<Mode Name="Timestamp" UserName="Timestamp Enable" UserNameCH="时间戳开启">
+         <Condition Expression="ERTC_CALENDAR&amp;!ERTC_ALARM_A_TAMPER&amp;!ERTC_ALARM_B_TAMPER&amp;!ERTC_TAMPER1_TAMPER&amp;!ERTC_CALIB_TAMPER&amp;!ERTC_Wakeup_TAMPER" 
+         	                  Diagnostic="(1) Need to select &quot;Activate Clock Source&quot;&#x000A;(2) Need &quot;ERTC_TAMPER&quot; not used by other functions" 
+            	                   DiagnosticCH="(1) 需要 &quot;开启日历&quot;&#x000A;(2) 需要&quot;ERTC_TAMPER&quot; 未被其他功能使用"/>         
+			<ModeLogicOperator Name="XOR">
+				<Mode Name="Timestamp" UserName="Timestamp Enable" UserNameCH="时间戳开启">
+					<SignalLogicalOp Name="AND">
+						<Signal Name="TAMPER"/>
+					</SignalLogicalOp>
+					<Semaphore>ERTC_TIMESTAMP_INTERRUPT</Semaphore>
+					<Semaphore>ERTC_TIMESTAMP_PC13</Semaphore>
+					<Semaphore>ERTC_TIMESTAMP_TAMPER</Semaphore>
+				</Mode>
+			</ModeLogicOperator>			
+		</Mode>
+		
+		<Mode Name="Tamper 1" UserName="Tamper1 Enable" UserNameCH="入侵检测1开启">
+         <Condition Expression="ERTC_ENABLED&amp;!ERTC_ALARM_A_TAMPER&amp;!ERTC_ALARM_B_TAMPER&amp;!ERTC_TIMESTAMP_TAMPER&amp;!ERTC_CALIB_TAMPER&amp;!ERTC_Wakeup_TAMPER" 
+         	                  Diagnostic="(1) Need to select &quot;Activate Clock Source&quot;&#x000A;(2) Need &quot;ERTC_TAMPER&quot; not used by other functions" 
+            	                   DiagnosticCH="(1) 需要 &quot;开启时钟源&quot;&#x000A;(2) 需要&quot;ERTC_TAMPER&quot; 未被其他功能使用"/>   
+			<ModeLogicOperator Name="XOR">
+				<Mode Name="Tamper 1" UserName="Tamper1 Enable" UserNameCH="入侵检测1开启">
+					<SignalLogicalOp Name="AND">
+						<Signal Name="TAMPER"/>
+					</SignalLogicalOp>
+					<Semaphore>ERTC_TAMPER_INTERRUPT</Semaphore>
+					<Semaphore>ERTC_TAMPER</Semaphore>
+					<Semaphore>ERTC_TAMPER1_PC13</Semaphore>
+					<Semaphore>ERTC_TAMPER1_TAMPER</Semaphore>
+				</Mode>
+			</ModeLogicOperator>			
+		</Mode>		
+		
+     	<Mode Name="Calibration" UserName="Calibration" UserNameCH="校准">
+         <Condition Expression="ERTC_ENABLED&amp;!ERTC_ALARM_A_TAMPER&amp;!ERTC_ALARM_B_TAMPER&amp;!ERTC_TIMESTAMP_TAMPER&amp;!ERTC_TAMPER1_TAMPER&amp;!ERTC_Wakeup_TAMPER" 
+         	                  Diagnostic="(1) Need to select &quot;Activate Clock Source&quot;&#x000A;(2) Need &quot;ERTC_TAMPER&quot; not used by other functions" 
+            	                   DiagnosticCH="(1) 需要 &quot;开启时钟源&quot;&#x000A;(2) 需要&quot;ERTC_TAMPER&quot; 未被其他功能使用"/>  
+			<ModeLogicOperator Name="XOR">
+				<Mode Name="Calibration_512Hz" UserName="Calibration 512Hz" UserNameCH="512Hz校准时钟">
+					<SignalLogicalOp Name="AND">
+						<Signal Name="TAMPER"/>
+					</SignalLogicalOp>
+					<Semaphore>CALIB_512</Semaphore>
+					<Semaphore>ERTC_CALIB_TAMPER</Semaphore>
+				</Mode>
+				<Mode Name="Calibration_1Hz" UserName="Calibration 1Hz" UserNameCH="1Hz校准时钟">
+					<SignalLogicalOp Name="AND">
+						<Signal Name="TAMPER"/>
+					</SignalLogicalOp>
+					<Semaphore>CALIB_1024</Semaphore>
+					<Semaphore>ERTC_CALIB_TAMPER</Semaphore>
+				</Mode>
+			</ModeLogicOperator>			
+		</Mode>
+		
+		<Mode Name="Reference clock detection" UserName="Reference clock detection" UserNameCH="参考时钟检测">
+         <Condition Expression="ERTC_ENABLED" Diagnostic="Need to select &quot;Activate Clock Source&quot;" DiagnosticCH="需要 &quot;开启时钟源&quot;"/>                     
+			<ModeLogicOperator Name="XOR">
+				<Mode Name="Reference clock detection" UserName="Reference clock detection" UserNameCH="参考时钟检测">
+					<SignalLogicalOp Name="AND">
+						<Signal Name="REFIN"/>
+					</SignalLogicalOp>
+					<Semaphore>ERTC_RECLOCK_With_REFIN</Semaphore>
+				</Mode>
+			</ModeLogicOperator>
+		</Mode>
+		
+		<Mode Name="Wakeup timer" UserName="Wakeup timer" UserNameCH="周期性唤醒定时器">
+			 <Condition Expression="ERTC_ENABLED" Diagnostic="Need to select &quot;Activate Clock Source&quot;" DiagnosticCH="需要 &quot;开启时钟源&quot;"/>    
+			<ModeLogicOperator Name="XOR">
+				<Mode Name="Wakeup timer" UserName="Wakeup timer" UserNameCH="唤醒定时器">
+					<SignalLogicalOp Name="AND">
+						<Signal Name="VS_ERTC_Wakeup_Intern"/>
+					</SignalLogicalOp>
+					<Semaphore>Wakeup_Intern</Semaphore>
+				</Mode>
+				<Mode Name="Wakeup timer Event" UserName="Internal Wakeup timer Event output" UserNameCH="唤醒事件输出">
+					<Condition Expression="!ERTC_ALARM_A_TAMPER&amp;!ERTC_ALARM_B_TAMPER&amp;!ERTC_TIMESTAMP_TAMPER&amp;!ERTC_TAMPER1_TAMPER&amp;!ERTC_CALIB_TAMPER" 
+         	                  Diagnostic="Need &quot;ERTC_TAMPER&quot; not used by other functions" 
+            	                   DiagnosticCH="需要 &quot;ERTC_TAMPER&quot; 未被其他功能使用"/> 
+					<SignalLogicalOp Name="AND">
+						<Signal Name="TAMPER"/>
+					</SignalLogicalOp>
+					<Semaphore>Wakeup_Outputed</Semaphore>
+					<Semaphore>ERTC_Wakeup_TAMPER</Semaphore>
+				</Mode>
+			</ModeLogicOperator>			
+		</Mode>
+	</ModeLogicOperator>
+
+	<RefSignal IOMode="System" Name="TAMPER"/>
+	<RefSignal IOMode="System" Name="REFIN"/>
+	<!-- Virtual RefSignals-->
+	<RefSignal Name="VS_ERTC_Activate" Virtual="true"/>
+	<RefSignal Name="VS_ERTC_Calendar" Virtual="true"/>
+	<RefSignal Name="VS_ERTC_WakeUp_intern" Virtual="true"/>
+	<RefSignal Name="VS_ERTC_Alarm_B_Intern" Virtual="true"/>
+	<RefSignal Name="VS_ERTC_Alarm_A_Intern" Virtual="true"/>
+	<Semaphore>ERTCUsed_ForRCC</Semaphore>
+</IP>

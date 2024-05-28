@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<IP>
+    <About>Infrared timer</About>
+    <AboutCH>红外线接口</AboutCH>
+
+<!-- Generic RefParameters for TMR Modes -->
+    <RefParameter Name="Instance" DefaultValue="IRTMR$Index" Comment="Instance" CommentCH="" Type="" Visible="false"/>
+   
+    <RefParameter Name="Signal selection" Comment="Low speed signal selection" CommentCH="低速信号选择" DefaultValue="SCFG_IR_SOURCE_TMR16" Type="list" Group="Basic Parameters" GroupCH="基础参数">
+        <PossibleValue Value="SCFG_IR_SOURCE_TMR16" Comment="Sign source from TMR16" CommentCH="信号源来自TMR16" Condition="Semaphore_output_Channel1TMR16" Diagnostic="" Action="Disable"/>
+    </RefParameter>
+    
+    <RefParameter Name="Output polarity" Comment="Output polarity" CommentCH="输出极性" DefaultValue="SCFG_IR_POLARITY_NO_AFFECTE" Type="list" Group="Basic Parameters" GroupCH="基础参数">
+        <PossibleValue Value="SCFG_IR_POLARITY_NO_AFFECTE" Comment="Infrared output (IR_OUT) is not inversed" CommentCH="红外输出不翻转"/>
+        <PossibleValue Value="SCFG_IR_POLARITY_REVERSE" Comment="Infrared output (IR_OUT) is inversed" CommentCH="红外输出翻转"/>
+    </RefParameter>
+
+
+<!-- ***********************************************************************************-->
+<!--/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\-->
+<!--/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/ REF MODE \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\-->
+<!--/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\-->
+<!-- ***********************************************************************************-->
+    <RefMode Name="State" BaseMode="State">
+    	      <Parameter Name="Output polarity" />
+    	      <Parameter Name="Signal selection" /> 
+    </RefMode>
+
+    <ModeLogicOperator Name="OR"> 
+    	<Mode Name="State" UserName="Activated" UserNameCH="启用">
+    		<Condition Expression="Semaphore_output_Channel1TMR16 &amp; Semaphore_output_Channel1TMR17" 
+    			                 Diagnostic="(1) Channel 1 of TMR17 must be configured in one of the availables output modes &#x000A;(2) Channel 1 of TMR16 must be configured in one of the availables output modes" 
+    			                 DiagnosticCH="(1) TMR17的通道1必须选择有效的输出模式 &#x000A;(2) TMR16的通道1必须选择有效的输出模式"/>
+        <ModeLogicOperator Name="XOR">
+          <Mode Name="State" UserName="Activated" UserNameCH="启用">
+            <SignalLogicalOp Name="AND">
+              <Signal Name="IR_OUT" />
+            </SignalLogicalOp>
+            <Semaphore>State_ENABLED$IpInstance</Semaphore>
+          </Mode>
+        </ModeLogicOperator>
+      </Mode>
+    </ModeLogicOperator>
+
+    <RefSignal IOMode="MuxOutputPushPull" Name="IR_OUT"/>                        
+</IP>

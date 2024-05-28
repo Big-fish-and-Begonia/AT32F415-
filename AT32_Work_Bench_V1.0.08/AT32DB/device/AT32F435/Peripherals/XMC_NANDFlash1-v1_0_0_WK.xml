@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<IP>
+	<About>External memory controller</About>
+	<AboutCH>外部存储控制器</AboutCH>
+	
+    <RefParameter Comment="Instance" DefaultValue="XMC$Index" Name="Instance" Type="" Visible="false"/>
+	
+    <RefParameter Name="Bank" Comment="Bank" CommentCH="存储区块" DefaultValue="XMC_BANK2_NAND" Group="NAND control" GroupCH="NAND控制" Type="list">
+        <PossibleValue Comment="Bank2 NAND" CommentCH="存储区块2 NAND" Value="XMC_BANK2_NAND"/>
+    </RefParameter>  
+    
+    <RefParameter Name="ECC_enable" Comment="ECC enable" CommentCH="ECC使能" DefaultValue="XMC_ECC_OPERATION_DISABLE" Group="NAND control" GroupCH="NAND控制" Type="list">
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="XMC_ECC_OPERATION_DISABLE"/>
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="XMC_ECC_OPERATION_ENABLE"/>
+    </RefParameter> 
+    
+    <RefParameter Name="ECC_Size" Comment="ECC size" CommentCH="ECC页面大小" DefaultValue="XMC_ECC_PAGESIZE_256_BYTES" Group="NAND control" GroupCH="NAND控制" Type="list" Reload = "false">
+    	   <Condition Diagnostic="" Expression="ECC_enable = XMC_ECC_OPERATION_ENABLE"/>
+        <PossibleValue Comment="256 bytes" CommentCH="256字节" Value="XMC_ECC_PAGESIZE_256_BYTES"/>
+        <PossibleValue Comment="512 bytes" CommentCH="512字节" Value="XMC_ECC_PAGESIZE_512_BYTES"/>
+        <PossibleValue Comment="1024 bytes" CommentCH="1024字节" Value="XMC_ECC_PAGESIZE_1024_BYTES"/>
+        <PossibleValue Comment="2048 bytes" CommentCH="2048字节" Value="XMC_ECC_PAGESIZE_2048_BYTES"/>
+        <PossibleValue Comment="4096 bytes" CommentCH="4096字节" Value="XMC_ECC_PAGESIZE_4096_BYTES"/>
+        <PossibleValue Comment="8192 bytes" CommentCH="8192字节" Value="XMC_ECC_PAGESIZE_8192_BYTES"/>
+    </RefParameter> 
+    
+    <RefParameter Name="Data_size" Comment="Data size" CommentCH="数据宽度" DefaultValue="XMC_BUSTYPE_8_BITS" Group="NAND control" GroupCH="NAND控制" Type="list" Visible="false" Reload = "false">
+    	   <Condition Diagnostic="" Expression="$IpInstance_8_Bits_DA"/>
+        <PossibleValue Comment="8 bits" CommentCH="8位宽" Value="XMC_BUSTYPE_8_BITS"/>
+    </RefParameter> 
+    <RefParameter Name="Data_size" Comment="Data size" CommentCH="数据宽度" DefaultValue="XMC_BUSTYPE_16_BITS" Group="NAND control" GroupCH="NAND控制" Type="list" Visible="false" Reload = "false">
+    	   <Condition Diagnostic="" Expression="$IpInstance_16_Bits_DA"/>
+        <PossibleValue Comment="16 bits" CommentCH="16位宽" Value="XMC_BUSTYPE_16_BITS"/>
+    </RefParameter> 
+    
+    <RefParameter Name="Ready_or_Busy" Comment="Ready or Busy" CommentCH="就绪/忙" DefaultValue="XMC_WAIT_OPERATION_DISABLE" Group="NAND control" GroupCH="NAND控制" Type="list" Visible="false" Reload = "false">
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="XMC_WAIT_OPERATION_DISABLE"/>
+    </RefParameter> 
+    <RefParameter Name="Ready_or_Busy" Comment="Ready or Busy" CommentCH="就绪/忙" DefaultValue="XMC_WAIT_OPERATION_ENABLE" Group="NAND control" GroupCH="NAND控制" Type="list" Visible="false" Reload = "false">
+    	   <Condition Diagnostic="" Expression="$IpInstance_Ready_or_Busy"/>
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="XMC_WAIT_OPERATION_ENABLE"/>
+    </RefParameter> 
+    
+    <RefParameter Name="CLE_RE_delay" Comment="CLE to RE delay" CommentCH="CLE 至RE 的延迟" DefaultValue="1" Group="NAND control" GroupCH="NAND控制" Max="16" Min="1" Type="integer" Reload = "false">
+    </RefParameter> 
+     
+     <RefParameter Name="ALE_RE_delay" Comment="ALE to RE delay" CommentCH="ALE 至RE 的延迟" DefaultValue="1" Group="NAND control" GroupCH="NAND控制" Max="16" Min="1" Type="integer" Reload = "false">
+    </RefParameter> 
+    
+     <!-- NAND timing -->
+    <RefParameter Name="Regular_resistance_time" Comment="Regular memory databus High resistance time" CommentCH="常规空间数据总线的高阻时间" DefaultValue="254" Group="Regular memory timing in HCLK cycles" GroupCH="常规空间时序" Max="255" Min="0" Type="integer" Reload = "false">
+    </RefParameter> 
+    
+    <RefParameter Name="Regular_hold_time" Comment="Regular memory hold time" CommentCH="常规空间的保持时间" DefaultValue="254" Group="Regular memory timing in HCLK cycles" GroupCH="常规空间时序" Max="255" Min="1" Type="integer" Reload = "false">
+    </RefParameter> 
+    
+    <RefParameter Name="Regular_wait_time" Comment="Regular memory wait time" CommentCH="常规空间的等待时间" DefaultValue="254" Group="Regular memory timing in HCLK cycles" GroupCH="常规空间时序" Max="255" Min="0" Type="integer" Reload = "false">
+    </RefParameter> 
+    
+    <RefParameter Name="Regular_setup_time" Comment="Regular memory setup time" CommentCH="常规空间的建立时间" DefaultValue="254" Group="Regular memory timing in HCLK cycles" GroupCH="常规空间时序" Max="255" Min="0" Type="integer" Reload = "false">
+    </RefParameter> 
+    
+    <RefParameter Name="Special_resistance_time" Comment="Special memory databus High resistance time" CommentCH="特殊空间数据总线的高阻时间" DefaultValue="254" Group="Special memory timing in HCLK cycles" GroupCH="特殊空间时序" Max="255" Min="0" Type="integer" Reload = "false">
+    </RefParameter> 
+    
+    <RefParameter Name="Special_hold_time" Comment="Special memory hold time" CommentCH="特殊空间的保持时间" DefaultValue="254" Group="Special memory timing in HCLK cycles" GroupCH="特殊空间时序" Max="255" Min="1" Type="integer" Reload = "false">
+    </RefParameter> 
+    
+    <RefParameter Name="Special_wait_time" Comment="Special memory wait time" CommentCH="特殊空间的等待时间" DefaultValue="254" Group="Special memory timing in HCLK cycles" GroupCH="特殊空间时序" Max="255" Min="0" Type="integer" Reload = "false">
+    </RefParameter> 
+    
+    <RefParameter Name="Special_setup_time" Comment="Special memory setup time" CommentCH="特殊空间的建立时间" DefaultValue="254" Group="Special memory timing in HCLK cycles" GroupCH="特殊空间时序" Max="255" Min="0" Type="integer" Reload = "false">
+    </RefParameter> 
+ 
+    <RefMode Name="XMC_Settings" Abstract="true">
+    	    <!-- NOR/PSARM control -->
+        <Parameter Name="Bank"/>        
+        <Parameter Name="ECC_enable"/>
+        <Parameter Name="ECC_Size"/>
+        <Parameter Name="Data_size"/>
+        <Parameter Name="Ready_or_Busy"/>
+        <Parameter Name="CLE_RE_delay"/>
+        <Parameter Name="ALE_RE_delay"/>
+        <!-- Regular memory timing -->
+       <Parameter Name="Regular_resistance_time"/>
+        <Parameter Name="Regular_hold_time"/>   
+        <Parameter Name="Regular_wait_time"/>   
+        <Parameter Name="Regular_setup_time"/>   
+        <!-- Special memory timing -->
+       <Parameter Name="Special_resistance_time"/>
+        <Parameter Name="Special_hold_time"/>   
+        <Parameter Name="Special_wait_time"/>   
+        <Parameter Name="Special_setup_time"/> 
+    </RefMode>
+                        
+    <ModeLogicOperator Name="OR">
+    	   <Mode Name="Chip_Select" UserName="Chip Select NCE2" UserNameCH="片选 NCE2">
+			<ModeLogicOperator Name="XOR">
+				<Mode Name="Chip_Select" UserName="Chip Select NCE2" UserNameCH="片选 NCE2">
+					<SignalLogicalOp Name="AND">
+						<Signal Name="NCE2"/>
+					</SignalLogicalOp>
+				</Mode>
+			</ModeLogicOperator>
+			<Semaphore>$IpInstance_Chip_Select</Semaphore>
+	   </Mode>
+
+        <Mode Name="Data_Address_Bus" UserName="Data/Address" UserNameCH="数据/地址线">
+            <Condition Expression="$IpInstance_Chip_Select" Diagnostic="Chip Select disabled" DiagnosticCH="未开启片选"/>
+            <Semaphore>$IpInstance_Data_Address_Bus</Semaphore>
+            <ModeLogicOperator Name="XOR">
+                <Mode Name="8_Bits" UserName="8 bits" UserNameCH="8位宽">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="D0--D7"/>
+                        <Signal Name="A16_CLE"/>
+                        <Signal Name="A17_ALE"/>
+                        <Signal Name="NOE"/>
+                        <Signal Name="NWE"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_8_Bits_DA</Semaphore>
+                </Mode>
+                <Mode Name="16_Bits" UserName="16 bits" UserNameCH="16位宽">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="D0--D15"/>
+                        <Signal Name="A16_CLE"/>
+                        <Signal Name="A17_ALE"/>
+                        <Signal Name="NOE"/>
+                        <Signal Name="NWE"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_16_Bits_DA</Semaphore>
+                </Mode>
+            </ModeLogicOperator>            
+        </Mode>
+        
+        <Mode Name="Ready_or_Busy" UserName="Ready or Busy" UserNameCH="就绪/忙">
+        	     <Condition Expression="$IpInstance_Chip_Select" Diagnostic="Chip Select disabled" DiagnosticCH="未开启片选"/>
+			<ModeLogicOperator Name="XOR">
+				<Mode Name="NWAIT" UserName="NWAIT" UserNameCH="NWAIT">
+					<SignalLogicalOp Name="AND">
+						<Signal Name="NWAIT"/>
+					</SignalLogicalOp>
+					<Semaphore>$IpInstance_Ready_or_Busy</Semaphore>
+				</Mode>
+				<Mode Name="INT2" UserName="INT2" UserNameCH="INT2">
+					<SignalLogicalOp Name="AND">
+						<Signal Name="INT2"/>
+					</SignalLogicalOp>
+					<Semaphore>$IpInstance_Ready_or_Busy</Semaphore>
+				</Mode>
+			</ModeLogicOperator>			
+	   </Mode>
+        
+    </ModeLogicOperator>
+	
+    <!-- RefSignal -->
+    <RefSignal IOMode="MuxOutputPushPull" Name="NCE2"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="NOE"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="NWE"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="NWAIT"/>       
+    <RefSignal IOMode="MuxOutputPushPull" Name="INT2"/>       
+    <RefSignal IOMode="MuxOutputPushPull" Name="D0"/>       
+    <RefSignal IOMode="MuxOutputPushPull" Name="D1"/> 
+    <RefSignal IOMode="MuxOutputPushPull" Name="D2"/> 
+    <RefSignal IOMode="MuxOutputPushPull" Name="D3"/>       
+    <RefSignal IOMode="MuxOutputPushPull" Name="D4"/> 
+    <RefSignal IOMode="MuxOutputPushPull" Name="D5"/> 
+    <RefSignal IOMode="MuxOutputPushPull" Name="D6"/>       
+    <RefSignal IOMode="MuxOutputPushPull" Name="D7"/> 
+    <RefSignal IOMode="MuxOutputPushPull" Name="D8"/> 
+    <RefSignal IOMode="MuxOutputPushPull" Name="D9"/>       
+    <RefSignal IOMode="MuxOutputPushPull" Name="D10"/> 
+    <RefSignal IOMode="MuxOutputPushPull" Name="D11"/> 
+    <RefSignal IOMode="MuxOutputPushPull" Name="D12"/> 
+    <RefSignal IOMode="MuxOutputPushPull" Name="D13"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="D14"/> 
+    <RefSignal IOMode="MuxOutputPushPull" Name="D15"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="A16_CLE"/> 
+    <RefSignal IOMode="MuxOutputPushPull" Name="A17_ALE"/> 
+</IP>

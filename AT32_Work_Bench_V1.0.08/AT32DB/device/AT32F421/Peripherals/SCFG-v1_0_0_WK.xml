@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<IP>
+    <About>System configuration controller</About>
+    <AboutCH>系统配置控制器</AboutCH>
+    
+    <RefParameter Name="PA11 PA12 remap" Comment="PA11 PA12 remap to PA9 PA10" CommentCH="PA11 PA12重映射到PA9 PA10" DefaultValue="SCFG_PA11PA12_TO_PA9PA10" Type="list" Group="" Visible="false">
+        <PossibleValue Value="SCFG_PA11PA12_TO_PA9PA10" Comment="PA11 PA12 remap to PA9 PA10" CommentCH="PA11 PA12重映射到PA9 PA10"/>
+    </RefParameter>
+
+
+<!-- ***********************************************************************************-->
+<!--/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\-->
+<!--/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/ REF MODE \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\-->
+<!--/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\-->
+<!-- ***********************************************************************************-->
+    <RefMode Name="PA11 PA12 remap" BaseMode="PA11 PA12 remap">
+    	      <Parameter Name="PA11 PA12 remap" />
+    </RefMode>
+
+    <ModeLogicOperator Name="OR"> 
+        <Mode Name="PA11 PA12 remap" UserName="PA11 PA12 remap to PA9 PA10" UserNameCH="PA11 PA12重映射到PA9 PA10">
+           <ModeLogicOperator Name="OR">
+                <Mode Name="PA11 PA12 remap" UserName="PA11 PA12 remap to PA9 PA10" UserNameCH="PA11 PA12重映射到PA9 PA10">
+                    <Semaphore>Semaphore_PA11PA12_Remap$IpInstance</Semaphore>
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="VS_PA11PA12_REMAP"/>
+                    </SignalLogicalOp>
+                </Mode>
+           </ModeLogicOperator>
+         </Mode>
+    </ModeLogicOperator>
+    <RefSignal IOMode="Analog" Name="VS_PA11PA12_REMAP" Virtual="true"/>          
+</IP>

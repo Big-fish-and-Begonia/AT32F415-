@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<IP>
+    <About>HICK auto clock calibration</About>
+    <AboutCH>HICK 自动时钟校准器</AboutCH>
+
+    <RefParameter Name="Instance" Comment="ACC instance" DefaultValue="ACC" Type="list" Visible="false"/>
+
+    <RefParameter Name="Compare_1" Comment="Compare 1" CommentCH="比较值1" DefaultValue="7980" Max="65535" Min="0" Type="integer" Group="Basic Parameters" GroupCH="基础参数" Reload = "false">
+    </RefParameter>
+    
+    <RefParameter Name="Compare_2" Comment="Compare 2" CommentCH="比较值2" DefaultValue="8000" Max="65535" Min="0" Type="integer" Group="Basic Parameters" GroupCH="基础参数" Reload = "false">
+    </RefParameter>
+    
+    <RefParameter Name="Compare_3" Comment="Compare 3" CommentCH="比较值3" DefaultValue="8020" Max="65535" Min="0" Type="integer" Group="Basic Parameters" GroupCH="基础参数" Reload = "false">
+    </RefParameter>
+    
+    <RefParameter Name="Enable_Trim" Comment="Enable Trim" CommentCH="TWK使能" DefaultValue="ACC_CAL_HICKTRIM"  Type="list" Group="Basic Parameters" GroupCH="基础参数" Reload = "false">
+        <PossibleValue Comment="HICKCAL is calibrated" CommentCH="仅校准HICKCAL" Value="ACC_CAL_HICKCAL"/>
+        <PossibleValue Comment="HICKTRIM is calibrated" CommentCH="仅校准HICKTWK" Value="ACC_CAL_HICKTRIM"/>
+    </RefParameter>
+
+
+    <RefMode Name="ACC_State" BaseMode="ACC_State">
+        <Parameter Name="Compare_1"/>
+        <Parameter Name="Compare_2"/>
+        <Parameter Name="Compare_3"/>
+        <Parameter Name="Enable_Trim"/>
+    </RefMode>
+
+    <!-- ModeLogicOperator for ACC -->
+    <ModeLogicOperator Name="OR">
+      <Mode Name="ACC_State" UserName="Activated" UserNameCH="启用">
+      	<Condition Expression="USB_OTG_FS_DEVICE&amp;CRM_USB_CLOCK_SOURCE_HICK"
+        	  	                   Diagnostic="(1) &quot;Device&quot; must be selected in USB_OTGFS1.&#x000A;(2) &quot;hick to usb&quot; must be selected in Clock Configuration"
+                    	          DiagnosticCH="(1) USB_OTGFS1需选择&quot;设备&quot;模式&#x000A;(2) 时钟配置需选择&quot;hick to usb&quot;"/>
+        <ModeLogicOperator Name="XOR">
+          <Mode Name="ACC_State" UserName="Activated" UserNameCH="启用">
+            <SignalLogicalOp Name="AND">
+              <Signal Name="VS_ACC" />
+            </SignalLogicalOp>
+          </Mode>
+        </ModeLogicOperator>
+      </Mode>
+    </ModeLogicOperator>
+
+    <!-- RefSignal for ACC -->
+    <RefSignal Name="VS_ACC" Virtual="true"/>
+</IP>

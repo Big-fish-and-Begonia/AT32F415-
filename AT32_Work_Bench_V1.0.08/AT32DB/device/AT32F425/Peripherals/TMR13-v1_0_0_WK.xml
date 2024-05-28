@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<IP>
+    <About>TIMER</About>
+    <AboutCH>定时器</AboutCH>
+
+<!-- Generic RefParameters for TMR Modes -->
+    <RefParameter Name="Instance" DefaultValue="TMR$Index" Comment="Instance" Type="" Visible="false"/>
+
+<!-- *************************Channel Input or Output Param **********************************************-->
+    <RefParameter Name="Channel1Mode" Comment="Channel 1 Mode" CommentCH="通道1模式" DefaultValue="INPUT" Type="list" Visible="false">
+        <Condition Diagnostic="" Expression="Semaphore_input_Channel1$IpInstance"/>
+        <PossibleValue Value="INPUT" Comment="Input" CommentCH="输入"/>
+    </RefParameter>
+    <RefParameter Name="Channel1Mode" Comment="Channel 1 Mode" CommentCH="通道1模式" DefaultValue="OUTPUT" Type="list" Visible="false">
+        <Condition Diagnostic="" Expression="Semaphore_output_Channel1$IpInstance"/>
+        <PossibleValue Value="OUTPUT" Comment="Output" CommentCH="输出"/>
+    </RefParameter>
+    <RefParameter Name="Channel1Mode" Comment="Channel 1 Mode" CommentCH="通道1模式" DefaultValue="DISABLE" Type="list" Visible="false">
+        <PossibleValue Value="DISABLE" Comment="Disable" CommentCH="关闭"/>
+    </RefParameter>
+    
+    <RefParameter Name="Overflow_Event" Comment="Overflow Event" CommentCH="溢出事件" DefaultValue="From_COS" Type="list" Group="Counter Settings" GroupCH="计数器设置">
+        <PossibleValue Value="From_COS" Comment="From counter/ovfswtr/sub-timer" CommentCH="来源于计数器溢出、设置OVFSWTR位或次定时器控制器"/>
+        <PossibleValue Value="From_C" Comment="From counter" CommentCH="来源于计数器溢出"/>        
+        <PossibleValue Value="FALSE" Comment="Disable overflow event" CommentCH="禁止溢出事件"/>
+    </RefParameter>
+    
+    <RefParameter Name="One_Cycle_Mode" Comment="One Cycle Mode" CommentCH="单周期模式" DefaultValue="TRUE" Type="list" Visible="false" Group="Counter Settings" GroupCH="计数器设置">
+        <Condition Diagnostic="" Expression="Semaphore_Enable_OCM$IpInstance"/>
+        <PossibleValue Value="TRUE" Comment="Enable" CommentCH="开启"/>
+    </RefParameter>
+    <RefParameter Name="One_Cycle_Mode" Comment="One Cycle Mode" CommentCH="单周期模式" DefaultValue="FALSE" Type="list" Visible="false" Group="Counter Settings" GroupCH="计数器设置">
+        <PossibleValue Value="FALSE" Comment="Disable" CommentCH="关闭"/>
+    </RefParameter>
+
+<!-- **********************************************************************-->
+    <RefParameter Name="Channel1" Comment="Channel" CommentCH="通道" DefaultValue="TMR_SELECT_CHANNEL_1" Type="list" Visible="false">
+        <PossibleValue Value="TMR_SELECT_CHANNEL_1" Comment="Channel 1" CommentCH="通道1"/>
+    </RefParameter>
+                        
+<!--____________________________________________________________________-->
+
+    <RefParameter Name="DividerValue" Comment="Divider value (16 bits value)" CommentCH="分频系数 (16位值)" DefaultValue="0" Max="65535" Min="0" Type="integer" Group="Counter Settings" GroupCH="计数器设置">
+    </RefParameter>
+<!-- CounterMode TIMER INSTANCE DEPENDENT-->
+    <RefParameter Name="CounterDirection" Comment="Counter Direction" CommentCH="计数方向" DefaultValue="TMR_COUNT_UP" Type="list" Group="Counter Settings" GroupCH="计数器设置">
+        <PossibleValue Value="TMR_COUNT_UP" Comment="Up" CommentCH="向上"/>
+    </RefParameter>
+
+    <RefParameter Name="Period" Comment="Period Value ( 16 bits value )" CommentCH="周期值 (16位值)" DefaultValue="65535" Max="65535" Min="0" Type="integer" Group="Counter Settings" GroupCH="计数器设置">
+    </RefParameter>
+
+    <RefParameter Name="ClockDivision" Comment="Clock divider" CommentCH="时钟除频" DefaultValue="TMR_CLOCK_DIV1" Type="list" Group="Counter Settings" GroupCH="计数器设置">
+        <!--<Condition Diagnostic="" Expression="$IpNumber=1|$IpNumber=3|$IpNumber=14|$IpNumber=15|$IpNumber=16|$IpNumber=17"/>-->
+            <PossibleValue Value="TMR_CLOCK_DIV1" Comment="No Divider" CommentCH="无除频"/>
+            <PossibleValue Value="TMR_CLOCK_DIV2" Comment="Divided by 2" CommentCH="2除频"/>
+            <PossibleValue Value="TMR_CLOCK_DIV4" Comment="Divided by 4" CommentCH="4除频"/>
+    </RefParameter>
+
+    <RefParameter Name="PeriodBufferEnable" Comment="Period buffer enable" CommentCH="周期缓冲使能" DefaultValue="FALSE" Type="list" Group="Counter Settings" GroupCH="计数器设置">
+        <PossibleValue Value="FALSE" Comment="Disable" CommentCH="关闭"/>
+        <PossibleValue Value="TRUE" Comment="Enable" CommentCH="开启"/>
+    </RefParameter>      
+  
+<!-- *************************DATA for Input **********************************************-->
+<!--InputPolarity-->
+    <RefParameter Name="InputPolarity_CH1" Comment="Polarity Selection" CommentCH="极性选择" DefaultValue="TMR_INPUT_RISING_EDGE" Type="list" Visible="true">
+        <PossibleValue Value="TMR_INPUT_RISING_EDGE" Comment="Rising Edge" CommentCH="上升沿"/>
+        <PossibleValue Value="TMR_INPUT_FALLING_EDGE" Comment="Falling Edge" CommentCH="下降沿"/>
+        <PossibleValue Value="TMR_INPUT_BOTH_EDGE" Comment="Both Edges" CommentCH="双边沿"/>
+    </RefParameter>
+  
+<!--InputSelection-->
+    <RefParameter Name="InputSelection_Channel1" Comment="Mapped Selection" CommentCH="映射选择" DefaultValue="TMR_CC_CHANNEL_MAPPED_DIRECT" Type="list">
+        <Condition Diagnostic="" Expression="Semaphore_input_Channel1_direct$IpInstance"/>
+        <PossibleValue Value="TMR_CC_CHANNEL_MAPPED_DIRECT" Comment="Direct" CommentCH="直接映射"/>
+    </RefParameter>
+    <RefParameter Name="InputSelection_Channel1" Comment="Mapped Selection" CommentCH="映射选择" DefaultValue="TMR_CC_CHANNEL_MAPPED_INDIRECT" Type="list">
+        <Condition Diagnostic="" Expression="Semaphore_input_Channel1_indirect$IpInstance"/>
+        <PossibleValue Value="TMR_CC_CHANNEL_MAPPED_INDIRECT" Comment="Indirect" CommentCH="间接映射"/>
+    </RefParameter>
+    <RefParameter Name="InputSelection_Channel1" Comment="Mapped Selection" CommentCH="映射选择" DefaultValue="TMR_CC_CHANNEL_MAPPED_STI" Type="list">
+    	  <Condition Diagnostic="" Expression="Semaphore_input_Channel_STI_TI1$IpInstance"/>
+        <PossibleValue Value="TMR_CC_CHANNEL_MAPPED_STI" Comment="STI" CommentCH="映射至STI"/>
+    </RefParameter>
+
+<!--InputDivider-->
+    <RefParameter Name="InputDivider_Channel1" Comment="Input divider" CommentCH="输入除频" DefaultValue="TMR_CHANNEL_INPUT_DIV_1" Type="list">
+        <PossibleValue Value="TMR_CHANNEL_INPUT_DIV_1" Comment="No divider" CommentCH="无除频"/>
+        <PossibleValue Value="TMR_CHANNEL_INPUT_DIV_2" Comment="Divided by 2" CommentCH="2除频"/>
+        <PossibleValue Value="TMR_CHANNEL_INPUT_DIV_4" Comment="Divided by 4" CommentCH="4除频"/>
+        <PossibleValue Value="TMR_CHANNEL_INPUT_DIV_8" Comment="Divided by 8" CommentCH="8除频"/>
+    </RefParameter>
+
+<!--InputFilter-->
+    <RefParameter Name="InputFilter_CH1" Comment="Input Filter (4 bits value)" CommentCH="输入滤波(4位值)" DefaultValue="0" Max="15" Min="0" Type="integer" Visible="true">
+        <Condition Diagnostic="" Expression="Semaphore_input_Channel1_direct$IpInstance"/>
+    </RefParameter>
+    <RefParameter Name="InputFilter_CH1" Comment="Input Filter (4 bits value)" CommentCH="输入滤波(4位值)" DefaultValue="0" Max="0" Min="0" Type="integer" Visible="false">
+    </RefParameter>
+    <RefParameter Name="InputFilter_CH1_Frequency" Comment="Input Filter Frequency" CommentCH="输入滤波频率" DefaultValue="" Type="string" Unit="Hz">
+        <Condition Diagnostic="" Expression="InputFilter_CH1 != 0"/>
+    </RefParameter>
+    
+<!-- *************************DATA for Output***********************************************-->
+    <RefParameter Name="OCMode_1" Comment="Mode" CommentCH="模式" DefaultValue="TMR_OUTPUT_CONTROL_OFF" Type="list">
+            <PossibleValue Value="TMR_OUTPUT_CONTROL_OFF" Comment="Disconnected" CommentCH="断开"/>
+            <PossibleValue Value="TMR_OUTPUT_CONTROL_HIGH" Comment="C1ORAW output high when CVAL=C1DT" CommentCH="CVAL=C1DT时设置C1ORAW为高"/>
+            <PossibleValue Value="TMR_OUTPUT_CONTROL_LOW" Comment="C1ORAW output low when CVAL=C1DT" CommentCH="CVAL=C1DT时设置C1ORAW为低"/>
+            <PossibleValue Value="TMR_OUTPUT_CONTROL_SWITCH" Comment="C1ORAW output switch when CVAL=C1DT" CommentCH="CVAL=C1DT时切换C1ORAW"/>
+            <PossibleValue Value="TMR_OUTPUT_CONTROL_FORCE_LOW" Comment="C1ORAW forced low" CommentCH="C1ORAW强制低" Semaphore="Semaphore_forced_output_Channel1$IpInstance"/>
+            <PossibleValue Value="TMR_OUTPUT_CONTROL_FORCE_HIGH" Comment="C1ORAW forced high" CommentCH="C1ORAW强制高" Semaphore="Semaphore_forced_output_Channel1$IpInstance"/>
+            <PossibleValue Value="TMR_OUTPUT_CONTROL_PWM_MODE_A" Comment="PWM mode A" CommentCH="PWM模式A" Semaphore="Semaphore_OCMode_PWMA_Channel1$IpInstance"/>
+            <PossibleValue Value="TMR_OUTPUT_CONTROL_PWM_MODE_B" Comment="PWM mode B" CommentCH="PWM模式B" Semaphore="Semaphore_OCMode_PWMB_Channel1$IpInstance"/>
+    </RefParameter>
+ 
+    
+    <RefParameter Name="OC1ImmediatelyMode_PWM" Comment="Immediately Mode" CommentCH="立即输出模式" DefaultValue="FALSE" Type="list">
+    	      <Condition Diagnostic="" Expression="Semaphore_OCMode_PWMA_Channel1$IpInstance | Semaphore_OCMode_PWMB_Channel1$IpInstance"/>
+            <PossibleValue Value="FALSE" Comment="Disable" CommentCH="关闭"/>
+            <PossibleValue Value="TRUE" Comment="Enable" CommentCH="开启"/>
+    </RefParameter>
+
+    
+    <RefParameter Name="ChannelData_1" Comment="Channel data (16 bits value)" CommentCH="通道数据(16位值)" DefaultValue="0" Max="65535" Min="0" Type="integer">
+    </RefParameter>
+
+    
+    <RefParameter Name="OCState_1" Comment="CH State" CommentCH="通道状态" DefaultValue="FALSE" Type="list" Visible="false">
+    	      <Condition Diagnostic="" Expression="!Semaphore_Channel1x$IpInstance"/>
+            <PossibleValue Value="FALSE" Comment="Disable" CommentCH="关闭"/>
+    </RefParameter>
+    <RefParameter Name="OCState_1" Comment="CH State" CommentCH="通道状态" DefaultValue="TRUE" Type="list" Visible="false">
+    	      <Condition Diagnostic="" Expression="Semaphore_Channel1x$IpInstance"/>
+            <PossibleValue Value="TRUE" Comment="Enable" CommentCH="开启"/>
+    </RefParameter>
+
+    
+    <RefParameter Name="OCPolarity_1" Comment="CH Polarity" CommentCH="通道极性" DefaultValue="TMR_OUTPUT_ACTIVE_HIGH" Type="list" Visible="false">
+        <Condition Diagnostic="" Expression="!Semaphore_Channel1x$IpInstance"/>
+            <PossibleValue Value="TMR_OUTPUT_ACTIVE_HIGH" Comment="High" CommentCH="高"/>
+    </RefParameter>
+    <RefParameter Name="OCPolarity_1" Comment="CH Polarity" CommentCH="通道极性" DefaultValue="TMR_OUTPUT_ACTIVE_HIGH" Type="list">
+        <Condition Diagnostic="" Expression="Semaphore_Channel1x$IpInstance"/>
+            <PossibleValue Value="TMR_OUTPUT_ACTIVE_HIGH" Comment="High" CommentCH="高"/>
+            <PossibleValue Value="TMR_OUTPUT_ACTIVE_LOW" Comment="Low" CommentCH="低"/>
+    </RefParameter>
+
+    <RefParameter Name="OC1Buffer" Comment="Channel output buffer" CommentCH="通道输出缓存" DefaultValue="FALSE" Type="list" Visible="true">
+    	      <Annotation Note="Channel 1 output buffer enable.&#x000A;Disable: Buffer function of TMRx_C1DT is disabled. The new value written to the TMRx_C1DT takes effect immediately.&#x000A;Enable: Buffer function of TMRx_C1DT is enabled. The value to be written to the TMRx_C1DT is stored in the buffer register, and can be sent to the TMRx_C1DT register only on an overflow event. &#x000A;" 
+        	  	                   NoteCH="通道1输出缓存使能（Channel 1 output buffer enable） &#x000A;关闭：关闭TMRx_C1DT的缓存功能，写入TMRx_C1DT的内容会立即生效。 &#x000A;开启：启用TMRx_C1DT的缓存功能，写入TMRx_C1DT的内容将保存到缓存寄存器中，当发生溢出事件时再更新到TMRx_C1DT中。&#x000A;"/>
+            <PossibleValue Value="FALSE" Comment="Disable" CommentCH="关闭"/>
+            <PossibleValue Value="TRUE" Comment="Enable" CommentCH="开启"/>
+    </RefParameter>
+
+<!-- ***********************************************************************************-->
+
+<!--/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\-->
+<!--/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/ REF MODE \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\-->
+<!--/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\-->
+<!-- ***********************************************************************************-->
+    <RefMode Name="Counter_init" Abstract="true">
+    	      <Parameter Name="Channel1Mode"/>
+    	      <Parameter Name="One_Cycle_Mode"/>
+    	      
+            <Parameter Name="DividerValue"/>
+            <Parameter Name="CounterDirection"/>
+            <Parameter Name="Period"/>
+            <Parameter Name="ClockDivision"/>
+            <Parameter Name="PeriodBufferEnable"/>       
+             <Parameter Name="Overflow_Event"/>
+    </RefMode>
+
+   
+<!-- ***************************Refmode Input*****************************************-->
+    <!-- ***********Channel1 Input***************-->
+    <RefMode BaseMode ="Channel1 mode" Name="Input_direct_mode" Group="Input Channel 1" GroupCH="通道1输入">
+            <Parameter Name="Channel1"/>
+            <Parameter Name="InputPolarity_CH1"/>
+            <Parameter Name="InputSelection_Channel1"/>
+            <Parameter Name="InputDivider_Channel1"/>
+            <Parameter Name="InputFilter_CH1"/>
+            <Parameter Name="InputFilter_CH1_Frequency"/>
+    </RefMode>
+
+<!--****************************** Refmode Output ******************************-->
+    <!-- ***********Channel1 Output***************-->
+    <RefMode BaseMode ="Channel1 mode" Name="Output_without_pin" Group="Output No Output Channel 1" GroupCH="通道1无引脚输出">
+           <Parameter Name="Channel1"/>
+           <Parameter Name="OCMode_1"/>
+           <Parameter Name="ChannelData_1"/>
+           <Parameter Name="OC1Buffer"/>
+           <Parameter Name="OC1ImmediatelyMode_PWM"/>
+           <Parameter Name="OCState_1"/>
+           <Parameter Name="OCPolarity_1"/>
+    </RefMode>
+    <RefMode BaseMode ="Channel1 mode" Name="Output_CH1" Group="Output Channel 1" GroupCH="通道1输出">
+           <Parameter Name="Channel1"/>
+           <Parameter Name="OCMode_1"/>
+           <Parameter Name="ChannelData_1"/>
+           <Parameter Name="OC1Buffer"/>
+           <Parameter Name="OC1ImmediatelyMode_PWM"/>
+           <Parameter Name="OCState_1"/>
+           <Parameter Name="OCPolarity_1"/>
+    </RefMode>
+
+    <!-- ModeLogicOperator for TMR -->
+    <ModeLogicOperator Name="OR">        
+         <Mode Name="Activated" UserName="Activated" UserNameCH="启用">
+            <ModeLogicOperator Name="OR" UserName="Activated" UserNameCH="启用">
+                <Mode Name="Activated">
+                    <Semaphore>Semaphore_ClockSourceInternal$IpInstance</Semaphore>
+                    <Semaphore>Semaphore_Activated$IpInstance</Semaphore>
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="VS_Activated"/>
+                    </SignalLogicalOp>
+                </Mode>
+            </ModeLogicOperator>
+        </Mode>
+        <Mode Name="Channel1 mode" UserName="Channel1 mode" UserNameCH="通道1模式">
+        	  <Condition Expression="Semaphore_Activated$IpInstance"
+        	  	                   Diagnostic="Need to select &quot;Activated&quot;" 
+        	  	                   DiagnosticCH="需要选择 &quot;启用&quot;"/>
+            <ModeLogicOperator Name="XOR">
+                <Mode Name="Input_direct_mode" UserName="Input direct mode" UserNameCH="直接输入模式">
+                 	  <Semaphore>Semaphore_Channel1$IpInstance</Semaphore>
+                    <Semaphore>Semaphore_Channel_1_DMA_Enable$IpInstance</Semaphore>
+                    <Semaphore>Semaphore_input_Channel1$IpInstance</Semaphore>
+                    <Semaphore>Semaphore_input_Channel1_direct$IpInstance</Semaphore>
+                    <Semaphore>Semaphore_CH1pinUsed$IpInstance</Semaphore>
+                    <Semaphore>Semaphore_CH1_Input_IO$IpInstance</Semaphore>
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="CH1" Direction="Input"/>
+                    </SignalLogicalOp>
+                </Mode>
+                <Mode Name="Output_without_pin" UserName="Output without pin" UserNameCH="无引脚输出">
+                    <Semaphore>Semaphore_Channel1$IpInstance</Semaphore>
+                    <Semaphore>Semaphore_Channel_1_DMA_Enable$IpInstance</Semaphore>
+                    <Semaphore>Semaphore_output_Channel$IpInstance</Semaphore>
+                    <Semaphore>Semaphore_output_Channel1$IpInstance</Semaphore>
+                    <Semaphore>Semaphore_OC_No_output_Channel1$IpInstance</Semaphore>
+                    <Semaphore>Semaphore_clearable$IpInstance</Semaphore>
+                    <Semaphore>Semaphore_Channel1x$IpInstance</Semaphore>
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="VS_no_output1"/>
+                    </SignalLogicalOp>
+                </Mode>
+                <Mode Name="Output_CH1" UserName="Output_CH1" UserNameCH="通道1输出">
+                    <Semaphore>Semaphore_Channel1$IpInstance</Semaphore>
+                    <Semaphore>Semaphore_Channel_1_DMA_Enable$IpInstance</Semaphore>
+                    <Semaphore>Semaphore_output_Channel$IpInstance</Semaphore>
+                    <Semaphore>Semaphore_output_Channel1$IpInstance</Semaphore>
+                    <Semaphore>Semaphore_OC_output_Channel1$IpInstance</Semaphore>
+                    <Semaphore>Semaphore_clearable$IpInstance</Semaphore>
+                    <Semaphore>Semaphore_Channel1x$IpInstance</Semaphore>
+                    <Semaphore>Semaphore_CH1pinUsed$IpInstance</Semaphore>
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="CH1" Direction="Output"/>
+                    </SignalLogicalOp>
+                </Mode>
+            </ModeLogicOperator>
+        </Mode>
+         
+        <Mode Name="Enable One cycle mode" UserName="Enable One cycle mode" UserNameCH="开启单周期模式">
+        	 <Condition Expression="Semaphore_Activated$IpInstance"
+        	  	                   Diagnostic="Need to select &quot;Activated&quot;" 
+        	  	                   DiagnosticCH="需要选择 &quot;启用&quot;"/>
+           <ModeLogicOperator Name="OR">
+                <Mode Name="Enable One cycle mode" UserName="Enable One cycle mode" UserNameCH="开启单周期模式">
+                    <Semaphore>Semaphore_Enable_OCM$IpInstance</Semaphore>
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="VS_OCM"/>
+                    </SignalLogicalOp>
+                </Mode>
+           </ModeLogicOperator>
+         </Mode>
+		
+    </ModeLogicOperator>
+
+    <!-- RefSignal for TMR -->
+    <RefSignal IOMode="MuxOutputPushPullOpenDrain" Name="CH1"/>         
+    
+    <RefSignal IOMode="Analog" Name="VS_Activated" Virtual="true"/>
+    <RefSignal IOMode="Analog" Name="VS_no_output1" Virtual="true"/>
+    <RefSignal IOMode="Analog" Name="VS_OCM" Virtual="true"/>                    
+</IP>

@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<IP>
+	<About>Comparator</About>
+	<AboutCH>比较器</AboutCH>
+	
+	<RefParameter Comment="Inverting Input" CommentCH="输入反相" DefaultValue="CMP_INVERTING_PA4" Group="Pinout Parameters" GroupCH="引脚参数" Name="InvertingInput" Type="list" Visible="false">
+		<Condition Diagnostic="" Expression="$IpInstance_INM4"/>
+		<PossibleValue Comment="INM_4" CommentCH="INM_4" Value="CMP_INVERTING_PA4"/>
+	</RefParameter>
+	<RefParameter Comment="Inverting Input" CommentCH="输入反相" DefaultValue="CMP_INVERTING_PA5" Group="Pinout Parameters" GroupCH="引脚参数" Name="InvertingInput" Type="list" Visible="false">
+		<Condition Diagnostic="" Expression="$IpInstance_INM5"/>
+		<PossibleValue Comment="INM_5" CommentCH="INM_5" Value="CMP_INVERTING_PA5"/>
+	</RefParameter>
+	<RefParameter Comment="Inverting Input" CommentCH="输入反相" DefaultValue="CMP_INVERTING_PA0_PA2" Group="Pinout Parameters" GroupCH="引脚参数" Name="InvertingInput" Type="list" Visible="false">
+		<Condition Diagnostic="" Expression="$IpInstance_INM6"/>
+		<PossibleValue Comment="INM_6" CommentCH="INM_6" Value="CMP_INVERTING_PA0_PA2"/>
+	</RefParameter>
+	<RefParameter Comment="Inverting Input" CommentCH="输入反相" DefaultValue="CMP_INVERTING_VREFINT" Group="Pinout Parameters" GroupCH="引脚参数" Name="InvertingInput" Type="list" Visible="false">
+		<Condition Diagnostic="" Expression="$IpInstance_VS_VREFINT"/>
+		<PossibleValue Comment="VREFINT" CommentCH="VREFINT" Value="CMP_INVERTING_VREFINT"/>
+	</RefParameter>
+	<RefParameter Comment="Inverting Input" CommentCH="输入反相" DefaultValue="CMP_INVERTING_1_4VREFINT" Group="Pinout Parameters" GroupCH="引脚参数" Name="InvertingInput" Type="list" Visible="false">
+		<Condition Diagnostic="" Expression="$IpInstance_VS_VREFINT14"/>
+		<PossibleValue Comment="1/4 VREFINT" CommentCH="1/4 VREFINT" Value="CMP_INVERTING_1_4VREFINT"/>
+	</RefParameter>
+	<RefParameter Comment="Inverting Input" CommentCH="输入反相" DefaultValue="CMP_INVERTING_1_2VREFINT" Group="Pinout Parameters" GroupCH="引脚参数" Name="InvertingInput" Type="list" Visible="false">
+		<Condition Diagnostic="" Expression="$IpInstance_VS_VREFINT12"/>
+		<PossibleValue Comment="1/2 VREFINT" CommentCH="1/2 VREFINT" Value="CMP_INVERTING_1_2VREFINT"/>
+	</RefParameter>
+	<RefParameter Comment="Inverting Input" CommentCH="输入反相" DefaultValue="CMP_INVERTING_3_4VREFINT" Group="Pinout Parameters" GroupCH="引脚参数" Name="InvertingInput" Type="list" Visible="false">
+		<Condition Diagnostic="" Expression="$IpInstance_VS_VREFINT34"/>
+		<PossibleValue Comment="3/4 VREFINT" CommentCH="3/4 VREFINT" Value="CMP_INVERTING_3_4VREFINT"/>
+	</RefParameter>
+	
+	<RefParameter Comment="Non Inverting Input" CommentCH="输入不反相" DefaultValue="CMP_NON_INVERTING_PA5_PA7" Group="Pinout Parameters" GroupCH="引脚参数" Name="NonInvertingInput" Type="list" Visible="false">
+		<Condition Diagnostic="" Expression="$IpInstance_INP0"/>
+		<PossibleValue Comment="INP_0" CommentCH="INP_0" Value="CMP_NON_INVERTING_PA5_PA7"/>
+	</RefParameter>
+	<RefParameter Comment="Non Inverting Input" CommentCH="输入不反相" DefaultValue="CMP_NON_INVERTING_PA1_PA3" Group="Pinout Parameters" GroupCH="引脚参数" Name="NonInvertingInput" Type="list" Visible="false">
+		<Condition Diagnostic="" Expression="$IpInstance_INP1"/>
+		<PossibleValue Comment="INP_1" CommentCH="INP_1" Value="CMP_NON_INVERTING_PA1_PA3"/>
+	</RefParameter>
+	<RefParameter Comment="Non Inverting Input" CommentCH="输入不反相" DefaultValue="CMP_NON_INVERTING_PA0_PA2" Group="Pinout Parameters" GroupCH="引脚参数" Name="NonInvertingInput" Type="list" Visible="false">
+		<Condition Diagnostic="" Expression="$IpInstance_INP2"/>
+		<PossibleValue Comment="INP_2" CommentCH="INP_2" Value="CMP_NON_INVERTING_PA0_PA2"/>
+	</RefParameter>
+	
+	<!-- Basic Parameters -->
+	<RefParameter Comment="Speed selection" CommentCH="速度选择" DefaultValue="CMP_SPEED_FAST" Group="Basic Parameters" GroupCH="基础参数" Name="Mode" Type="list">
+		<PossibleValue Comment="Fast Speed" CommentCH="高速" Value="CMP_SPEED_FAST"/>
+		<PossibleValue Comment="Low speed" CommentCH="低速" Value="CMP_SPEED_SLOW"/>
+	</RefParameter>
+	
+	<RefParameter Comment="Interrupt" CommentCH="中断" DefaultValue="DISABLE" Group="Basic Parameters" GroupCH="基础参数" Name="Interrupt" Type="list">		
+		<PossibleValue Comment="Disable" CommentCH="禁用" Value="DISABLE"/>
+		<PossibleValue Comment="Enable" CommentCH="启用" Value="ENABLE"/>
+	</RefParameter>
+	
+	<RefParameter Comment="Interrupt Trigger Polarity" CommentCH="中断触发极性" DefaultValue="EXINT_TRIGGER_RISING_EDGE" Group="Basic Parameters" GroupCH="基础参数" Name="TriggerPolarity" Type="list">
+		<Condition Diagnostic="" Expression = "Interrupt = ENABLE"/>
+		<PossibleValue Comment="Rising Edge" CommentCH="上升沿" Value="EXINT_TRIGGER_RISING_EDGE"/>
+		<PossibleValue Comment="Falling Edge" CommentCH="下降沿" Value="EXINT_TRIGGER_FALLING_EDGE"/>
+		<PossibleValue Comment="Rising/Falling Edge" CommentCH="上升沿/下降沿" Value="EXINT_TRIGGER_BOTH_EDGE"/>
+	</RefParameter>
+	
+	<!-- Hysteresis Level -->
+	<RefParameter Comment="Hysteresis Level" CommentCH="迟滞等级" DefaultValue="CMP_HYSTERESIS_NONE" Group="Basic Parameters" GroupCH="基础参数" Name="Hysteresis" Type="list">
+		<PossibleValue Comment="None" CommentCH="无" Value="CMP_HYSTERESIS_NONE"/>
+		<PossibleValue Comment="Low" CommentCH="低度迟滞" Value="CMP_HYSTERESIS_LOW"/>
+		<PossibleValue Comment="Medium" CommentCH="中度迟滞" Value="CMP_HYSTERESIS_MEDIUM"/>
+		<PossibleValue Comment="High" CommentCH="高度迟滞" Value="CMP_HYSTERESIS_HIGH"/>
+	</RefParameter>
+	
+	<!-- Double comparator mode -->
+	<RefParameter Comment="Double comparator mode" CommentCH="双比较器模式" DefaultValue="DISABLE" Group="Basic Parameters" GroupCH="基础参数" Name="DoubleComparatorMode" Type="list">
+		<Condition Diagnostic="" Expression="CMP1_InputPlus"/>
+		<PossibleValue Comment="Disable" CommentCH="禁用" Value="DISABLE"/>
+		<PossibleValue Comment="Enable" CommentCH="启用" Value="ENABLE"/>
+	</RefParameter>
+	
+	<!-- write protect -->
+	<RefParameter Comment="Write protect" CommentCH="写保护" DefaultValue="DISABLE" Group="Basic Parameters" GroupCH="基础参数" Name="WriteProtect" Type="list">
+		<PossibleValue Comment="Disable" CommentCH="禁用" Value="DISABLE"/>
+		<PossibleValue Comment="Enable" CommentCH="启用" Value="ENABLE"/>
+	</RefParameter>
+	
+	<!-- Output Parameters -->
+	<RefParameter Comment="Output Polarity" CommentCH="输出极性选择" DefaultValue="CMP_POL_NON_INVERTING" Group="Output Parameters" GroupCH="输出参数" Name="OutputPol" Type="list">
+		<PossibleValue Comment="Not Inverted" CommentCH="输出极性不反相" Value="CMP_POL_NON_INVERTING"/>
+		<PossibleValue Comment="Inverted" CommentCH="输出极性反相" Value="CMP_POL_INVERTING"/>
+	</RefParameter>
+	
+	<!-- Internal Output Selection. -->
+	<RefParameter Comment="Output Internal Selection" CommentCH="输出选择位" DefaultValue="CMP_OUTPUT_NONE" Group="Output Parameters" GroupCH="输出参数" Name="Output" Type="list">
+		<PossibleValue Comment="None" CommentCH="无" Value="CMP_OUTPUT_NONE"/>
+		<PossibleValue Comment="TMR1 Break Input" CommentCH="TMR1刹车输入" Value="CMP_OUTPUT_TMR1BRK"/>
+		<PossibleValue Comment="TMR1 Input Capture 1" CommentCH="TMR1输入捕获1" Value="CMP_OUTPUT_TMR1CH1"/>
+		<PossibleValue Comment="TMR1 Output Compare Off" CommentCH="TMR1输出比较清除" Value="CMP_OUTPUT_TMR1CXORAW_OFF"/>
+		<PossibleValue Comment="TMR2 Input Capture 4" CommentCH="TMR2输入捕获4" Value="CMP_OUTPUT_TMR2CH4"/>
+		<PossibleValue Comment="TMR2 Output Compare Off" CommentCH="TMR2输出比较清除" Value="CMP_OUTPUT_TMR2CXORAW_OFF"/>
+		<PossibleValue Comment="TMR3 Input Capture 1" CommentCH="TMR3输入捕获1" Value="CMP_OUTPUT_TMR3CH1"/>
+		<PossibleValue Comment="TMR3 Output Compare Off" CommentCH="TMR3输出比较清除" Value="CMP_OUTPUT_TMR3CXORAW_OFF"/>
+	</RefParameter>
+	
+	<RefParameter Name="TMR1_BreakInput_Selection"  Comment="TMR1 Break Input Selection" CommentCH="TMR1刹车输入选择" DefaultValue="TMR1_BK1_CMP_GMUX_10" Group="Output Parameters" GroupCH="输出参数" Type="list">
+		<Condition Diagnostic="" Expression = "Output = CMP_OUTPUT_TMR1BRK"/>
+		<PossibleValue Comment="CMP Output Connect Break Input" CommentCH="CMP输出信号连接到刹车输入" Value="TMR1_BK1_CMP_GMUX_10"/>
+		<PossibleValue Comment="CMP Output Or IO Connect Break Input" CommentCH="CMP输出信号或上IO信号连接到刹车输入" Value="TMR1_BK1_CMP_GMUX_11"/>
+	</RefParameter>
+	<RefParameter Name="TMR1_InputCapture1_Selection"  Comment="TMR1 Input Capture 1 Selection" CommentCH="TMR1输入捕获1选择" DefaultValue="TMR1_CH1_CMP_GMUX_10" Group="Output Parameters" GroupCH="输出参数" Type="list">
+		<Condition Diagnostic="" Expression = "Output = CMP_OUTPUT_TMR1CH1"/>
+		<PossibleValue Comment="CMP Output Connect Input Capture" CommentCH="CMP输出信号连接到输入捕获" Value="TMR1_CH1_CMP_GMUX_10"/>
+		<PossibleValue Comment="CMP Output Or IO Connect Input Capture" CommentCH="CMP输出信号或上IO信号连接到输入捕获" Value="TMR1_CH1_CMP_GMUX_11"/>
+	</RefParameter>
+	<RefParameter Name="TMR2_InputCapture4_Selection"  Comment="TMR2 Input Capture 4 Selection" CommentCH="TMR2输入捕获4选择" DefaultValue="TMR2_CH4_CMP_GMUX_10" Group="Output Parameters" GroupCH="输出参数" Type="list">
+		<Condition Diagnostic="" Expression = "Output = CMP_OUTPUT_TMR2CH4"/>
+		<PossibleValue Comment="CMP Output Connect Input Capture" CommentCH="CMP输出信号连接到输入捕获" Value="TMR2_CH4_CMP_GMUX_10"/>
+		<PossibleValue Comment="CMP Output Or IO Connect Input Capture" CommentCH="CMP输出信号或上IO信号连接到输入捕获" Value="TMR2_CH4_CMP_GMUX_11"/>
+	</RefParameter>
+	<RefParameter Name="TMR3_InputCapture1_Selection"  Comment="TMR3 Input Capture 1 Selection" CommentCH="TMR3输入捕获1选择" DefaultValue="TMR3_CH1_CMP_GMUX_10" Group="Output Parameters" GroupCH="输出参数" Type="list">
+		<Condition Diagnostic="" Expression = "Output = CMP_OUTPUT_TMR3CH1"/>
+		<PossibleValue Comment="CMP Output Connect Input Capture" CommentCH="CMP输出信号连接到输入捕获" Value="TMR3_CH1_CMP_GMUX_10"/>
+		<PossibleValue Comment="CMP Output Or IO Connect Input Capture" CommentCH="CMP输出信号或上IO信号连接到输入捕获" Value="TMR3_CH1_CMP_GMUX_11"/>
+	</RefParameter>
+
+	<!-- 'Inverting Input' RefModes list -->
+	<RefMode BaseMode="InputNeg" Name="INM4">
+		<Parameter Name="Mode"/>
+		<Parameter Name="Interrupt"/>
+		<Parameter Name="TriggerPolarity"/>
+		<Parameter Name="Hysteresis"/>
+		<Parameter Name="DoubleComparatorMode"/>
+		<Parameter Name="WriteProtect"/>
+		<Parameter Name="OutputPol"/>
+		<Parameter Name="Output"/>
+		<Parameter Name="NonInvertingInput"/>
+		<Parameter Name="InvertingInput"/>
+		<Parameter Name="TMR1_BreakInput_Selection"/>
+		<Parameter Name="TMR1_InputCapture1_Selection"/>
+		<Parameter Name="TMR2_InputCapture4_Selection"/>
+		<Parameter Name="TMR3_InputCapture1_Selection"/>
+	</RefMode>
+	<RefMode BaseMode="InputNeg" Name="INM5">
+		<Parameter Name="Mode"/>
+		<Parameter Name="Interrupt"/>
+		<Parameter Name="TriggerPolarity"/>
+		<Parameter Name="Hysteresis"/>
+		<Parameter Name="DoubleComparatorMode"/>
+		<Parameter Name="WriteProtect"/>
+		<Parameter Name="OutputPol"/>
+		<Parameter Name="Output"/>
+		<Parameter Name="NonInvertingInput"/>
+		<Parameter Name="InvertingInput"/>
+		<Parameter Name="TMR1_BreakInput_Selection"/>
+		<Parameter Name="TMR1_InputCapture1_Selection"/>
+		<Parameter Name="TMR2_InputCapture4_Selection"/>
+		<Parameter Name="TMR3_InputCapture1_Selection"/>
+	</RefMode>
+	<RefMode BaseMode="InputNeg" Name="INM6">
+		<Parameter Name="Mode"/>
+		<Parameter Name="Interrupt"/>
+		<Parameter Name="TriggerPolarity"/>
+		<Parameter Name="Hysteresis"/>
+		<Parameter Name="DoubleComparatorMode"/>
+		<Parameter Name="WriteProtect"/>
+		<Parameter Name="OutputPol"/>
+		<Parameter Name="Output"/>
+		<Parameter Name="NonInvertingInput"/>
+		<Parameter Name="InvertingInput"/>
+		<Parameter Name="TMR1_BreakInput_Selection"/>
+		<Parameter Name="TMR1_InputCapture1_Selection"/>
+		<Parameter Name="TMR2_InputCapture4_Selection"/>
+		<Parameter Name="TMR3_InputCapture1_Selection"/>
+	</RefMode>
+	<RefMode BaseMode="InputNeg" Name="VREFINT">
+		<Parameter Name="Mode"/>
+		<Parameter Name="Interrupt"/>
+		<Parameter Name="TriggerPolarity"/>
+		<Parameter Name="Hysteresis"/>
+		<Parameter Name="DoubleComparatorMode"/>
+		<Parameter Name="WriteProtect"/>
+		<Parameter Name="OutputPol"/>
+		<Parameter Name="Output"/>
+		<Parameter Name="NonInvertingInput"/>
+		<Parameter Name="InvertingInput"/>
+		<Parameter Name="TMR1_BreakInput_Selection"/>
+		<Parameter Name="TMR1_InputCapture1_Selection"/>
+		<Parameter Name="TMR2_InputCapture4_Selection"/>
+		<Parameter Name="TMR3_InputCapture1_Selection"/>
+	</RefMode>
+	<RefMode BaseMode="InputNeg" Name="VREFINT_34">
+		<Parameter Name="Mode"/>
+		<Parameter Name="Interrupt"/>
+		<Parameter Name="TriggerPolarity"/>
+		<Parameter Name="Hysteresis"/>
+		<Parameter Name="DoubleComparatorMode"/>
+		<Parameter Name="WriteProtect"/>
+		<Parameter Name="OutputPol"/>
+		<Parameter Name="Output"/>
+		<Parameter Name="NonInvertingInput"/>
+		<Parameter Name="InvertingInput"/>
+		<Parameter Name="TMR1_BreakInput_Selection"/>
+		<Parameter Name="TMR1_InputCapture1_Selection"/>
+		<Parameter Name="TMR2_InputCapture4_Selection"/>
+		<Parameter Name="TMR3_InputCapture1_Selection"/>
+	</RefMode>
+	<RefMode BaseMode="InputNeg" Name="VREFINT_12">
+		<Parameter Name="Mode"/>
+		<Parameter Name="Interrupt"/>
+		<Parameter Name="TriggerPolarity"/>
+		<Parameter Name="Hysteresis"/>
+		<Parameter Name="DoubleComparatorMode"/>
+		<Parameter Name="WriteProtect"/>
+		<Parameter Name="OutputPol"/>
+		<Parameter Name="Output"/>
+		<Parameter Name="NonInvertingInput"/>
+		<Parameter Name="InvertingInput"/>
+		<Parameter Name="TMR1_BreakInput_Selection"/>
+		<Parameter Name="TMR1_InputCapture1_Selection"/>
+		<Parameter Name="TMR2_InputCapture4_Selection"/>
+		<Parameter Name="TMR3_InputCapture1_Selection"/>
+	</RefMode>
+	<RefMode BaseMode="InputNeg" Name="VREFINT_14">
+		<Parameter Name="Mode"/>
+		<Parameter Name="Interrupt"/>
+		<Parameter Name="TriggerPolarity"/>
+		<Parameter Name="Hysteresis"/>
+		<Parameter Name="DoubleComparatorMode"/>
+		<Parameter Name="WriteProtect"/>
+		<Parameter Name="OutputPol"/>
+		<Parameter Name="Output"/>
+		<Parameter Name="NonInvertingInput"/>
+		<Parameter Name="InvertingInput"/>
+		<Parameter Name="TMR1_BreakInput_Selection"/>
+		<Parameter Name="TMR1_InputCapture1_Selection"/>
+		<Parameter Name="TMR2_InputCapture4_Selection"/>
+		<Parameter Name="TMR3_InputCapture1_Selection"/>
+	</RefMode>
+	
+	<!-- Modes for CMP-->
+	<ModeLogicOperator Name="OR">
+		<Mode Name="InputPlus" UserName="Non-inverting input selection (Input [+])" UserNameCH="同相输入选择 (Input [+])">
+			<ModeLogicOperator Name="XOR">
+				<Mode Name="INP0" UserName="INP0 (PA7)" UserNameCH="INP0 (PA7)">
+					<SignalLogicalOp Name="AND">
+						<Signal Name="INP0"/>
+					</SignalLogicalOp>
+					<Semaphore>$IpInstance_INP0</Semaphore>
+					<Semaphore>$IpInstance_InputPlus</Semaphore>
+				</Mode>
+				<Mode Name="INP1" UserName="INP1 (PA3)" UserNameCH="INP1 (PA3)">
+					<SignalLogicalOp Name="AND">
+						<Signal Name="INP1"/>
+					</SignalLogicalOp>
+					<Semaphore>$IpInstance_INP1</Semaphore>
+					<Semaphore>$IpInstance_InputPlus</Semaphore>
+				</Mode>
+				<Mode Name="INP2" UserName="INP2 (PA2)" UserNameCH="INP2 (PA2)">
+					<SignalLogicalOp Name="AND">
+						<Signal Name="INP2"/>
+					</SignalLogicalOp>
+					<Semaphore>$IpInstance_INP2</Semaphore>
+					<Semaphore>$IpInstance_InputPlus</Semaphore>
+				</Mode>
+			</ModeLogicOperator>
+		</Mode>
+		
+		<Mode Name="InputNeg" UserName="Inverting input selection (Input [-])" UserNameCH="反相输入选择 (Input [-])">
+			<ModeLogicOperator Name="XOR">
+				<Mode Name="INM4" UserName="INM4 (PA4)" UserNameCH="INM4 (PA4)">
+					<SignalLogicalOp Name="AND">
+						<Signal Name="INM4"/>
+					</SignalLogicalOp>
+					<Semaphore>$IpInstance_INM4</Semaphore>
+				</Mode>
+				<Mode Name="INM5" UserName="INM5 (PA5)" UserNameCH="INM5 (PA5)">
+					<SignalLogicalOp Name="AND">
+						<Signal Name="INM5"/>
+					</SignalLogicalOp>
+					<Semaphore>$IpInstance_INM5</Semaphore>
+				</Mode>
+				<Mode Name="INM6" UserName="INM6 (PA2)" UserNameCH="INM6 (PA2)">
+					<SignalLogicalOp Name="AND">
+						<Signal Name="INM6"/>
+					</SignalLogicalOp>
+					<Semaphore>$IpInstance_INM6</Semaphore>
+				</Mode>
+				<Mode Name="VREFINT" UserName="Internal VRef" UserNameCH="内部参考电压">
+					<SignalLogicalOp Name="AND">
+						<Signal Name="VS_VREFINT"/>
+					</SignalLogicalOp>
+					<Semaphore>$IpInstance_VS_VREFINT</Semaphore>
+				</Mode>
+				<Mode Name="VREFINT_34" UserName="3/4 Internal VRef" UserNameCH="3/4内部参考电压">
+					<SignalLogicalOp Name="AND">
+						<Signal Name="VS_VREFINT34"/>
+					</SignalLogicalOp>
+					<Semaphore>$IpInstance_VS_VREFINT34</Semaphore>
+				</Mode>
+				<Mode Name="VREFINT_12" UserName="1/2 Internal VRef" UserNameCH="1/2内部参考电压">
+					<SignalLogicalOp Name="AND">
+						<Signal Name="VS_VREFINT12"/>
+					</SignalLogicalOp>
+					<Semaphore>$IpInstance_VS_VREFINT12</Semaphore>
+				</Mode>
+				<Mode Name="VREFINT_14" UserName="1/4 Internal VRef" UserNameCH="1/4内部参考电压">
+					<SignalLogicalOp Name="AND">
+						<Signal Name="VS_VREFINT14"/>
+					</SignalLogicalOp>
+					<Semaphore>$IpInstance_VS_VREFINT14</Semaphore>
+				</Mode>
+			</ModeLogicOperator>
+			<Condition Expression="$IpInstance_InputPlus" Diagnostic="Need to have an &quot;Non-inverting input selection (Input [+])&quot; activated" DiagnosticCH="需要选择 &quot;同相输入选择 (Input [+])&quot;"/>
+		</Mode>
+		
+		<Mode Name="ExternalOutput" UserName="External Output" UserNameCH="外部输出">
+			<ModeLogicOperator Name="OR">
+				<Mode Name="ExternalOutput" UserName="External Output" UserNameCH="外部输出">
+					<SignalLogicalOp Name="AND">
+						<Signal Name="OUT"/>
+					</SignalLogicalOp>
+				</Mode>
+			</ModeLogicOperator>
+			<Condition Expression="$IpInstance_InputPlus" Diagnostic="Need to have an &quot;Non-inverting input selection (Input [+])&quot; activated" DiagnosticCH="需要选择 &quot;同相输入选择 (Input [+])&quot;"/>
+		</Mode>
+	</ModeLogicOperator>
+	
+	<!-- Signals for CMP. -->
+	<RefSignal IOMode="Analog" Name="INP0"/>
+	<RefSignal IOMode="Analog" Name="INP1"/>
+	<RefSignal IOMode="Analog" Name="INP2"/>
+	<RefSignal IOMode="Analog" Name="INM4"/>
+	<RefSignal IOMode="Analog" Name="INM5"/>
+	<RefSignal IOMode="Analog" Name="INM6"/>
+	<RefSignal IOMode="MuxOutputPushPull" Name="OUT"/>
+	
+	<RefSignal Name="VS_VREFINT" Virtual="true"/>
+	<RefSignal Name="VS_VREFINT34" Virtual="true"/>
+	<RefSignal Name="VS_VREFINT12" Virtual="true"/>
+	<RefSignal Name="VS_VREFINT14" Virtual="true"/>
+	
+	<!-- Semaphore for CMP -->
+	<Semaphore>$IpInstance</Semaphore>
+</IP>

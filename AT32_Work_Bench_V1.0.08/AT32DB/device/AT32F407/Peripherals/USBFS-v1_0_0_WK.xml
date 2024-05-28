@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<IP>
+  <About>Universal Serial Bus Full-Speed</About>
+  <AboutCH>USB 全速</AboutCH>
+	
+	<ModeLogicOperator Name="OR">
+		<Mode Name="Device" UserName="Device(FS)" UserNameCH="设备(FS)">
+			<ModeLogicOperator Name="XOR">
+				<Mode Name="Device" UserName="Device(FS)" UserNameCH="设备(FS)">
+					<SignalLogicalOp Name="AND">
+						<Signal Name="D+"/>
+						<Signal Name="D-"/>
+					</SignalLogicalOp>
+					<Semaphore>USB_FS_DEVICE</Semaphore>
+					<Semaphore>USB_FS</Semaphore>
+				</Mode>
+			</ModeLogicOperator>			
+		</Mode>
+   
+		<Mode Name="Activate_SOF" UserName="Activate SOF" UserNameCH="开启SOF">
+			<Condition Expression="USB_FS"
+        	  	                   Diagnostic="USB &quot;Mode&quot; must be selected first" 
+        	  	                   DiagnosticCH="需要先选择 &quot;模式&quot;"/>
+			<ModeLogicOperator Name="XOR">
+				<Mode Name="Activate_SOF" UserName="Activate SOF" UserNameCH="开启SOF">
+					<SignalLogicalOp Name="AND">				
+						<Signal Name="SOF"/>				
+					</SignalLogicalOp>
+				</Mode>			
+			</ModeLogicOperator>
+			<Semaphore>USB_FS_SOF</Semaphore>
+		</Mode>
+	</ModeLogicOperator>
+	
+	<RefSignal IOMode="System" Name="D+"/>
+	<RefSignal IOMode="System" Name="D-"/>
+	<RefSignal IOMode="MuxOutputPushPull" Name="SOF"/>
+</IP>

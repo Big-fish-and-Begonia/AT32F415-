@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<IP>
+    <About>TIMER</About>
+    <AboutCH>定时器</AboutCH>
+
+<!-- Generic RefParameters for TMR Modes -->
+    <RefParameter Name="Instance" DefaultValue="TMR$Index" Comment="Instance" CommentCH="" Type="" Visible="false"/>
+
+    <RefParameter Name="Overflow_Event" Comment="Overflow Event" CommentCH="溢出事件" DefaultValue="From_COS" Type="list" Group="Counter Settings" GroupCH="计数器设置">
+        <PossibleValue Value="From_COS" Comment="From counter/ovfswtr/sub-timer" CommentCH="来源于计数器溢出、设置OVFSWTR位或次定时器控制器"/>
+        <PossibleValue Value="From_C" Comment="From counter" CommentCH="来源于计数器溢出"/>        
+        <PossibleValue Value="FALSE" Comment="Disable overflow event" CommentCH="禁止溢出事件"/>
+    </RefParameter>
+    
+    <RefParameter Name="One_Cycle_Mode" Comment="One Cycle Mode" CommentCH="单周期模式" DefaultValue="TRUE" Type="list" Visible="false" Group="Counter Settings" GroupCH="计数器设置">
+        <Condition Diagnostic="" Expression="Semaphore_Enable_OCM$IpInstance"/>
+        <PossibleValue Value="TRUE" Comment="Enable" CommentCH="开启"/>
+    </RefParameter>
+    <RefParameter Name="One_Cycle_Mode" Comment="One Cycle Mode" CommentCH="单周期模式" DefaultValue="FALSE" Type="list" Visible="false" Group="Counter Settings" GroupCH="计数器设置">
+        <PossibleValue Value="FALSE" Comment="Disable" CommentCH="关闭"/>
+    </RefParameter>
+           
+<!--____________________________________________________________________-->
+
+    <RefParameter Name="DividerValue" Comment="Divider value (16 bits value)" CommentCH="分频系数 (16位值)" DefaultValue="0" Max="65535" Min="0" Type="integer" Group="Counter Settings" GroupCH="计数器设置">
+    </RefParameter>
+<!-- CounterMode TIMER INSTANCE DEPENDENT-->
+    <RefParameter Name="CounterDirection" Comment="Counter Direction" CommentCH="计数方向" DefaultValue="TMR_COUNT_UP" Type="list" Group="Counter Settings" GroupCH="计数器设置">
+        <PossibleValue Value="TMR_COUNT_UP" Comment="Up" CommentCH="向上"/>
+    </RefParameter>
+
+    <RefParameter Name="Period" Comment="Period Value ( 16 bits value )" CommentCH="周期值 (16位值)" DefaultValue="65535" Max="65535" Min="0" Type="integer" Group="Counter Settings" GroupCH="计数器设置">
+    </RefParameter>
+    <RefParameter Name="Period" Comment="Period Value ( 32 bits value )" CommentCH="周期值 (32位值)" DefaultValue="4294967295" Max="4294967295" Min="0" Type="integer" Group="Counter Settings" GroupCH="计数器设置">
+        <Condition Diagnostic="" Expression="$IpNumber=2|$IpNumber=5"/>
+    </RefParameter>
+
+    <RefParameter Name="PeriodBufferEnable" Comment="Period buffer enable" CommentCH="周期缓冲使能" DefaultValue="FALSE" Type="list" Group="Counter Settings" GroupCH="计数器设置">
+        <PossibleValue Value="FALSE" Comment="Disable" CommentCH="关闭"/>
+        <PossibleValue Value="TRUE" Comment="Enable" CommentCH="开启"/>
+    </RefParameter>
+    
+<!-- Primary_TMR_output TIMER INSTANCE DEPENDENT -->
+    <RefParameter Name="Primary_TMR_output" Comment="Primary TMR output selection" CommentCH="主定时器输出选择" DefaultValue="TMR_PRIMARY_SEL_RESET" Type="list" Group="Primary mode settings" GroupCH="主定时器模式设置">
+        <PossibleValue Value="TMR_PRIMARY_SEL_RESET" Comment="Reset" CommentCH="复位"/>
+        <PossibleValue Value="TMR_PRIMARY_SEL_ENABLE" Comment="Enable" CommentCH="使能"/>
+        <PossibleValue Value="TMR_PRIMARY_SEL_OVERFLOW" Comment="Overflow" CommentCH="溢出"/>
+    </RefParameter>
+
+
+<!-- ***********************************************************************************-->
+<!--/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\-->
+<!--/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/ REF MODE \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\-->
+<!--/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\-->
+<!-- ***********************************************************************************-->
+    <RefMode Name="Counter_init" Abstract="true">    	     
+    	      <Parameter Name="One_Cycle_Mode"/>    	      
+    	      
+            <Parameter Name="DividerValue"/>
+            <Parameter Name="CounterDirection"/>
+            <Parameter Name="Period"/>
+            <Parameter Name="PeriodBufferEnable"/>
+             <Parameter Name="Overflow_Event"/>
+            <Parameter Name="Primary_TMR_output"/>      
+    </RefMode>
+
+    <!-- ModeLogicOperator for TMR -->
+    <ModeLogicOperator Name="OR"> 
+    	   <Mode Name="Activated" UserName="Activated" UserNameCH="启用">
+            <ModeLogicOperator Name="OR" UserName="Activated" UserNameCH="启用">
+                <Mode Name="Activated">
+                    <Semaphore>Semaphore_ClockSourceInternal$IpInstance</Semaphore>
+                    <Semaphore>Semaphore_Activated$IpInstance</Semaphore>
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="VS_Activated"/>
+                    </SignalLogicalOp>
+                </Mode>
+            </ModeLogicOperator>
+        </Mode>
+        
+        <Mode Name="Enable One cycle mode" UserName="Enable One cycle mode" UserNameCH="开启单周期模式">
+        	 <Condition Expression="Semaphore_Activated$IpInstance"
+        	  	                   Diagnostic="Need to select &quot;Activated&quot;" 
+        	  	                   DiagnosticCH="需要选择 &quot;启用&quot;"/>
+           <ModeLogicOperator Name="OR">
+                <Mode Name="Enable One cycle mode" UserName="Enable One cycle mode" UserNameCH="开启单周期模式">
+                    <Semaphore>Semaphore_Enable_OCM$IpInstance</Semaphore>
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="VS_OCM"/>
+                    </SignalLogicalOp>
+                </Mode>
+           </ModeLogicOperator>
+         </Mode>
+    </ModeLogicOperator>
+    
+    <RefSignal IOMode="Analog" Name="VS_Activated" Virtual="true"/>
+    <RefSignal IOMode="Analog" Name="VS_OCM" Virtual="true"/>                     
+</IP>

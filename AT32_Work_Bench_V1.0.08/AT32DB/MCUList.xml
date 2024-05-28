@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+  <FileVersion>1.00.00</FileVersion>
+  <entry term="MCUSerialsList">
+  	<Member Serial="AT32F402"/>
+  	<Member Serial="AT32F403A"/>
+  	<Member Serial="AT32F405"/>
+  	<Member Serial="AT32F407"/>
+  	<Member Serial="AT32F413"/>
+  	<Member Serial="AT32F415"/>
+  	<Member Serial="AT32F421"/>
+  	<Member Serial="AT32F423"/>
+  	<Member Serial="AT32F425"/>
+  	<Member Serial="AT32F435"/>
+  	<Member Serial="AT32F437"/>
+  	<Member Serial="AT32A403A"/>
+  	<Member Serial="AT32A423"/>
+  	<Member Serial="AT32WB415"/>
+  </entry>
+  <entry term="MCUPackageList">
+  	<Member>LQFP144</Member>
+    <Member>LQFP100</Member>
+    <Member>LQFP64</Member>
+    <Member>LQFP48</Member>
+    <Member>LQFP32</Member>
+    <Member>QFN60</Member>
+    <Member>QFN48</Member>
+    <Member>QFN36</Member> 
+    <Member>QFN32</Member> 
+    <Member>QFN28</Member> 
+    <Member>TSSOP20</Member> 
+  </entry>
+  <entry term="AT32F437">
+    <Member Name="AT32F437ZMT7" Package="LQFP144" Flash="4032KB"  SRAM="384KB" MaxSRAM="512KB"/>
+    <Member Name="AT32F437ZGT7" Package="LQFP144" Flash="1024KB"  SRAM="384KB" MaxSRAM="512KB"/>
+    <Member Name="AT32F437ZDT7" Package="LQFP144" Flash="448KB"  SRAM="384KB" MaxSRAM="512KB"/>
+    <Member Name="AT32F437ZCT7" Package="LQFP144" Flash="256KB"  SRAM="384KB" MaxSRAM="512KB"/>
+    <Member Name="AT32F437VMT7" Package="LQFP100" Flash="4032KB"  SRAM="384KB" MaxSRAM="512KB"/>
+    <Member Name="AT32F437VGT7" Package="LQFP100" Flash="1024KB"  SRAM="384KB" MaxSRAM="512KB"/>
+    <Member Name="AT32F437VDT7" Package="LQFP100" Flash="448KB"  SRAM="384KB" MaxSRAM="512KB"/>
+    <Member Name="AT32F437VCT7" Package="LQFP100" Flash="256KB"  SRAM="384KB" MaxSRAM="512KB"/>
+    <Member Name="AT32F437RMT7" Package="LQFP64" Flash="4032KB"  SRAM="384KB" MaxSRAM="512KB"/>
+    <Member Name="AT32F437RGT7" Package="LQFP64" Flash="1024KB"  SRAM="384KB" MaxSRAM="512KB"/>
+    <Member Name="AT32F437RDT7" Package="LQFP64" Flash="448KB"  SRAM="384KB" MaxSRAM="512KB"/>
+    <Member Name="AT32F437RCT7" Package="LQFP64" Flash="256KB"  SRAM="384KB" MaxSRAM="512KB"/>
+  </entry>
+  <entry term="AT32F435">
+    <Member Name="AT32F435ZMT7" Package="LQFP144" Flash="4032KB"  SRAM="384KB" MaxSRAM="512KB"/>
+    <Member Name="AT32F435ZGT7" Package="LQFP144" Flash="1024KB"  SRAM="384KB" MaxSRAM="512KB"/>
+    <Member Name="AT32F435ZDT7" Package="LQFP144" Flash="448KB"  SRAM="384KB" MaxSRAM="512KB"/>
+    <Member Name="AT32F435ZCT7" Package="LQFP144" Flash="256KB"  SRAM="384KB" MaxSRAM="512KB"/>
+    <Member Name="AT32F435VMT7" Package="LQFP100" Flash="4032KB"  SRAM="384KB" MaxSRAM="512KB"/>
+    <Member Name="AT32F435VGT7" Package="LQFP100" Flash="1024KB"  SRAM="384KB" MaxSRAM="512KB"/>
+    <Member Name="AT32F435VDT7" Package="LQFP100" Flash="448KB"  SRAM="384KB" MaxSRAM="512KB"/>
+    <Member Name="AT32F435VCT7" Package="LQFP100" Flash="256KB"  SRAM="384KB" MaxSRAM="512KB"/>
+    <Member Name="AT32F435RMT7" Package="LQFP64" Flash="4032KB"  SRAM="384KB" MaxSRAM="512KB"/>
+    <Member Name="AT32F435RGT7" Package="LQFP64" Flash="1024KB"  SRAM="384KB" MaxSRAM="512KB"/>
+    <Member Name="AT32F435RDT7" Package="LQFP64" Flash="448KB"  SRAM="384KB" MaxSRAM="512KB"/>
+    <Member Name="AT32F435RCT7" Package="LQFP64" Flash="256KB"  SRAM="384KB" MaxSRAM="512KB"/>
+    <Member Name="AT32F435CMT7" Package="LQFP48" Flash="4032KB"  SRAM="384KB" MaxSRAM="512KB"/>
+    <Member Name="AT32F435CGT7" Package="LQFP48" Flash="1024KB"  SRAM="384KB" MaxSRAM="512KB"/>
+    <Member Name="AT32F435CDT7" Package="LQFP48" Flash="448KB"  SRAM="384KB" MaxSRAM="512KB"/>
+    <Member Name="AT32F435CCT7" Package="LQFP48" Flash="256KB"  SRAM="384KB" MaxSRAM="512KB"/>
+    <Member Name="AT32F435CMU7" Package="QFN48" Flash="4032KB"  SRAM="384KB" MaxSRAM="512KB"/>
+    <Member Name="AT32F435CGU7" Package="QFN48" Flash="1024KB"  SRAM="384KB" MaxSRAM="512KB"/>
+    <Member Name="AT32F435CDU7" Package="QFN48" Flash="448KB"  SRAM="384KB" MaxSRAM="512KB"/>
+    <Member Name="AT32F435CCU7" Package="QFN48" Flash="256KB"  SRAM="384KB" MaxSRAM="512KB"/>
+  </entry>
+  <entry term="AT32F405">
+    <Member Name="AT32F405RCT7" Package="LQFP64" Flash="256KB" SRAM="102KB"/>
+    <Member Name="AT32F405RBT7" Package="LQFP64" Flash="128KB" SRAM="70KB"/>
+    <Member Name="AT32F405RCT7-7" Package="LQFP64" Flash="256KB" SRAM="102KB"/>
+    <Member Name="AT32F405RBT7-7" Package="LQFP64" Flash="128KB" SRAM="70KB"/>
+    <Member Name="AT32F405CCT7" Package="LQFP48" Flash="256KB" SRAM="102KB"/>
+    <Member Name="AT32F405CBT7" Package="LQFP48" Flash="128KB" SRAM="70KB"/>
+    <Member Name="AT32F405CCU7" Package="QFN48" Flash="256KB" SRAM="102KB"/>
+    <Member Name="AT32F405CBU7" Package="QFN48" Flash="128KB" SRAM="70KB"/>
+    <Member Name="AT32F405KCU7-4" Package="QFN32" Flash="256KB" SRAM="102KB"/>
+    <Member Name="AT32F405KBU7-4" Package="QFN32" Flash="128KB" SRAM="70KB"/>
+  </entry>
+  <entry term="AT32F402">
+    <Member Name="AT32F402RCT7" Package="LQFP64" Flash="256KB" SRAM="102KB"/>
+    <Member Name="AT32F402RBT7" Package="LQFP64" Flash="128KB" SRAM="70KB"/>
+    <Member Name="AT32F402RCT7-7" Package="LQFP64" Flash="256KB" SRAM="102KB"/>
+    <Member Name="AT32F402RBT7-7" Package="LQFP64" Flash="128KB" SRAM="70KB"/>
+    <Member Name="AT32F402CCT7" Package="LQFP48" Flash="256KB" SRAM="102KB"/>
+    <Member Name="AT32F402CBT7" Package="LQFP48" Flash="128KB" SRAM="70KB"/>
+    <Member Name="AT32F402CCU7" Package="QFN48" Flash="256KB" SRAM="102KB"/>
+    <Member Name="AT32F402CBU7" Package="QFN48" Flash="128KB" SRAM="70KB"/>
+    <Member Name="AT32F402KCU7-4" Package="QFN32" Flash="256KB" SRAM="102KB"/>
+    <Member Name="AT32F402KBU7-4" Package="QFN32" Flash="128KB" SRAM="70KB"/>
+  </entry>
+  <entry term="AT32F425">
+    <Member Name="AT32F425R8T7" Package="LQFP64" Flash="64KB" SRAM="20KB"/>
+    <Member Name="AT32F425R6T7" Package="LQFP64" Flash="32KB" SRAM="20KB"/>
+    <Member Name="AT32F425R8T7-7" Package="LQFP64" Flash="64KB" SRAM="20KB"/>
+    <Member Name="AT32F425R6T7-7" Package="LQFP64" Flash="32KB" SRAM="20KB"/>
+    <Member Name="AT32F425C8T7" Package="LQFP48" Flash="64KB" SRAM="20KB"/>
+    <Member Name="AT32F425C6T7" Package="LQFP48" Flash="32KB" SRAM="20KB"/>
+    <Member Name="AT32F425C8U7" Package="QFN48" Flash="64KB" SRAM="20KB"/>
+    <Member Name="AT32F425C6U7" Package="QFN48" Flash="32KB" SRAM="20KB"/>
+    <Member Name="AT32F425K8T7" Package="LQFP32" Flash="64KB" SRAM="20KB"/>
+    <Member Name="AT32F425K6T7" Package="LQFP32" Flash="32KB" SRAM="20KB"/>
+    <Member Name="AT32F425K8U7-4" Package="QFN32" Flash="64KB" SRAM="20KB"/>
+    <Member Name="AT32F425K6U7-4" Package="QFN32" Flash="32KB" SRAM="20KB"/>
+    <Member Name="AT32F425F8P7" Package="TSSOP20" Flash="64KB" SRAM="20KB"/>
+    <Member Name="AT32F425F6P7" Package="TSSOP20" Flash="32KB" SRAM="20KB"/>
+  </entry> 
+  <entry term="AT32F413">
+    <Member Name="AT32F413RCT7" Package="LQFP64" Flash="256KB" SRAM="32KB" MaxSRAM="64KB"/>
+    <Member Name="AT32F413RBT7" Package="LQFP64" Flash="128KB" SRAM="32KB" MaxSRAM="64KB"/>
+    <Member Name="AT32F413CCT7" Package="LQFP48" Flash="256KB" SRAM="32KB" MaxSRAM="64KB"/>
+    <Member Name="AT32F413CBT7" Package="LQFP48" Flash="128KB" SRAM="32KB" MaxSRAM="64KB"/>
+    <Member Name="AT32F413C8T7" Package="LQFP48" Flash="64KB" SRAM="32KB"/>
+    <Member Name="AT32F413CCU7" Package="QFN48" Flash="256KB" SRAM="32KB" MaxSRAM="64KB"/>
+    <Member Name="AT32F413CBU7" Package="QFN48" Flash="128KB" SRAM="32KB" MaxSRAM="64KB"/>
+    <Member Name="AT32F413KCU7-4" Package="QFN32" Flash="256KB" SRAM="32KB" MaxSRAM="64KB"/>
+    <Member Name="AT32F413KBU7-4" Package="QFN32" Flash="128KB" SRAM="32KB" MaxSRAM="64KB"/>   
+  </entry>  
+  <entry term="AT32F415">
+    <Member Name="AT32F415RCT7" Package="LQFP64" Flash="256KB" SRAM="32KB"/>
+    <Member Name="AT32F415RBT7" Package="LQFP64" Flash="128KB" SRAM="32KB"/>
+    <Member Name="AT32F415R8T7" Package="LQFP64" Flash="64KB" SRAM="32KB"/>
+    <Member Name="AT32F415RCT7-7" Package="LQFP64" Flash="256KB" SRAM="32KB"/>
+    <Member Name="AT32F415RBT7-7" Package="LQFP64" Flash="128KB" SRAM="32KB"/>
+    <Member Name="AT32F415R8T7-7" Package="LQFP64" Flash="64KB" SRAM="32KB"/>
+    <Member Name="AT32F415CCT7" Package="LQFP48" Flash="256KB" SRAM="32KB"/>
+    <Member Name="AT32F415CBT7" Package="LQFP48" Flash="128KB" SRAM="32KB"/>
+    <Member Name="AT32F415C8T7" Package="LQFP48" Flash="64KB" SRAM="32KB"/>
+    <Member Name="AT32F415CCU7" Package="QFN48" Flash="256KB" SRAM="32KB"/>
+    <Member Name="AT32F415CBU7" Package="QFN48" Flash="128KB" SRAM="32KB"/>    
+    <Member Name="AT32F415KCU7-4" Package="QFN32" Flash="256KB" SRAM="32KB"/>
+    <Member Name="AT32F415KBU7-4" Package="QFN32" Flash="128KB" SRAM="32KB"/>
+    <Member Name="AT32F415K8U7-4" Package="QFN32" Flash="256KB" SRAM="32KB"/>  
+  </entry>
+  <entry term="AT32WB415">
+    <Member Name="AT32WB415CCU7-7" Package="QFN48" Flash="256KB" SRAM="32KB"/>
+  </entry>
+  <entry term="AT32A403A">
+    <Member Name="AT32A403AVGT7" Package="LQFP100" Flash="1024KB" SRAM="96KB" MaxSRAM="224KB"/>
+    <Member Name="AT32A403AVET7" Package="LQFP100" Flash="512KB" SRAM="96KB" MaxSRAM="224KB"/>
+    <Member Name="AT32A403AVCT7" Package="LQFP100" Flash="256KB" SRAM="96KB" MaxSRAM="224KB"/>
+    <Member Name="AT32A403ARGT7" Package="LQFP64" Flash="1024KB" SRAM="96KB" MaxSRAM="224KB"/>
+    <Member Name="AT32A403ARET7" Package="LQFP64" Flash="512KB" SRAM="96KB" MaxSRAM="224KB"/>
+    <Member Name="AT32A403ARCT7" Package="LQFP64" Flash="256KB" SRAM="96KB" MaxSRAM="224KB"/>
+    <Member Name="AT32A403ACGT7" Package="LQFP48" Flash="1024KB" SRAM="96KB" MaxSRAM="224KB"/>
+    <Member Name="AT32A403ACET7" Package="LQFP48" Flash="512KB" SRAM="96KB" MaxSRAM="224KB"/>
+    <Member Name="AT32A403ACCT7" Package="LQFP48" Flash="256KB" SRAM="96KB" MaxSRAM="224KB"/>    
+    <Member Name="AT32A403ACGU7" Package="QFN48" Flash="1024KB" SRAM="96KB" MaxSRAM="224KB"/>
+    <Member Name="AT32A403ACEU7" Package="QFN48" Flash="512KB" SRAM="96KB" MaxSRAM="224KB"/>
+    <Member Name="AT32A403ACCU7" Package="QFN48" Flash="256KB" SRAM="96KB" MaxSRAM="224KB"/>
+  </entry> 
+  <entry term="AT32F403A">
+    <Member Name="AT32F403AVGT7" Package="LQFP100" Flash="1024KB" SRAM="96KB" MaxSRAM="224KB"/>
+    <Member Name="AT32F403AVET7" Package="LQFP100" Flash="512KB" SRAM="96KB" MaxSRAM="224KB"/>
+    <Member Name="AT32F403AVCT7" Package="LQFP100" Flash="256KB" SRAM="96KB" MaxSRAM="224KB"/>
+    <Member Name="AT32F403ARGT7" Package="LQFP64" Flash="1024KB" SRAM="96KB" MaxSRAM="224KB"/>
+    <Member Name="AT32F403ARET7" Package="LQFP64" Flash="512KB" SRAM="96KB" MaxSRAM="224KB"/>
+    <Member Name="AT32F403ARCT7" Package="LQFP64" Flash="256KB" SRAM="96KB" MaxSRAM="224KB"/>
+    <Member Name="AT32F403ACGT7" Package="LQFP48" Flash="1024KB" SRAM="96KB" MaxSRAM="224KB"/>
+    <Member Name="AT32F403ACET7" Package="LQFP48" Flash="512KB" SRAM="96KB" MaxSRAM="224KB"/>
+    <Member Name="AT32F403ACCT7" Package="LQFP48" Flash="256KB" SRAM="96KB" MaxSRAM="224KB"/>    
+    <Member Name="AT32F403ACGU7" Package="QFN48" Flash="1024KB" SRAM="96KB" MaxSRAM="224KB"/>
+    <Member Name="AT32F403ACEU7" Package="QFN48" Flash="512KB" SRAM="96KB" MaxSRAM="224KB"/>
+    <Member Name="AT32F403ACCU7" Package="QFN48" Flash="256KB" SRAM="96KB" MaxSRAM="224KB"/>
+  </entry> 
+  <entry term="AT32F407">
+    <Member Name="AT32F407VGT7" Package="LQFP100" Flash="1024KB" SRAM="96KB" MaxSRAM="224KB"/>
+    <Member Name="AT32F407VET7" Package="LQFP100" Flash="512KB" SRAM="96KB" MaxSRAM="224KB"/>
+    <Member Name="AT32F407VCT7" Package="LQFP100" Flash="256KB" SRAM="96KB" MaxSRAM="224KB"/>
+    <Member Name="AT32F407RGT7" Package="LQFP64" Flash="1024KB" SRAM="96KB" MaxSRAM="224KB"/>
+    <Member Name="AT32F407RET7" Package="LQFP64" Flash="512KB" SRAM="96KB" MaxSRAM="224KB"/>
+    <Member Name="AT32F407RCT7" Package="LQFP64" Flash="256KB" SRAM="96KB" MaxSRAM="224KB"/>
+  </entry>  
+  <entry term="AT32F421">
+    <Member Name="AT32F421C8T7" Package="LQFP48" Flash="64KB" SRAM="16KB"/>
+    <Member Name="AT32F421C6T7" Package="LQFP48" Flash="32KB" SRAM="16KB"/>
+    <Member Name="AT32F421C4T7" Package="LQFP48" Flash="16KB" SRAM="8KB"/>      
+    <Member Name="AT32F421K8T7" Package="LQFP32" Flash="64KB" SRAM="16KB"/>
+    <Member Name="AT32F421K6T7" Package="LQFP32" Flash="32KB" SRAM="16KB"/>
+    <Member Name="AT32F421K4T7" Package="LQFP32" Flash="16KB" SRAM="8KB"/>      
+    <Member Name="AT32F421K8U7" Package="QFN32" Flash="64KB" SRAM="16KB"/>
+    <Member Name="AT32F421K6U7" Package="QFN32" Flash="32KB" SRAM="16KB"/>
+    <Member Name="AT32F421K4U7" Package="QFN32" Flash="16KB" SRAM="8KB"/>      
+    <Member Name="AT32F421K8U7-4" Package="QFN32" Flash="64KB" SRAM="16KB"/>
+    <Member Name="AT32F421K6U7-4" Package="QFN32" Flash="32KB" SRAM="16KB"/>
+    <Member Name="AT32F421K4U7-4" Package="QFN32" Flash="16KB" SRAM="8KB"/>      
+    <Member Name="AT32F421G8U7" Package="QFN28" Flash="64KB" SRAM="16KB"/>
+    <Member Name="AT32F421G6U7" Package="QFN28" Flash="32KB" SRAM="16KB"/>
+    <Member Name="AT32F421G4U7" Package="QFN28" Flash="16KB" SRAM="8KB"/>         
+    <Member Name="AT32F421F8P7" Package="TSSOP20" Flash="64KB" SRAM="16KB"/>
+    <Member Name="AT32F421F6P7" Package="TSSOP20" Flash="32KB" SRAM="16KB"/>
+    <Member Name="AT32F421F4P7" Package="TSSOP20" Flash="16KB" SRAM="8KB"/>    
+  </entry> 
+  <entry term="AT32F423">
+    <Member Name="AT32F423VCT7" Package="LQFP100" Flash="256KB" SRAM="48KB"/>
+    <Member Name="AT32F423VBT7" Package="LQFP100" Flash="128KB" SRAM="48KB"/>
+    <Member Name="AT32F423V8T7" Package="LQFP100" Flash="64KB" SRAM="32KB"/>      
+    <Member Name="AT32F423RCT7" Package="LQFP64" Flash="256KB" SRAM="48KB"/>
+    <Member Name="AT32F423RBT7" Package="LQFP64" Flash="128KB" SRAM="48KB"/>
+    <Member Name="AT32F423R8T7" Package="LQFP64" Flash="64KB" SRAM="32KB"/> 
+    <Member Name="AT32F423RCT7-7" Package="LQFP64" Flash="256KB" SRAM="48KB"/>
+    <Member Name="AT32F423RBT7-7" Package="LQFP64" Flash="128KB" SRAM="48KB"/>
+    <Member Name="AT32F423R8T7-7" Package="LQFP64" Flash="64KB" SRAM="32KB"/> 
+    <Member Name="AT32F423CCT7" Package="LQFP48" Flash="256KB" SRAM="48KB"/>
+    <Member Name="AT32F423CBT7" Package="LQFP48" Flash="128KB" SRAM="48KB"/>
+    <Member Name="AT32F423C8T7" Package="LQFP48" Flash="64KB" SRAM="32KB"/>
+    <Member Name="AT32F423CCU7" Package="QFN48" Flash="256KB" SRAM="48KB"/>
+    <Member Name="AT32F423CBU7" Package="QFN48" Flash="128KB" SRAM="48KB"/>
+    <Member Name="AT32F423C8U7" Package="QFN48" Flash="64KB" SRAM="32KB"/>
+    <Member Name="AT32F423TCU7" Package="QFN36" Flash="256KB" SRAM="48KB"/>
+    <Member Name="AT32F423TBU7" Package="QFN36" Flash="128KB" SRAM="48KB"/>
+    <Member Name="AT32F423T8U7" Package="QFN36" Flash="64KB" SRAM="32KB"/>
+    <Member Name="AT32F423KCU7-4" Package="QFN32" Flash="256KB" SRAM="48KB"/>
+    <Member Name="AT32F423KBU7-4" Package="QFN32" Flash="128KB" SRAM="48KB"/>
+    <Member Name="AT32F423K8U7-4" Package="QFN32" Flash="64KB" SRAM="32KB"/>
+  </entry> 
+  <entry term="AT32A423">
+    <Member Name="AT32A423VCT7" Package="LQFP100" Flash="256KB" SRAM="48KB"/>
+    <Member Name="AT32A423VBT7" Package="LQFP100" Flash="128KB" SRAM="48KB"/>
+    <Member Name="AT32A423V8T7" Package="LQFP100" Flash="64KB" SRAM="32KB"/>      
+    <Member Name="AT32A423RCT7" Package="LQFP64" Flash="256KB" SRAM="48KB"/>
+    <Member Name="AT32A423RBT7" Package="LQFP64" Flash="128KB" SRAM="48KB"/>
+    <Member Name="AT32A423R8T7" Package="LQFP64" Flash="64KB" SRAM="32KB"/> 
+    <Member Name="AT32A423RCT7-7" Package="LQFP64" Flash="256KB" SRAM="48KB"/>
+    <Member Name="AT32A423RBT7-7" Package="LQFP64" Flash="128KB" SRAM="48KB"/>
+    <Member Name="AT32A423R8T7-7" Package="LQFP64" Flash="64KB" SRAM="32KB"/> 
+    <Member Name="AT32A423CCT7" Package="LQFP48" Flash="256KB" SRAM="48KB"/>
+    <Member Name="AT32A423CBT7" Package="LQFP48" Flash="128KB" SRAM="48KB"/>
+    <Member Name="AT32A423C8T7" Package="LQFP48" Flash="64KB" SRAM="32KB"/>
+    <Member Name="AT32A423CCU7" Package="QFN48" Flash="256KB" SRAM="48KB"/>
+    <Member Name="AT32A423CBU7" Package="QFN48" Flash="128KB" SRAM="48KB"/>
+    <Member Name="AT32A423C8U7" Package="QFN48" Flash="64KB" SRAM="32KB"/>
+    <Member Name="AT32A423TCU7" Package="QFN36" Flash="256KB" SRAM="48KB"/>
+    <Member Name="AT32A423TBU7" Package="QFN36" Flash="128KB" SRAM="48KB"/>
+    <Member Name="AT32A423T8U7" Package="QFN36" Flash="64KB" SRAM="32KB"/>
+    <Member Name="AT32A423KCU7-4" Package="QFN32" Flash="256KB" SRAM="48KB"/>
+    <Member Name="AT32A423KBU7-4" Package="QFN32" Flash="128KB" SRAM="48KB"/>
+    <Member Name="AT32A423K8U7-4" Package="QFN32" Flash="64KB" SRAM="32KB"/>
+  </entry>
+</Configuration>

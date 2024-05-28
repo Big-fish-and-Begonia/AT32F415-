@@ -1,0 +1,866 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<IP>
+    <About>Direct memory access controller</About>
+    <AboutCH>直接存储器访问控制器</AboutCH>
+    
+    <RefParameter Comment="Channel" CommentCH="通道" DefaultValue="" Group="DMA Request Settings" GroupCH="DMA请求设置" Name="Instance" Type="list" Visible="false">
+        <PossibleValue Comment="DMA1 Channel 1" CommentCH="DMA1通道1" Value="DMA1_Channel1"/>
+        <PossibleValue Comment="DMA1 Channel 2" CommentCH="DMA1通道2" Value="DMA1_Channel2"/>
+        <PossibleValue Comment="DMA1 Channel 3" CommentCH="DMA1通道3" Value="DMA1_Channel3"/>
+        <PossibleValue Comment="DMA1 Channel 4" CommentCH="DMA1通道4" Value="DMA1_Channel4"/>
+        <PossibleValue Comment="DMA1 Channel 5" CommentCH="DMA1通道5" Value="DMA1_Channel5"/>
+    </RefParameter>
+    <RefParameter Comment="Direction" CommentCH="传输方向" DefaultValue="DMA_DIR_PERIPHERAL_TO_MEMORY" Group="DMA Request Settings" GroupCH="DMA请求设置" Name="Direction" Type="list" Visible="false">
+        <PossibleValue Comment="Peripheral To Memory" CommentCH="外设到内存" Value="DMA_DIR_PERIPHERAL_TO_MEMORY"/>
+        <PossibleValue Comment="Memory To Peripheral" CommentCH="内存到外设" Value="DMA_DIR_MEMORY_TO_PERIPHERAL"/>
+        <PossibleValue Comment="Memory To Memory" CommentCH="内存到内存" Value="DMA_DIR_MEMORY_TO_MEMORY"/>
+    </RefParameter>
+    <RefParameter Comment="Peripheral Increment" CommentCH="外设地址递增" DefaultValue="FALSE" Group="DMA Request Settings" GroupCH="DMA请求设置" Name="PeriphInc" Type="list">
+        <PossibleValue Comment="Peripheral Inc Enable" CommentCH="外设地址递增开启" Value="TRUE"/>
+        <PossibleValue Comment="Peripheral Inc Disable" CommentCH="外设地址递增关闭" Value="FALSE"/>
+    </RefParameter>
+    <RefParameter Comment="Memory Increment" CommentCH="内存地址递增" DefaultValue="TRUE" Group="DMA Request Settings" GroupCH="DMA请求设置" Name="MemInc" Type="list">
+        <PossibleValue Comment="Memory Inc Enable" CommentCH="内存地址递增开启" Value="TRUE"/>
+        <PossibleValue Comment="Memory Inc Disable" CommentCH="内存地址递增关闭" Value="FALSE"/>
+    </RefParameter>
+    <RefParameter Comment="Peripheral Data Alignment" CommentCH="外设数据宽度" DefaultValue="DMA_PERIPHERAL_DATA_WIDTH_BYTE" Group="DMA Request Settings" GroupCH="DMA请求设置" Name="PeriphDataAlignment" Type="list">
+        <PossibleValue Comment="Byte" CommentCH="字节" Value="DMA_PERIPHERAL_DATA_WIDTH_BYTE"/>
+        <PossibleValue Comment="Half Word" CommentCH="半字" Value="DMA_PERIPHERAL_DATA_WIDTH_HALFWORD"/>
+        <PossibleValue Comment="Word" CommentCH="字" Value="DMA_PERIPHERAL_DATA_WIDTH_WORD"/>
+    </RefParameter>
+    <RefParameter Comment="Memory Data Alignment" CommentCH="内存数据宽度" DefaultValue="DMA_MEMORY_DATA_WIDTH_BYTE" Group="DMA Request Settings" GroupCH="DMA请求设置" Name="MemDataAlignment" Type="list">
+        <PossibleValue Comment="Byte" CommentCH="字节" Value="DMA_MEMORY_DATA_WIDTH_BYTE"/>
+        <PossibleValue Comment="Half Word" CommentCH="半字" Value="DMA_MEMORY_DATA_WIDTH_HALFWORD"/>
+        <PossibleValue Comment="Word" CommentCH="字" Value="DMA_MEMORY_DATA_WIDTH_WORD"/>
+    </RefParameter>
+    <RefParameter Comment="Mode" CommentCH="模式" DefaultValue="FALSE" Group="DMA Request Settings" GroupCH="DMA请求设置" Name="Mode" Type="list">
+        <PossibleValue Comment="Normal" CommentCH="普通" Value="FALSE"/>
+        <PossibleValue Comment="Circular" CommentCH="循环" Value="TRUE"/>
+    </RefParameter>
+    <RefParameter Comment="Priority" CommentCH="优先级" DefaultValue="DMA_PRIORITY_LOW" Group="DMA Request Settings" GroupCH="DMA请求设置" Name="Priority" Type="list" Visible="false">
+        <PossibleValue Comment="Low" CommentCH="低" Value="DMA_PRIORITY_LOW"/>
+        <PossibleValue Comment="Medium" CommentCH="中" Value="DMA_PRIORITY_MEDIUM"/>
+        <PossibleValue Comment="High" CommentCH="高" Value="DMA_PRIORITY_HIGH"/>
+        <PossibleValue Comment="Very High" CommentCH="非常高" Value="DMA_PRIORITY_VERY_HIGH"/>
+    </RefParameter>
+    <RefParameter Comment="Clock Enable Mode" CommentCH="时钟开启模式" DefaultValue="" Group="DMA Request Settings" GroupCH="DMA请求设置" Name="ClockEnableMode" Type="list" Visible="false">
+        <PossibleValue Comment="DMA1 clock enable" CommentCH="DMA1时钟开启" Value="__HAL_RCC_DMA1_CLK_ENABLE"/>
+        <PossibleValue Comment="DMA2 clock enable" CommentCH="DMA2时钟开启" Value="__HAL_RCC_DMA2_CLK_ENABLE"/>
+    </RefParameter>
+    <RefParameter Comment="DMA Handle" CommentCH="DMA处理" DefaultValue="" Group="DMA Request Settings" GroupCH="DMA请求设置" Name="DMA_Handle" Type="list" Visible="false"/>
+    <RefParameter Comment="IP Instance" CommentCH="外设实例" DefaultValue="" Group="DMA Request Settings" GroupCH="DMA请求设置" Name="IpInstance" Type="list" Visible="false"/>
+    <RefMode Abstract="true" BaseMode="" Comment="DMA_Request" Name="DMA_Request">
+        <Parameter Name="Instance"/>
+        <Parameter Name="Direction"/>
+        <Parameter Name="PeriphInc"/>
+        <Parameter Name="MemInc"/>
+        <Parameter Name="PeriphDataAlignment"/>
+        <Parameter Name="MemDataAlignment"/>
+        <Parameter Name="Mode"/>
+        <Parameter Name="Priority"/>
+        <Parameter Name="DMA_Handle"/>
+    </RefMode>
+    <RefMode Abstract="true" BaseMode="" Comment="DMA1" Name="DMA1">
+        <Parameter Name="ClockEnableMode">
+            <PossibleValue>__HAL_RCC_DMA1_CLK_ENABLE</PossibleValue>
+        </Parameter>
+        <Parameter Name="IpInstance">
+            <PossibleValue>DMA</PossibleValue>
+        </Parameter>
+    </RefMode>
+    <RefMode Abstract="true" BaseMode="" Comment="DMA2" Name="DMA2">
+        <Parameter Name="ClockEnableMode">
+            <PossibleValue>__HAL_RCC_DMA2_CLK_ENABLE</PossibleValue>
+        </Parameter>
+        <Parameter Name="IpInstance">
+            <PossibleValue>DMA</PossibleValue>
+        </Parameter>
+    </RefMode>
+    <RefMode BaseMode="DMA_Request" Comment="MEMTOMEM" Name="MEMTOMEM">
+        <Parameter Name="Direction">
+            <PossibleValue>DMA_DIR_MEMORY_TO_MEMORY</PossibleValue>
+        </Parameter>
+        <Parameter Name="Mode">
+            <PossibleValue>FALSE</PossibleValue>
+        </Parameter>
+        <Parameter Name="IpInstance">
+            <PossibleValue>DMA</PossibleValue>
+        </Parameter>
+        <Parameter Name="PeriphInc" DefaultValue="TRUE">
+        </Parameter>
+    </RefMode>
+    <RefMode BaseMode="DMA_Request" Comment="ADC1" Name="ADC1">
+        <Parameter Name="Direction">
+            <PossibleValue>DMA_DIR_PERIPHERAL_TO_MEMORY</PossibleValue>
+        </Parameter>
+        <Parameter Name="DMA_Handle">
+            <PossibleValue>odt</PossibleValue>
+        </Parameter>
+        <Parameter Name="Mode" DefaultValue="TRUE">
+            <PossibleValue>FALSE</PossibleValue>
+            <PossibleValue>TRUE</PossibleValue>
+        </Parameter>
+        <Parameter Name="IpInstance">
+            <PossibleValue>ADC1</PossibleValue>
+        </Parameter>
+        <Parameter Name="PeriphInc">
+            <PossibleValue>FALSE</PossibleValue>
+        </Parameter>
+        <Parameter Name="PeriphDataAlignment" DefaultValue="DMA_PERIPHERAL_DATA_WIDTH_HALFWORD">
+            <PossibleValue>DMA_PERIPHERAL_DATA_WIDTH_HALFWORD</PossibleValue>
+            <PossibleValue>DMA_PERIPHERAL_DATA_WIDTH_WORD</PossibleValue>
+        </Parameter>
+        <Parameter Name="MemDataAlignment" DefaultValue="DMA_MEMORY_DATA_WIDTH_HALFWORD">
+            <PossibleValue>DMA_MEMORY_DATA_WIDTH_HALFWORD</PossibleValue>
+            <PossibleValue>DMA_MEMORY_DATA_WIDTH_WORD</PossibleValue>
+        </Parameter>
+    </RefMode>
+    <RefMode BaseMode="DMA_Request" Comment="I2C1_RX" Name="I2C1_RX">
+        <Parameter Name="Direction">
+            <PossibleValue>DMA_DIR_PERIPHERAL_TO_MEMORY</PossibleValue>
+        </Parameter>
+        <Parameter Name="DMA_Handle">
+            <PossibleValue>dt</PossibleValue>
+        </Parameter>
+        <Parameter Name="Mode">
+            <PossibleValue>FALSE</PossibleValue>
+            <PossibleValue>TRUE</PossibleValue>
+        </Parameter>
+        <Parameter Name="IpInstance">
+            <PossibleValue>I2C1</PossibleValue>
+        </Parameter>
+        <Parameter Name="PeriphInc">
+            <PossibleValue>FALSE</PossibleValue>
+        </Parameter>
+        <Parameter Name="PeriphDataAlignment" DefaultValue="DMA_PERIPHERAL_DATA_WIDTH_BYTE">
+            <PossibleValue>DMA_PERIPHERAL_DATA_WIDTH_BYTE</PossibleValue>
+        </Parameter>
+    </RefMode>
+    <RefMode BaseMode="DMA_Request" Comment="I2C1_TX" Name="I2C1_TX">
+        <Parameter Name="Direction">
+            <PossibleValue>DMA_DIR_MEMORY_TO_PERIPHERAL</PossibleValue>
+        </Parameter>
+        <Parameter Name="DMA_Handle">
+            <PossibleValue>dt</PossibleValue>
+        </Parameter>
+        <Parameter Name="Mode">
+            <PossibleValue>FALSE</PossibleValue>
+            <PossibleValue>TRUE</PossibleValue>
+        </Parameter>
+        <Parameter Name="IpInstance">
+            <PossibleValue>I2C1</PossibleValue>
+        </Parameter>
+        <Parameter Name="PeriphInc">
+            <PossibleValue>FALSE</PossibleValue>
+        </Parameter>
+        <Parameter Name="PeriphDataAlignment" DefaultValue="DMA_PERIPHERAL_DATA_WIDTH_BYTE">
+            <PossibleValue>DMA_PERIPHERAL_DATA_WIDTH_BYTE</PossibleValue>
+        </Parameter>
+    </RefMode>
+    <RefMode BaseMode="DMA_Request" Comment="I2C2_RX" Name="I2C2_RX">
+        <Parameter Name="Direction">
+            <PossibleValue>DMA_DIR_PERIPHERAL_TO_MEMORY</PossibleValue>
+        </Parameter>
+        <Parameter Name="DMA_Handle">
+            <PossibleValue>dt</PossibleValue>
+        </Parameter>
+        <Parameter Name="Mode">
+            <PossibleValue>FALSE</PossibleValue>
+            <PossibleValue>TRUE</PossibleValue>
+        </Parameter>
+        <Parameter Name="IpInstance">
+            <PossibleValue>I2C2</PossibleValue>
+        </Parameter>
+        <Parameter Name="PeriphInc">
+            <PossibleValue>FALSE</PossibleValue>
+        </Parameter>
+        <Parameter Name="PeriphDataAlignment" DefaultValue="DMA_PERIPHERAL_DATA_WIDTH_BYTE">
+            <PossibleValue>DMA_PERIPHERAL_DATA_WIDTH_BYTE</PossibleValue>
+        </Parameter>
+    </RefMode>
+    <RefMode BaseMode="DMA_Request" Comment="I2C2_TX" Name="I2C2_TX">
+        <Parameter Name="Direction">
+            <PossibleValue>DMA_DIR_MEMORY_TO_PERIPHERAL</PossibleValue>
+        </Parameter>
+        <Parameter Name="DMA_Handle">
+            <PossibleValue>dt</PossibleValue>
+        </Parameter>
+        <Parameter Name="Mode">
+            <PossibleValue>FALSE</PossibleValue>
+            <PossibleValue>TRUE</PossibleValue>
+        </Parameter>
+        <Parameter Name="IpInstance">
+            <PossibleValue>I2C2</PossibleValue>
+        </Parameter>
+        <Parameter Name="PeriphInc">
+            <PossibleValue>FALSE</PossibleValue>
+        </Parameter>
+        <Parameter Name="PeriphDataAlignment" DefaultValue="DMA_PERIPHERAL_DATA_WIDTH_BYTE">
+            <PossibleValue>DMA_PERIPHERAL_DATA_WIDTH_BYTE</PossibleValue>
+        </Parameter>
+    </RefMode>
+    <RefMode BaseMode="DMA_Request" Comment="SPI1_RX" Name="SPI1_RX">
+        <Parameter Name="Direction">
+            <PossibleValue>DMA_DIR_PERIPHERAL_TO_MEMORY</PossibleValue>
+        </Parameter>
+        <Parameter Name="DMA_Handle">
+            <PossibleValue>dt</PossibleValue>
+        </Parameter>
+        <Parameter Name="Mode">
+            <PossibleValue>FALSE</PossibleValue>
+            <PossibleValue>TRUE</PossibleValue>
+        </Parameter>
+        <Parameter Name="IpInstance">
+            <PossibleValue>SPI1</PossibleValue>
+            <PossibleValue>I2S1</PossibleValue>
+        </Parameter>
+        <Parameter Name="PeriphInc">
+            <PossibleValue>FALSE</PossibleValue>
+        </Parameter>
+        <Parameter Name="PeriphDataAlignment" DefaultValue="DMA_PERIPHERAL_DATA_WIDTH_BYTE">
+            <PossibleValue>DMA_PERIPHERAL_DATA_WIDTH_BYTE</PossibleValue>
+            <PossibleValue>DMA_PERIPHERAL_DATA_WIDTH_HALFWORD</PossibleValue>
+        </Parameter>
+    </RefMode>
+    <RefMode BaseMode="DMA_Request" Comment="SPI1_TX" Name="SPI1_TX">
+        <Parameter Name="Direction">
+            <PossibleValue>DMA_DIR_MEMORY_TO_PERIPHERAL</PossibleValue>
+        </Parameter>
+        <Parameter Name="DMA_Handle">
+            <PossibleValue>dt</PossibleValue>
+        </Parameter>
+        <Parameter Name="Mode">
+            <PossibleValue>FALSE</PossibleValue>
+            <PossibleValue>TRUE</PossibleValue>
+        </Parameter>
+        <Parameter Name="IpInstance">
+            <PossibleValue>SPI1</PossibleValue>
+            <PossibleValue>I2S1</PossibleValue>
+        </Parameter>
+        <Parameter Name="PeriphInc">
+            <PossibleValue>FALSE</PossibleValue>
+        </Parameter>
+        <Parameter Name="PeriphDataAlignment" DefaultValue="DMA_PERIPHERAL_DATA_WIDTH_BYTE">
+            <PossibleValue>DMA_PERIPHERAL_DATA_WIDTH_BYTE</PossibleValue>
+            <PossibleValue>DMA_PERIPHERAL_DATA_WIDTH_HALFWORD</PossibleValue>
+        </Parameter>
+    </RefMode>
+    <RefMode BaseMode="DMA_Request" Comment="SPI2_RX" Name="SPI2_RX">
+        <Parameter Name="Direction">
+            <PossibleValue>DMA_DIR_PERIPHERAL_TO_MEMORY</PossibleValue>
+        </Parameter>
+        <Parameter Name="DMA_Handle">
+            <PossibleValue>dt</PossibleValue>
+        </Parameter>
+        <Parameter Name="Mode">
+            <PossibleValue>FALSE</PossibleValue>
+            <PossibleValue>TRUE</PossibleValue>
+        </Parameter>
+        <Parameter Name="IpInstance">
+            <PossibleValue>SPI2</PossibleValue>
+            <PossibleValue>I2S2</PossibleValue>
+        </Parameter>
+        <Parameter Name="PeriphInc">
+            <PossibleValue>FALSE</PossibleValue>
+        </Parameter>
+        <Parameter Name="PeriphDataAlignment" DefaultValue="DMA_PERIPHERAL_DATA_WIDTH_BYTE">
+            <PossibleValue>DMA_PERIPHERAL_DATA_WIDTH_BYTE</PossibleValue>
+            <PossibleValue>DMA_PERIPHERAL_DATA_WIDTH_HALFWORD</PossibleValue>
+        </Parameter>
+    </RefMode>
+    <RefMode BaseMode="DMA_Request" Comment="SPI2_TX" Name="SPI2_TX">
+        <Parameter Name="Direction">
+            <PossibleValue>DMA_DIR_MEMORY_TO_PERIPHERAL</PossibleValue>
+        </Parameter>
+        <Parameter Name="DMA_Handle">
+            <PossibleValue>dt</PossibleValue>
+        </Parameter>
+        <Parameter Name="Mode">
+            <PossibleValue>FALSE</PossibleValue>
+            <PossibleValue>TRUE</PossibleValue>
+        </Parameter>
+        <Parameter Name="IpInstance">
+            <PossibleValue>SPI2</PossibleValue>
+            <PossibleValue>I2S2</PossibleValue>
+        </Parameter>
+        <Parameter Name="PeriphInc">
+            <PossibleValue>FALSE</PossibleValue>
+        </Parameter>
+        <Parameter Name="PeriphDataAlignment" DefaultValue="DMA_PERIPHERAL_DATA_WIDTH_BYTE">
+            <PossibleValue>DMA_PERIPHERAL_DATA_WIDTH_BYTE</PossibleValue>
+            <PossibleValue>DMA_PERIPHERAL_DATA_WIDTH_HALFWORD</PossibleValue>
+        </Parameter>
+    </RefMode>
+    <RefMode BaseMode="DMA_Request" Comment="TMR1_CH1" Name="TMR1_CH1">
+        <Parameter Name="Direction">
+            <PossibleValue>DMA_DIR_MEMORY_TO_PERIPHERAL</PossibleValue>
+            <PossibleValue>DMA_DIR_PERIPHERAL_TO_MEMORY</PossibleValue>
+        </Parameter>
+        <Parameter Name="DMA_Handle">
+            <PossibleValue>c1dt</PossibleValue>
+        </Parameter>
+        <Parameter Name="Mode">
+            <PossibleValue>FALSE</PossibleValue>
+            <PossibleValue>TRUE</PossibleValue>
+        </Parameter>
+        <Parameter Name="IpInstance">
+            <PossibleValue>TMR1</PossibleValue>
+        </Parameter>
+    </RefMode>
+    <RefMode BaseMode="DMA_Request" Comment="TMR1_CH2" Name="TMR1_CH2">
+        <Parameter Name="Direction">
+            <PossibleValue>DMA_DIR_MEMORY_TO_PERIPHERAL</PossibleValue>
+            <PossibleValue>DMA_DIR_PERIPHERAL_TO_MEMORY</PossibleValue>
+        </Parameter>
+        <Parameter Name="DMA_Handle">
+            <PossibleValue>c2dt</PossibleValue>
+        </Parameter>
+        <Parameter Name="Mode">
+            <PossibleValue>FALSE</PossibleValue>
+            <PossibleValue>TRUE</PossibleValue>
+        </Parameter>
+        <Parameter Name="IpInstance">
+            <PossibleValue>TMR1</PossibleValue>
+        </Parameter>
+    </RefMode>
+    <RefMode BaseMode="DMA_Request" Comment="TMR1_CH3" Name="TMR1_CH3">
+        <Parameter Name="Direction">
+            <PossibleValue>DMA_DIR_MEMORY_TO_PERIPHERAL</PossibleValue>
+            <PossibleValue>DMA_DIR_PERIPHERAL_TO_MEMORY</PossibleValue>
+        </Parameter>
+        <Parameter Name="DMA_Handle">
+            <PossibleValue>c3dt</PossibleValue>
+        </Parameter>
+        <Parameter Name="Mode">
+            <PossibleValue>FALSE</PossibleValue>
+            <PossibleValue>TRUE</PossibleValue>
+        </Parameter>
+        <Parameter Name="IpInstance">
+            <PossibleValue>TMR1</PossibleValue>
+        </Parameter>
+    </RefMode>
+    <RefMode BaseMode="DMA_Request" Comment="TMR1_CH4" Name="TMR1_CH4">
+        <Parameter Name="Direction">
+            <PossibleValue>DMA_DIR_MEMORY_TO_PERIPHERAL</PossibleValue>
+            <PossibleValue>DMA_DIR_PERIPHERAL_TO_MEMORY</PossibleValue>
+        </Parameter>
+        <Parameter Name="DMA_Handle">
+            <PossibleValue>c4dt</PossibleValue>
+        </Parameter>
+        <Parameter Name="Mode">
+            <PossibleValue>FALSE</PossibleValue>
+            <PossibleValue>TRUE</PossibleValue>
+        </Parameter>
+        <Parameter Name="IpInstance">
+            <PossibleValue>TMR1</PossibleValue>
+        </Parameter>
+    </RefMode>
+    <RefMode BaseMode="DMA_Request" Comment="TMR1_TRIG" Name="TMR1_TRIG">
+        <Parameter Name="Direction">
+            <PossibleValue>DMA_DIR_MEMORY_TO_PERIPHERAL</PossibleValue>
+            <PossibleValue>DMA_DIR_PERIPHERAL_TO_MEMORY</PossibleValue>
+        </Parameter>
+        <Parameter Name="DMA_Handle">
+            <PossibleValue>cval</PossibleValue>
+        </Parameter>
+        <Parameter Name="Mode">
+            <PossibleValue>FALSE</PossibleValue>
+            <PossibleValue>TRUE</PossibleValue>
+        </Parameter>
+        <Parameter Name="IpInstance">
+            <PossibleValue>TMR1</PossibleValue>
+        </Parameter>
+    </RefMode>
+    <RefMode BaseMode="DMA_Request" Comment="TMR1_HALL" Name="TMR1_HALL">
+        <Parameter Name="Direction">
+            <PossibleValue>DMA_DIR_MEMORY_TO_PERIPHERAL</PossibleValue>
+            <PossibleValue>DMA_DIR_PERIPHERAL_TO_MEMORY</PossibleValue>
+        </Parameter>
+        <Parameter Name="DMA_Handle">
+            <PossibleValue>cval</PossibleValue>
+        </Parameter>
+        <Parameter Name="Mode">
+            <PossibleValue>FALSE</PossibleValue>
+            <PossibleValue>TRUE</PossibleValue>
+        </Parameter>
+        <Parameter Name="IpInstance">
+            <PossibleValue>TMR1</PossibleValue>
+        </Parameter>
+    </RefMode>
+    <RefMode BaseMode="DMA_Request" Comment="TMR1_OVERFLOW" Name="TMR1_OVERFLOW">
+        <Parameter Name="Direction">
+            <PossibleValue>DMA_DIR_MEMORY_TO_PERIPHERAL</PossibleValue>
+            <PossibleValue>DMA_DIR_PERIPHERAL_TO_MEMORY</PossibleValue>
+        </Parameter>
+        <Parameter Name="DMA_Handle">
+            <PossibleValue>cval</PossibleValue>
+        </Parameter>
+        <Parameter Name="Mode">
+            <PossibleValue>FALSE</PossibleValue>
+            <PossibleValue>TRUE</PossibleValue>
+        </Parameter>
+        <Parameter Name="IpInstance">
+            <PossibleValue>TMR1</PossibleValue>
+        </Parameter>
+    </RefMode>
+    <RefMode BaseMode="DMA_Request" Comment="TMR3_CH1" Name="TMR3_CH1">
+        <Parameter Name="Direction">
+            <PossibleValue>DMA_DIR_MEMORY_TO_PERIPHERAL</PossibleValue>
+            <PossibleValue>DMA_DIR_PERIPHERAL_TO_MEMORY</PossibleValue>
+        </Parameter>
+        <Parameter Name="DMA_Handle">
+            <PossibleValue>c1dt</PossibleValue>
+        </Parameter>
+        <Parameter Name="Mode">
+            <PossibleValue>FALSE</PossibleValue>
+            <PossibleValue>TRUE</PossibleValue>
+        </Parameter>
+        <Parameter Name="IpInstance">
+            <PossibleValue>TMR3</PossibleValue>
+        </Parameter>
+    </RefMode>
+    <RefMode BaseMode="DMA_Request" Comment="TMR3_TRIG" Name="TMR3_TRIG">
+        <Parameter Name="Direction">
+            <PossibleValue>DMA_DIR_MEMORY_TO_PERIPHERAL</PossibleValue>
+            <PossibleValue>DMA_DIR_PERIPHERAL_TO_MEMORY</PossibleValue>
+        </Parameter>
+        <Parameter Name="DMA_Handle">
+            <PossibleValue>cval</PossibleValue>
+        </Parameter>
+        <Parameter Name="Mode">
+            <PossibleValue>FALSE</PossibleValue>
+            <PossibleValue>TRUE</PossibleValue>
+        </Parameter>
+        <Parameter Name="IpInstance">
+            <PossibleValue>TMR3</PossibleValue>
+        </Parameter>
+    </RefMode>
+    <RefMode BaseMode="DMA_Request" Comment="TMR3_CH3" Name="TMR3_CH3">
+        <Parameter Name="Direction">
+            <PossibleValue>DMA_DIR_MEMORY_TO_PERIPHERAL</PossibleValue>
+            <PossibleValue>DMA_DIR_PERIPHERAL_TO_MEMORY</PossibleValue>
+        </Parameter>
+        <Parameter Name="DMA_Handle">
+            <PossibleValue>c3dt</PossibleValue>
+        </Parameter>
+        <Parameter Name="Mode">
+            <PossibleValue>FALSE</PossibleValue>
+            <PossibleValue>TRUE</PossibleValue>
+        </Parameter>
+        <Parameter Name="IpInstance">
+            <PossibleValue>TMR3</PossibleValue>
+        </Parameter>
+    </RefMode>
+    <RefMode BaseMode="DMA_Request" Comment="TMR3_CH4" Name="TMR3_CH4">
+        <Parameter Name="Direction">
+            <PossibleValue>DMA_DIR_MEMORY_TO_PERIPHERAL</PossibleValue>
+            <PossibleValue>DMA_DIR_PERIPHERAL_TO_MEMORY</PossibleValue>
+        </Parameter>
+        <Parameter Name="DMA_Handle">
+            <PossibleValue>c4dt</PossibleValue>
+        </Parameter>
+        <Parameter Name="Mode">
+            <PossibleValue>FALSE</PossibleValue>
+            <PossibleValue>TRUE</PossibleValue>
+        </Parameter>
+        <Parameter Name="IpInstance">
+            <PossibleValue>TMR3</PossibleValue>
+        </Parameter>
+    </RefMode>
+    <RefMode BaseMode="DMA_Request" Comment="TMR3_OVERFLOW" Name="TMR3_OVERFLOW">
+        <Parameter Name="Direction">
+            <PossibleValue>DMA_DIR_MEMORY_TO_PERIPHERAL</PossibleValue>
+            <PossibleValue>DMA_DIR_PERIPHERAL_TO_MEMORY</PossibleValue>
+        </Parameter>
+        <Parameter Name="DMA_Handle">
+            <PossibleValue>cval</PossibleValue>
+        </Parameter>
+        <Parameter Name="Mode">
+            <PossibleValue>FALSE</PossibleValue>
+            <PossibleValue>TRUE</PossibleValue>
+        </Parameter>
+        <Parameter Name="IpInstance">
+            <PossibleValue>TMR3</PossibleValue>
+        </Parameter>
+    </RefMode>
+    <RefMode BaseMode="DMA_Request" Comment="TMR6_OVERFLOW" Name="TMR6_OVERFLOW">
+        <Parameter Name="Direction">
+            <PossibleValue>DMA_DIR_MEMORY_TO_PERIPHERAL</PossibleValue>
+            <PossibleValue>DMA_DIR_PERIPHERAL_TO_MEMORY</PossibleValue>
+        </Parameter>
+        <Parameter Name="DMA_Handle">
+            <PossibleValue>cval</PossibleValue>
+        </Parameter>
+        <Parameter Name="Mode">
+            <PossibleValue>FALSE</PossibleValue>
+            <PossibleValue>TRUE</PossibleValue>
+        </Parameter>
+        <Parameter Name="IpInstance">
+            <PossibleValue>TMR6</PossibleValue>
+        </Parameter>
+    </RefMode>
+    <RefMode BaseMode="DMA_Request" Comment="TMR15_CH1" Name="TMR15_CH1">
+        <Parameter Name="Direction">
+            <PossibleValue>DMA_DIR_MEMORY_TO_PERIPHERAL</PossibleValue>
+            <PossibleValue>DMA_DIR_PERIPHERAL_TO_MEMORY</PossibleValue>
+        </Parameter>
+        <Parameter Name="DMA_Handle">
+            <PossibleValue>c1dt</PossibleValue>
+        </Parameter>
+        <Parameter Name="Mode">
+            <PossibleValue>FALSE</PossibleValue>
+            <PossibleValue>TRUE</PossibleValue>
+        </Parameter>
+        <Parameter Name="IpInstance">
+            <PossibleValue>TMR15</PossibleValue>
+        </Parameter>
+    </RefMode>
+    <RefMode BaseMode="DMA_Request" Comment="TMR15_OVERFLOW" Name="TMR15_OVERFLOW">
+        <Parameter Name="Direction">
+            <PossibleValue>DMA_DIR_MEMORY_TO_PERIPHERAL</PossibleValue>
+            <PossibleValue>DMA_DIR_PERIPHERAL_TO_MEMORY</PossibleValue>
+        </Parameter>
+        <Parameter Name="DMA_Handle">
+            <PossibleValue>cval</PossibleValue>
+        </Parameter>
+        <Parameter Name="Mode">
+            <PossibleValue>FALSE</PossibleValue>
+            <PossibleValue>TRUE</PossibleValue>
+        </Parameter>
+        <Parameter Name="IpInstance">
+            <PossibleValue>TMR15</PossibleValue>
+        </Parameter>
+    </RefMode>
+    <RefMode BaseMode="DMA_Request" Comment="TMR15_TRIG" Name="TMR15_TRIG">
+        <Parameter Name="Direction">
+            <PossibleValue>DMA_DIR_MEMORY_TO_PERIPHERAL</PossibleValue>
+            <PossibleValue>DMA_DIR_PERIPHERAL_TO_MEMORY</PossibleValue>
+        </Parameter>
+        <Parameter Name="DMA_Handle">
+            <PossibleValue>cval</PossibleValue>
+        </Parameter>
+        <Parameter Name="Mode">
+            <PossibleValue>FALSE</PossibleValue>
+            <PossibleValue>TRUE</PossibleValue>
+        </Parameter>
+        <Parameter Name="IpInstance">
+            <PossibleValue>TMR15</PossibleValue>
+        </Parameter>
+    </RefMode>
+    <RefMode BaseMode="DMA_Request" Comment="TMR15_HALL" Name="TMR15_HALL">
+        <Parameter Name="Direction">
+            <PossibleValue>DMA_DIR_MEMORY_TO_PERIPHERAL</PossibleValue>
+            <PossibleValue>DMA_DIR_PERIPHERAL_TO_MEMORY</PossibleValue>
+        </Parameter>
+        <Parameter Name="DMA_Handle">
+            <PossibleValue>cval</PossibleValue>
+        </Parameter>
+        <Parameter Name="Mode">
+            <PossibleValue>FALSE</PossibleValue>
+            <PossibleValue>TRUE</PossibleValue>
+        </Parameter>
+        <Parameter Name="IpInstance">
+            <PossibleValue>TMR15</PossibleValue>
+        </Parameter>
+    </RefMode>
+    <RefMode BaseMode="DMA_Request" Comment="TMR15_CH2" Name="TMR15_CH2">
+        <Parameter Name="Direction">
+            <PossibleValue>DMA_DIR_MEMORY_TO_PERIPHERAL</PossibleValue>
+            <PossibleValue>DMA_DIR_PERIPHERAL_TO_MEMORY</PossibleValue>
+        </Parameter>
+        <Parameter Name="DMA_Handle">
+            <PossibleValue>c2dt</PossibleValue>
+        </Parameter>
+        <Parameter Name="Mode">
+            <PossibleValue>FALSE</PossibleValue>
+            <PossibleValue>TRUE</PossibleValue>
+        </Parameter>
+        <Parameter Name="IpInstance">
+            <PossibleValue>TMR15</PossibleValue>
+        </Parameter>
+    </RefMode>
+    <RefMode BaseMode="DMA_Request" Comment="TMR16_CH1" Name="TMR16_CH1">
+        <Parameter Name="Direction">
+            <PossibleValue>DMA_DIR_MEMORY_TO_PERIPHERAL</PossibleValue>
+            <PossibleValue>DMA_DIR_PERIPHERAL_TO_MEMORY</PossibleValue>
+        </Parameter>
+        <Parameter Name="DMA_Handle">
+            <PossibleValue>c1dt</PossibleValue>
+        </Parameter>
+        <Parameter Name="Mode">
+            <PossibleValue>FALSE</PossibleValue>
+            <PossibleValue>TRUE</PossibleValue>
+        </Parameter>
+        <Parameter Name="IpInstance">
+            <PossibleValue>TMR16</PossibleValue>
+        </Parameter>
+    </RefMode>
+    <RefMode BaseMode="DMA_Request" Comment="TMR16_OVERFLOW" Name="TMR16_OVERFLOW">
+        <Parameter Name="Direction">
+            <PossibleValue>DMA_DIR_MEMORY_TO_PERIPHERAL</PossibleValue>
+            <PossibleValue>DMA_DIR_PERIPHERAL_TO_MEMORY</PossibleValue>
+        </Parameter>
+        <Parameter Name="DMA_Handle">
+            <PossibleValue>cval</PossibleValue>
+        </Parameter>
+        <Parameter Name="Mode">
+            <PossibleValue>FALSE</PossibleValue>
+            <PossibleValue>TRUE</PossibleValue>
+        </Parameter>
+        <Parameter Name="IpInstance">
+            <PossibleValue>TMR16</PossibleValue>
+        </Parameter>
+    </RefMode>
+    <RefMode BaseMode="DMA_Request" Comment="TMR17_CH1" Name="TMR17_CH1">
+        <Parameter Name="Direction">
+            <PossibleValue>DMA_DIR_MEMORY_TO_PERIPHERAL</PossibleValue>
+            <PossibleValue>DMA_DIR_PERIPHERAL_TO_MEMORY</PossibleValue>
+        </Parameter>
+        <Parameter Name="DMA_Handle">
+            <PossibleValue>c1dt</PossibleValue>
+        </Parameter>
+        <Parameter Name="Mode">
+            <PossibleValue>FALSE</PossibleValue>
+            <PossibleValue>TRUE</PossibleValue>
+        </Parameter>
+        <Parameter Name="IpInstance">
+            <PossibleValue>TMR17</PossibleValue>
+        </Parameter>
+    </RefMode>
+    <RefMode BaseMode="DMA_Request" Comment="TMR17_OVERFLOW" Name="TMR17_OVERFLOW">
+        <Parameter Name="Direction">
+            <PossibleValue>DMA_DIR_MEMORY_TO_PERIPHERAL</PossibleValue>
+            <PossibleValue>DMA_DIR_PERIPHERAL_TO_MEMORY</PossibleValue>
+        </Parameter>
+        <Parameter Name="DMA_Handle">
+            <PossibleValue>cval</PossibleValue>
+        </Parameter>
+        <Parameter Name="Mode">
+            <PossibleValue>FALSE</PossibleValue>
+            <PossibleValue>TRUE</PossibleValue>
+        </Parameter>
+        <Parameter Name="IpInstance">
+            <PossibleValue>TMR17</PossibleValue>
+        </Parameter>
+    </RefMode>
+    <RefMode BaseMode="DMA_Request" Comment="USART1_RX" Name="USART1_RX">
+        <Parameter Name="Direction">
+            <PossibleValue>DMA_DIR_PERIPHERAL_TO_MEMORY</PossibleValue>
+        </Parameter>
+        <Parameter Name="DMA_Handle">
+            <PossibleValue>dt</PossibleValue>
+        </Parameter>
+        <Parameter Name="Mode">
+            <PossibleValue>FALSE</PossibleValue>
+            <PossibleValue>TRUE</PossibleValue>
+        </Parameter>
+        <Parameter Name="IpInstance">
+            <PossibleValue>USART1</PossibleValue>
+        </Parameter>
+        <Parameter Name="PeriphInc">
+            <PossibleValue>FALSE</PossibleValue>
+        </Parameter>
+        <Parameter Name="PeriphDataAlignment" DefaultValue="DMA_PERIPHERAL_DATA_WIDTH_BYTE">
+            <PossibleValue>DMA_PERIPHERAL_DATA_WIDTH_BYTE</PossibleValue>
+            <PossibleValue>DMA_PERIPHERAL_DATA_WIDTH_HALFWORD</PossibleValue>
+        </Parameter>
+    </RefMode>
+    <RefMode BaseMode="DMA_Request" Comment="USART1_TX" Name="USART1_TX">
+        <Parameter Name="Direction">
+            <PossibleValue>DMA_DIR_MEMORY_TO_PERIPHERAL</PossibleValue>
+        </Parameter>
+        <Parameter Name="DMA_Handle">
+            <PossibleValue>dt</PossibleValue>
+        </Parameter>
+        <Parameter Name="Mode">
+            <PossibleValue>FALSE</PossibleValue>
+            <PossibleValue>TRUE</PossibleValue>
+        </Parameter>
+        <Parameter Name="IpInstance">
+            <PossibleValue>USART1</PossibleValue>
+        </Parameter>
+        <Parameter Name="PeriphInc">
+            <PossibleValue>FALSE</PossibleValue>
+        </Parameter>
+        <Parameter Name="PeriphDataAlignment" DefaultValue="DMA_PERIPHERAL_DATA_WIDTH_BYTE">
+            <PossibleValue>DMA_PERIPHERAL_DATA_WIDTH_BYTE</PossibleValue>
+            <PossibleValue>DMA_PERIPHERAL_DATA_WIDTH_HALFWORD</PossibleValue>
+        </Parameter>
+    </RefMode>
+    <RefMode BaseMode="DMA_Request" Comment="USART2_RX" Name="USART2_RX">
+        <Parameter Name="Direction">
+            <PossibleValue>DMA_DIR_PERIPHERAL_TO_MEMORY</PossibleValue>
+        </Parameter>
+        <Parameter Name="DMA_Handle">
+            <PossibleValue>dt</PossibleValue>
+        </Parameter>
+        <Parameter Name="Mode">
+            <PossibleValue>FALSE</PossibleValue>
+            <PossibleValue>TRUE</PossibleValue>
+        </Parameter>
+        <Parameter Name="IpInstance">
+            <PossibleValue>USART2</PossibleValue>
+        </Parameter>
+        <Parameter Name="PeriphInc">
+            <PossibleValue>FALSE</PossibleValue>
+        </Parameter>
+        <Parameter Name="PeriphDataAlignment" DefaultValue="DMA_PERIPHERAL_DATA_WIDTH_BYTE">
+            <PossibleValue>DMA_PERIPHERAL_DATA_WIDTH_BYTE</PossibleValue>
+            <PossibleValue>DMA_PERIPHERAL_DATA_WIDTH_HALFWORD</PossibleValue>
+        </Parameter>
+    </RefMode>
+    <RefMode BaseMode="DMA_Request" Comment="USART2_TX" Name="USART2_TX">
+        <Parameter Name="Direction">
+            <PossibleValue>DMA_DIR_MEMORY_TO_PERIPHERAL</PossibleValue>
+        </Parameter>
+        <Parameter Name="DMA_Handle">
+            <PossibleValue>dt</PossibleValue>
+        </Parameter>
+        <Parameter Name="Mode">
+            <PossibleValue>FALSE</PossibleValue>
+            <PossibleValue>TRUE</PossibleValue>
+        </Parameter>
+        <Parameter Name="IpInstance">
+            <PossibleValue>USART2</PossibleValue>
+        </Parameter>
+        <Parameter Name="PeriphInc">
+            <PossibleValue>FALSE</PossibleValue>
+        </Parameter>
+        <Parameter Name="PeriphDataAlignment" DefaultValue="DMA_PERIPHERAL_DATA_WIDTH_BYTE">
+            <PossibleValue>DMA_PERIPHERAL_DATA_WIDTH_BYTE</PossibleValue>
+            <PossibleValue>DMA_PERIPHERAL_DATA_WIDTH_HALFWORD</PossibleValue>
+        </Parameter>
+    </RefMode>
+    
+    <ModeLogicOperator Name="OR">
+        <Mode Name="DMA1">
+            <ModeLogicOperator Name="OR">
+                <Mode Name="DMA1_Channel1">
+                    <ModeLogicOperator Name="XOR">
+                        <Mode Name="MEMTOMEM"/>
+                        <Mode Name="ADC1">
+                            <Semaphore>DMARequest_ADC1</Semaphore>
+                        </Mode>
+                        <Mode Name="TMR17_CH1">
+                            <Condition Diagnostic="" Expression="Semaphore_Channel_1_DMA_EnableTMR17"/>
+                        </Mode>
+                        <Mode Name="TMR17_OVERFLOW"/>
+                    </ModeLogicOperator>
+                </Mode>
+                <Mode Name="DMA1_Channel2">
+                    <ModeLogicOperator Name="XOR">
+                        <Mode Name="MEMTOMEM"/>
+                        <Mode Name="ADC1">
+                            <Semaphore>DMARequest_ADC1</Semaphore>
+                        </Mode>
+                        <Mode Name="SPI1_RX">
+                            <Condition Diagnostic="" Expression="SPI1_DmaReceive|I2S1_RX"/>
+                        </Mode>
+                        <Mode Name="USART1_TX">
+                            <Condition Diagnostic="" Expression="S_USART1_TX"/>
+                        </Mode>
+                        <Mode Name="I2C1_TX">
+                            <Condition Diagnostic="" Expression="I2C1_Dma"/>
+                        </Mode>
+                        <Mode Name="TMR1_CH1">
+                            <Condition Diagnostic="" Expression="Semaphore_Channel_1_DMA_EnableTMR1"/>
+                        </Mode>
+                        <Mode Name="TMR3_CH3">
+                            <Condition Diagnostic="" Expression="Semaphore_Channel_3_DMA_EnableTMR3"/>
+                        </Mode>
+                        <Mode Name="TMR17_CH1">
+                            <Condition Diagnostic="" Expression="Semaphore_Channel_1_DMA_EnableTMR17"/>
+                        </Mode>
+                        <Mode Name="TMR17_OVERFLOW"/>
+                    </ModeLogicOperator>
+                </Mode>
+                <Mode Name="DMA1_Channel3">
+                    <ModeLogicOperator Name="XOR">
+                        <Mode Name="MEMTOMEM"/>
+                        <Mode Name="SPI1_TX">
+                            <Condition Diagnostic="" Expression="SPI1_DmaTransmit|I2S1_TX"/>
+                        </Mode>
+                        <Mode Name="USART1_RX">
+                            <Condition Diagnostic="" Expression="S_USART1_RX"/>
+                        </Mode>
+                        <Mode Name="I2C1_RX">
+                            <Condition Diagnostic="" Expression="I2C1_Dma"/>
+                        </Mode>
+                        <Mode Name="TMR1_CH2">
+                            <Condition Diagnostic="" Expression="Semaphore_Channel_2_DMA_EnableTMR1"/>
+                        </Mode>
+                        <Mode Name="TMR3_CH4">
+                            <Condition Diagnostic="" Expression="Semaphore_Channel_4_DMA_EnableTMR3"/>
+                        </Mode>
+                        <Mode Name="TMR3_OVERFLOW"/>
+                        <Mode Name="TMR6_OVERFLOW"/>
+                        <Mode Name="TMR16_CH1">
+                            <Condition Diagnostic="" Expression="Semaphore_Channel_1_DMA_EnableTMR16"/>
+                        </Mode>
+                        <Mode Name="TMR16_OVERFLOW"/>
+                    </ModeLogicOperator>
+                </Mode>
+                <Mode Name="DMA1_Channel4">
+                    <ModeLogicOperator Name="XOR">
+                        <Mode Name="MEMTOMEM"/>
+                        <Mode Name="SPI2_RX">
+                            <Condition Diagnostic="" Expression="SPI2_DmaReceive|I2S2_RX"/>
+                        </Mode>
+                        <Mode Name="USART1_TX">
+                            <Condition Diagnostic="" Expression="S_USART1_TX"/>
+                        </Mode>
+                        <Mode Name="USART2_TX">
+                            <Condition Diagnostic="" Expression="S_USART2_TX"/>
+                        </Mode>
+                        <Mode Name="I2C2_TX">
+                            <Condition Diagnostic="" Expression="I2C2_Dma"/>
+                        </Mode>
+                        <Mode Name="TMR1_CH4">
+                            <Condition Diagnostic="" Expression="Semaphore_Channel_4_DMA_EnableTMR1"/>
+                        </Mode>
+                        <Mode Name="TMR1_TRIG"/>
+                        <Mode Name="TMR1_HALL"/>                        
+                        <Mode Name="TMR3_CH1">
+                            <Condition Diagnostic="" Expression="Semaphore_Channel_1_DMA_EnableTMR3"/>
+                        </Mode>
+                        <Mode Name="TMR3_TRIG"/>             
+                        <Mode Name="TMR16_CH1">
+                            <Condition Diagnostic="" Expression="Semaphore_Channel_1_DMA_EnableTMR16"/>
+                        </Mode>
+                        <Mode Name="TMR16_OVERFLOW"/>
+                    </ModeLogicOperator>
+                </Mode>
+                <Mode Name="DMA1_Channel5">
+                    <ModeLogicOperator Name="XOR">
+                        <Mode Name="MEMTOMEM"/>
+                        <Mode Name="SPI2_TX">
+                            <Condition Diagnostic="" Expression="SPI2_DmaTransmit|I2S2_TX"/>
+                        </Mode>
+                        <Mode Name="USART1_RX">
+                            <Condition Diagnostic="" Expression="S_USART1_RX"/>
+                        </Mode>
+                        <Mode Name="USART2_RX">
+                            <Condition Diagnostic="" Expression="S_USART2_RX"/>
+                        </Mode>
+                        <Mode Name="I2C2_RX">
+                            <Condition Diagnostic="" Expression="I2C2_Dma"/>
+                        </Mode>
+                        <Mode Name="TMR1_CH3">
+                            <Condition Diagnostic="" Expression="Semaphore_Channel_3_DMA_EnableTMR1"/>
+                        </Mode>
+                        <Mode Name="TMR1_OVERFLOW"/> 
+                        <Mode Name="TMR15_CH1">
+                            <Condition Diagnostic="" Expression="Semaphore_Channel_1_DMA_EnableTMR15"/>
+                        </Mode>
+                        <Mode Name="TMR15_OVERFLOW"/> 
+                        <Mode Name="TMR15_TRIG"/> 
+                        <Mode Name="TMR15_HALL"/> 
+                        <Mode Name="TMR15_CH2">
+                            <Condition Diagnostic="" Expression="Semaphore_Channel_2_DMA_EnableTMR15"/>
+                        </Mode>
+                    </ModeLogicOperator>
+                </Mode>
+            </ModeLogicOperator>
+        </Mode>
+    </ModeLogicOperator>
+</IP>

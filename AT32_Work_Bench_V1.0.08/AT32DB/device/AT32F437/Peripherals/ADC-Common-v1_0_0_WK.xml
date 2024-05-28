@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<IP>
+    <About>Analog-to-digital converter</About> 
+    <AboutCH> 模拟/数字转换</AboutCH>  
+
+    <RefParameter Name="Mode" Comment="Master Slave mode" CommentCH="主从模式选择" DefaultValue="ADC_INDEPENDENT_MODE" Type="list" Group="ADCs Common Settings" GroupCH="ADC公共设置">
+        <PossibleValue Comment="Non-combined mode"                                                                                                                  CommentCH="独立模式"                                                               Value="ADC_INDEPENDENT_MODE"                                                                       Semaphore="$IpInstance_ADC_INDEPENDENT_MODE"/>
+        <PossibleValue Comment="Combined ordinary simultaneous+preempted simultaneous modes (single slave)"       CommentCH="混合的普通同时+抢占同时模式（单从机）"        Value="ADC_ORDINARY_SMLT_PREEMPT_SMLT_ONESLAVE_MODE"             Semaphore="$IpInstance_ADC_ORDINARY_SMLT_PREEMPT_SMLT_ONESLAVE_MODE" />
+        <PossibleValue Comment="Combined ordinary simultaneous+alternate preempted trigger modes (single slave)" CommentCH="混合的普通同时+抢占交错触发模式（单从机）" Value="ADC_ORDINARY_SMLT_PREEMPT_INTERLTRIG_ONESLAVE_MODE"  Semaphore="$IpInstance_ADC_ORDINARY_SMLT_PREEMPT_INTERLTRIG_ONESLAVE_MODE"/>
+        <PossibleValue Comment="Preempted simultaneous mode (single slave)"                                                                        CommentCH="抢占同时模式（单从机）"                                      Value="ADC_PREEMPT_SMLT_ONLY_ONESLAVE_MODE"                                  Semaphore="$IpInstance_ADC_PREEMPT_SMLT_ONLY_ONESLAVE_MODE"/>
+        <PossibleValue Comment="Ordinary simultaneous mode (single slave)"                                                                             CommentCH="普通同时模式（单从机）"                                     Value="ADC_ORDINARY_SMLT_ONLY_ONESLAVE_MODE"                                Semaphore="$IpInstance_ADC_ORDINARY_SMLT_ONLY_ONESLAVE_MODE"/>
+        <PossibleValue Comment="Ordinary shift mode (single slave)"                                                                                             CommentCH="普通位移模式（单从机）"                                     Value="ADC_ORDINARY_SHIFT_ONLY_ONESLAVE_MODE"                                Semaphore="$IpInstance_ADC_ORDINARY_SHIFT_ONLY_ONESLAVE_MODE"/>
+        <PossibleValue Comment="Alternate preempted trigger mode (single slave)"                                                                 CommentCH="抢占交错触发模式（单从机）"                              Value="ADC_PREEMPT_INTERLTRIG_ONLY_ONESLAVE_MODE"                        Semaphore="$IpInstance_ADC_PREEMPT_INTERLTRIG_ONLY_ONESLAVE_MODE"/>
+        <PossibleValue Comment="Combined ordinary simultaneous+preempted simultaneous modes (dual slave)"          CommentCH="混合的普通同时+抢占同时模式（双从机）"         Value="ADC_ORDINARY_SMLT_PREEMPT_SMLT_TWOSLAVE_MODE"            Semaphore="$IpInstance_ADC_ORDINARY_SMLT_PREEMPT_SMLT_TWOSLAVE_MODE"/>
+        <PossibleValue Comment="Combined ordinary simultaneous+alternate preempted trigger modes (dual slave)"    CommentCH="混合的普通同时+抢占交错触发模式（双从机）"  Value="ADC_ORDINARY_SMLT_PREEMPT_INTERLTRIG_TWOSLAVE_MODE" Semaphore="$IpInstance_ADC_ORDINARY_SMLT_PREEMPT_INTERLTRIG_TWOSLAVE_MODE"/>
+        <PossibleValue Comment="Preempted simultaneous mode (dual slave)"                                                                           CommentCH="抢占同时模式（双从机）"                                       Value="ADC_PREEMPT_SMLT_ONLY_TWOSLAVE_MODE"                                 Semaphore="$IpInstance_ADC_PREEMPT_SMLT_ONLY_TWOSLAVE_MODE"/>
+        <PossibleValue Comment="Ordinary simultaneous mode (dual slave)"                                                                                CommentCH="普通同时模式（双从机）"                                       Value="ADC_ORDINARY_SMLT_ONLY_TWOSLAVE_MODE"                              Semaphore="$IpInstance_ADC_ORDINARY_SMLT_ONLY_TWOSLAVE_MODE"/>
+        <PossibleValue Comment="Ordinary shift mode (dual slave)"                                                                                                CommentCH="普通位移模式（双从机）"                                       Value="ADC_ORDINARY_SHIFT_ONLY_TWOSLAVE_MODE"                              Semaphore="$IpInstance_ADC_ORDINARY_SHIFT_ONLY_TWOSLAVE_MODE"/>
+        <PossibleValue Comment="Alternate preempted trigger mode (dual slave))"                                                                   CommentCH="抢占交错触发模式（双从机）"                               Value="ADC_PREEMPT_INTERLTRIG_ONLY_TWOSLAVE_MODE"                      Semaphore="$IpInstance_ADC_PREEMPT_INTERLTRIG_ONLY_TWOSLAVE_MODE"/>
+    </RefParameter>     
+    
+    <RefParameter Name="ClockPrescaler" Comment="Clock frequency division" CommentCH="时钟频率分频系数" DefaultValue="ADC_HCLK_DIV_4" Group="ADCs Common Settings" GroupCH="ADC公共设置" Type="list">
+		<PossibleValue Comment="2" CommentCH="2" Value="ADC_HCLK_DIV_2"/>
+		<PossibleValue Comment="3" CommentCH="3" Value="ADC_HCLK_DIV_3"/>
+		<PossibleValue Comment="4" CommentCH="4" Value="ADC_HCLK_DIV_4"/>
+		<PossibleValue Comment="5" CommentCH="5" Value="ADC_HCLK_DIV_5"/>
+		<PossibleValue Comment="6" CommentCH="6" Value="ADC_HCLK_DIV_6"/>
+		<PossibleValue Comment="7" CommentCH="7" Value="ADC_HCLK_DIV_7"/>
+		<PossibleValue Comment="8" CommentCH="8" Value="ADC_HCLK_DIV_8"/>
+		<PossibleValue Comment="9" CommentCH="9" Value="ADC_HCLK_DIV_9"/>
+		<PossibleValue Comment="10" CommentCH="10" Value="ADC_HCLK_DIV_10"/>
+		<PossibleValue Comment="11" CommentCH="11" Value="ADC_HCLK_DIV_11"/>
+		<PossibleValue Comment="12" CommentCH="12" Value="ADC_HCLK_DIV_12"/>
+		<PossibleValue Comment="13" CommentCH="13" Value="ADC_HCLK_DIV_13"/>
+		<PossibleValue Comment="14" CommentCH="14" Value="ADC_HCLK_DIV_14"/>
+		<PossibleValue Comment="15" CommentCH="15" Value="ADC_HCLK_DIV_15"/>
+		<PossibleValue Comment="16" CommentCH="16" Value="ADC_HCLK_DIV_16"/>
+		<PossibleValue Comment="17" CommentCH="17" Value="ADC_HCLK_DIV_17"/>
+	</RefParameter> 
+	
+	<RefParameter Comment="Clock" CommentCH="时钟" DefaultValue="75000000" Max="80000000" Min="0" Name="Clock" Group="ADCs Common Settings" GroupCH="ADC公共设置" Type="string" Unit="Hz" Reload="false">
+	</RefParameter>
+	
+	<!-- DMATransferMode -->
+	<RefParameter Name="DMATransferMode" Comment="DMA transfer mode select in combined mode" CommentCH="主从模式下DMA传输模式选择" DefaultValue="ADC_COMMON_DMAMODE_DISABLE" Group="ADCs Common Settings" GroupCH="ADC公共设置" Type="list" Visible="false">
+		<Condition Expression="Mode = ADC_INDEPENDENT_MODE"/>
+		<PossibleValue Comment="Disable" CommentCH="关闭" Value="ADC_COMMON_DMAMODE_DISABLE"  Semaphore="$IpInstance_ADC_COMMON_DMAMODE_DISABLE"/>
+	</RefParameter> 
+	
+	<RefParameter Name="DMATransferMode" Comment="DMA transfer mode select in combined mode" CommentCH="主从模式下DMA传输模式选择" DefaultValue="ADC_COMMON_DMAMODE_DISABLE" Group="ADCs Common Settings" GroupCH="ADC公共设置" Type="list">
+		<PossibleValue Comment="Disable" CommentCH="关闭" Value="ADC_COMMON_DMAMODE_DISABLE"  Semaphore="$IpInstance_ADC_COMMON_DMAMODE_DISABLE"/>
+	</RefParameter> 
+	
+	<RefParameter Name="DMATransferMode" Comment="DMA transfer mode select in combined mode" CommentCH="主从模式下DMA传输模式选择" DefaultValue="ADC_COMMON_DMAMODE_DISABLE" Group="ADCs Common Settings" GroupCH="ADC公共设置" Type="list">
+		<Condition Expression="Mode = ADC_ORDINARY_SMLT_ONLY_ONESLAVE_MODE | 
+			                                         Mode = ADC_ORDINARY_SHIFT_ONLY_ONESLAVE_MODE | 
+			                                         Mode = ADC_ORDINARY_SMLT_PREEMPT_SMLT_ONESLAVE_MODE | 
+			                                         Mode = ADC_ORDINARY_SMLT_PREEMPT_INTERLTRIG_ONESLAVE_MODE | 
+			                                         Mode = ADC_ORDINARY_SMLT_ONLY_TWOSLAVE_MODE | 
+			                                         Mode = ADC_ORDINARY_SHIFT_ONLY_TWOSLAVE_MODE | 
+			                                         Mode = ADC_ORDINARY_SMLT_PREEMPT_SMLT_TWOSLAVE_MODE | 
+			                                         Mode = ADC_ORDINARY_SMLT_PREEMPT_INTERLTRIG_TWOSLAVE_MODE"/>
+		<PossibleValue Comment="Disable" CommentCH="关闭" Value="ADC_COMMON_DMAMODE_DISABLE"  Semaphore="$IpInstance_ADC_COMMON_DMAMODE_DISABLE"/>
+		<!-- 普通同时模式（单从机）、普通位移模式（单从机）、普通同时模式（双从机）、普通位移模式（双从机）、混合的普通同时+抢占同时模式（单从机）、混合的普通同时+抢占交错触发模式（单从机）、混合的普通同时+抢占同时模式（双从机）、混合的普通同时+抢占交错触发模式（双从机） --> 
+		<PossibleValue Comment="DMA mode1" CommentCH="DMA模式1" Value="ADC_COMMON_DMAMODE_1" Semaphore="$IpInstance_ADC_COMMON_DMAMODE_1" 
+			                        Condition="Mode = ADC_ORDINARY_SMLT_ONLY_ONESLAVE_MODE | 
+			                                              Mode = ADC_ORDINARY_SHIFT_ONLY_ONESLAVE_MODE | 
+			                                              Mode = ADC_ORDINARY_SMLT_PREEMPT_SMLT_ONESLAVE_MODE | 
+			                                              Mode = ADC_ORDINARY_SMLT_PREEMPT_INTERLTRIG_ONESLAVE_MODE | 
+			                                              Mode = ADC_ORDINARY_SMLT_ONLY_TWOSLAVE_MODE | 
+			                                              Mode = ADC_ORDINARY_SHIFT_ONLY_TWOSLAVE_MODE | 
+			                                              Mode = ADC_ORDINARY_SMLT_PREEMPT_SMLT_TWOSLAVE_MODE | 
+			                                              Mode = ADC_ORDINARY_SMLT_PREEMPT_INTERLTRIG_TWOSLAVE_MODE"/>
+		<!-- 普通同时模式（单从机）、普通位移模式（单从机）、普通位移模式（双从机）、混合的普通同时+抢占同时模式（单从机）、混合的普通同时+抢占交错触发模式（单从机）  --> 
+		<PossibleValue Comment="DMA mode2" CommentCH="DMA模式2" Value="ADC_COMMON_DMAMODE_2" Semaphore="$IpInstance_ADC_COMMON_DMAMODE_2" 
+			                        Condition="Mode = ADC_ORDINARY_SMLT_ONLY_ONESLAVE_MODE | 
+			                                              Mode = ADC_ORDINARY_SHIFT_ONLY_ONESLAVE_MODE | 
+			                                              Mode = ADC_ORDINARY_SHIFT_ONLY_TWOSLAVE_MODE | 
+			                                              Mode = ADC_ORDINARY_SMLT_PREEMPT_SMLT_ONESLAVE_MODE | 
+			                                              Mode = ADC_ORDINARY_SMLT_PREEMPT_INTERLTRIG_ONESLAVE_MODE"/>
+		<!-- 6/8位分辨率的普通同时模式（单从机）、6/8位分辨率的普通位移模式（单从机）、6/8位分辨率的普通位移模式（双从机）、6/8位分辨率的混合的普通同时+抢占同时模式（单从机）、6/8位分辨率的混合的普通同时+抢占交错触发模式（单从机） --> 
+		<PossibleValue Comment="DMA mode3" CommentCH="DMA模式3" Value="ADC_COMMON_DMAMODE_3" Semaphore="$IpInstance_ADC_COMMON_DMAMODE_3" 
+			                        Condition="ResolutionSelect = ADC_RESOLUTION_8B | ResolutionSelect = ADC_RESOLUTION_6B &amp; 
+			                                              Mode = ADC_ORDINARY_SMLT_ONLY_ONESLAVE_MODE | 
+			                                              Mode = ADC_ORDINARY_SHIFT_ONLY_ONESLAVE_MODE | 
+			                                              Mode = ADC_ORDINARY_SHIFT_ONLY_TWOSLAVE_MODE| 
+			                                              Mode = ADC_ORDINARY_SMLT_PREEMPT_SMLT_ONESLAVE_MODE | 
+			                                              Mode = ADC_ORDINARY_SMLT_PREEMPT_INTERLTRIG_ONESLAVE_MODE"/>
+		<!-- 6/8位分辨率的普通同时模式（双从机）、6/8位分辨率的普通位移模式（双从机）、6/8位分辨率的混合的普通同时+抢占同时模式（双从机）、6/8位分辨率的混合的普通同时+抢占交错触发模式（双从机） --> 
+		<PossibleValue Comment="DMA mode4" CommentCH="DMA模式4" Value="ADC_COMMON_DMAMODE_4" Semaphore="$IpInstance_ADC_COMMON_DMAMODE_4" 
+			                        Condition="ResolutionSelect = ADC_RESOLUTION_8B | ResolutionSelect = ADC_RESOLUTION_6B &amp; 
+			                                              Mode = ADC_ORDINARY_SMLT_ONLY_TWOSLAVE_MODE | 
+			                                              Mode = ADC_ORDINARY_SHIFT_ONLY_TWOSLAVE_MODE | 
+			                                              Mode = ADC_ORDINARY_SMLT_PREEMPT_SMLT_TWOSLAVE_MODE | 
+			                                              Mode = ADC_ORDINARY_SMLT_PREEMPT_INTERLTRIG_TWOSLAVE_MODE"/>
+		<!-- 普通同时模式（双从机）、普通位移模式（双从机）、混合的普通同时+抢占同时模式（双从机）、混合的普通同时+抢占交错触发模式（双从机） --> 
+		<PossibleValue Comment="DMA mode5" CommentCH="DMA模式5" Value="ADC_COMMON_DMAMODE_5" Semaphore="$IpInstance_ADC_COMMON_DMAMODE_5" 
+			                        Condition="Mode = ADC_ORDINARY_SMLT_ONLY_TWOSLAVE_MODE | 
+			                                              Mode = ADC_ORDINARY_SHIFT_ONLY_TWOSLAVE_MODE | 
+			                                              Mode = ADC_ORDINARY_SMLT_PREEMPT_SMLT_TWOSLAVE_MODE | 
+			                                              Mode = ADC_ORDINARY_SMLT_PREEMPT_INTERLTRIG_TWOSLAVE_MODE"/>
+	</RefParameter> 
+	
+	<!-- DMARequestContinuation -->
+	<RefParameter Name="DMARequestContinuation" Comment="DMA request continuation in combined mode" CommentCH="主从模式下DMA请求接续" DefaultValue="FALSE" Group="ADCs Common Settings" GroupCH="ADC公共设置" Type="list" Visible="false">
+		<Condition Expression="DMATransferMode = ADC_COMMON_DMAMODE_DISABLE"/>
+		<PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE"/>
+	</RefParameter>
+	<RefParameter Name="DMARequestContinuation" Comment="DMA request continuation in combined mode" CommentCH="主从模式下DMA请求接续" DefaultValue="FALSE" Group="ADCs Common Settings" GroupCH="ADC公共设置" Type="list">
+     	<PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE"/>
+     	<PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE"/>
+	</RefParameter>
+	
+	<!-- SamplingIntervalOordinaryShift -->
+	<RefParameter Name="SamplingIntervalOordinaryShift" Comment="Adjacent ADC sampling interval select in ordinary shift mode" CommentCH="普通位移模式下相邻ADC间的采样间隔时间选择" DefaultValue="ADC_SAMPLING_INTERVAL_5CYCLES" Group="ADCs Common Settings" GroupCH="ADC公共设置" Type="list" Visible="false">
+		<PossibleValue Comment="5 * TADCCLK" CommentCH="5 * TADCCLK" Value="ADC_SAMPLING_INTERVAL_5CYCLES"/>
+	</RefParameter>
+	<RefParameter Name="SamplingIntervalOordinaryShift" Comment="Adjacent ADC sampling interval select in ordinary shift mode" CommentCH="普通位移模式下相邻ADC间的采样间隔时间选择" DefaultValue="ADC_SAMPLING_INTERVAL_5CYCLES" Group="ADCs Common Settings" GroupCH="ADC公共设置" Type="list">
+		<Condition Expression="Mode = ADC_ORDINARY_SHIFT_ONLY_ONESLAVE_MODE | Mode = ADC_ORDINARY_SHIFT_ONLY_TWOSLAVE_MODE"/>
+		<PossibleValue Comment="5 * TADCCLK" CommentCH="5 * TADCCLK" Value="ADC_SAMPLING_INTERVAL_5CYCLES"/>
+		<PossibleValue Comment="6 * TADCCLK" CommentCH="6 * TADCCLK" Value="ADC_SAMPLING_INTERVAL_6CYCLES"/>
+		<PossibleValue Comment="7 * TADCCLK" CommentCH="7 * TADCCLK" Value="ADC_SAMPLING_INTERVAL_7CYCLES"/>
+		<PossibleValue Comment="8 * TADCCLK" CommentCH="8 * TADCCLK" Value="ADC_SAMPLING_INTERVAL_8CYCLES"/>
+		<PossibleValue Comment="9 * TADCCLK" CommentCH="9 * TADCCLK" Value="ADC_SAMPLING_INTERVAL_9CYCLES"/>
+		<PossibleValue Comment="10 * TADCCLK" CommentCH="10 * TADCCLK" Value="ADC_SAMPLING_INTERVAL_10CYCLES"/>
+		<PossibleValue Comment="11 * TADCCLK" CommentCH="11 * TADCCLK" Value="ADC_SAMPLING_INTERVAL_11CYCLES"/>
+		<PossibleValue Comment="12 * TADCCLK" CommentCH="12 * TADCCLK" Value="ADC_SAMPLING_INTERVAL_12CYCLES"/>
+		<PossibleValue Comment="13 * TADCCLK" CommentCH="13 * TADCCLK" Value="ADC_SAMPLING_INTERVAL_13CYCLES"/>
+		<PossibleValue Comment="14 * TADCCLK" CommentCH="14 * TADCCLK" Value="ADC_SAMPLING_INTERVAL_14CYCLES"/>
+		<PossibleValue Comment="15 * TADCCLK" CommentCH="15 * TADCCLK" Value="ADC_SAMPLING_INTERVAL_15CYCLES"/>
+		<PossibleValue Comment="16 * TADCCLK" CommentCH="16 * TADCCLK" Value="ADC_SAMPLING_INTERVAL_16CYCLES"/>
+		<PossibleValue Comment="17 * TADCCLK" CommentCH="17 * TADCCLK" Value="ADC_SAMPLING_INTERVAL_17CYCLES"/>
+		<PossibleValue Comment="18 * TADCCLK" CommentCH="18 * TADCCLK" Value="ADC_SAMPLING_INTERVAL_18CYCLES"/>
+		<PossibleValue Comment="19 * TADCCLK" CommentCH="19 * TADCCLK" Value="ADC_SAMPLING_INTERVAL_19CYCLES"/>
+		<PossibleValue Comment="20 * TADCCLK" CommentCH="20 * TADCCLK" Value="ADC_SAMPLING_INTERVAL_20CYCLES"/>
+	</RefParameter>
+     
+    <RefParameter Name="TemperatureVINTRV" Comment="Temperature VINTRV" CommentCH="内部温度传感器/内部参考电压" Group="ADCs Common Settings" GroupCH="ADC公共设置" DefaultValue="TRUE" Type="list"  Visible="false" Reload="false">
+    	   <Condition Expression="ADC1_CHANNEL_16 | ADC1_CHANNEL_17"/>
+         <PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE"/>                
+    </RefParameter>        
+    <RefParameter Name="TemperatureVINTRV" Comment="Temperature VINTRV" CommentCH="内部温度传感器/内部参考电压" Group="ADCs Common Settings" GroupCH="ADC公共设置" DefaultValue="FALSE" Type="list"  Visible="false" Reload="false">
+         <PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE"/>                
+    </RefParameter>     
+    
+    <RefParameter Name="VBAT" Comment="VBAT" CommentCH="VBAT" DefaultValue="TRUE" Group="ADCs Common Settings" GroupCH="ADC公共设置" Type="list"  Visible="false" Reload="false">
+    	   <Condition Expression="ADC1_CHANNEL_18"/>
+         <PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE"/>                
+    </RefParameter>        
+    <RefParameter Name="VBAT" Comment="VBAT" CommentCH="VBAT" DefaultValue="FALSE" Group="ADCs Common Settings" GroupCH="ADC公共设置" Type="list"  Visible="false" Reload="false">
+         <PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE"/>                
+    </RefParameter>            	
+
+    <!-- ResolutionSelect -->
+    <RefParameter Name="ResolutionSelect" Comment="Resolution select" CommentCH="分辨率选择" DefaultValue="ADC_RESOLUTION_12B" Type="list" Group="ADCs Common Settings" GroupCH="ADC公共设置">
+    	   <Condition Expression="Mode != ADC_INDEPENDENT_MODE"/>
+        <PossibleValue Comment="12 bit" CommentCH="12 位" Value="ADC_RESOLUTION_12B"  Semaphore="$IpInstance_ResolutionSelect_ADC_RESOLUTION_12B"/>
+        <PossibleValue Comment="10 bit" CommentCH="10 位" Value="ADC_RESOLUTION_10B"  Semaphore="$IpInstance_ResolutionSelect_ADC_RESOLUTION_10B"/>
+        <PossibleValue Comment="8 bit" CommentCH="8 位" Value="ADC_RESOLUTION_8B"  Semaphore="$IpInstance_ResolutionSelect_ADC_RESOLUTION_8B"/>
+        <PossibleValue Comment="6 bit" CommentCH="6 位" Value="ADC_RESOLUTION_6B"  Semaphore="$IpInstance_ResolutionSelect_ADC_RESOLUTION_6B"/>
+    </RefParameter>
+    
+    
+        <!-- ADC multi mode -->
+    <RefMode Name="ADCs_Settings" Abstract="true">
+    	   <Parameter Name="TemperatureVINTRV"/>
+    	   <Parameter Name="VBAT"/>
+        <Parameter Name="Mode"/>
+        <Parameter Name="ClockPrescaler"/>
+        <Parameter Name="Clock"/>
+        <Parameter Name="DMATransferMode"/>
+        <Parameter Name="DMARequestContinuation"/>
+        <Parameter Name="SamplingIntervalOordinaryShift"/>
+        <Parameter Name="ResolutionSelect"/>
+    </RefMode>
+    
+   
+    <!-- Modes -->
+    <ModeLogicOperator Name="OR">
+        <Mode Name="Activated" UserName="Activated" UserNameCH="启用">
+            <ModeLogicOperator Name="OR">
+                <Mode Name="Activated" UserName="Activated" UserNameCH="启用">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="VS_ADC"/>
+                    </SignalLogicalOp>
+                </Mode>
+            </ModeLogicOperator>
+            <Semaphore>$IpInstance_Activated</Semaphore>
+        </Mode>
+    </ModeLogicOperator>
+	
+    <RefSignal IOMode="Input" Name="VS_ADC" Virtual="true"/>
+</IP>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<IP>
+    <About>Window watchdog timer</About>
+    <AboutCH>窗口看门狗</AboutCH>
+
+    <RefParameter Name="Instance" Comment="WWDT instance" DefaultValue="WWDT" Type="list" Visible="false"/>
+
+    <RefParameter Name="Prescaler" Comment="WWDT counter clock prescaler" CommentCH="WWDT计数时钟分频" DefaultValue="WWDT_PCLK1_DIV_4096" Type="list" Group="Clocking" GroupCH="时钟">
+        <PossibleValue Value="WWDT_PCLK1_DIV_4096" Comment="4096" CommentCH="4096"/>
+        <PossibleValue Value="WWDT_PCLK1_DIV_8192" Comment="8192" CommentCH="8192"/>
+        <PossibleValue Value="WWDT_PCLK1_DIV_16384" Comment="16384" CommentCH="16384"/>
+        <PossibleValue Value="WWDT_PCLK1_DIV_32768" Comment="32768" CommentCH="32768"/>
+    </RefParameter>
+
+    <RefParameter Name="Window" Comment="WWDT window value" CommentCH="窗口值" DefaultValue="40" Max="7F" Min="40" Type="hexadecimal" Group="Clocking" GroupCH="时钟">
+    </RefParameter>
+
+    <RefParameter Name="Counter" Comment="WWDT downcounter value" CommentCH="WWDT向下计数值" DefaultValue="40" Max="7F" Min="=#Window" Type="hexadecimal" Group="Clocking" GroupCH="时钟">
+    </RefParameter>
+
+    <RefMode Name="WWDT_State" BaseMode="WWDT_State">
+        <Parameter Name="Prescaler"/>
+        <Parameter Name="Window"/>
+        <Parameter Name="Counter"/>
+    </RefMode>
+
+    <!-- ModeLogicOperator for WWDT -->
+    <ModeLogicOperator Name="OR">
+      <Mode Name="WWDT_State" UserName="Activated" UserNameCH="启用">
+        <ModeLogicOperator Name="XOR">
+          <Mode Name="WWDT_State" UserName="Activated" UserNameCH="启用">
+            <SignalLogicalOp Name="AND">
+              <Signal Name="VS_WWDT" />
+            </SignalLogicalOp>
+          </Mode>
+        </ModeLogicOperator>
+      </Mode>
+    </ModeLogicOperator>
+
+    <!-- RefSignal for WWDT -->
+    <RefSignal Name="VS_WWDT" Virtual="true"/>
+</IP>

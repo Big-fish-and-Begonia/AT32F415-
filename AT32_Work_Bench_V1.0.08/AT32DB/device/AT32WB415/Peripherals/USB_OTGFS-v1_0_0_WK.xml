@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<IP>
+  <About>Universal Serial Bus On-The-Go Full-Speed</About>
+  <AboutCH>USB OTG 全速</AboutCH>
+	
+	<ModeLogicOperator Name="OR">
+		<Mode Name="Mode" UserName="Mode" UserNameCH="模式">
+			<ModeLogicOperator Name="XOR">
+				<Mode Name="Host_Only" UserName="Host Only" UserNameCH="主机">					
+					<SignalLogicalOp Name="AND">
+						<Signal Name="D+"/>
+						<Signal Name="D-"/>
+					</SignalLogicalOp>
+					<Semaphore>USB_OTG_FS_HOST</Semaphore>	
+					<Semaphore>USB_OTG_FS</Semaphore>				
+				</Mode>
+				<Mode Name="Device_Only" UserName="Device Only" UserNameCH="设备">
+					<SignalLogicalOp Name="AND">
+						<Signal Name="D+"/>
+						<Signal Name="D-"/>
+					</SignalLogicalOp>
+					<Semaphore>USB_OTG_FS_DEVICE</Semaphore>
+					<Semaphore>USB_OTG_FS</Semaphore>
+				</Mode>
+			</ModeLogicOperator>			
+		</Mode>
+   
+		<Mode Name="Activate_SOF" UserName="Activate SOF" UserNameCH="开启SOF">
+			<Condition Expression="USB_OTG_FS"
+        	  	                   Diagnostic="USB &quot;Mode&quot; must be selected first" 
+        	  	                   DiagnosticCH="需要先选择 &quot;模式&quot;"/>
+			<ModeLogicOperator Name="XOR">
+				<Mode Name="Activate_SOF" UserName="Activate SOF" UserNameCH="开启SOF">
+					<SignalLogicalOp Name="AND">				
+						<Signal Name="SOF"/>				
+					</SignalLogicalOp>
+				</Mode>			
+			</ModeLogicOperator>
+			<Semaphore>USB_FS_SOF</Semaphore>
+		</Mode>
+		
+		<Mode Name="Activate_VBUS" UserName="Activate VBUS" UserNameCH="开启VBUS">
+			<Condition Expression="USB_OTG_FS_HOST"
+        	  	                   Diagnostic="&quot;Host Only&quot; must be selected first" 
+        	  	                   DiagnosticCH="需要先选择 &quot;主机&quot;"/>
+			<ModeLogicOperator Name="XOR">
+				<Mode Name="Activate_VBUS" UserName="Activate VBUS" UserNameCH="开启VBUS">
+					<SignalLogicalOp Name="AND">				
+						<Signal Name="VBUS"/>				
+					</SignalLogicalOp>
+				</Mode>			
+			</ModeLogicOperator>
+			<Semaphore>USB_FS_VBUS</Semaphore>
+		</Mode>
+		
+		<Mode Name="Activate_OE" UserName="Activate OE" UserNameCH="开启OE">
+			<Condition Expression="USB_OTG_FS"
+        	  	                   Diagnostic="USB &quot;Mode&quot; must be selected first" 
+        	  	                   DiagnosticCH="需要先选择 &quot;模式&quot;"/>
+			<ModeLogicOperator Name="XOR">
+				<Mode Name="Activate_OE" UserName="Activate OE" UserNameCH="开启OE">
+					<SignalLogicalOp Name="AND">				
+						<Signal Name="OE"/>				
+					</SignalLogicalOp>
+				</Mode>			
+			</ModeLogicOperator>
+			<Semaphore>USB_FS_OE</Semaphore>
+		</Mode>
+		
+		<Mode Name="Activate_ID" UserName="Activate ID" UserNameCH="开启ID">
+			<Condition Expression="USB_OTG_FS"
+        	  	                   Diagnostic="USB &quot;Mode&quot; must be selected first" 
+        	  	                   DiagnosticCH="需要先选择 &quot;模式&quot;"/>
+			<ModeLogicOperator Name="XOR">
+				<Mode Name="Activate_ID" UserName="Activate ID" UserNameCH="开启ID">
+					<SignalLogicalOp Name="AND">				
+						<Signal Name="ID"/>				
+					</SignalLogicalOp>
+				</Mode>			
+			</ModeLogicOperator>
+			<Semaphore>USB_FS_ID</Semaphore>
+		</Mode>
+	</ModeLogicOperator>
+	
+	<RefSignal IOMode="System" Name="D+"/>
+	<RefSignal IOMode="System" Name="D-"/>
+	<RefSignal IOMode="MuxOutputPushPull" Name="SOF"/>
+	<RefSignal IOMode="Input" Name="VBUS"/>
+	<RefSignal IOMode="MuxOutputPushPull" Name="OE"/>
+	<RefSignal IOMode="Input" Name="ID"/>
+
+</IP>

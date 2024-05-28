@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<IP>
+	
+	<!-- Description of IP. -->
+	<About>Inter IC Sound</About>
+	<AboutCH>集成电路内置音频总线</AboutCH>
+	
+	<!-- Generic RefParameters for I2S. Instance is SPI because I2S is same IP that SPI. -->
+	<RefParameter Comment="Instance" Name="Instance" DefaultValue="SPI$Index" Type="" Visible="false"/>
+	
+	<RefParameter Comment="Clock Source" CommentCH="时钟源" DefaultValue="SCLK" Group="Clock Parameters" GroupCH="时钟参数" Name="CLOCK_SOURCE" Type="list" Visible="false">
+        <PossibleValue Comment="SCLK" CommentCH="SCLK" Value="SCLK"/>
+    </RefParameter>
+		
+	<RefParameter Comment="Operation Mode" CommentCH="传输模式" DefaultValue="I2S_MODE_MASTER_TX" Name="Mode" Type="list" Group="Generic Parameters" GroupCH="基础参数" Visible="true">
+		<Condition Diagnostic="" Expression="$IpInstance_TX&amp; $IpInstance_Master"/>
+		<PossibleValue Comment="Mode Master Transmit" CommentCH="主机发送模式" Value="I2S_MODE_MASTER_TX"/>
+	</RefParameter>
+	
+	<RefParameter Comment="Operation Mode" CommentCH="传输模式" DefaultValue="I2S_MODE_MASTER_RX" Name="Mode" Type="list" Group="Generic Parameters" GroupCH="基础参数" Visible="true">
+		<Condition Diagnostic="" Expression="$IpInstance_RX&amp; $IpInstance_Master"/>
+		<PossibleValue Comment="Mode Master Receive" CommentCH="主机接收模式" Value="I2S_MODE_MASTER_RX"/>
+	</RefParameter>
+	
+	<RefParameter Comment="Operation Mode" CommentCH="传输模式" DefaultValue="I2S_MODE_SLAVE_TX" Name="Mode" Type="list" Group="Generic Parameters" GroupCH="基础参数" Visible="true">
+		<Condition Diagnostic="" Expression="$IpInstance_TX&amp; $IpInstance_Slave"/>
+		<PossibleValue Comment="Mode Slave Transmit" CommentCH="从机发送模式" Value="I2S_MODE_SLAVE_TX"/>
+	</RefParameter>
+	
+	<RefParameter Comment="Operation Mode" CommentCH="传输模式" DefaultValue="I2S_MODE_SLAVE_RX" Name="Mode" Type="list" Group="Generic Parameters" GroupCH="基础参数" Visible="true">
+		<Condition Diagnostic="" Expression="$IpInstance_RX&amp; $IpInstance_Slave"/>
+		<PossibleValue Comment="Mode Slave Receive" CommentCH="从机接收模式" Value="I2S_MODE_SLAVE_RX"/>
+	</RefParameter>
+	
+	<RefParameter Comment="EXT Mode" CommentCH="EXT模式" DefaultValue="TRUE" Name="EXT" Type="list" Group="Generic Parameters" GroupCH="基础参数" Visible="false">
+		<Condition Diagnostic="" Expression="$IpInstance_EXT_Master | $IpInstance_EXT_Slave"/>
+		<PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE"/>
+	</RefParameter>
+	<RefParameter Comment="EXT Mode" CommentCH="EXT模式" DefaultValue="FALSE" Name="EXT" Type="list" Group="Generic Parameters" GroupCH="基础参数" Visible="false">
+		<PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE"/>
+	</RefParameter>
+	
+	<RefParameter Comment="EXT Operation Mode" CommentCH="EXT传输模式" DefaultValue="I2S_MODE_SLAVE_TX" Name="EXTMode" Type="list" Group="Generic Parameters" GroupCH="基础参数" Visible="false">
+		<Condition Diagnostic="" Expression="S_$IpInstanceEXT_TX&amp; $IpInstance_EXT_Slave"/>
+		<PossibleValue Comment="Mode Slave Transmit" CommentCH="从机只发模式" Value="I2S_MODE_SLAVE_TX"/>
+	</RefParameter>
+	<RefParameter Comment="EXT Operation Mode" CommentCH="EXT传输模式" DefaultValue="I2S_MODE_SLAVE_RX" Name="EXTMode" Type="list" Group="Generic Parameters" GroupCH="基础参数" Visible="false">
+		<Condition Diagnostic="" Expression="S_$IpInstanceEXT_RX&amp; $IpInstance_EXT_Slave"/>
+		<PossibleValue Comment="Mode Slave Receive" CommentCH="从机只收模式" Value="I2S_MODE_SLAVE_RX"/>
+	</RefParameter>
+	
+	<RefParameter Comment="Audio Protocol" CommentCH="音频协议标准" DefaultValue="I2S_AUDIO_PROTOCOL_PHILLIPS" Name="Standard" Type="list" Group="Generic Parameters" GroupCH="基础参数">
+		<PossibleValue Comment="I2S Philips" CommentCH="飞利浦标准" Value="I2S_AUDIO_PROTOCOL_PHILLIPS"/>
+		<PossibleValue Comment="MSB First (Left Justified)" CommentCH="高字节对齐标准(左对齐)" Value="I2S_AUDIO_PROTOCOL_MSB"/>
+		<PossibleValue Comment="LSB First (Right Justified)" CommentCH="低字节对齐标准(右对齐)" Value="I2S_AUDIO_PROTOCOL_LSB"/>
+		<PossibleValue Comment="PCM with Short Synchro Frame" CommentCH="PCM 短帧同步标准" Value="I2S_AUDIO_PROTOCOL_PCM_SHORT"/>
+		<PossibleValue Comment="PCM with Long Synchro Frame" CommentCH="PCM 长帧同步标准" Value="I2S_AUDIO_PROTOCOL_PCM_LONG"/>
+	</RefParameter>
+	
+	<RefParameter Comment="Data Bit Num and Channel Bit Num" CommentCH="数据和声道位个数" DefaultValue="I2S_DATAFORMAT_16B" Name="DataFormat" Type="list" Group="Generic Parameters" GroupCH="基础参数">
+		<PossibleValue Comment="16-bit Data Packed in 16-bit Channel Frame" CommentCH="16位数据打包进16位声道" Value="I2S_DATA_16BIT_CHANNEL_16BIT"/>
+		<PossibleValue Comment="16-bit Data Packed in 32-bit Channel Frame" CommentCH="16位数据打包进32位声道" Value="I2S_DATA_16BIT_CHANNEL_32BIT"/>
+		<PossibleValue Comment="24-bit Data Packed in 32-bit Channel Frame" CommentCH="24位数据打包进32位声道" Value="I2S_DATA_24BIT_CHANNEL_32BIT"/>
+		<PossibleValue Comment="32-bit Data Packed in 32-bit Channel Frame" CommentCH="32位数据打包进32位声道" Value="I2S_DATA_32BIT_CHANNEL_32BIT"/>
+	</RefParameter>
+	
+	<RefParameter Comment="Selected Audio Frequency" CommentCH="选择的音频频率" DefaultValue="I2S_AUDIO_FREQUENCY_8K" Name="AudioFreq" Type="list" Group="Clock Parameters" GroupCH="时钟参数">
+		<PossibleValue Comment="192 KHz" CommentCH="192 KHz" Value="I2S_AUDIO_FREQUENCY_192K"/>
+		<PossibleValue Comment="96 KHz" CommentCH="96 KHz" Value="I2S_AUDIO_FREQUENCY_96K"/>
+		<PossibleValue Comment="48 KHz" CommentCH="48 KHz" Value="I2S_AUDIO_FREQUENCY_48K"/>
+		<PossibleValue Comment="44.1 KHz" CommentCH="44.1 KHz" Value="I2S_AUDIO_FREQUENCY_44_1K"/>
+		<PossibleValue Comment="32 KHz" CommentCH="32 KHz" Value="I2S_AUDIO_FREQUENCY_32K"/>
+		<PossibleValue Comment="22.05 KHz" CommentCH="22.05 KHz" Value="I2S_AUDIO_FREQUENCY_22_05K"/>
+		<PossibleValue Comment="16 KHz" CommentCH="16 KHz" Value="I2S_AUDIO_FREQUENCY_16K"/>
+		<PossibleValue Comment="11.025 KHz" CommentCH="11.025 KHz" Value="I2S_AUDIO_FREQUENCY_11_025K"/>
+		<PossibleValue Comment="8 KHz" CommentCH="8 KHz" Value="I2S_AUDIO_FREQUENCY_8K"/>
+		<!-- <PossibleValue Comment="Default" CommentCH="Default" Value="I2S_AUDIOFREQ_DEFAULT"/> -->
+	</RefParameter>
+	
+	<RefParameter Comment="Real Audio Frequency" CommentCH="实际音频频率" DefaultValue="" Max="" Min="" Name="RealAudioFreq" Group="Clock Parameters" GroupCH="时钟参数" Type="string" Unit="Hz"/>
+	<RefParameter Comment="Error between Selected and Real" CommentCH="音频频率误差" DefaultValue="" Max="" Min="" Name="ErrorAudioFreq" Group="Clock Parameters" GroupCH="时钟参数" Type="string" Unit="%"/>
+	
+	<RefParameter Comment="I2S DIV" CommentCH="I2S DIV" DefaultValue="2" Max="1023" Min="2" Name="I2S_DIV" Group="Clock Parameters" GroupCH="时钟参数" Type="integer"  Visible="false"/>
+	<RefParameter Comment="I2S ODD" CommentCH="I2S ODD" DefaultValue="1" Max="1" Min="0" Name="I2S_ODD" Group="Clock Parameters" GroupCH="时钟参数" Type="integer"  Visible="false"/>
+
+	<!-- Clock RefParamater for I2S -->
+	<RefParameter Comment="Master Clock Output" CommentCH="主设备时钟输出" DefaultValue="FALSE" Name="MCLKOutput" Type="list" Group="Clock Parameters" GroupCH="时钟参数" Visible="false">
+		<PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE"/>
+		<PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE"/>
+	</RefParameter>
+	
+	<RefParameter Comment="Clock Polarity" CommentCH="时钟极性" DefaultValue="I2S_CLOCK_POLARITY_LOW" Name="CPOL" Type="list" Group="Clock Parameters" GroupCH="时钟参数">
+		<PossibleValue Comment="Low" CommentCH="低电平" Value="I2S_CLOCK_POLARITY_LOW"/>
+		<PossibleValue Comment="High" CommentCH="高电平" Value="I2S_CLOCK_POLARITY_HIGH"/>
+	</RefParameter>
+	
+	<!-- RefModes for 'Half-Duplex Master' I2S -->
+	<RefMode Name="Half_Duplex_Master_TX" BaseMode="Mode">
+		<Parameter Name="Instance"/>		
+		<!-- Selected Mode User Generic Parameters -->
+		<Parameter Name="Mode"/>
+		<Parameter Name="EXT"/>
+		<Parameter Name="Standard"/>
+		<Parameter Name="DataFormat"/>
+		<Parameter Name="AudioFreq"/>
+		<Parameter Name="RealAudioFreq"/>
+		<Parameter Name="ErrorAudioFreq"/>
+		<!-- Selected Mode User Clock Parameters -->
+		<Parameter Name="CPOL" />
+		<Parameter Name="CLOCK_SOURCE"/>
+		<Parameter Name="I2S_DIV"/>
+		<Parameter Name="I2S_ODD"/>
+	</RefMode>
+	
+	<RefMode Name="Half_Duplex_Master_RX" BaseMode="Mode">
+		<Parameter Name="Instance"/>
+		<!-- Selected Mode User Generic Parameters -->
+		<Parameter Name="Mode"/>
+		<Parameter Name="EXT"/>
+		<Parameter Name="Standard"/>
+		<Parameter Name="DataFormat"/>
+		<Parameter Name="AudioFreq"/>
+		<Parameter Name="RealAudioFreq"/>
+		<Parameter Name="ErrorAudioFreq"/>
+		<!-- Selected Mode User Clock Parameters -->
+		<Parameter Name="CPOL" />
+		<Parameter Name="CLOCK_SOURCE"/>
+		<Parameter Name="I2S_DIV"/>
+		<Parameter Name="I2S_ODD"/>
+	</RefMode>
+	
+	<!-- RefModes for 'Half-Duplex Slave' I2S -->
+	<RefMode Name="Half_Duplex_Slave_TX" BaseMode="Mode">
+		<Parameter Name="Instance"/>
+		<!-- Selected Mode User Generic Parameters -->
+		<Parameter Name="Mode"/>
+		<Parameter Name="EXT"/>
+		<Parameter Name="Standard"/>
+		<Parameter Name="DataFormat"/>
+		<Parameter Name="AudioFreq"/>
+		<Parameter Name="RealAudioFreq"/>
+		<Parameter Name="ErrorAudioFreq"/>
+		<!-- Selected Mode User Clock Parameters -->
+		<Parameter Name="CPOL" />
+		<Parameter Name="CLOCK_SOURCE"/>
+		<Parameter Name="I2S_DIV"/>
+		<Parameter Name="I2S_ODD"/>
+	</RefMode>
+	
+	<RefMode Name="Half_Duplex_Slave_RX" BaseMode="Mode">
+		<Parameter Name="Instance"/>
+		<!-- Selected Mode User Generic Parameters -->
+		<Parameter Name="Mode"/>
+		<Parameter Name="EXT"/>
+		<Parameter Name="Standard"/>
+		<Parameter Name="DataFormat"/>
+		<Parameter Name="AudioFreq"/>
+		<Parameter Name="RealAudioFreq"/>
+		<Parameter Name="ErrorAudioFreq"/>
+		<!-- Selected Mode User Clock Parameters -->
+		<Parameter Name="CPOL" />
+		<Parameter Name="CLOCK_SOURCE"/>
+		<Parameter Name="I2S_DIV"/>
+		<Parameter Name="I2S_ODD"/>
+	</RefMode>
+
+	<!-- RefModes for I2S Master Clock -->
+	<RefMode Name="Master_Clock" BaseMode="Master_Clock">
+		<!-- Selected Mode Fixed Parameters -->
+		<Parameter Name="MCLKOutput" >
+			<PossibleValue>TRUE</PossibleValue>
+		</Parameter>
+	</RefMode>
+	
+	<RefMode Name="Half_Duplex_Slave_TX" BaseMode="EXT_Mode">
+		<Parameter Name="EXTMode"/>
+	</RefMode>
+	
+	<RefMode Name="Half_Duplex_Slave_RX" BaseMode="EXT_Mode">
+		<Parameter Name="EXTMode"/>
+	</RefMode>
+	
+	
+	<!-- ModeLogicOperator for I2S -->
+        <ModeLogicOperator Name="OR">
+            <Mode Name="Mode" UserName="Mode" UserNameCH="模式">
+            	  <Condition Expression="!SPI$Index" Diagnostic="SPI and I2S cannot be used at the same time. The corresponding SPI needs to be disabled" DiagnosticCH="SPI与I2S不能同时使用，需关闭对应SPI"/>
+                <ModeLogicOperator Name="XOR">
+                    <Mode Name="Half_Duplex_Master_TX" UserName="Half-Duplex Transmit Only Master" UserNameCH="主机只发模式">
+                        <SignalLogicalOp Name="AND">
+                            <Signal Name="CK" IOMode="MuxOutputPushPull"/>
+                            <Signal Name="SD" IOMode="MuxOutputPushPull"/>
+                            <Signal Name="WS" IOMode="MuxOutputPushPull"/>
+                        </SignalLogicalOp>
+                         <Semaphore>$IpInstance_TX</Semaphore>
+                        <Semaphore>$IpInstance_Master</Semaphore>
+                        <Semaphore>$IpInstance</Semaphore>
+                    </Mode>
+                    <Mode Name="Half_Duplex_Master_RX" UserName="Half-Duplex Receive Only Master" UserNameCH="主机只收模式">
+                        <SignalLogicalOp Name="AND">
+                            <Signal Name="CK" IOMode="MuxOutputPushPull"/>
+                            <Signal Name="SD" IOMode="Input"/>
+                            <Signal Name="WS" IOMode="MuxOutputPushPull"/>
+                        </SignalLogicalOp>
+                        <Semaphore>$IpInstance_RX</Semaphore>
+                        <Semaphore>$IpInstance_Master</Semaphore>
+                        <Semaphore>$IpInstance</Semaphore>
+                    </Mode>
+                    <Mode Name="Half_Duplex_Slave_TX" UserName="Half-Duplex Transmit Only Slave" UserNameCH="从机只发模式">
+                        <SignalLogicalOp Name="AND">
+                            <Signal Name="CK" IOMode="Input"/>
+                            <Signal Name="SD" IOMode="MuxOutputPushPull"/>
+                            <Signal Name="WS" IOMode="Input"/>
+                        </SignalLogicalOp>
+                         <Semaphore>$IpInstance_TX</Semaphore>
+                         <Semaphore>$IpInstance_Slave</Semaphore>
+                         <Semaphore>$IpInstance</Semaphore>
+                    </Mode>
+                    <Mode Name="Half_Duplex_Slave_RX" UserName="Half-Duplex Receive Only Slave" UserNameCH="从机只收模式">
+                        <SignalLogicalOp Name="AND">
+                            <Signal Name="CK" IOMode="Input"/>
+                            <Signal Name="SD" IOMode="Input"/>
+                            <Signal Name="WS" IOMode="Input"/>
+                        </SignalLogicalOp>
+                        <Semaphore>$IpInstance_RX</Semaphore>
+                        <Semaphore>$IpInstance_Slave</Semaphore>
+                        <Semaphore>$IpInstance</Semaphore>
+                    </Mode>
+                </ModeLogicOperator>
+            </Mode>
+		
+            <Mode Name="Master_Clock" UserName="Master Clock Output" UserNameCH="主设备时钟输出">
+                <ModeLogicOperator Name="OR">
+                    <Mode Name="Master_Clock" UserName="Master Clock Output" UserNameCH="主设备时钟输出">
+                        <SignalLogicalOp Name="AND">
+                            <Signal Name="MCK"/>
+                        </SignalLogicalOp>
+                    </Mode>
+                </ModeLogicOperator>
+                <Condition Expression="$IpInstance_Master" Diagnostic="Must have a master mode selected" DiagnosticCH="需选择主机模式"/>
+            </Mode>
+			
+			<Mode Name="EXT_Mode" UserName="EXT Mode" UserNameCH="EXT模式">
+            	<Condition Expression="$IpInstance" Diagnostic="Must have a mode selected" DiagnosticCH="模式选择为非关闭状态"/>
+                <ModeLogicOperator Name="XOR">
+                    <Mode Name="Half_Duplex_Slave_TX" UserName="Half-Duplex Transmit Only Slave" UserNameCH="从机只发模式">
+                        <SignalLogicalOp Name="AND">
+                            <Signal Name="SDEXT" IOMode="MuxOutputPushPull"/>
+                        </SignalLogicalOp>
+                        <Semaphore>S_$IpInstanceEXT_TX</Semaphore>
+                        <Semaphore>$IpInstance_EXT_Slave</Semaphore>
+                    </Mode>
+                    <Mode Name="Half_Duplex_Slave_RX" UserName="Half-Duplex Receive Only Slave" UserNameCH="从机只收模式">
+                        <SignalLogicalOp Name="AND">
+                            <Signal Name="SDEXT" IOMode="Input"/>
+                        </SignalLogicalOp>
+                        <Semaphore>S_$IpInstanceEXT_RX</Semaphore>
+                        <Semaphore>$IpInstance_EXT_Slave</Semaphore>
+                    </Mode>
+                </ModeLogicOperator>
+            </Mode>
+        </ModeLogicOperator>
+	
+	<!-- RefSignal for I2S -->
+	<RefSignal Name="CK" IOMode="MuxOutputPushPull"/>
+	<RefSignal Name="SD" IOMode="MuxOutputPushPull"/>
+	<RefSignal Name="WS" IOMode="MuxOutputPushPull"/>
+	<RefSignal Name="MCK" IOMode="MuxOutputPushPull"/>
+	<RefSignal Name="SDEXT" IOMode="MuxOutputPushPull"/>	
+</IP>

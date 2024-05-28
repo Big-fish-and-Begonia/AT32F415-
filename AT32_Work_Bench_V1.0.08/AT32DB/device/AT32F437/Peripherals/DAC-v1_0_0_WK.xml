@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<IP>
+    <About>Digital-to-analog converter</About>
+    <AboutCH>数字/模拟转换</AboutCH>
+
+    <RefParameter Name="Instance" Comment="DAC instance" DefaultValue="DAC" Type="list" Visible="false"/>
+
+     <!-- OUT1 -->
+     <RefParameter Name="Enable_OUT1" Comment="Enable OUT1" CommentCH="使能OUT1" DefaultValue="TRUE" Group="OUT1 Settings" GroupCH="OUT1设置" Type="list" Visible="false" Reload = "false">
+        <Condition Expression="$IpInstance_OUT1"/>  
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE"/>
+    </RefParameter>  
+    
+    <RefParameter Name="Output_Buffer_OUT1" Comment="Output Buffer" CommentCH="输出缓存" DefaultValue="FALSE" Group="OUT1 Settings" GroupCH="OUT1设置" Type="list" Reload = "false">
+        <Condition Expression="$IpInstance_OUT1"/>  
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE"/>
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE"/>
+    </RefParameter>  
+    
+    <RefParameter Name="Trigger_Source_OUT1" Comment="Trigger Source" CommentCH="触发源" DefaultValue="FALSE" Group="OUT1 Settings" GroupCH="OUT1设置" Type="list">
+        <Condition Expression="$IpInstance_OUT1"/> 
+         <PossibleValue Comment="None" CommentCH="无触发" Value="NONE"/>
+        <PossibleValue Comment="Software trigger(D1SWTRG) as trigger source" CommentCH="软件触发" Value="DAC_SOFTWARE_TRIGGER"/>
+        <PossibleValue Comment="External line9 event as trigger source" CommentCH="EXINT Line9触发" Value="DAC_EXTERNAL_INTERRUPT_LINE_9" Condition = "$IpInstance_Trigger_EXINT" Action = "Remove"/>
+        <PossibleValue Comment="Timer6 trgout event as trigger source" CommentCH="TMR6 TRGO触发" Value="DAC_TMR6_TRGOUT_EVENT"/>
+        <PossibleValue Comment="Timer8 trgout event as trigger source" CommentCH="TMR8 TRGO触发" Value="DAC_TMR8_TRGOUT_EVENT"/>
+        <PossibleValue Comment="Timer7 trgout event as trigger source" CommentCH="TMR7 TRGO触发" Value="DAC_TMR7_TRGOUT_EVENT"/>
+        <PossibleValue Comment="Timer5 trgout event as trigger source" CommentCH="TMR5 TRGO触发" Value="DAC_TMR5_TRGOUT_EVENT"/>
+        <PossibleValue Comment="Timer2 trgout event as trigger source" CommentCH="TMR2 TRGO触发" Value="DAC_TMR2_TRGOUT_EVENT"/>
+        <PossibleValue Comment="Timer4 trgout event as trigger source" CommentCH="TMR4 TRGO触发" Value="DAC_TMR4_TRGOUT_EVENT"/>
+    </RefParameter> 
+    
+    <RefParameter Name="Waveform_Select_OUT1" Comment="Waveform Select" CommentCH="波形选择" DefaultValue="DAC_WAVE_GENERATE_NONE" Group="OUT1 Settings" GroupCH="OUT1设置" Type="list">
+        <Condition Expression="Trigger_Source_OUT1 != NONE"/> 
+         <PossibleValue Comment="Wave generation disabled" CommentCH="无" Value="DAC_WAVE_GENERATE_NONE"/>
+        <PossibleValue Comment="Noise wave generation enabled" CommentCH="噪声波" Value="DAC_WAVE_GENERATE_NOISE"/>
+        <PossibleValue Comment="Triangular wave generation enabled" CommentCH="三角波" Value="DAC_WAVE_GENERATE_TRIANGLE"/>
+    </RefParameter> 
+        
+    <RefParameter Name="Noise_bit_wid_select_OUT1" Comment="Noise bit wide select" CommentCH="噪声位宽选择" DefaultValue="DAC_LSFR_BIT0_AMPLITUDE_1" Group="OUT1 Settings" GroupCH="OUT1设置" Type="list" Reload = "false">
+        <Condition Expression="Waveform_Select_OUT1 = DAC_WAVE_GENERATE_NOISE"/> 
+        <PossibleValue Comment="Unmask LSFR bit0" CommentCH="不屏蔽LSFR 位0" Value="DAC_LSFR_BIT0_AMPLITUDE_1"/>
+        <PossibleValue Comment="Unmask LSFR bit[1: 0]" CommentCH="不屏蔽LSFR 位[1：0]" Value="DAC_LSFR_BIT10_AMPLITUDE_3"/>
+        <PossibleValue Comment="Unmask LSFR bit[2: 0]" CommentCH="不屏蔽LSFR 位[2：0]" Value="DAC_LSFR_BIT20_AMPLITUDE_7"/>
+        <PossibleValue Comment="Unmask LSFR bit[3: 0]" CommentCH="不屏蔽LSFR 位[3：0]" Value="DAC_LSFR_BIT30_AMPLITUDE_15"/>
+        <PossibleValue Comment="Unmask LSFR bit[4: 0]" CommentCH="不屏蔽LSFR 位[4：0]" Value="DAC_LSFR_BIT40_AMPLITUDE_31"/>
+        <PossibleValue Comment="Unmask LSFR bit[5: 0]" CommentCH="不屏蔽LSFR 位[5：0]" Value="DAC_LSFR_BIT50_AMPLITUDE_63"/>
+        <PossibleValue Comment="Unmask LSFR bit[6: 0]" CommentCH="不屏蔽LSFR 位[6：0]" Value="DAC_LSFR_BIT60_AMPLITUDE_127"/>
+        <PossibleValue Comment="Unmask LSFR bit[7: 0]" CommentCH="不屏蔽LSFR 位[7：0]" Value="DAC_LSFR_BIT70_AMPLITUDE_255"/>
+        <PossibleValue Comment="Unmask LSFR bit[8: 0]" CommentCH="不屏蔽LSFR 位[8：0]" Value="DAC_LSFR_BIT80_AMPLITUDE_511"/>
+        <PossibleValue Comment="Unmask LSFR bit[9: 0]" CommentCH="不屏蔽LSFR 位[9：0]" Value="DAC_LSFR_BIT90_AMPLITUDE_1023"/>
+        <PossibleValue Comment="Unmask LSFR bit[10: 0]" CommentCH="不屏蔽LSFR 位[10：0]" Value="DAC_LSFR_BITA0_AMPLITUDE_2047"/>
+        <PossibleValue Comment="Unmask LSFR bit[11: 0]" CommentCH="不屏蔽LSFR 位[11：0]" Value="DAC_LSFR_BITB0_AMPLITUDE_4095"/>
+    </RefParameter> 
+    
+    <RefParameter Name="Triangular_amplitude_select_OUT1" Comment="Triangular amplitude select" CommentCH="三角波幅值选择" DefaultValue="DAC_LSFR_BIT0_AMPLITUDE_1" Group="OUT1 Settings" GroupCH="OUT1设置" Type="list" Reload = "false">
+        <Condition Expression="Waveform_Select_OUT1 = DAC_WAVE_GENERATE_TRIANGLE"/> 
+        <PossibleValue Comment="Triangle amplitude is equal to 1" CommentCH="三角波幅值等于1" Value="DAC_LSFR_BIT0_AMPLITUDE_1"/>
+        <PossibleValue Comment="Triangle amplitude is equal to 3" CommentCH="三角波幅值等于3" Value="DAC_LSFR_BIT10_AMPLITUDE_3"/>
+        <PossibleValue Comment="Triangle amplitude is equal to 7" CommentCH="三角波幅值等于7" Value="DAC_LSFR_BIT20_AMPLITUDE_7"/>
+        <PossibleValue Comment="Triangle amplitude is equal to 15" CommentCH="三角波幅值等于15" Value="DAC_LSFR_BIT30_AMPLITUDE_15"/>
+        <PossibleValue Comment="Triangle amplitude is equal to 31" CommentCH="三角波幅值等于31" Value="DAC_LSFR_BIT40_AMPLITUDE_31"/>
+        <PossibleValue Comment="Triangle amplitude is equal to 63" CommentCH="三角波幅值等于63" Value="DAC_LSFR_BIT50_AMPLITUDE_63"/>
+        <PossibleValue Comment="Triangle amplitude is equal to 127" CommentCH="三角波幅值等于127" Value="DAC_LSFR_BIT60_AMPLITUDE_127"/>
+        <PossibleValue Comment="Triangle amplitude is equal to 255" CommentCH="三角波幅值等于255" Value="DAC_LSFR_BIT70_AMPLITUDE_255"/>
+        <PossibleValue Comment="Triangle amplitude is equal to 511" CommentCH="三角波幅值等于511" Value="DAC_LSFR_BIT80_AMPLITUDE_511"/>
+        <PossibleValue Comment="Triangle amplitude is equal to 1023" CommentCH="三角波幅值等于1023" Value="DAC_LSFR_BIT90_AMPLITUDE_1023"/>
+        <PossibleValue Comment="Triangle amplitude is equal to 2047" CommentCH="三角波幅值等于2047" Value="DAC_LSFR_BITA0_AMPLITUDE_2047"/>
+        <PossibleValue Comment="Triangle amplitude is equal to 4095" CommentCH="三角波幅值等于4095" Value="DAC_LSFR_BITB0_AMPLITUDE_4095"/>
+    </RefParameter> 
+    
+    <!-- OUT2 -->
+    <RefParameter Name="Enable_OUT2" Comment="Enable OUT2" CommentCH="使能OUT2" DefaultValue="TRUE" Group="OUT2 Settings" GroupCH="OUT2设置" Type="list" Visible="false" Reload = "false">
+        <Condition Expression="$IpInstance_OUT2"/>  
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE"/>
+    </RefParameter>  
+    
+    <RefParameter Name="Output_Buffer_OUT2" Comment="Output Buffer" CommentCH="输出缓存" DefaultValue="FALSE" Group="OUT2 Settings" GroupCH="OUT2设置" Type="list" Reload = "false">
+        <Condition Expression="$IpInstance_OUT2"/>  
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE"/>
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE"/>
+    </RefParameter>  
+    
+    <RefParameter Name="Trigger_Source_OUT2" Comment="Trigger Source" CommentCH="触发源" DefaultValue="FALSE" Group="OUT2 Settings" GroupCH="OUT2设置" Type="list">
+        <Condition Expression="$IpInstance_OUT2"/> 
+         <PossibleValue Comment="None" CommentCH="无触发" Value="NONE"/>
+        <PossibleValue Comment="Software trigger(D2SWTRG) as trigger source" CommentCH="软件触发" Value="DAC_SOFTWARE_TRIGGER"/>
+        <PossibleValue Comment="External line9 event as trigger source" CommentCH="EXINT Line9触发" Value="DAC_EXTERNAL_INTERRUPT_LINE_9" Condition = "$IpInstance_Trigger_EXINT" Action = "Remove"/>
+        <PossibleValue Comment="Timer6 trgout event as trigger source" CommentCH="TMR6 TRGO触发" Value="DAC_TMR6_TRGOUT_EVENT"/>
+        <PossibleValue Comment="Timer8 trgout event as trigger source" CommentCH="TMR8 TRGO触发" Value="DAC_TMR8_TRGOUT_EVENT"/>
+        <PossibleValue Comment="Timer7 trgout event as trigger source" CommentCH="TMR7 TRGO触发" Value="DAC_TMR7_TRGOUT_EVENT"/>
+        <PossibleValue Comment="Timer5 trgout event as trigger source" CommentCH="TMR5 TRGO触发" Value="DAC_TMR5_TRGOUT_EVENT"/>
+        <PossibleValue Comment="Timer2 trgout event as trigger source" CommentCH="TMR2 TRGO触发" Value="DAC_TMR2_TRGOUT_EVENT"/>
+        <PossibleValue Comment="Timer4 trgout event as trigger source" CommentCH="TMR4 TRGO触发" Value="DAC_TMR4_TRGOUT_EVENT"/>
+    </RefParameter> 
+    
+    <RefParameter Name="Waveform_Select_OUT2" Comment="Waveform Select" CommentCH="波形选择" DefaultValue="DAC_WAVE_GENERATE_NONE" Group="OUT2 Settings" GroupCH="OUT2设置" Type="list">
+        <Condition Expression="Trigger_Source_OUT2 != NONE"/> 
+         <PossibleValue Comment="Wave generation disabled" CommentCH="无" Value="DAC_WAVE_GENERATE_NONE"/>
+        <PossibleValue Comment="Noise wave generation enabled" CommentCH="噪声波" Value="DAC_WAVE_GENERATE_NOISE"/>
+        <PossibleValue Comment="Triangular wave generation enabled" CommentCH="三角波" Value="DAC_WAVE_GENERATE_TRIANGLE"/>
+    </RefParameter> 
+        
+    <RefParameter Name="Noise_bit_wid_select_OUT2" Comment="Noise bit wide select" CommentCH="噪声位宽选择" DefaultValue="DAC_LSFR_BIT0_AMPLITUDE_1" Group="OUT2 Settings" GroupCH="OUT2设置" Type="list" Reload = "false">
+        <Condition Expression="Waveform_Select_OUT2 = DAC_WAVE_GENERATE_NOISE"/> 
+        <PossibleValue Comment="Unmask LSFR bit0" CommentCH="不屏蔽LSFR 位0" Value="DAC_LSFR_BIT0_AMPLITUDE_1"/>
+        <PossibleValue Comment="Unmask LSFR bit[1: 0]" CommentCH="不屏蔽LSFR 位[1：0]" Value="DAC_LSFR_BIT10_AMPLITUDE_3"/>
+        <PossibleValue Comment="Unmask LSFR bit[2: 0]" CommentCH="不屏蔽LSFR 位[2：0]" Value="DAC_LSFR_BIT20_AMPLITUDE_7"/>
+        <PossibleValue Comment="Unmask LSFR bit[3: 0]" CommentCH="不屏蔽LSFR 位[3：0]" Value="DAC_LSFR_BIT30_AMPLITUDE_15"/>
+        <PossibleValue Comment="Unmask LSFR bit[4: 0]" CommentCH="不屏蔽LSFR 位[4：0]" Value="DAC_LSFR_BIT40_AMPLITUDE_31"/>
+        <PossibleValue Comment="Unmask LSFR bit[5: 0]" CommentCH="不屏蔽LSFR 位[5：0]" Value="DAC_LSFR_BIT50_AMPLITUDE_63"/>
+        <PossibleValue Comment="Unmask LSFR bit[6: 0]" CommentCH="不屏蔽LSFR 位[6：0]" Value="DAC_LSFR_BIT60_AMPLITUDE_127"/>
+        <PossibleValue Comment="Unmask LSFR bit[7: 0]" CommentCH="不屏蔽LSFR 位[7：0]" Value="DAC_LSFR_BIT70_AMPLITUDE_255"/>
+        <PossibleValue Comment="Unmask LSFR bit[8: 0]" CommentCH="不屏蔽LSFR 位[8：0]" Value="DAC_LSFR_BIT80_AMPLITUDE_511"/>
+        <PossibleValue Comment="Unmask LSFR bit[9: 0]" CommentCH="不屏蔽LSFR 位[9：0]" Value="DAC_LSFR_BIT90_AMPLITUDE_1023"/>
+        <PossibleValue Comment="Unmask LSFR bit[10: 0]" CommentCH="不屏蔽LSFR 位[10：0]" Value="DAC_LSFR_BITA0_AMPLITUDE_2047"/>
+        <PossibleValue Comment="Unmask LSFR bit[11: 0]" CommentCH="不屏蔽LSFR 位[11：0]" Value="DAC_LSFR_BITB0_AMPLITUDE_4095"/>
+    </RefParameter> 
+    
+    <RefParameter Name="Triangular_amplitude_select_OUT2" Comment="Triangular amplitude select" CommentCH="三角波幅值选择" DefaultValue="DAC_LSFR_BIT0_AMPLITUDE_1" Group="OUT2 Settings" GroupCH="OUT2设置" Type="list" Reload = "false">
+        <Condition Expression="Waveform_Select_OUT2 = DAC_WAVE_GENERATE_TRIANGLE"/> 
+        <PossibleValue Comment="Triangle amplitude is equal to 1" CommentCH="三角波幅值等于1" Value="DAC_LSFR_BIT0_AMPLITUDE_1"/>
+        <PossibleValue Comment="Triangle amplitude is equal to 3" CommentCH="三角波幅值等于3" Value="DAC_LSFR_BIT10_AMPLITUDE_3"/>
+        <PossibleValue Comment="Triangle amplitude is equal to 7" CommentCH="三角波幅值等于7" Value="DAC_LSFR_BIT20_AMPLITUDE_7"/>
+        <PossibleValue Comment="Triangle amplitude is equal to 15" CommentCH="三角波幅值等于15" Value="DAC_LSFR_BIT30_AMPLITUDE_15"/>
+        <PossibleValue Comment="Triangle amplitude is equal to 31" CommentCH="三角波幅值等于31" Value="DAC_LSFR_BIT40_AMPLITUDE_31"/>
+        <PossibleValue Comment="Triangle amplitude is equal to 63" CommentCH="三角波幅值等于63" Value="DAC_LSFR_BIT50_AMPLITUDE_63"/>
+        <PossibleValue Comment="Triangle amplitude is equal to 127" CommentCH="三角波幅值等于127" Value="DAC_LSFR_BIT60_AMPLITUDE_127"/>
+        <PossibleValue Comment="Triangle amplitude is equal to 255" CommentCH="三角波幅值等于255" Value="DAC_LSFR_BIT70_AMPLITUDE_255"/>
+        <PossibleValue Comment="Triangle amplitude is equal to 511" CommentCH="三角波幅值等于511" Value="DAC_LSFR_BIT80_AMPLITUDE_511"/>
+        <PossibleValue Comment="Triangle amplitude is equal to 1023" CommentCH="三角波幅值等于1023" Value="DAC_LSFR_BIT90_AMPLITUDE_1023"/>
+        <PossibleValue Comment="Triangle amplitude is equal to 2047" CommentCH="三角波幅值等于2047" Value="DAC_LSFR_BITA0_AMPLITUDE_2047"/>
+        <PossibleValue Comment="Triangle amplitude is equal to 4095" CommentCH="三角波幅值等于4095" Value="DAC_LSFR_BITB0_AMPLITUDE_4095"/>
+    </RefParameter> 
+
+
+    <RefMode Name="DAC_OUT1" BaseMode="DAC_OUT1">
+    	   <Parameter Name="Enable_OUT1"/>
+        <Parameter Name="Output_Buffer_OUT1"/>
+        <Parameter Name="Trigger_Source_OUT1"/>
+        <Parameter Name="Waveform_Select_OUT1"/>
+        <Parameter Name="Triangular_amplitude_select_OUT1"/>
+        <Parameter Name="Noise_bit_wid_select_OUT1"/>
+    </RefMode>
+    
+    <RefMode Name="DAC_OUT2" BaseMode="DAC_OUT2">
+    	   <Parameter Name="Enable_OUT2"/>
+        <Parameter Name="Output_Buffer_OUT2"/>
+        <Parameter Name="Trigger_Source_OUT2"/>
+        <Parameter Name="Waveform_Select_OUT2"/>
+        <Parameter Name="Triangular_amplitude_select_OUT2"/>
+        <Parameter Name="Noise_bit_wid_select_OUT2"/>
+    </RefMode>
+
+    <!-- ModeLogicOperator for ACC -->
+    <ModeLogicOperator Name="OR">
+            <Mode Name="DAC_OUT1" UserName="OUT1" UserNameCH="OUT1">
+                <ModeLogicOperator Name="XOR">
+                    <Mode Name="DAC_OUT1" UserName="OUT1" UserNameCH="OUT1">
+                        <SignalLogicalOp Name="AND">
+                            <Signal Name="OUT1"/>
+                        </SignalLogicalOp>
+                    </Mode>
+                </ModeLogicOperator>
+                <Semaphore>$IpInstance_OUT1</Semaphore>
+            </Mode>
+            
+            <Mode Name="DAC_OUT2" UserName="OUT2" UserNameCH="OUT2">
+                <ModeLogicOperator Name="XOR">
+                    <Mode Name="DAC_OUT2" UserName="OUT2" UserNameCH="OUT2">
+                        <SignalLogicalOp Name="AND">
+                            <Signal Name="OUT2"/>
+                        </SignalLogicalOp>
+                    </Mode>
+                </ModeLogicOperator>
+                <Semaphore>$IpInstance_OUT2</Semaphore>
+            </Mode>
+            
+            <Mode Name="Trigger_EXINT" UserName="Trigger by EXINT" UserNameCH="EXINT触发">
+            	 <Condition Expression="EXINT_9 &amp; $IpInstance_OUT1 | $IpInstance_OUT2"
+                	  	                   Diagnostic="(1) Need to acitvate OUT1/OUT2.&#x000A;(2) Need to activate &quot;EXINT9&quot;"
+                    	                   DiagnosticCH="(1) 需开启OUT1/OUT2.&#x000A;(2) 需开启 &quot;EXINT9&quot;"/>
+                <ModeLogicOperator Name="XOR">
+                    <Mode Name="Trigger_EXINT" UserName="Trigger by EXINT" UserNameCH="EXINT触发">                    	
+                        <SignalLogicalOp Name="AND">
+                            <Signal Name="EXINT9"/>
+                        </SignalLogicalOp>
+                    </Mode>
+                </ModeLogicOperator>
+                <Semaphore>$IpInstance_Trigger_EXINT</Semaphore>
+            </Mode>
+            
+        </ModeLogicOperator>
+
+    <!-- RefSignal for DAC -->
+    <RefSignal IOMode="Analog" Name="OUT1"/>
+    <RefSignal IOMode="Analog" Name="OUT2"/>
+    <RefSignal IOMode="Input" Name="EXINT9" Virtual="true"/>
+</IP>

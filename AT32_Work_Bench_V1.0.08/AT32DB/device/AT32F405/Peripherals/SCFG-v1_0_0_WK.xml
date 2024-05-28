@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<IP>
+    <About>System configuration controller</About>
+    <AboutCH>系统配置控制器</AboutCH>
+    
+    <RefParameter Name="I2SFullDuplex" Comment="I2S full duplex" CommentCH="I2S 全双工" DefaultValue="SCFG_FULL_DUPLEX_I2S_NONE" Type="list" Group="" Visible="false">
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="SCFG_FULL_DUPLEX_I2S_NONE" />
+    </RefParameter>
+    <RefParameter Name="I2SFullDuplex" Comment="I2S full duplex" CommentCH="I2S 全双工" DefaultValue="SCFG_FULL_DUPLEX_I2S1_I2S3" Type="list" Group="" Visible="false">
+        <Condition Diagnostic="" Expression="I2S_FullDuplex_I2S1_I2S3_$IpInstance"/>
+        <PossibleValue Comment="I2S1 leader and I2S3 affiliated" CommentCH="I2S1主导方且I2S3附属方" Value="SCFG_FULL_DUPLEX_I2S1_I2S3" />
+    </RefParameter>
+    <RefParameter Name="I2SFullDuplex" Comment="I2S full duplex" CommentCH="I2S 全双工" DefaultValue="SCFG_FULL_DUPLEX_I2S2_I2S3" Type="list" Group="" Visible="false">
+        <Condition Diagnostic="" Expression="I2S_FullDuplex_I2S2_I2S3_$IpInstance"/>
+        <PossibleValue Comment="I2S2 leader and I2S3 affiliated" CommentCH="I2S2主导方且I2S3附属方" Value="SCFG_FULL_DUPLEX_I2S2_I2S3" />
+    </RefParameter>
+    <RefParameter Name="I2SFullDuplex" Comment="I2S full duplex" CommentCH="I2S 全双工" DefaultValue="SCFG_FULL_DUPLEX_I2S1_I2S2" Type="list" Group="" Visible="false">
+        <Condition Diagnostic="" Expression="I2S_FullDuplex_I2S1_I2S2_$IpInstance"/>
+        <PossibleValue Comment="I2S1 leader and I2S2 affiliated" CommentCH="I2S1主导方且I2S2附属方" Value="SCFG_FULL_DUPLEX_I2S1_I2S2" />
+    </RefParameter>
+    
+    <RefParameter Name="PVM lock enable" Comment="PVM lock enable" CommentCH="PVM锁使能" DefaultValue="FALSE" Type="list" Group="" Visible="false">
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE" />
+    </RefParameter>
+    <RefParameter Name="PVM lock enable" Comment="PVM lock enable" CommentCH="PVM锁使能" DefaultValue="TRUE" Type="list" Group="" Visible="false">
+        <Condition Diagnostic="" Expression="$IpInstance_PVMLOCK"/>
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE" />
+    </RefParameter>
+    
+    <RefParameter Name="CPU lock enable" Comment="CPU lock enable" CommentCH="CPU锁使能" DefaultValue="FALSE" Type="list" Group="" Visible="false">
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE" />
+    </RefParameter>
+    <RefParameter Name="CPU lock enable" Comment="CPU lock enable" CommentCH="CPU锁使能" DefaultValue="TRUE" Type="list" Group="" Visible="false">
+        <Condition Diagnostic="" Expression="$IpInstance_CPULOCK"/>
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE" />
+    </RefParameter>
+    
+    <RefParameter Name="SRAM lock enable" Comment="SRAM odd parity error lock enable" CommentCH="SRAM奇偶校验锁使能" DefaultValue="FALSE" Type="list" Group="" Visible="false">
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE" />
+    </RefParameter>
+    <RefParameter Name="SRAM lock enable" Comment="SRAM odd parity error lock enable" CommentCH="SRAM奇偶校验锁使能" DefaultValue="TRUE" Type="list" Group="" Visible="false">
+        <Condition Diagnostic="" Expression="$IpInstance_SRAMLOCK"/>
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE" />
+    </RefParameter>
+    
+    <RefParameter Name="PB3 Ultra Strength" Comment="PB3 Ultra high sourcing/sinking strength" CommentCH="PB3 超高电流推动/吸入能力" DefaultValue="FALSE" Type="list" Group="" Visible="false">
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE" />
+    </RefParameter>
+    <RefParameter Name="PB3 Ultra Strength" Comment="PB3 Ultra high sourcing/sinking strength" CommentCH="PB3 超高电流推动/吸入能力" DefaultValue="TRUE" Type="list" Group="" Visible="false">
+        <Condition Diagnostic="" Expression="$IpInstance_PB3Ultra"/>
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE" />
+    </RefParameter>
+    
+     <RefParameter Name="PB10 Ultra Strength" Comment="PB10 Ultra high sourcing/sinking strength" CommentCH="PB10 超高电流推动/吸入能力" DefaultValue="FALSE" Type="list" Group="" Visible="false">
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE" />
+    </RefParameter>
+    <RefParameter Name="PB10 Ultra Strength" Comment="PB10 Ultra high sourcing/sinking strength" CommentCH="PB10 超高电流推动/吸入能力" DefaultValue="TRUE" Type="list" Group="" Visible="false">
+        <Condition Diagnostic="" Expression="$IpInstance_PB10Ultra"/>
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE" />
+    </RefParameter>
+    
+    <RefParameter Name="PB9 Ultra Strength" Comment="PB9 Ultra high sourcing/sinking strength" CommentCH="PB9 超高电流推动/吸入能力" DefaultValue="FALSE" Type="list" Group="" Visible="false">
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE" />
+    </RefParameter>
+    <RefParameter Name="PB9 Ultra Strength" Comment="PB9 Ultra high sourcing/sinking strength" CommentCH="PB9 超高电流推动/吸入能力" DefaultValue="TRUE" Type="list" Group="" Visible="false">
+        <Condition Diagnostic="" Expression="$IpInstance_PB9Ultra"/>
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE" />
+    </RefParameter>
+
+
+<!-- ***********************************************************************************-->
+<!--/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\-->
+<!--/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/ REF MODE \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\-->
+<!--/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\-->
+<!-- ***********************************************************************************-->
+    <RefMode Name="I2S full duplex"  Abstract = "true">
+    	      <Parameter Name="I2SFullDuplex" />
+    	      <Parameter Name="PVM lock enable" />
+    	      <Parameter Name="CPU lock enable" />
+    	      <Parameter Name="SRAM lock enable" />
+    	      <Parameter Name="PB3 Ultra Strength" />
+    	      <Parameter Name="PB10 Ultra Strength" />
+    	      <Parameter Name="PB9 Ultra Strength" />
+    </RefMode>
+
+    <ModeLogicOperator Name="OR"> 
+         <Mode Name="PVM lock enable" UserName="PVM lock enable" UserNameCH="PVM锁使能">
+            <ModeLogicOperator Name="OR">
+                <Mode Name="PVM lock enable" UserName="PVM lock enable" UserNameCH="PVM锁使能">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="VS_PVMLOCK"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_PVMLOCK</Semaphore>
+                </Mode>                
+            </ModeLogicOperator>
+        </Mode>
+        
+        <Mode Name="SRAM odd parity error lock enable" UserName="SRAM odd parity error lock enable" UserNameCH="SRAM奇偶校验锁使能">
+            <Annotation Note="Connect or Disconnect TMRx brake input. &#x000A;" 
+        	  	                   NoteCH="使能或断开与TMRx 刹车输入的连接。&#x000A;"/>
+        	 <ModeLogicOperator Name="OR">
+                <Mode Name="SRAM odd parity error lock enable" UserName="SRAM odd parity error lock enable" UserNameCH="SRAM奇偶校验锁使能">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="VS_SRAMLOCK"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_SRAMLOCK</Semaphore>
+                </Mode>                
+            </ModeLogicOperator>
+        </Mode>
+        
+        <Mode Name="CPU lock enable" UserName="CPU lock enable" UserNameCH="CPU锁使能">
+            <ModeLogicOperator Name="OR">
+                <Mode Name="CPU lock enable" UserName="CPU lock enable" UserNameCH="CPU锁使能">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="VS_CPULOCK"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_CPULOCK</Semaphore>
+                </Mode>                
+            </ModeLogicOperator>
+        </Mode>
+        
+        <Mode Name="PB3 Ultra Strength" UserName="PB3 Ultra high sourcing/sinking strength" UserNameCH="PB3 超高电流推动/吸入能力">
+            <ModeLogicOperator Name="OR">
+                <Mode Name="PB3 Ultra Strength" UserName="PB3 Ultra high sourcing/sinking strength" UserNameCH="PB3 超高电流推动/吸入能力">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="VS_PB3Ultra"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_PB3Ultra</Semaphore>
+                </Mode>                
+            </ModeLogicOperator>
+        </Mode>
+        
+        <Mode Name="PB9 Ultra Strength" UserName="PB9 Ultra high sourcing/sinking strength" UserNameCH="PB9 超高电流推动/吸入能力">
+            <ModeLogicOperator Name="OR">
+                <Mode Name="PB9 Ultra Strength" UserName="PB9 Ultra high sourcing/sinking strength" UserNameCH="PB9 超高电流推动/吸入能力">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="VS_PB9Ultra"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_PB9Ultra</Semaphore>
+                </Mode>                
+            </ModeLogicOperator>
+        </Mode>
+        
+        <Mode Name="PB10 Ultra Strength" UserName="PB10 Ultra high sourcing/sinking strength" UserNameCH="PB10 超高电流推动/吸入能力">
+            <ModeLogicOperator Name="OR">
+                <Mode Name="PB10 Ultra Strength" UserName="PB10 Ultra high sourcing/sinking strength" UserNameCH="PB10超高电流推动/吸入能力">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="VS_PB10Ultra"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_PB10Ultra</Semaphore>
+                </Mode>                
+            </ModeLogicOperator>
+        </Mode>
+        
+        <Mode Name="I2S full duplex" UserName="I2S full duplex" UserNameCH="I2S 全双工">
+           <ModeLogicOperator Name="OR">
+                <Mode Name="I2S1_L_I2S3_A" UserName="I2S1 leader and I2S3 affiliated" UserNameCH="I2S1主导方且I2S3附属方">
+                    <Semaphore>I2S_FullDuplex_I2S1_I2S3_$IpInstance</Semaphore>
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="VS_I2S13"/>
+                    </SignalLogicalOp>
+                </Mode>
+                <Mode Name="I2S2_L_I2S3_A" UserName="I2S2 leader and I2S3 affiliated" UserNameCH="I2S2主导方且I2S3附属方">
+                    <Semaphore>I2S_FullDuplex_I2S2_I2S3_$IpInstance</Semaphore>
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="VS_I2S23"/>
+                    </SignalLogicalOp>
+                </Mode>
+                <Mode Name="I2S1_L_I2S2_A" UserName="I2S1 leader and I2S2 affiliated" UserNameCH="I2S1主导方且I2S2附属方">
+                    <Semaphore>I2S_FullDuplex_I2S1_I2S2_$IpInstance</Semaphore>
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="VS_I2S12"/>
+                    </SignalLogicalOp>
+                </Mode>
+           </ModeLogicOperator>
+         </Mode>
+        
+    </ModeLogicOperator>
+    
+    <RefSignal IOMode="Analog" Name="VS_I2S13" Virtual="true"/>
+    <RefSignal IOMode="Analog" Name="VS_I2S23" Virtual="true"/>
+    <RefSignal IOMode="Analog" Name="VS_I2S12" Virtual="true"/>
+    <RefSignal IOMode="Analog" Name="VS_PVMLOCK" Virtual="true"/>
+    <RefSignal IOMode="Analog" Name="VS_CPULOCK" Virtual="true"/>
+    <RefSignal IOMode="Analog" Name="VS_SRAMLOCK" Virtual="true"/>
+    <RefSignal IOMode="Analog" Name="VS_PB3Ultra" Virtual="true"/>
+    <RefSignal IOMode="Analog" Name="VS_PB10Ultra" Virtual="true"/>
+    <RefSignal IOMode="Analog" Name="VS_PB9Ultra" Virtual="true"/>
+                       
+</IP>

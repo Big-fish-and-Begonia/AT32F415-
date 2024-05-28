@@ -1,0 +1,1376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+  <FileVersion>1.00.00</FileVersion>
+  <entry term="MCUBaseInfo">
+  	<Member MCUName="AT32F437VMT7"/>
+  	<Member SRAM="0x60000"/>
+  	<Member PID="0x70084552"/>
+		<Member PinNums="100"/>
+		<Member xPinNum="25"/>
+		<Member yPinNum="25"/>
+		<Member Package="LQFP"/>
+  	</entry>
+  <entry term="PeripheralsList">
+  	<Member InstanceName="ACC"                              Name="ACC"                 GroupName="ACC"             Version="v1_0_0_WK"     About ="HICK auto clock calibration" AboutCH = "HICK 自动时钟校准器"/>
+  	<Member InstanceName="ADC-Common"                       Name="ADC-Common"          GroupName="ADC"             Version="v1_0_0_WK"     About ="Analog-to-digital converter common settings" AboutCH = "模拟/数字转换 通用设置"/>
+	<Member InstanceName="ADC1"                             Name="ADC1"                GroupName="ADC"             Version="v1_0_0_WK"     About ="Analog-to-digital converter 1" AboutCH = "模拟/数字转换 1"/>	  	
+	<Member InstanceName="ADC2"                             Name="ADC2"                GroupName="ADC"             Version="v1_0_0_WK"     About ="Analog-to-digital converter 2" AboutCH = "模拟/数字转换 2"/>	
+	<Member InstanceName="ADC3"                             Name="ADC3"                GroupName="ADC"             Version="v1_0_0_WK"     About ="Analog-to-digital converter 3" AboutCH = "模拟/数字转换 3"/>	
+  	<Member InstanceName="CAN1"                             Name="CAN"                 GroupName="CAN"             Version="v1_0_0_WK"     About ="Controller Area Network 1" AboutCH = "CAN 总线控制器1"/>
+  	<Member InstanceName="CAN2"                             Name="CAN"                 GroupName="CAN"             Version="v1_0_0_WK"     About ="Controller Area Network 2" AboutCH = "CAN 总线控制器2"/>
+  	<Member InstanceName="CRC"                              Name="CRC"                 GroupName="CRC"             Version="v1_0_0_WK"     About ="CRC calculation unit" AboutCH = "CRC 计算单元"/>
+	<Member InstanceName="CRM"                              Name="CRM"                 GroupName="CRM"             Version="v1_0_0_WK"     About ="Clock and reset manage" AboutCH = "时钟和复位管理"/>
+	<Member InstanceName="DAC"                              Name="DAC"                 GroupName="DAC"             Version="v1_0_0_WK"     About ="Digital-to-analog converter" AboutCH = "数字/模拟转换"/>
+	<Member InstanceName="DEBUG"                            Name="DEBUG"               GroupName="DEBUG"           Version="v1_0_0_WK"     About ="Debug interface" AboutCH = "调试接口"/>
+	<Member InstanceName="DMA"                              Name="DMA"                 GroupName="DMA"             Version="v1_0_0_WK"     About ="Direct memory access controller" AboutCH = "直接存储器访问控制器"/>
+	<Member InstanceName="EDMA"                             Name="EDMA"                GroupName="EDMA"            Version="v1_0_0_WK"     About ="En Direct memory access controller" AboutCH = "增强型直接存储器访问控制器"/>
+	<Member InstanceName="DVP"                              Name="DVP"                 GroupName="DVP"             Version="v1_0_0_WK"     About ="Digital Video parallel interface" AboutCH = "数字摄像头并行接口"/>
+	<Member InstanceName="EMAC"                             Name="EMAC"                GroupName="EMAC"            Version="v1_0_0_WK"     About ="Ethernet media access control" AboutCH = "以太网控制器"/>
+	<Member InstanceName="ERTC"                             Name="ERTC"                GroupName="ERTC"            Version="v1_0_0_WK"     About ="Real-Time Clock" AboutCH = "实时时钟"/>
+	<Member InstanceName="EXINT"                            Name="EXINT"               GroupName="EXINT"           Version="v1_0_0_WK"     About ="External interrupt/Event controller" AboutCH = "外部中断/事件控制器"/>
+	<Member InstanceName="GPIO"                             Name="GPIO"                GroupName="GPIO"            Version="v1_0_0_WK"     About ="General-purpose I/Os" AboutCH = "通用和复用功能I/O"/>	
+	<Member InstanceName="I2C1"                             Name="I2C"                 GroupName="I2C"             Version="v1_0_0_WK"     About ="Inter integrated circuit interface 1" AboutCH = "内部集成电路接口1"/>
+	<Member InstanceName="I2C2"                             Name="I2C"                 GroupName="I2C"             Version="v1_0_0_WK"     About ="Inter integrated circuit interface 2" AboutCH = "内部集成电路接口2"/>
+	<Member InstanceName="I2C3"                             Name="I2C"                 GroupName="I2C"             Version="v1_0_0_WK"     About ="Inter integrated circuit interface 3" AboutCH = "内部集成电路接口3"/>
+  	<Member InstanceName="I2S1"                             Name="I2S"                 GroupName="I2S"             Version="v1_0_0_WK"     About ="Inter IC Sound 1" AboutCH = "集成电路内置音频总线1"/>
+	<Member InstanceName="I2S2"                             Name="I2S"                 GroupName="I2S"             Version="v1_0_0_WK"     About ="Inter IC Sound 2" AboutCH = "集成电路内置音频总线2"/>
+	<Member InstanceName="I2S3"                             Name="I2S"                 GroupName="I2S"             Version="v1_0_0_WK"     About ="Inter IC Sound 3" AboutCH = "集成电路内置音频总线3"/>
+	<Member InstanceName="I2S4"                             Name="I2S"                 GroupName="I2S"             Version="v1_0_0_WK"     About ="Inter IC Sound 4" AboutCH = "集成电路内置音频总线4"/>
+	<Member InstanceName="IRTMR"                            Name="IRTMR"               GroupName="TMR"             Version="v1_0_0_WK"     About ="Infrared timer" AboutCH = "红外线接口"/>
+	<Member InstanceName="NVIC"                             Name="NVIC"                GroupName="NVIC"            Version="v1_0_0_WK"     About ="Nested vectored interrupt controller" AboutCH = "嵌套向量中断控制器"/>
+	<Member InstanceName="PWC"                              Name="PWC"                 GroupName="PWC"             Version="v1_0_0_WK"     About ="Power control" AboutCH = "电源控制"/>
+	<Member InstanceName="QSPI1"                            Name="QSPI"                GroupName="QSPI"            Version="v1_0_0_WK"     About ="Quad-SPI interface 1" AboutCH = "四线SPI接口1"/>
+	<Member InstanceName="QSPI2"                            Name="QSPI"                GroupName="QSPI"            Version="v1_0_0_WK"     About ="Quad-SPI interface 2" AboutCH = "四线SPI接口2"/>
+	<Member InstanceName="SCFG"                             Name="SCFG"                GroupName="SCFG"            Version="v1_0_0_WK"     About ="System configuration controller" AboutCH = "系统配置控制器"/>
+	<Member InstanceName="SDIO1"                            Name="SDIO"                GroupName="SDIO"            Version="v1_0_0_WK"     About ="SDIO interface" AboutCH = "SDIO接口1"/>
+	<Member InstanceName="SDIO2"                            Name="SDIO"                GroupName="SDIO"            Version="v1_0_0_WK"     About ="SDIO interface" AboutCH = "SDIO接口2"/>
+	<Member InstanceName="SPI1"                             Name="SPI"                 GroupName="SPI"             Version="v1_0_0_WK"     About ="Serial peripheral interface 1" AboutCH = "串行外设接口1"/>
+	<Member InstanceName="SPI2"                             Name="SPI"                 GroupName="SPI"             Version="v1_0_0_WK"     About ="Serial peripheral interface 2" AboutCH = "串行外设接口2"/>
+	<Member InstanceName="SPI3"                             Name="SPI"                 GroupName="SPI"             Version="v1_0_0_WK"     About ="Serial peripheral interface 3" AboutCH = "串行外设接口3"/>	
+	<Member InstanceName="SPI4"                             Name="SPI"                 GroupName="SPI"             Version="v1_0_0_WK"     About ="Serial peripheral interface 4" AboutCH = "串行外设接口4"/>	
+  	<Member InstanceName="TMR1"                             Name="TMR1"                GroupName="TMR"             Version="v1_0_0_WK"     About ="TIMER 1"   AboutCH = "定时器1"/>
+	<Member InstanceName="TMR2"                             Name="TMR2"                GroupName="TMR"             Version="v1_0_0_WK"     About ="TIMER 2"   AboutCH = "定时器2"/>
+	<Member InstanceName="TMR3"                             Name="TMR3"                GroupName="TMR"             Version="v1_0_0_WK"     About ="TIMER 3"   AboutCH = "定时器3"/>
+	<Member InstanceName="TMR4"                             Name="TMR4"                GroupName="TMR"             Version="v1_0_0_WK"     About ="TIMER 4"   AboutCH = "定时器4"/>
+	<Member InstanceName="TMR5"                             Name="TMR5"                GroupName="TMR"             Version="v1_0_0_WK"     About ="TIMER 5"   AboutCH = "定时器5"/>
+	<Member InstanceName="TMR6"                             Name="TMR6_7"              GroupName="TMR"             Version="v1_0_0_WK"     About ="TIMER 6"   AboutCH = "定时器6"/>
+	<Member InstanceName="TMR7"                             Name="TMR6_7"              GroupName="TMR"             Version="v1_0_0_WK"     About ="TIMER 7"   AboutCH = "定时器7"/>
+	<Member InstanceName="TMR8"                             Name="TMR8"                GroupName="TMR"             Version="v1_0_0_WK"     About ="TIMER 8"   AboutCH = "定时器8"/>
+	<Member InstanceName="TMR9"                             Name="TMR9"                GroupName="TMR"             Version="v1_0_0_WK"     About ="TIMER 9"   AboutCH = "定时器9"/>		
+	<Member InstanceName="TMR10"                            Name="TMR10_11_13_14"      GroupName="TMR"             Version="v1_0_0_WK"     About ="TIMER 10"   AboutCH = "定时器10"/>
+	<Member InstanceName="TMR11"                            Name="TMR10_11_13_14"      GroupName="TMR"             Version="v1_0_0_WK"     About ="TIMER 11"   AboutCH = "定时器11"/>
+	<Member InstanceName="TMR12"                            Name="TMR12"               GroupName="TMR"             Version="v1_0_0_WK"     About ="TIMER 12"   AboutCH = "定时器12"/>		
+	<Member InstanceName="TMR13"                            Name="TMR10_11_13_14"      GroupName="TMR"             Version="v1_0_0_WK"     About ="TIMER 13"   AboutCH = "定时器13"/>
+	<Member InstanceName="TMR14"                            Name="TMR10_11_13_14"      GroupName="TMR"             Version="v1_0_0_WK"     About ="TIMER 14"   AboutCH = "定时器14"/>
+	<Member InstanceName="TMR20"                            Name="TMR20"               GroupName="TMR"             Version="v1_0_0_WK"     About ="TIMER 20"   AboutCH = "定时器20"/>
+	<Member InstanceName="USART1"                           Name="USART"               GroupName="USART"           Version="v1_0_0_WK"     About ="Universal synchronous/asynchronous receiver/transmitter 1" AboutCH = "通用同步异步收发器1"/>
+	<Member InstanceName="USART2"                           Name="USART"               GroupName="USART"           Version="v1_0_0_WK"     About ="Universal synchronous/asynchronous receiver/transmitter 2" AboutCH = "通用同步异步收发器2"/>	
+	<Member InstanceName="USART3"                           Name="USART"               GroupName="USART"           Version="v1_0_0_WK"     About ="Universal synchronous/asynchronous receiver/transmitter 3" AboutCH = "通用同步异步收发器3"/>
+	<Member InstanceName="UART4"                            Name="USART"               GroupName="USART"           Version="v1_0_0_WK"     About ="Universal synchronous/asynchronous receiver/transmitter 4" AboutCH = "通用同步异步收发器4"/>
+	<Member InstanceName="UART5"                            Name="USART"               GroupName="USART"           Version="v1_0_0_WK"     About ="Universal synchronous/asynchronous receiver/transmitter 5" AboutCH = "通用同步异步收发器5"/>
+	<Member InstanceName="USART6"                           Name="USART"               GroupName="USART"           Version="v1_0_0_WK"     About ="Universal synchronous/asynchronous receiver/transmitter 6" AboutCH = "通用同步异步收发器6"/>
+	<Member InstanceName="UART7"                            Name="USART"               GroupName="USART"           Version="v1_0_0_WK"     About ="Universal synchronous/asynchronous receiver/transmitter 7" AboutCH = "通用同步异步收发器7"/>
+	<Member InstanceName="UART8"                            Name="USART"               GroupName="USART"           Version="v1_0_0_WK"     About ="Universal synchronous/asynchronous receiver/transmitter 8" AboutCH = "通用同步异步收发器8"/>	
+	<Member InstanceName="USB_OTGFS1"                       Name="USB_OTGFS"           GroupName="USB_OTGFS"       Version="v1_0_0_WK"     About ="Universal Serial Bus On-The-Go Full-Speed 1" AboutCH = "USB OTG 全速 1"/>
+	<Member InstanceName="USB_OTGFS2"                       Name="USB_OTGFS"           GroupName="USB_OTGFS"       Version="v1_0_0_WK"     About ="Universal Serial Bus On-The-Go Full-Speed 2" AboutCH = "USB OTG 全速 2"/>
+	<Member InstanceName="WDT"                              Name="WDT"                 GroupName="WDT"             Version="v1_0_0_WK"     About ="Watchdog timer" AboutCH = "看门狗"/>
+	<Member InstanceName="WWDT"                             Name="WWDT"                GroupName="WWDT"            Version="v1_0_0_WK"     About ="Window watchdog timer" AboutCH = "窗口看门狗"/>	
+  	<Member InstanceName="XMC_NORFlash-PSRAM-SRAM-ROM-LCD_1"        Name="XMC1"                GroupName="XMC"             Version="v1_0_1_WK"     About ="External memory controller_NORFlash-PSRAM-SRAM-ROM-LCD_1" AboutCH = "外部存储控制器_NORFlash-PSRAM-SRAM-ROM-LCD_1"/>
+  	<Member InstanceName="XMC_NORFlash-PSRAM-SRAM-ROM-LCD_2"        Name="XMC2"                GroupName="XMC"             Version="v1_0_1_WK"     About ="External memory controller_NORFlash-PSRAM-SRAM-ROM-LCD_2" AboutCH = "外部存储控制器_NORFlash-PSRAM-SRAM-ROM-LCD_2"/>
+  	<Member InstanceName="XMC_NORFlash-PSRAM-SRAM-ROM-LCD_4"        Name="XMC4"                GroupName="XMC"             Version="v1_0_1_WK"     About ="External memory controller_NORFlash-PSRAM-SRAM-ROM-LCD_4" AboutCH = "外部存储控制器_NORFlash-PSRAM-SRAM-ROM-LCD_4"/>
+     <Member InstanceName="XMC_NANDFlash_1"                         Name="XMC_NANDFlash1"      GroupName="XMC"             Version="v1_0_0_WK"     About ="External memory controller_NANDFlash 1" AboutCH = "外部存储控制器_NANDFlash 1"/>
+     <Member InstanceName="XMC_NANDFlash_2"                         Name="XMC_NANDFlash2"      GroupName="XMC"             Version="v1_0_0_WK"     About ="External memory controller_NANDFlash 2" AboutCH = "外部存储控制器_NANDFlash 2"/>
+     <Member InstanceName="XMC_SDRAM_1"                             Name="XMC_SDRAM1"          GroupName="XMC"             Version="v1_0_0_WK"     About ="External memory controller_SDRAM 1" AboutCH = "外部存储控制器_SDRAM 1"/>
+     <Member InstanceName="XMC_SDRAM_2"                             Name="XMC_SDRAM2"          GroupName="XMC"             Version="v1_0_0_WK"     About ="External memory controller_SDRAM 2" AboutCH = "外部存储控制器_SDRAM 2"/>
+  </entry>
+  <entry term="PinsList">
+	<Member PinNum="1" PinName="PE2" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="TMR3_EXT"/>
+		<PinFunc Func="SPI4_SCK"/>
+		<PinFunc Func="I2S4_CK"/>
+		<PinFunc Func="TMR20_CH1"/>
+		<PinFunc Func="QSPI1_IO2"/>
+		<PinFunc Func="XMC_SDNCAS"/>
+		<PinFunc Func="EMAC_MII_TXD3"/>
+		<PinFunc Func="XMC_A23"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT2" IOMode="Input"/>
+	</Member>
+	<Member PinNum="2" PinName="PE3" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="TMR3_CH1"/>
+		<PinFunc Func="TMR20_CH2"/>
+		<PinFunc Func="XMC_A19"/>
+		<PinFunc Func="DVP_D9"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT3" IOMode="Input"/>
+	</Member>
+	<Member PinNum="3" PinName="PE4" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="CRM_CLKOUT1"/>
+		<PinFunc Func="TMR3_CH2"/>
+		<PinFunc Func="SPI4_CS"/>
+		<PinFunc Func="I2S4_WS"/>
+		<PinFunc Func="TMR20_CH1C"/>
+		<PinFunc Func="XMC_A20"/>
+		<PinFunc Func="DVP_D4"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT4" IOMode="Input"/>
+	</Member>
+	<Member PinNum="4" PinName="PE5" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="TMR3_CH3"/>
+		<PinFunc Func="TMR9_CH1"/>
+		<PinFunc Func="SPI4_MISO"/>
+		<PinFunc Func="TMR20_CH2C"/>
+		<PinFunc Func="XMC_A21"/>
+		<PinFunc Func="DVP_D6"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT5" IOMode="Input"/>
+	</Member>
+	<Member PinNum="5" PinName="PE6" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="TMR3_CH4"/>
+		<PinFunc Func="TMR9_CH2"/>
+		<PinFunc Func="SPI4_MOSI"/>
+		<PinFunc Func="I2S4_SD"/>
+		<PinFunc Func="TMR20_CH3C"/>
+		<PinFunc Func="XMC_SDNRAS"/>
+		<PinFunc Func="XMC_A22"/>
+		<PinFunc Func="DVP_D7"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT6" IOMode="Input"/>
+	</Member>
+	<Member PinNum="6" PinName="VBAT" PinType="S" GPIOStructure="" PinFixed ="true">
+	</Member>
+	<Member PinNum="7" PinName="PC13" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="ERTC_AF1"/>
+		<PinFunc Func="WKUP2"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT13" IOMode="Input"/>
+	</Member>
+	<Member PinNum="8" PinName="PC14/LEXT_IN" PinType="I/O" GPIOStructure="TC" PinFixed ="false">
+		<PinFunc Func="CRM_LEXT_IN"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT14" IOMode="Input"/>
+	</Member>
+	<Member PinNum="9" PinName="PC15/LEXT_OUT" PinType="I/O" GPIOStructure="TC" PinFixed ="false">
+		<PinFunc Func="CRM_LEXT_OUT"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT15" IOMode="Input"/>
+	</Member>
+	<Member PinNum="10" PinName="VSS" PinType="S" GPIOStructure="" PinFixed ="true">
+	</Member>
+	<Member PinNum="11" PinName="VDD" PinType="S" GPIOStructure="" PinFixed ="true">
+	</Member>
+	<Member PinNum="12" PinName="PH0/HEXT_IN" PinType="I/O" GPIOStructure="TC" PinFixed ="false">
+		<PinFunc Func="I2C1_SDA"/>
+		<PinFunc Func="CRM_HEXT_IN"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT0" IOMode="Input"/>
+	</Member>
+	<Member PinNum="13" PinName="PH1/HEXT_OUT" PinType="I/O" GPIOStructure="TC" PinFixed ="false">
+		<PinFunc Func="I2C1_SCL"/>
+		<PinFunc Func="CRM_HEXT_OUT"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT1" IOMode="Input"/>
+	</Member>
+	<Member PinNum="14" PinName="NRST" PinType="I/O" GPIOStructure="R" PinFixed ="true">
+	</Member>
+	<Member PinNum="15" PinName="PC0" PinType="I/O" GPIOStructure="FTa" PinFixed ="false">
+		<PinFunc Func="I2C3_SCL"/>
+		<PinFunc Func="UART7_TX"/>
+		<PinFunc Func="SDIO2_D0"/>
+		<PinFunc Func="XMC_SDNWE"/>
+		<PinFunc Func="ADC1_IN10" Multi="true"/>
+		<PinFunc Func="ADC2_IN10" Multi="true"/>
+		<PinFunc Func="ADC3_IN10" Multi="true"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT0" IOMode="Input"/>
+	</Member>
+	<Member PinNum="16" PinName="PC1" PinType="I/O" GPIOStructure="FTa" PinFixed ="false">
+		<PinFunc Func="I2C3_SDA"/>
+		<PinFunc Func="SPI3_MOSI"/>
+		<PinFunc Func="I2S3_SD"/>
+		<PinFunc Func="SPI2_MOSI"/>
+		<PinFunc Func="I2S2_SD"/>
+		<PinFunc Func="UART7_RX"/>
+		<PinFunc Func="SDIO2_D1"/>
+		<PinFunc Func="EMAC_MDC"/>
+		<PinFunc Func="ADC1_IN11" Multi="true"/>
+		<PinFunc Func="ADC2_IN11" Multi="true"/>
+		<PinFunc Func="ADC3_IN11" Multi="true"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT1" IOMode="Input"/>
+	</Member>
+	<Member PinNum="17" PinName="PC2" PinType="I/O" GPIOStructure="FTa" PinFixed ="false">
+		<PinFunc Func="TMR20_CH2"/>
+		<PinFunc Func="SPI2_MISO"/>
+		<PinFunc Func="I2S2_SDEXT"/>
+		<PinFunc Func="UART8_TX"/>
+		<PinFunc Func="SDIO2_D2"/>
+		<PinFunc Func="EMAC_MII_TXD2"/>
+		<PinFunc Func="XMC_SDCS0"/>
+		<PinFunc Func="XMC_NWE"/>
+		<PinFunc Func="ADC1_IN12" Multi="true"/>
+		<PinFunc Func="ADC2_IN12" Multi="true"/>
+		<PinFunc Func="ADC3_IN12" Multi="true"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT2" IOMode="Input"/>
+	</Member>
+	<Member PinNum="18" PinName="PC3" PinType="I/O" GPIOStructure="FTa" PinFixed ="false">
+		<PinFunc Func="SPI2_MOSI"/>
+		<PinFunc Func="I2S2_SD"/>
+		<PinFunc Func="UART8_RX"/>
+		<PinFunc Func="QSPI2_IO1"/>
+		<PinFunc Func="SDIO2_D3"/>
+		<PinFunc Func="EMAC_MII_TX_CLK"/>
+		<PinFunc Func="XMC_SDCKE0"/>
+		<PinFunc Func="XMC_A0"/>
+		<PinFunc Func="ADC1_IN13" Multi="true"/>
+		<PinFunc Func="ADC2_IN13" Multi="true"/>
+		<PinFunc Func="ADC3_IN13" Multi="true"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT3" IOMode="Input"/>
+	</Member>
+	<Member PinNum="19" PinName="NC" PinType="" GPIOStructure="" PinFixed ="true">
+	</Member>
+	<Member PinNum="20" PinName="VSSA/VREF-" PinType="S" GPIOStructure="" PinFixed ="true">
+	</Member>
+	<Member PinNum="21" PinName="VREF+" PinType="S" GPIOStructure="" PinFixed ="true">
+	</Member>
+	<Member PinNum="22" PinName="VDDA" PinType="S" GPIOStructure="" PinFixed ="true">
+	</Member>
+	<Member PinNum="23" PinName="PA0" PinType="I/O" GPIOStructure="FTa" PinFixed ="false">
+		<PinFunc Func="TMR2_CH1"/>
+		<PinFunc Func="TMR2_EXT"/>
+		<PinFunc Func="TMR5_CH1"/>
+		<PinFunc Func="TMR8_EXT"/>
+		<PinFunc Func="I2C2_SCL"/>
+		<PinFunc Func="USART2_CTS"/>
+		<PinFunc Func="UART4_TX"/>
+		<PinFunc Func="EMAC_MII_CRS"/>
+		<PinFunc Func="ADC1_IN0" Multi="true"/>
+		<PinFunc Func="ADC2_IN0" Multi="true"/>
+		<PinFunc Func="ADC3_IN0" Multi="true"/>
+		<PinFunc Func="ERTC_AF2"/>
+		<PinFunc Func="WKUP1"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT0" IOMode="Input"/>
+	</Member>
+	<Member PinNum="24" PinName="PA1" PinType="I/O" GPIOStructure="FTa" PinFixed ="false">
+		<PinFunc Func="TMR2_CH2"/>
+		<PinFunc Func="TMR5_CH2"/>
+		<PinFunc Func="I2C2_SDA"/>
+		<PinFunc Func="SPI4_MOSI"/>
+		<PinFunc Func="I2S4_SD"/>
+		<PinFunc Func="USART2_RTS"/>
+		<PinFunc Func="USART2_DE"/>
+		<PinFunc Func="UART4_RX"/>
+		<PinFunc Func="QSPI1_IO3"/>
+		<PinFunc Func="EMAC_MII_RX_CLK"/>
+		<PinFunc Func="EMAC_RMII_REF_CLK"/>
+		<PinFunc Func="ADC1_IN1" Multi="true"/>
+		<PinFunc Func="ADC2_IN1" Multi="true"/>
+		<PinFunc Func="ADC3_IN1" Multi="true"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT1" IOMode="Input"/>
+	</Member>
+	<Member PinNum="25" PinName="PA2" PinType="I/O" GPIOStructure="FTa" PinFixed ="false">
+		<PinFunc Func="TMR2_CH3"/>
+		<PinFunc Func="TMR5_CH3"/>
+		<PinFunc Func="TMR9_CH1"/>
+		<PinFunc Func="USART2_TX"/>
+		<PinFunc Func="SDIO2_CK"/>
+		<PinFunc Func="EMAC_MDIO"/>
+		<PinFunc Func="XMC_D4"/>
+		<PinFunc Func="ADC1_IN2" Multi="true"/>
+		<PinFunc Func="ADC2_IN2" Multi="true"/>
+		<PinFunc Func="ADC3_IN2" Multi="true"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT2" IOMode="Input"/>
+	</Member>
+	<Member PinNum="26" PinName="PA3" PinType="I/O" GPIOStructure="FTa" PinFixed ="false">
+		<PinFunc Func="TMR2_CH4"/>
+		<PinFunc Func="TMR5_CH4"/>
+		<PinFunc Func="TMR9_CH2"/>
+		<PinFunc Func="I2S2_MCK"/>
+		<PinFunc Func="USART2_RX"/>
+		<PinFunc Func="QSPI2_IO3"/>
+		<PinFunc Func="SDIO2_CMD"/>
+		<PinFunc Func="EMAC_MII_COL"/>
+		<PinFunc Func="XMC_D5"/>
+		<PinFunc Func="ADC1_IN3" Multi="true"/>
+		<PinFunc Func="ADC2_IN3" Multi="true"/>
+		<PinFunc Func="ADC3_IN3" Multi="true"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT3" IOMode="Input"/>
+	</Member>
+	<Member PinNum="27" PinName="VSS" PinType="S" GPIOStructure="" PinFixed ="true">
+	</Member>
+	<Member PinNum="28" PinName="VDD" PinType="S" GPIOStructure="" PinFixed ="true">
+	</Member>
+	<Member PinNum="29" PinName="PA4" PinType="I/O" GPIOStructure="FTa" PinFixed ="false">
+		<PinFunc Func="SPI1_CS"/>
+		<PinFunc Func="I2S1_WS"/>
+		<PinFunc Func="SPI3_CS"/>
+		<PinFunc Func="I2S3_WS"/>
+		<PinFunc Func="USART2_CK"/>
+		<PinFunc Func="USART6_TX"/>
+		<PinFunc Func="SDIO2_D4"/>
+		<PinFunc Func="SDIO2_D0"/>
+		<PinFunc Func="USB_OTGFS2_SOF"/>
+		<PinFunc Func="DVP_HSYNC"/>
+		<PinFunc Func="XMC_D6"/>
+		<PinFunc Func="ADC1_IN4" Multi="true"/>
+		<PinFunc Func="ADC2_IN4" Multi="true"/>
+		<PinFunc Func="DAC_OUT1"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT4" IOMode="Input"/>
+	</Member>
+	<Member PinNum="30" PinName="PA5" PinType="I/O" GPIOStructure="FTa" PinFixed ="false">
+		<PinFunc Func="TMR2_CH1"/>
+		<PinFunc Func="TMR2_EXT"/>
+		<PinFunc Func="TMR8_CH1C"/>
+		<PinFunc Func="SPI1_SCK"/>
+		<PinFunc Func="I2S1_CK"/>
+		<PinFunc Func="USART6_RX"/>
+		<PinFunc Func="QSPI2_IO2"/>
+		<PinFunc Func="SDIO2_D5"/>
+		<PinFunc Func="SDIO2_D1"/>
+		<PinFunc Func="XMC_D7"/>
+		<PinFunc Func="ADC1_IN5" Multi="true"/>
+		<PinFunc Func="ADC2_IN5" Multi="true"/>
+		<PinFunc Func="DAC_OUT2"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT5" IOMode="Input"/>
+	</Member>
+	<Member PinNum="31" PinName="PA6" PinType="I/O" GPIOStructure="FTa" PinFixed ="false">
+		<PinFunc Func="TMR1_BRK"/>
+		<PinFunc Func="TMR3_CH1"/>
+		<PinFunc Func="TMR8_BRK"/>
+		<PinFunc Func="SPI1_MISO"/>
+		<PinFunc Func="I2S2_MCK"/>
+		<PinFunc Func="USART3_CTS"/>
+		<PinFunc Func="TMR13_CH1"/>
+		<PinFunc Func="QSPI1_IO0"/>
+		<PinFunc Func="SDIO2_D2"/>
+		<PinFunc Func="SDIO1_CMD"/>
+		<PinFunc Func="DVP_PCLK"/>
+		<PinFunc Func="SDIO2_D6"/>
+		<PinFunc Func="ADC1_IN6" Multi="true"/>
+		<PinFunc Func="ADC2_IN6" Multi="true"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT6" IOMode="Input"/>
+	</Member>
+	<Member PinNum="32" PinName="PA7" PinType="I/O" GPIOStructure="FTa" PinFixed ="false">
+		<PinFunc Func="TMR1_CH1C"/>
+		<PinFunc Func="TMR3_CH2"/>
+		<PinFunc Func="TMR8_CH1C"/>
+		<PinFunc Func="SPI1_MOSI"/>
+		<PinFunc Func="I2S1_SD"/>
+		<PinFunc Func="TMR14_CH1"/>
+		<PinFunc Func="QSPI1_IO1"/>
+		<PinFunc Func="EMAC_MII_RX_DV"/>
+		<PinFunc Func="EMAC_RMII_CRS_DV"/>
+		<PinFunc Func="XMC_SDNWE"/>
+		<PinFunc Func="SDIO2_D3"/>
+		<PinFunc Func="SDIO2_D7"/>
+		<PinFunc Func="ADC1_IN7" Multi="true"/>
+		<PinFunc Func="ADC2_IN7" Multi="true"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT7" IOMode="Input"/>
+	</Member>
+	<Member PinNum="33" PinName="PC4" PinType="I/O" GPIOStructure="FTa" PinFixed ="false">
+		<PinFunc Func="TMR9_CH1"/>
+		<PinFunc Func="I2S1_MCK"/>
+		<PinFunc Func="USART3_TX"/>
+		<PinFunc Func="QSPI1_IO2"/>
+		<PinFunc Func="EMAC_MII_RXD0"/>
+		<PinFunc Func="EMAC_RMII_RXD0"/>
+		<PinFunc Func="XMC_SDCS0"/>
+		<PinFunc Func="SDIO2_CK"/>
+		<PinFunc Func="XMC_NE4"/>
+		<PinFunc Func="ADC1_IN14" Multi="true"/>
+		<PinFunc Func="ADC2_IN14" Multi="true"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT4" IOMode="Input"/>
+	</Member>
+	<Member PinNum="34" PinName="PC5" PinType="I/O" GPIOStructure="FTa" PinFixed ="false">
+		<PinFunc Func="TMR9_CH2"/>
+		<PinFunc Func="I2C1_SMBA"/>
+		<PinFunc Func="USART3_RX"/>
+		<PinFunc Func="QSPI1_IO3"/>
+		<PinFunc Func="EMAC_MII_RXD1"/>
+		<PinFunc Func="EMAC_RMII_RXD1"/>
+		<PinFunc Func="XMC_SDCKE0"/>
+		<PinFunc Func="SDIO2_CMD"/>
+		<PinFunc Func="XMC_NOE"/>
+		<PinFunc Func="ADC1_IN15" Multi="true"/>
+		<PinFunc Func="ADC2_IN15" Multi="true"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT5" IOMode="Input"/>
+	</Member>
+	<Member PinNum="35" PinName="PB0" PinType="I/O" GPIOStructure="FTa" PinFixed ="false">
+		<PinFunc Func="TMR1_CH2C"/>
+		<PinFunc Func="TMR3_CH3"/>
+		<PinFunc Func="TMR8_CH2C"/>
+		<PinFunc Func="I2S1_MCK"/>
+		<PinFunc Func="USART2_RX"/>
+		<PinFunc Func="SPI3_MOSI"/>
+		<PinFunc Func="I2S3_SD"/>
+		<PinFunc Func="USART3_CK"/>
+		<PinFunc Func="QSPI2_IO0"/>
+		<PinFunc Func="QSPI1_IO0"/>
+		<PinFunc Func="EMAC_MII_RXD2"/>
+		<PinFunc Func="SDIO1_D1"/>
+		<PinFunc Func="ADC1_IN8" Multi="true"/>
+		<PinFunc Func="ADC2_IN8" Multi="true"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT0" IOMode="Input"/>
+	</Member>
+	<Member PinNum="36" PinName="PB1" PinType="I/O" GPIOStructure="FTa" PinFixed ="false">
+		<PinFunc Func="TMR1_CH3C"/>
+		<PinFunc Func="TMR3_CH4"/>
+		<PinFunc Func="TMR8_CH3C"/>
+		<PinFunc Func="SPI2_SCK"/>
+		<PinFunc Func="I2S2_CK"/>
+		<PinFunc Func="USART3_RTS"/>
+		<PinFunc Func="USART3_DE"/>
+		<PinFunc Func="QSPI1_SCK"/>
+		<PinFunc Func="QSPI2_SCK"/>
+		<PinFunc Func="EMAC_MII_RXD3"/>
+		<PinFunc Func="SDIO1_D2"/>
+		<PinFunc Func="ADC1_IN9" Multi="true"/>
+		<PinFunc Func="ADC2_IN9" Multi="true"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT1" IOMode="Input"/>
+	</Member>
+	<Member PinNum="37" PinName="PB2/BOOT1" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="TMR2_CH4"/>
+		<PinFunc Func="TMR20_CH1"/>
+		<PinFunc Func="I2C3_SMBA"/>
+		<PinFunc Func="SPI3_MOSI"/>
+		<PinFunc Func="I2S3_SD"/>
+		<PinFunc Func="QSPI1_SCK"/>
+		<PinFunc Func="SDIO1_CK"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT2" IOMode="Input"/>
+	</Member>
+	<Member PinNum="38" PinName="PE7" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="TMR1_EXT"/>
+		<PinFunc Func="UART7_RX"/>
+		<PinFunc Func="QSPI2_IO0"/>
+		<PinFunc Func="XMC_D4"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT7" IOMode="Input"/>
+	</Member>
+	<Member PinNum="39" PinName="PE8" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="TMR1_CH1C"/>
+		<PinFunc Func="UART4_TX"/>
+		<PinFunc Func="UART7_TX"/>
+		<PinFunc Func="QSPI2_IO1"/>
+		<PinFunc Func="XMC_D5"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT8" IOMode="Input"/>
+	</Member>
+	<Member PinNum="40" PinName="PE9" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="TMR1_CH1"/>
+		<PinFunc Func="UART4_RX"/>
+		<PinFunc Func="QSPI2_IO2"/>
+		<PinFunc Func="XMC_D6"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT9" IOMode="Input"/>
+	</Member>
+	<Member PinNum="41" PinName="PE10" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="TMR1_CH2C"/>
+		<PinFunc Func="UART5_TX"/>
+		<PinFunc Func="QSPI2_IO3"/>
+		<PinFunc Func="XMC_D7"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT10" IOMode="Input"/>
+	</Member>
+	<Member PinNum="42" PinName="PE11" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="TMR1_CH2"/>
+		<PinFunc Func="SPI4_CS"/>
+		<PinFunc Func="I2S4_WS"/>
+		<PinFunc Func="UART5_RX"/>
+		<PinFunc Func="XMC_D8"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT11" IOMode="Input"/>
+	</Member>
+	<Member PinNum="43" PinName="PE12" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="TMR1_CH3C"/>
+		<PinFunc Func="SPI1_CS"/>
+		<PinFunc Func="I2S1_WS"/>
+		<PinFunc Func="SPI4_SCK"/>
+		<PinFunc Func="I2S4_CK"/>
+		<PinFunc Func="XMC_D9"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT12" IOMode="Input"/>
+	</Member>
+	<Member PinNum="44" PinName="PE13" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="TMR1_CH3"/>
+		<PinFunc Func="SPI1_SCK"/>
+		<PinFunc Func="I2S1_CK"/>
+		<PinFunc Func="SPI4_MISO"/>
+		<PinFunc Func="XMC_D10"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT13" IOMode="Input"/>
+	</Member>
+	<Member PinNum="45" PinName="PE14" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="TMR1_CH4"/>
+		<PinFunc Func="SPI1_MISO"/>
+		<PinFunc Func="SPI4_MOSI"/>
+		<PinFunc Func="I2S4_SD"/>
+		<PinFunc Func="XMC_D11"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT14" IOMode="Input"/>
+	</Member>
+	<Member PinNum="46" PinName="PE15" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="TMR1_BRK"/>
+		<PinFunc Func="SPI1_MOSI"/>
+		<PinFunc Func="I2S1_SD"/>
+		<PinFunc Func="XMC_D12"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT15" IOMode="Input"/>
+	</Member>
+	<Member PinNum="47" PinName="PB10" PinType="I/O" GPIOStructure="FTf" PinFixed ="false">
+		<PinFunc Func="TMR2_CH3"/>
+		<PinFunc Func="I2C2_SCL"/>
+		<PinFunc Func="SPI2_SCK"/>
+		<PinFunc Func="I2S2_CK"/>
+		<PinFunc Func="I2S3_MCK"/>
+		<PinFunc Func="USART3_TX"/>
+		<PinFunc Func="QSPI1_CS"/>
+		<PinFunc Func="QSPI1_IO1"/>
+		<PinFunc Func="EMAC_MII_RX_ER"/>
+		<PinFunc Func="SDIO1_D7"/>
+		<PinFunc Func="XMC_NOE"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT10" IOMode="Input"/>
+	</Member>
+	<Member PinNum="48" PinName="PB11" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="TMR2_CH4"/>
+		<PinFunc Func="TMR5_CH4"/>
+		<PinFunc Func="I2C2_SDA"/>
+		<PinFunc Func="USART3_RX"/>
+		<PinFunc Func="QSPI1_IO0"/>
+		<PinFunc Func="EMAC_MII_TX_EN"/>
+		<PinFunc Func="EMAC_RMII_TX_EN"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT11" IOMode="Input"/>
+	</Member>
+	<Member PinNum="49" PinName="PH3" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="TMR5_CH2"/>
+		<PinFunc Func="I2C2_SDA"/>
+		<PinFunc Func="UART4_TX"/>
+		<PinFunc Func="QSPI1_IO1"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT3" IOMode="Input"/>
+	</Member>
+	<Member PinNum="50" PinName="VDD" PinType="S" GPIOStructure="" PinFixed ="true">
+	</Member>
+	<Member PinNum="51" PinName="PB12" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="TMR1_BRK"/>
+		<PinFunc Func="TMR5_CH1"/>
+		<PinFunc Func="I2C2_SMBA"/>
+		<PinFunc Func="SPI2_CS"/>
+		<PinFunc Func="I2S2_WS"/>
+		<PinFunc Func="SPI4_CS"/>
+		<PinFunc Func="I2S4_WS"/>
+		<PinFunc Func="SPI3_SCK"/>
+		<PinFunc Func="I2S3_CK"/>
+		<PinFunc Func="USART3_CK"/>
+		<PinFunc Func="CAN2_RX"/>
+		<PinFunc Func="EMAC_MII_TXD0"/>
+		<PinFunc Func="EMAC_RMII_TXD0"/>
+		<PinFunc Func="USB_OTGFS2_ID"/>
+		<PinFunc Func="XMC_D13"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT12" IOMode="Input"/>
+	</Member>
+	<Member PinNum="52" PinName="PB13" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="TMR1_CH1C"/>
+		<PinFunc Func="I2C3_SMBA"/>
+		<PinFunc Func="SPI2_SCK"/>
+		<PinFunc Func="I2S2_CK"/>
+		<PinFunc Func="SPI4_SCK"/>
+		<PinFunc Func="I2S4_CK"/>
+		<PinFunc Func="I2C3_SCL"/>
+		<PinFunc Func="USART3_CTS"/>
+		<PinFunc Func="CAN2_TX"/>
+		<PinFunc Func="EMAC_MII_TXD1"/>
+		<PinFunc Func="EMAC_RMII_TXD1"/>
+		<PinFunc Func="USB_OTGFS2_VBUS"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT13" IOMode="Input"/>
+	</Member>
+	<Member PinNum="53" PinName="PB14" PinType="I/O" GPIOStructure="TC" PinFixed ="false">
+		<PinFunc Func="TMR1_CH2C"/>
+		<PinFunc Func="TMR8_CH2C"/>
+		<PinFunc Func="I2C3_SDA"/>
+		<PinFunc Func="SPI2_MISO"/>
+		<PinFunc Func="I2S2_SDEXT"/>
+		<PinFunc Func="USART3_RTS"/>
+		<PinFunc Func="USART3_DE"/>
+		<PinFunc Func="TMR12_CH1"/>
+		<PinFunc Func="USB_OTGFS2_D-"/>
+		<PinFunc Func="SDIO1_D6"/>
+		<PinFunc Func="XMC_D0"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT14" IOMode="Input"/>
+	</Member>
+	<Member PinNum="54" PinName="PB15" PinType="I/O" GPIOStructure="TC" PinFixed ="false">
+		<PinFunc Func="ERTC_REFIN"/>
+		<PinFunc Func="TMR1_CH3C"/>
+		<PinFunc Func="TMR8_CH3C"/>
+		<PinFunc Func="I2C3_SCL"/>
+		<PinFunc Func="SPI2_MOSI"/>
+		<PinFunc Func="I2S2_SD"/>
+		<PinFunc Func="TMR12_CH2"/>
+		<PinFunc Func="USB_OTGFS2_D+"/>
+		<PinFunc Func="SDIO1_CK"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT15" IOMode="Input"/>
+	</Member>
+	<Member PinNum="55" PinName="PD8" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="USART3_TX"/>
+		<PinFunc Func="EMAC_MII_RX_DV"/>
+		<PinFunc Func="EMAC_RMII_CRS_DV"/>
+		<PinFunc Func="XMC_D13"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT8" IOMode="Input"/>
+	</Member>
+	<Member PinNum="56" PinName="PD9" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="USART3_RX"/>
+		<PinFunc Func="EMAC_MII_RXD0"/>
+		<PinFunc Func="EMAC_RMII_RXD0"/>
+		<PinFunc Func="XMC_D14"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT9" IOMode="Input"/>
+	</Member>
+	<Member PinNum="57" PinName="PD10" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="USART3_CK"/>
+		<PinFunc Func="EMAC_MII_RXD1"/>
+		<PinFunc Func="EMAC_RMII_RXD1"/>
+		<PinFunc Func="XMC_D15"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT10" IOMode="Input"/>
+	</Member>
+	<Member PinNum="58" PinName="PD11" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="I2C2_SMBA"/>
+		<PinFunc Func="USART3_CTS"/>
+		<PinFunc Func="QSPI1_IO0"/>
+		<PinFunc Func="XMC_A14_SDBA0"/>
+		<PinFunc Func="EMAC_MII_RXD2"/>
+		<PinFunc Func="XMC_A16_CLE"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT11" IOMode="Input"/>
+	</Member>
+	<Member PinNum="59" PinName="PD12" PinType="I/O" GPIOStructure="FTf" PinFixed ="false">
+		<PinFunc Func="TMR4_CH1"/>
+		<PinFunc Func="I2C2_SCL"/>
+		<PinFunc Func="USART3_RTS"/>
+		<PinFunc Func="USART3_DE"/>
+		<PinFunc Func="QSPI1_IO1"/>
+		<PinFunc Func="XMC_A15_SDBA1"/>
+		<PinFunc Func="EMAC_MII_RXD3"/>
+		<PinFunc Func="XMC_A17_ALE"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT12" IOMode="Input"/>
+	</Member>
+	<Member PinNum="60" PinName="PD13" PinType="I/O" GPIOStructure="FTf" PinFixed ="false">
+		<PinFunc Func="TMR4_CH2"/>
+		<PinFunc Func="I2C2_SDA"/>
+		<PinFunc Func="UART8_TX"/>
+		<PinFunc Func="QSPI1_IO3"/>
+		<PinFunc Func="XMC_SDCLK"/>
+		<PinFunc Func="XMC_A18"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT13" IOMode="Input"/>
+	</Member>
+	<Member PinNum="61" PinName="PD14" PinType="I/O" GPIOStructure="FTf" PinFixed ="false">
+		<PinFunc Func="TMR4_CH3"/>
+		<PinFunc Func="I2C3_SCL"/>
+		<PinFunc Func="UART8_RX"/>
+		<PinFunc Func="XMC_D0"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT14" IOMode="Input"/>
+	</Member>
+	<Member PinNum="62" PinName="PD15" PinType="I/O" GPIOStructure="FTf" PinFixed ="false">
+		<PinFunc Func="TMR4_CH4"/>
+		<PinFunc Func="I2C3_SDA"/>
+		<PinFunc Func="XMC_D1"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT15" IOMode="Input"/>
+	</Member>
+	<Member PinNum="63" PinName="PC6" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="TMR3_CH1"/>
+		<PinFunc Func="TMR8_CH1"/>
+		<PinFunc Func="I2C1_SCL"/>
+		<PinFunc Func="I2S2_MCK"/>
+		<PinFunc Func="USART6_TX"/>
+		<PinFunc Func="XMC_A0"/>
+		<PinFunc Func="SDIO1_D6"/>
+		<PinFunc Func="DVP_D0"/>
+		<PinFunc Func="XMC_D1"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT6" IOMode="Input"/>
+	</Member>
+	<Member PinNum="64" PinName="PC7" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="TMR3_CH2"/>
+		<PinFunc Func="TMR8_CH2"/>
+		<PinFunc Func="I2C1_SDA"/>
+		<PinFunc Func="SPI2_SCK"/>
+		<PinFunc Func="I2S2_CK"/>
+		<PinFunc Func="I2S3_MCK"/>
+		<PinFunc Func="USART6_RX"/>
+		<PinFunc Func="XMC_A1"/>
+		<PinFunc Func="SDIO1_D7"/>
+		<PinFunc Func="DVP_D1"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT7" IOMode="Input"/>
+	</Member>
+	<Member PinNum="65" PinName="PC8" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="TMR3_CH3"/>
+		<PinFunc Func="TMR8_CH3"/>
+		<PinFunc Func="I2S4_MCK"/>
+		<PinFunc Func="TMR20_CH3"/>
+		<PinFunc Func="UART8_TX"/>
+		<PinFunc Func="USART6_CK"/>
+		<PinFunc Func="QSPI1_IO2"/>
+		<PinFunc Func="XMC_A2"/>
+		<PinFunc Func="SDIO1_D0"/>
+		<PinFunc Func="DVP_D2"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT8" IOMode="Input"/>
+	</Member>
+	<Member PinNum="66" PinName="PC9" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="CRM_CLKOUT2"/>
+		<PinFunc Func="TMR3_CH4"/>
+		<PinFunc Func="TMR8_CH4"/>
+		<PinFunc Func="I2C3_SDA"/>
+		<PinFunc Func="UART8_RX"/>
+		<PinFunc Func="QSPI1_IO0"/>
+		<PinFunc Func="XMC_A3"/>
+		<PinFunc Func="USB_OTGFS2_OE"/>
+		<PinFunc Func="SDIO1_D1"/>
+		<PinFunc Func="DVP_D3"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT9" IOMode="Input"/>
+	</Member>
+	<Member PinNum="67" PinName="PA8" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="CRM_CLKOUT1"/>
+		<PinFunc Func="TMR1_CH1"/>
+		<PinFunc Func="I2C3_SCL"/>
+		<PinFunc Func="USART1_CK"/>
+		<PinFunc Func="USART2_TX"/>
+		<PinFunc Func="USB_OTGFS1_SOF"/>
+		<PinFunc Func="SDIO1_D1"/>
+		<PinFunc Func="XMC_A4"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT8" IOMode="Input"/>
+	</Member>
+	<Member PinNum="68" PinName="PA9" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="TMR1_CH2"/>
+		<PinFunc Func="I2C3_SMBA"/>
+		<PinFunc Func="SPI2_SCK"/>
+		<PinFunc Func="I2S2_CK"/>
+		<PinFunc Func="USART1_TX"/>
+		<PinFunc Func="I2C1_SCL"/>
+		<PinFunc Func="USB_OTGFS1_VBUS"/>
+		<PinFunc Func="SDIO1_D2"/>
+		<PinFunc Func="DVP_D0"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT9" IOMode="Input"/>
+	</Member>
+	<Member PinNum="69" PinName="PA10" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="TMR1_CH3"/>
+		<PinFunc Func="SPI2_MOSI"/>
+		<PinFunc Func="I2S2_SD"/>
+		<PinFunc Func="I2S4_MCK"/>
+		<PinFunc Func="USART1_RX"/>
+		<PinFunc Func="I2C1_SDA"/>
+		<PinFunc Func="USB_OTGFS1_ID"/>
+		<PinFunc Func="DVP_D1"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT10" IOMode="Input"/>
+	</Member>
+	<Member PinNum="70" PinName="PA11" PinType="I/O" GPIOStructure="TC" PinFixed ="false">
+		<PinFunc Func="TMR1_CH4"/>
+		<PinFunc Func="I2C2_SCL"/>
+		<PinFunc Func="SPI2_CS"/>
+		<PinFunc Func="I2S2_WS"/>
+		<PinFunc Func="SPI4_MISO"/>
+		<PinFunc Func="USART1_CTS"/>
+		<PinFunc Func="USART6_TX"/>
+		<PinFunc Func="CAN1_RX"/>
+		<PinFunc Func="USB_OTGFS1_D-"/>
+		<PinFunc Func="DVP_D2"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT11" IOMode="Input"/>
+	</Member>
+	<Member PinNum="71" PinName="PA12" PinType="I/O" GPIOStructure="TC" PinFixed ="false">
+		<PinFunc Func="TMR1_EXT"/>
+		<PinFunc Func="I2C2_SDA"/>
+		<PinFunc Func="SPI2_MISO"/>
+		<PinFunc Func="USART1_RTS"/>
+		<PinFunc Func="USART1_DE"/>
+		<PinFunc Func="USART6_RX"/>
+		<PinFunc Func="CAN1_TX"/>
+		<PinFunc Func="USB_OTGFS1_D+"/>
+		<PinFunc Func="DVP_D3"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT12" IOMode="Input"/>
+	</Member>
+	<Member PinNum="72" PinName="PA13" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="DEBUG_JTMS_SWDIO"/>
+		<PinFunc Func="IR_OUT"/>
+		<PinFunc Func="SPI3_MISO"/>
+		<PinFunc Func="USB_OTGFS1_OE"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT13" IOMode="Input"/>
+	</Member>
+	<Member PinNum="73" PinName="PH2" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="TMR5_CH1"/>
+		<PinFunc Func="I2C2_SCL"/>
+		<PinFunc Func="UART4_RX"/>
+		<PinFunc Func="QSPI1_IO0"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT2" IOMode="Input"/>
+	</Member>
+	<Member PinNum="74" PinName="VSS" PinType="S" GPIOStructure="" PinFixed ="true">
+	</Member>
+	<Member PinNum="75" PinName="VDD" PinType="S" GPIOStructure="" PinFixed ="true">
+	</Member>
+	<Member PinNum="76" PinName="PA14" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="DEBUG_JTCK_SWCLK"/>
+		<PinFunc Func="SPI3_MOSI"/>
+		<PinFunc Func="I2S3_SD"/>
+		<PinFunc Func="USART2_TX"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT14" IOMode="Input"/>
+	</Member>
+	<Member PinNum="77" PinName="PA15" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="DEBUG_JTDI"/>
+		<PinFunc Func="TMR2_CH1"/>
+		<PinFunc Func="TMR2_EXT"/>
+		<PinFunc Func="SPI1_CS"/>
+		<PinFunc Func="I2S1_WS"/>
+		<PinFunc Func="SPI3_CS"/>
+		<PinFunc Func="I2S3_WS"/>
+		<PinFunc Func="USART1_TX"/>
+		<PinFunc Func="USART2_RX"/>
+		<PinFunc Func="QSPI2_IO1"/>
+		<PinFunc Func="QSPI1_IO2"/>
+		<PinFunc Func="XMC_NE2"/>
+		<PinFunc Func="XMC_NCE3"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT15" IOMode="Input"/>
+	</Member>
+	<Member PinNum="78" PinName="PC10" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="TMR5_CH2"/>
+		<PinFunc Func="SPI3_SCK"/>
+		<PinFunc Func="I2S3_CK"/>
+		<PinFunc Func="USART3_TX"/>
+		<PinFunc Func="UART4_TX"/>
+		<PinFunc Func="QSPI1_IO1"/>
+		<PinFunc Func="SDIO1_D2"/>
+		<PinFunc Func="DVP_D8"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT10" IOMode="Input"/>
+	</Member>
+	<Member PinNum="79" PinName="PC11" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="TMR5_CH3"/>
+		<PinFunc Func="I2S3_SDEXT"/>
+		<PinFunc Func="SPI3_MISO"/>
+		<PinFunc Func="USART3_RX"/>
+		<PinFunc Func="UART4_RX"/>
+		<PinFunc Func="QSPI1_CS"/>
+		<PinFunc Func="SDIO1_D3"/>
+		<PinFunc Func="DVP_D4"/>
+		<PinFunc Func="XMC_D2"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT11" IOMode="Input"/>
+	</Member>
+	<Member PinNum="80" PinName="PC12" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="TMR11_CH1"/>
+		<PinFunc Func="I2C2_SDA"/>
+		<PinFunc Func="SPI3_MOSI"/>
+		<PinFunc Func="I2S3_SD"/>
+		<PinFunc Func="USART3_CK"/>
+		<PinFunc Func="UART5_TX"/>
+		<PinFunc Func="SDIO1_CK"/>
+		<PinFunc Func="DVP_D9"/>
+		<PinFunc Func="XMC_D3"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT12" IOMode="Input"/>
+	</Member>
+	<Member PinNum="81" PinName="PD0" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="SPI4_MISO"/>
+		<PinFunc Func="SPI3_MOSI"/>
+		<PinFunc Func="I2S3_SD"/>
+		<PinFunc Func="SPI2_CS"/>
+		<PinFunc Func="I2S2_WS"/>
+		<PinFunc Func="CAN1_RX"/>
+		<PinFunc Func="XMC_A5"/>
+		<PinFunc Func="XMC_D2"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT0" IOMode="Input"/>
+	</Member>
+	<Member PinNum="82" PinName="PD1" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="SPI2_SCK"/>
+		<PinFunc Func="I2S2_CK"/>
+		<PinFunc Func="SPI2_CS"/>
+		<PinFunc Func="I2S2_WS"/>
+		<PinFunc Func="CAN1_TX"/>
+		<PinFunc Func="XMC_A6"/>
+		<PinFunc Func="XMC_D3"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT1" IOMode="Input"/>
+	</Member>
+	<Member PinNum="83" PinName="PD2" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="TMR3_EXT"/>
+		<PinFunc Func="USART3_RTS"/>
+		<PinFunc Func="USART3_DE"/>
+		<PinFunc Func="UART5_RX"/>
+		<PinFunc Func="XMC_A7"/>
+		<PinFunc Func="SDIO1_CMD"/>
+		<PinFunc Func="DVP_D11"/>
+		<PinFunc Func="XMC_NWE"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT2" IOMode="Input"/>
+	</Member>
+	<Member PinNum="84" PinName="PD3" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="SPI2_SCK"/>
+		<PinFunc Func="I2S2_CK"/>
+		<PinFunc Func="SPI2_MISO"/>
+		<PinFunc Func="USART2_CTS"/>
+		<PinFunc Func="QSPI1_SCK"/>
+		<PinFunc Func="XMC_A8"/>
+		<PinFunc Func="XMC_CLK"/>
+		<PinFunc Func="DVP_D5"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT3" IOMode="Input"/>
+	</Member>
+	<Member PinNum="85" PinName="PD4" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="SPI2_MOSI"/>
+		<PinFunc Func="I2S2_SD"/>
+		<PinFunc Func="USART2_RTS"/>
+		<PinFunc Func="USART2_DE"/>
+		<PinFunc Func="XMC_A9"/>
+		<PinFunc Func="XMC_NOE"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT4" IOMode="Input"/>
+	</Member>
+	<Member PinNum="86" PinName="PD5" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="USART2_TX"/>
+		<PinFunc Func="XMC_A10"/>
+		<PinFunc Func="XMC_NWE"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT5" IOMode="Input"/>
+	</Member>
+	<Member PinNum="87" PinName="PD6" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="SPI3_MOSI"/>
+		<PinFunc Func="I2S3_SD"/>
+		<PinFunc Func="USART2_RX"/>
+		<PinFunc Func="XMC_A11"/>
+		<PinFunc Func="XMC_NWAIT"/>
+		<PinFunc Func="DVP_D10"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT6" IOMode="Input"/>
+	</Member>
+	<Member PinNum="88" PinName="PD7" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="USART2_CK"/>
+		<PinFunc Func="XMC_A12"/>
+		<PinFunc Func="XMC_NE1"/>
+		<PinFunc Func="XMC_NCE2"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT7" IOMode="Input"/>
+	</Member>
+	<Member PinNum="89" PinName="PB3" PinType="I/O" GPIOStructure="FTf" PinFixed ="false">
+		<PinFunc Func="DEBUG_JTDO"/>
+		<PinFunc Func="TMR2_CH2"/>
+		<PinFunc Func="I2C2_SDA"/>
+		<PinFunc Func="SPI1_SCK"/>
+		<PinFunc Func="I2S1_CK"/>
+		<PinFunc Func="SPI3_SCK"/>
+		<PinFunc Func="I2S3_CK"/>
+		<PinFunc Func="USART1_RX"/>
+		<PinFunc Func="UART7_RX"/>
+		<PinFunc Func="QSPI1_IO3"/>
+		<PinFunc Func="DVP_D4"/>
+		<PinFunc Func="DEBUG_SWO"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT3" IOMode="Input"/>
+	</Member>
+	<Member PinNum="90" PinName="PB4" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="DEBUG_NJTRST"/>
+		<PinFunc Func="TMR3_CH1"/>
+		<PinFunc Func="I2C3_SDA"/>
+		<PinFunc Func="SPI1_MISO"/>
+		<PinFunc Func="SPI3_MISO"/>
+		<PinFunc Func="I2S3_SDEXT"/>
+		<PinFunc Func="UART7_TX"/>
+		<PinFunc Func="SDIO1_D0"/>
+		<PinFunc Func="DVP_D5"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT4" IOMode="Input"/>
+	</Member>
+	<Member PinNum="91" PinName="PB5" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="TMR3_CH2"/>
+		<PinFunc Func="I2C1_SMBA"/>
+		<PinFunc Func="SPI1_MOSI"/>
+		<PinFunc Func="I2S1_SD"/>
+		<PinFunc Func="SPI3_MOSI"/>
+		<PinFunc Func="I2S3_SD"/>
+		<PinFunc Func="USART1_CK"/>
+		<PinFunc Func="UART5_RX"/>
+		<PinFunc Func="CAN2_RX"/>
+		<PinFunc Func="EMAC_PPS_OUT"/>
+		<PinFunc Func="XMC_SDCKE1"/>
+		<PinFunc Func="DVP_D10"/>
+		<PinFunc Func="SDIO1_D3"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT5" IOMode="Input"/>
+	</Member>
+	<Member PinNum="92" PinName="PB6" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="TMR4_CH1"/>
+		<PinFunc Func="I2C1_SCL"/>
+		<PinFunc Func="I2S1_MCK"/>
+		<PinFunc Func="SPI4_CS"/>
+		<PinFunc Func="I2S4_WS"/>
+		<PinFunc Func="USART1_TX"/>
+		<PinFunc Func="UART5_TX"/>
+		<PinFunc Func="CAN2_TX"/>
+		<PinFunc Func="QSPI1_CS"/>
+		<PinFunc Func="XMC_SDCS1"/>
+		<PinFunc Func="DVP_D5"/>
+		<PinFunc Func="SDIO1_D0"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT6" IOMode="Input"/>
+	</Member>
+	<Member PinNum="93" PinName="PB7" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="TMR4_CH2"/>
+		<PinFunc Func="TMR8_BRK"/>
+		<PinFunc Func="I2C1_SDA"/>
+		<PinFunc Func="SPI4_SCK"/>
+		<PinFunc Func="I2S4_CK"/>
+		<PinFunc Func="USART1_RX"/>
+		<PinFunc Func="QSPI2_IO1"/>
+		<PinFunc Func="XMC_NADV"/>
+		<PinFunc Func="DVP_VSYNC"/>
+		<PinFunc Func="SDIO1_D0"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT7" IOMode="Input"/>
+	</Member>
+	<Member PinNum="94" PinName="BOOT0" PinType="I" GPIOStructure="B" PinFixed ="true">
+	</Member>
+	<Member PinNum="95" PinName="PB8" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="TMR2_CH1"/>
+		<PinFunc Func="TMR2_EXT"/>
+		<PinFunc Func="TMR4_CH3"/>
+		<PinFunc Func="TMR10_CH1"/>
+		<PinFunc Func="I2C1_SCL"/>
+		<PinFunc Func="SPI4_MISO"/>
+		<PinFunc Func="UART5_RX"/>
+		<PinFunc Func="CAN1_RX"/>
+		<PinFunc Func="QSPI2_CS"/>
+		<PinFunc Func="EMAC_MII_TXD3"/>
+		<PinFunc Func="SDIO1_D4"/>
+		<PinFunc Func="DVP_D6"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT8" IOMode="Input"/>
+	</Member>
+	<Member PinNum="96" PinName="PB9" PinType="I/O" GPIOStructure="FTf" PinFixed ="false">
+		<PinFunc Func="IR_OUT"/>
+		<PinFunc Func="TMR2_CH2"/>
+		<PinFunc Func="TMR4_CH4"/>
+		<PinFunc Func="TMR11_CH1"/>
+		<PinFunc Func="I2C1_SDA"/>
+		<PinFunc Func="SPI2_CS"/>
+		<PinFunc Func="I2S2_WS"/>
+		<PinFunc Func="SPI4_MOSI"/>
+		<PinFunc Func="I2S4_SD"/>
+		<PinFunc Func="I2C2_SDA"/>
+		<PinFunc Func="UART5_TX"/>
+		<PinFunc Func="CAN1_TX"/>
+		<PinFunc Func="QSPI1_CS"/>
+		<PinFunc Func="SDIO1_D5"/>
+		<PinFunc Func="DVP_D7"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT9" IOMode="Input"/>
+	</Member>
+	<Member PinNum="97" PinName="PE0" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="TMR4_EXT"/>
+		<PinFunc Func="TMR20_EXT"/>
+		<PinFunc Func="UART8_RX"/>
+		<PinFunc Func="XMC_LB_SDDQML"/>
+		<PinFunc Func="DVP_D2"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT0" IOMode="Input"/>
+	</Member>
+	<Member PinNum="98" PinName="PE1" PinType="I/O" GPIOStructure="FT" PinFixed ="false">
+		<PinFunc Func="TMR1_CH2C"/>
+		<PinFunc Func="TMR20_CH4"/>
+		<PinFunc Func="UART8_TX"/>
+		<PinFunc Func="XMC_UB_SDDQMH"/>
+		<PinFunc Func="DVP_D3"/>
+		<PinFunc Func="EVENTOUT" IOMode="EVENTOUT"/>
+		<PinFunc Func="GPIO_Input"  IOMode="Input"/>
+		<PinFunc Func="GPIO_Output" IOMode="Output"/>
+		<PinFunc Func="GPIO_Analog" IOMode="Analog"/>
+		<PinFunc Func="EXINT1" IOMode="Input"/>
+	</Member>
+	<Member PinNum="99" PinName="VSS" PinType="S" GPIOStructure="" PinFixed ="true">
+	</Member>
+	<Member PinNum="100" PinName="VDD" PinType="S" GPIOStructure="" PinFixed ="true">
+	</Member>
+  </entry>   
+</Configuration>

@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<IP>
+  <About>Real-Time Clock</About>
+  <AboutCH>实时时钟</AboutCH>
+	
+	<!-- Generic RefParameters for RTC -->
+	
+	<RefParameter Comment="Instance" DefaultValue="RTC" Name="Instance" Type="" Visible="false"/>
+	
+	<!-- General parameters -->
+	<RefParameter Comment="Predivider value" CommentCH="分频器" DefaultValue="32767" Group="General" GroupCH="通用参数" Max="1048575" Min="0" Name="AsynchPrediv" Type="integer"/>
+	
+	<!-- Output Signal for Alarm, WAKEUP -->
+	<RefParameter Comment="Output" CommentCH="输出选择" DefaultValue="RTC_OUTPUT_ALARM" Group="General" GroupCH="通用参数" Name="OutPut" Type="list" Visible="false">
+		<Condition Diagnostic="Alarms outputed" Expression = "Alarm_Outputed"/>
+		<PossibleValue Comment="Output Alarm" CommentCH="输出闹钟" Value="RTC_OUTPUT_ALARM"/>
+	</RefParameter>
+	<RefParameter Comment="Output" CommentCH="输出选择" DefaultValue="RTC_OUTPUT_DISABLE" Group="General" GroupCH="通用参数" Name="OutPut" Type="list" Visible="false">
+		<PossibleValue Comment="Output Disable" CommentCH="输出关闭" Value="RTC_OUTPUT_DISABLE"/>
+	</RefParameter>
+	<RefParameter Comment="Output Polarity" CommentCH="输出极性" DefaultValue="RTC_OUTPUT_POLARITY_HIGH" Group="General" GroupCH="通用参数" Name="OutPutPolarity" Type="list">
+		<Condition Diagnostic="" Expression="Alarm_Outputed"/>
+		<PossibleValue Comment="High" CommentCH="高" Value="RTC_OUTPUT_POLARITY_HIGH"/>
+		<PossibleValue Comment="Low" CommentCH="低" Value="RTC_OUTPUT_POLARITY_LOW"/>
+	</RefParameter>
+	<RefParameter Comment="Output Type" CommentCH="输出类型" DefaultValue="RTC_OUTPUT_TYPE_OPEN_DRAIN" Group="General" GroupCH="通用参数" Name="OutPutType" Type="list">
+		<Condition Diagnostic="" Expression="Alarm_Outputed"/>
+		<PossibleValue Comment="Opendrain" CommentCH="开漏输出" Value="RTC_OUTPUT_TYPE_OPEN_DRAIN"/>
+		<PossibleValue Comment="Pushpull" CommentCH="推挽输出" Value="RTC_OUTPUT_TYPE_PUSH_PULL"/>
+	</RefParameter>
+	
+	
+	<!-- Hours -->
+	<RefParameter Comment="Hours" CommentCH="小时" DefaultValue="0" Group="Calendar Time" GroupCH="日历-时间" Max="23" Min="0" Name="Hours" Type="integer"/>
+	
+	<!-- Minutes -->
+	<RefParameter Comment="Minutes" CommentCH="分钟" DefaultValue="0" Group="Calendar Time" GroupCH="日历-时间" Max="59" Min="0" Name="Minutes" Type="integer"/>
+	
+	<!-- Seconds -->
+	<RefParameter Comment="Seconds" CommentCH="秒钟" DefaultValue="0" Group="Calendar Time" GroupCH="日历-时间" Max="59" Min="0" Name="Seconds" Type="integer"/>	
+	
+	<!-- Calendar Date parameters -->
+	<RefParameter Comment="Year" CommentCH="年份" DefaultValue="2023" Group="Calendar Date" GroupCH="日历-日期" Max="2099" Min="1970" Name="Year" Type="integer"/>
+	
+	<RefParameter Comment="Month" CommentCH="月份" DefaultValue="1" Group="Calendar Date" GroupCH="日历-日期" Name="Month" Type="list">
+		<PossibleValue Comment="January" CommentCH="一月" Value="1" Semaphore="Jan"/>
+		<PossibleValue Comment="February" CommentCH="二月" Value="2" Semaphore="Feb"/>
+		<PossibleValue Comment="March" CommentCH="三月" Value="3" Semaphore="Mar"/>
+		<PossibleValue Comment="April" CommentCH="四月" Value="4" Semaphore="Apr"/>
+		<PossibleValue Comment="May" CommentCH="五月" Value="5" Semaphore="May"/>
+		<PossibleValue Comment="June" CommentCH="六月" Value="6" Semaphore="Jun"/>
+		<PossibleValue Comment="July" CommentCH="七月" Value="7" Semaphore="Jul"/>
+		<PossibleValue Comment="August" CommentCH="八月" Value="8" Semaphore="Aug"/>
+		<PossibleValue Comment="September" CommentCH="九月" Value="9" Semaphore="Sep"/>
+		<PossibleValue Comment="October" CommentCH="十月" Value="10" Semaphore="Oct"/>
+		<PossibleValue Comment="November" CommentCH="十一月" Value="11" Semaphore="Nov"/>
+		<PossibleValue Comment="December" CommentCH="十二月" Value="12" Semaphore="Dec"/>
+	</RefParameter>
+		
+	<RefParameter Comment="Date" CommentCH="日期" DefaultValue="1" Group="Calendar Date" GroupCH="日历-日期" Max="29" Min="1" Name="Date" Type="integer">
+		<Condition Diagnostic="" Expression="Feb &amp; Year = 0 |Year = 4 | Year = 8 | Year = 12 | Year = 16 | Year = 20 | Year = 24 | Year = 28 | Year = 32 |Year = 36 | Year = 40 | Year = 44 | Year = 48 | Year = 52 | Year = 56 | Year = 60 | Year = 64 | Year = 68 | Year = 72 | Year = 76 | Year = 80 | Year = 84 | Year = 88 | Year = 92 | Year = 96"/>
+	</RefParameter>
+	<RefParameter Comment="Date" CommentCH="日期" DefaultValue="1" Group="Calendar Date" GroupCH="日历-日期" Max="28" Min="1" Name="Date" Type="integer">
+		<Condition Diagnostic="" Expression="Feb"/>
+	</RefParameter>
+	<RefParameter Comment="Date" CommentCH="日期" DefaultValue="1" Group="Calendar Date" GroupCH="日历-日期" Max="30" Min="1" Name="Date" Type="integer">
+		<Condition Diagnostic="" Expression="Apr | Jun | Sep | Nov"/>
+	</RefParameter>
+	<RefParameter Comment="Date" CommentCH="日期" DefaultValue="1" Group="Calendar Date" GroupCH="日历-日期" Max="31" Min="1" Name="Date" Type="integer"/>
+	
+	<!-- Alarm parameters -->
+	<!-- Hours -->
+	<RefParameter Comment="Hours" CommentCH="小时" DefaultValue="0" Group="Alarm" GroupCH="闹钟" Max="23" Min="0" Name="Hours_A" Type="integer"/>
+	
+	<!-- Minutes -->
+	<RefParameter Comment="Minutes" CommentCH="分钟" DefaultValue="0" Group="Alarm" GroupCH="闹钟" Max="59" Min="0" Name="Minutes_A" Type="integer"/>
+	
+	<!-- Seconds -->
+	<RefParameter Comment="Seconds" CommentCH="秒钟" DefaultValue="0" Group="Alarm" GroupCH="闹钟" Max="59" Min="0" Name="Seconds_A" Type="integer"/>
+			
+	<RefParameter Comment="Year" CommentCH="年份" DefaultValue="2023" Group="Alarm" GroupCH="闹钟" Max="2099" Min="1970" Name="Year_A" Type="integer"/>
+	
+	<RefParameter Comment="Month" CommentCH="月份" DefaultValue="1" Group="Alarm" GroupCH="闹钟" Name="Month_A" Type="list">
+		<PossibleValue Comment="January" CommentCH="一月" Value="1" Semaphore="Jan"/>
+		<PossibleValue Comment="February" CommentCH="二月" Value="2" Semaphore="Feb"/>
+		<PossibleValue Comment="March" CommentCH="三月" Value="3" Semaphore="Mar"/>
+		<PossibleValue Comment="April" CommentCH="四月" Value="4" Semaphore="Apr"/>
+		<PossibleValue Comment="May" CommentCH="五月" Value="5" Semaphore="May"/>
+		<PossibleValue Comment="June" CommentCH="六月" Value="6" Semaphore="Jun"/>
+		<PossibleValue Comment="July" CommentCH="七月" Value="7" Semaphore="Jul"/>
+		<PossibleValue Comment="August" CommentCH="八月" Value="8" Semaphore="Aug"/>
+		<PossibleValue Comment="September" CommentCH="九月" Value="9" Semaphore="Sep"/>
+		<PossibleValue Comment="October" CommentCH="十月" Value="10" Semaphore="Oct"/>
+		<PossibleValue Comment="November" CommentCH="十一月" Value="11" Semaphore="Nov"/>
+		<PossibleValue Comment="December" CommentCH="十二月" Value="12" Semaphore="Dec"/>
+	</RefParameter>
+	
+	<RefParameter Comment="Date" CommentCH="日期" DefaultValue="1" Group="Alarm" GroupCH="闹钟" Max="31" Min="1" Name="Date_A" Type="integer"/>
+
+	<RefParameter Comment="Alarm" CommentCH="闹钟" DefaultValue="RTC_ALARM" Group="Alarm" GroupCH="闹钟" Name="Alarm" Type="list" Visible="false">
+		<PossibleValue Comment="ALARM" CommentCH="闹钟" Value="RTC_ALARM"/>
+	</RefParameter>
+		
+	<RefParameter Comment="Interrupt" CommentCH="中断" DefaultValue="DISABLE" Group="Alarm" GroupCH="闹钟" Name="InterruptAlarm" Type="list">
+		<Condition Diagnostic="" Expression = "RTC_ALARM_INTERRUPT"/>
+		<PossibleValue Comment="Disable" CommentCH="关闭" Value="DISABLE"/>
+		<PossibleValue Comment="Enable" CommentCH="开启" Value="ENABLE"/>
+	</RefParameter>
+	
+	<!-- ################################## Tamper parameters ##################################################-->
+	<RefParameter Comment="Tamper" CommentCH="入侵" DefaultValue="RTC_TAMPER" Group="Tamper" GroupCH="入侵" Name="Tamper" Type="list" Visible="false">
+		<PossibleValue Comment="Tamper" CommentCH="入侵" Value="RTC_TAMPER"/>
+	</RefParameter>
+	<RefParameter Comment="Tamper Trigger Edge" CommentCH="入侵检测有效电平" DefaultValue="BPR_TAMPER_PIN_ACTIVE_LOW" Group="Tamper" GroupCH="入侵" Name="Tamper_Trigger_Edge" Type="list">
+		<PossibleValue Comment="Low Level" CommentCH="低电平" Value="BPR_TAMPER_PIN_ACTIVE_LOW"/>
+		<PossibleValue Comment="High Level" CommentCH="高电平" Value="BPR_TAMPER_PIN_ACTIVE_HIGH"/>
+	</RefParameter>
+		
+	<RefParameter Comment="Interrupt" CommentCH="中断" DefaultValue="DISABLE" Group="Tamper" GroupCH="入侵" Name="InterruptTamper" Type="list">
+		<Condition Diagnostic="" Expression = "RTC_TAMPER_INTERRUPT"/>
+		<PossibleValue Comment="Disable" CommentCH="关闭" Value="DISABLE"/>
+		<PossibleValue Comment="Enable" CommentCH="开启" Value="ENABLE"/>
+	</RefParameter>
+	
+	<RefParameter Comment="RTC OUTPUT" CommentCH="RTC事件输出" DefaultValue="BPR_RTC_OUTPUT_CLOCK_CAL_BEFORE" Group="RTC Event output" GroupCH="RTC事件输出" Name="RTCOutput" Type="list" Visible="false">
+		<Condition Diagnostic="" Expression="RTC_OUTPUT_CLOCK_CAL_BEFORE"/>
+		<PossibleValue Comment="output clock before calibration" CommentCH="校准前的时钟 64 分频输出" Value="BPR_RTC_OUTPUT_CLOCK_CAL_BEFORE"/>
+	</RefParameter>
+	
+	<RefParameter Comment="RTC OUTPUT" CommentCH="RTC事件输出" DefaultValue="BPR_RTC_OUTPUT_SECOND" Group="RTC Event output" GroupCH="RTC事件输出" Name="RTCOutput" Type="list" Visible="false">
+		<Condition Diagnostic="" Expression="RTC_OUTPUT_SECOND"/>
+		<PossibleValue Comment="output second event with pluse mode" CommentCH="秒钟事件脉冲输出" Value="BPR_RTC_OUTPUT_SECOND"/>
+	</RefParameter>
+	
+	<RefParameter Comment="RTC OUTPUT" CommentCH="RTC事件输出" DefaultValue="BPR_RTC_OUTPUT_ALARM" Group="RTC Event output" GroupCH="RTC事件输出" Name="RTCOutput" Type="list" Visible="false">
+		<Condition Diagnostic="" Expression="RTC_OUTPUT_ALARM"/>
+		<PossibleValue Comment="output alarm event with pluse mode" CommentCH="闹钟事件脉冲输出" Value="BPR_RTC_OUTPUT_ALARM"/>
+	</RefParameter>
+	
+	<RefParameter Comment="RTC OUTPUT" CommentCH="RTC事件输出" DefaultValue="BPR_RTC_OUTPUT_CLOCK_CAL_AFTER" Group="RTC Event output" GroupCH="RTC事件输出" Name="RTCOutput" Type="list" Visible="false">
+		<Condition Diagnostic="" Expression="RTC_OUTPUT_CLOCK_CAL_AFTER"/>
+		<PossibleValue Comment="output clock after calibration" CommentCH="校准后的时钟 64 分频输出" Value="BPR_RTC_OUTPUT_CLOCK_CAL_AFTER"/>
+	</RefParameter>
+	
+	<RefParameter Comment="RTC OUTPUT" CommentCH="RTC事件输出" DefaultValue="BPR_RTC_OUTPUT_NONE" Group="RTC Event output" GroupCH="RTC事件输出" Name="RTCOutput" Type="list" Visible="false">
+		<PossibleValue Comment="None" CommentCH="无" Value="BPR_RTC_OUTPUT_NONE"/>
+	</RefParameter>
+	
+	<!-- RefMode for intern -->
+	<RefMode Name="RTC_Enabled" BaseMode="RTC_Enabled">
+		<!-- Basic Parameters -->
+		<Parameter Name="AsynchPrediv"/>
+		<Parameter Name="OutPut"/>
+		<Parameter Name="OutPutPolarity"/>
+		<Parameter Name="OutPutType"/>
+	</RefMode>
+	
+	<RefMode Name="RTC_Calendar" BaseMode="RTC_Calendar">
+		<!-- Calendar Settings --> 
+		<Parameter Name="Hours"/>
+		<Parameter Name="Minutes"/>
+		<Parameter Name="Seconds"/>
+		<!-- Parameter Name="SubSeconds"/-->
+		<Parameter Name="TimeFormat"/>
+		<Parameter Name="DayLightSaving"/>
+		<Parameter Name="StoreOperation"/>
+		<Parameter Name="Year"/>
+		<Parameter Name="Month"/>
+		<Parameter Name="Date"/>		
+	</RefMode>
+	
+	<RefMode BaseMode="RTC OUTPUT" Name="RTC_OUTPUT_CLOCK_CAL_BEFORE">	
+		<Parameter Name="RTCOutput"/>		
+	</RefMode>
+	<RefMode BaseMode="RTC OUTPUT" Name="RTC_OUTPUT_SECOND">	
+		<Parameter Name="RTCOutput"/>		
+	</RefMode>
+	<RefMode BaseMode="RTC OUTPUT" Name="RTC_OUTPUT_ALARM">	
+		<Parameter Name="RTCOutput"/>		
+	</RefMode>
+	<RefMode BaseMode="RTC OUTPUT" Name="RTC_OUTPUT_CLOCK_CAL_AFTER">	
+		<Parameter Name="RTCOutput"/>		
+	</RefMode>
+	
+	<!-- Alarm-->
+	<RefMode BaseMode="Alarm" Name="Alarm">
+		<!-- Basic Parameters -->
+		<Parameter Name="Hours_A"/>
+		<Parameter Name="Minutes_A"/>
+		<Parameter Name="Seconds_A"/>
+		<Parameter Name="Year_A"/>
+		<Parameter Name="Month_A"/>
+		<Parameter Name="Date_A"/>
+		<Parameter Name="InterruptAlarm"/>
+		<Parameter Name="Alarm"/>
+	</RefMode>
+ 		
+	<RefMode BaseMode="Tamper" Name="Tamper">
+		<Parameter Name="Filter"/>
+		<Parameter Name="Tamper"/>
+		<Parameter Name="Tamper_Trigger_Edge"/>
+		<Parameter Name="InterruptTamper"/>
+	</RefMode>
+
+	<!--#####################################################################################################-->
+	<!--############################################# Modes Definition ######################################-->
+	<!--#####################################################################################################-->
+	<ModeLogicOperator Name="OR">
+	
+		<Mode Name="RTC_Enabled" UserName="Activate Clock Source" UserNameCH="开启时钟源">
+			<ModeLogicOperator Name="XOR">
+				<Mode Name="RTC_Enabled" UserName="Activate Clock Source" UserNameCH="开启时钟源">
+					<SignalLogicalOp Name="AND">
+						<Signal Name="VS_RTC_Activate"/>
+					</SignalLogicalOp>
+					<Semaphore>RTC_ENABLED</Semaphore>
+				</Mode>
+			</ModeLogicOperator>
+		</Mode>
+		
+		<Mode Name="RTC_Calendar" UserName="Activate Calendar" UserNameCH="开启日历">
+			<Condition Expression="RTC_ENABLED" Diagnostic="Need to select &quot;Activate Clock Source&quot;" DiagnosticCH="需要 &quot;开启时钟源&quot;"/>
+			<ModeLogicOperator Name="XOR">
+				<Mode Name="RTC_Calendar" UserName="Activate Calendar" UserNameCH="开启日历">
+					<SignalLogicalOp Name="AND">
+						<Signal Name="VS_RTC_Calendar"/>
+					</SignalLogicalOp>
+					<Semaphore>RTC_CALENDAR</Semaphore>
+				</Mode>
+			</ModeLogicOperator>
+		</Mode>
+		
+		<Mode Name="Alarm" UserName="Alarm" UserNameCH="闹钟">
+			<Condition Expression="RTC_CALENDAR" Diagnostic="Need to select &quot;Activate Calendar&quot;" DiagnosticCH="需要 &quot;开启日历&quot;"/>
+			<ModeLogicOperator Name="XOR">
+				<Mode Name="Alarm" UserName="Internal Alarm" UserNameCH="闹钟">
+					<SignalLogicalOp Name="AND">
+						<Signal Name="VS_RTC_Alarm_Intern"/>
+					</SignalLogicalOp>
+					<Semaphore>Alarm_Intern</Semaphore>
+					<Semaphore>RTC_ALARM_INTERRUPT</Semaphore>
+				</Mode>
+			</ModeLogicOperator>			
+		</Mode>
+		
+		<Mode Name="RTC OUTPUT" UserName="RTC Event output" UserNameCH="RTC事件输出">
+            <Condition Expression="RTC_ENABLED &amp; !RTC_TAMPER" 
+            	                   Diagnostic="(1) Need to select &quot;Activate Clock Source&quot;&#x000A;(2) &quot;RTC_TAMPER&quot; not used by other function;" 
+            	                   DiagnosticCH="(1) 需要 &quot;开启时钟源&quot;&#x000A;(2) &quot;RTC_TAMPER&quot; 未被其他功能使用;"/> 
+            <ModeLogicOperator Name="XOR">			           
+				<Mode Name="RTC_OUTPUT_CLOCK_CAL_BEFORE" UserName="output clock before calibration" UserNameCH="校准前的时钟 64 分频输出">
+					<SignalLogicalOp Name="AND">
+						<Signal Name="TAMPER"/>
+					</SignalLogicalOp>
+					<Semaphore>RTC_OUTPUT_CLOCK_CAL_BEFORE</Semaphore>
+					<Semaphore>RTC_OUTPUT_TAMPER</Semaphore>
+                </Mode>   
+				<Mode Name="RTC_OUTPUT_SECOND" UserName="output second event with pluse mode" UserNameCH="秒钟事件脉冲输出">
+					<SignalLogicalOp Name="AND">
+						<Signal Name="TAMPER"/>
+					</SignalLogicalOp>
+					<Semaphore>RTC_OUTPUT_SECOND</Semaphore>
+					<Semaphore>RTC_OUTPUT_TAMPER</Semaphore>
+                </Mode>   
+				<Mode Name="RTC_OUTPUT_ALARM" UserName="output alarm event with pluse mode" UserNameCH="闹钟事件脉冲输出">
+					<Condition Expression="Alarm_Intern" Diagnostic="Need to select &quot;Activate Alarm&quot;" DiagnosticCH="需要 &quot;开启闹钟&quot;"/>
+					<SignalLogicalOp Name="AND">
+						<Signal Name="TAMPER"/>
+					</SignalLogicalOp>
+					<Semaphore>RTC_OUTPUT_ALARM</Semaphore>
+					<Semaphore>RTC_OUTPUT_TAMPER</Semaphore>
+                </Mode>   
+				<Mode Name="RTC_OUTPUT_CLOCK_CAL_AFTER" UserName="output clock after calibration" UserNameCH="校准后的时钟 64 分频输出">
+					<SignalLogicalOp Name="AND">
+						<Signal Name="TAMPER"/>
+					</SignalLogicalOp>
+					<Semaphore>RTC_OUTPUT_CLOCK_CAL_AFTER</Semaphore>
+					<Semaphore>RTC_OUTPUT_TAMPER</Semaphore>
+                </Mode>   			
+            </ModeLogicOperator>
+        </Mode>
+				
+		<Mode Name="Tamper" UserName="Tamper Enable" UserNameCH="入侵检测开启">
+         <Condition Expression="RTC_ENABLED &amp; !RTC_OUTPUT_TAMPER" 
+         	                 Diagnostic="(1) Need to select &quot;Activate Clock Source&quot;&#x000A;(2) &quot;RTC_TAMPER&quot; not used by other function;" 
+            	                 DiagnosticCH="(1) 需要 &quot;开启时钟源&quot;&#x000A;(2) 需要 &quot;RTC_TAMPER&quot; 未被其他功能使用;"/>         
+			<ModeLogicOperator Name="XOR">
+				<Mode Name="Tamper" UserName="Tamper Enable" UserNameCH="入侵检测开启">
+					<SignalLogicalOp Name="AND">
+						<Signal Name="TAMPER"/>
+					</SignalLogicalOp>
+				</Mode>
+			</ModeLogicOperator>
+			<Semaphore>RTC_TAMPER_INTERRUPT</Semaphore>
+			<Semaphore>RTC_TAMPER</Semaphore>
+		</Mode>		
+	</ModeLogicOperator>
+
+	<RefSignal IOMode="System" Name="TAMPER"/>
+	<RefSignal IOMode="AlternateFunctionPushPull" Name="REFIN"/>
+	<!-- Virtual RefSignals-->
+	<RefSignal Name="VS_RTC_Activate" Virtual="true"/>
+	<RefSignal Name="VS_RTC_Calendar" Virtual="true"/>
+	<RefSignal Name="VS_RTC_Alarm_Intern" Virtual="true"/>
+	<Semaphore>RTCUsed_ForRCC</Semaphore>
+</IP>

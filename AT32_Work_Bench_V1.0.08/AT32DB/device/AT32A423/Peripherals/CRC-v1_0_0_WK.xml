@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<IP>
+    <About>CRC calculation unit</About>
+    <AboutCH>CRC 计算单元</AboutCH>
+	
+    <!-- Generic RefParameters for CRC --> 
+    <RefParameter Comment="Instance" DefaultValue="CRC" Name="Instance" Type="" Visible="false"/>
+
+	
+    <RefParameter Comment="Init Value For CRC computation" CommentCH="CRC计算初始值" DefaultValue="FFFFFFFF" Group="Basic Parameters" GroupCH="基本参数" Max="FFFFFFFF" Min="0" Name="InitValue" Type="hexadecimal">        
+    </RefParameter>
+    
+    <RefParameter Comment="CRC Polynomial Length" CommentCH="多项式长度" DefaultValue="CRC_POLY_SIZE_32B" Group="Basic Parameters" GroupCH="基本参数" Name="CRCPolynomialLength" Type="list">
+        <PossibleValue Comment="32-bit" CommentCH="32位" Value="CRC_POLY_SIZE_32B"/>
+        <PossibleValue Comment="16-bit" CommentCH="16位" Value="CRC_POLY_SIZE_16B"/>
+        <PossibleValue Comment="8-bit" CommentCH="8位" Value="CRC_POLY_SIZE_8B"/>
+        <PossibleValue Comment="7-bit" CommentCH="7位" Value="CRC_POLY_SIZE_7B"/>
+    </RefParameter>
+    
+    <RefParameter Comment="CRC Polynomial Value" CommentCH="多项式值" DefaultValue="04C11DB7" Group="Basic Parameters" GroupCH="基本参数" Max="FFFFFFFF" Min="0" Name="CRCPolynomialValue_32" Type="hexadecimal">
+		<Condition Diagnostic="" Expression="CRCPolynomialLength = CRC_POLY_SIZE_32B"/>
+	</RefParameter>
+	
+	<RefParameter Comment="CRC Polynomial Value" CommentCH="多项式值" DefaultValue="1DB7" Group="Basic Parameters" GroupCH="基本参数" Max="FFFF" Min="0" Name="CRCPolynomialValue_16" Type="hexadecimal">
+		<Condition Diagnostic="" Expression="CRCPolynomialLength = CRC_POLY_SIZE_16B"/>
+	</RefParameter>
+	
+	<RefParameter Comment="CRC Polynomial Value" CommentCH="多项式值" DefaultValue="B7" Group="Basic Parameters" GroupCH="基本参数" Max="FF" Min="0" Name="CRCPolynomialValue_8" Type="hexadecimal">
+		<Condition Diagnostic="" Expression="CRCPolynomialLength = CRC_POLY_SIZE_8B"/>
+	</RefParameter>
+	
+	<RefParameter Comment="CRC Polynomial Value" CommentCH="多项式值" DefaultValue="37" Group="Basic Parameters" GroupCH="基本参数" Max="7F" Min="0" Name="CRCPolynomialValue_7" Type="hexadecimal">
+		<Condition Diagnostic="" Expression="CRCPolynomialLength = CRC_POLY_SIZE_7B"/>
+	</RefParameter>
+	
+    <RefParameter Comment="Input Data Reverse Mode" CommentCH="输入数据翻转模式" DefaultValue="CRC_REVERSE_INPUT_NO_AFFECTE" Group="Advanced Parameters" GroupCH="高级参数" Name="InputDataReverseMode" Type="list">
+        <PossibleValue Comment="None Reverse" CommentCH="无翻转" Value="CRC_REVERSE_INPUT_NO_AFFECTE"/>
+        <PossibleValue Comment="Byte Reverse" CommentCH="字节翻转" Value="CRC_REVERSE_INPUT_BY_BYTE"/>
+        <PossibleValue Comment="Halfword Reverse" CommentCH="半字翻转" Value="CRC_REVERSE_INPUT_BY_HALFWORD"/>
+        <PossibleValue Comment="Word Reverse" CommentCH="全字翻转" Value="CRC_REVERSE_INPUT_BY_WORD"/>
+    </RefParameter>
+    <RefParameter Comment="Output Data Reverse Mode" CommentCH="输出数据翻转模式" DefaultValue="CRC_REVERSE_OUTPUT_NO_AFFECTE" Group="Advanced Parameters" GroupCH="高级参数" Name="OutputDataReverseMode" Type="list">
+        <PossibleValue Comment="None Reverse" CommentCH="无翻转" Value="CRC_REVERSE_OUTPUT_NO_AFFECTE"/>
+        <PossibleValue Comment="Word Reverse" CommentCH="全字翻转" Value="CRC_REVERSE_OUTPUT_DATA"/>
+    </RefParameter>
+	
+    <RefMode Abstract="true" BaseMode="CRC_State" Name="CRC_State">
+        <Parameter Name="InitValue"/>
+        <Parameter Name="CRCPolynomialLength"/>
+        <Parameter Name="CRCPolynomialValue_32"/>
+        <Parameter Name="CRCPolynomialValue_16"/>
+        <Parameter Name="CRCPolynomialValue_8"/>
+        <Parameter Name="CRCPolynomialValue_7"/>
+        <Parameter Name="InputDataReverseMode"/>
+        <Parameter Name="OutputDataReverseMode"/>
+    </RefMode>
+	
+
+    <!-- ModeLogicOperator for CRC -->
+    <ModeLogicOperator Name="OR">
+        <Mode Name="CRC_State" UserName="Activated" UserNameCH="启用">
+            <ModeLogicOperator Name="XOR">
+                <Mode Name="CRC_State" UserName="Activated" UserNameCH="启用">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="VS_CRC"/>
+                    </SignalLogicalOp>
+                </Mode>
+            </ModeLogicOperator>
+            <Semaphore>$IpInstance</Semaphore>
+        </Mode>
+    </ModeLogicOperator>
+	
+    <!-- RefSignal for CRC -->
+    <RefSignal Name="VS_CRC" Virtual="true"/>
+    	<!-- Clock Semaphore for this IP. -->
+    <Semaphore>CRC_ForRCC</Semaphore>
+</IP>

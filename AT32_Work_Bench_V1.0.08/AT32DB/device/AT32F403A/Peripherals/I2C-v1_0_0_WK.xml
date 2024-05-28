@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<IP>
+    <About>Inter integrated circuit interface</About>
+    <AboutCH>内部集成电路接口</AboutCH>
+    
+    <RefParameter Comment="Instance" DefaultValue="I2C$Index" Name="Instance" Type="" Visible="false"/>
+    
+    <!-- I2C -->
+    <RefParameter Comment="I2C Speed Mode" CommentCH="I2C速度模式" DefaultValue="I2C_Standard" Group="Master Features" GroupCH="主机参数" Name="I2C_Mode" Type="list">
+        <PossibleValue Comment="Standard Mode" CommentCH="标准模式" Value="I2C_Standard"/>
+        <PossibleValue Comment="Fast Mode" CommentCH="快速模式" Value="I2C_Fast"/>
+    </RefParameter>
+    
+    <RefParameter Comment="I2C Clock Speed (Hz)" CommentCH="I2C时钟频率 (Hz)" DefaultValue="100000" Group="Master Features" GroupCH="主机参数" Max="100000" Min="1" Name="ClockSpeed" Type="integer">
+    	  <Condition Expression="I2C_Mode = I2C_Standard"/>  
+    </RefParameter>
+    <RefParameter Comment="I2C Clock Speed (Hz)" CommentCH="I2C时钟频率 (Hz)" DefaultValue="400000" Group="Master Features" GroupCH="主机参数" Max="400000" Min="100001" Name="ClockSpeed1" Type="integer">
+    	  <Condition Expression="I2C_Mode = I2C_Fast"/>  
+    </RefParameter>
+    <RefParameter Comment="I2C Clock Speed (Hz)" CommentCH="I2C时钟频率 (Hz)" DefaultValue="100000" Group="Master Features" GroupCH="主机参数" Max="100000" Min="1" Name="ClockSpeed" Type="integer">
+    	<Condition Expression="$IpInstance_SMBUSF1_Enable"/>  
+    </RefParameter>
+    
+    <RefParameter Comment="Fast Mode Duty Cycle" CommentCH="快速模式占空比" DefaultValue="I2C_DUTYCYCLE_2" Group="Master Features" GroupCH="主机参数" Name="DutyCycle" Type="list" Visible="true">
+        <Condition Expression="I2C_Mode = I2C_Fast"/>                 
+        <PossibleValue Comment="Duty cycle Tlow/Thigh = 2" CommentCH="低电平与高电平比值为2" Value="I2C_FSMODE_DUTY_2_1"/>
+        <PossibleValue Comment="Duty cycle Tlow/Thigh = 16/9" CommentCH="低电平与高电平比值为16/9" Value="I2C_FSMODE_DUTY_16_9"/>
+    </RefParameter>
+    <RefParameter Comment="Clock Stretch Mode" CommentCH="时钟延展模式" DefaultValue="TRUE" Group="Slave Features" GroupCH="从机参数" Name="StretchMode" Type="list">
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE"/>
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE"/>
+    </RefParameter>
+    
+    <RefParameter Comment="Address mode" CommentCH="地址模式" DefaultValue="I2C_ADDRESS_MODE_7BIT" Group="Slave Features" GroupCH="从机参数" Name="AddressingMode" Type="list">
+        <Condition Diagnostic="When Dual address is enabled we can have a primary address only on 7 bits length" Expression="DualAddressMode = ENABLE"/>  
+        <PossibleValue Comment="7-bit" CommentCH="7位地址" Value="I2C_ADDRESS_MODE_7BIT"/>
+    </RefParameter>
+    <RefParameter Comment="Address mode" CommentCH="地址模式" DefaultValue="I2C_ADDRESS_MODE_7BIT" Group="Slave Features" GroupCH="从机参数" Name="AddressingMode" Type="list">
+        <PossibleValue Comment="7-bit" CommentCH="7位地址" Value="I2C_ADDRESS_MODE_7BIT"/>
+        <PossibleValue Comment="10-bit" CommentCH="10位地址" Value="I2C_ADDRESS_MODE_10BIT"/>       
+    </RefParameter>
+    
+    <RefParameter Comment="Dual Address mode" CommentCH="双地址模式" DefaultValue="I2C_DUALADDRESS_DISABLE" Group="Slave Features" GroupCH="从机参数" Name="DualAddressMode" Type="list">
+        <Condition Diagnostic="When primary address is 7 bits length we can have a dual address" Expression="AddressingMode = I2C_ADDRESS_MODE_7BIT"/>  
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="DISABLE"/>
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="ENABLE"/>
+    </RefParameter>    
+    <RefParameter Comment="Dual Address mode" CommentCH="双地址模式" DefaultValue="I2C_DUALADDRESS_DISABLE" Group="Slave Features" GroupCH="从机参数" Name="DualAddressMode" Type="list">         
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="DISABLE"/>       
+    </RefParameter>
+    
+    <RefParameter Comment="Own address 1" CommentCH="本机地址1" DefaultValue="0" Group="Slave Features" GroupCH="从机参数" Max="7F" Min="0" Name="OwnAddress" Type="hexadecimal">
+        <Condition Diagnostic="Address value from 0x00 to 0x7F" Expression="AddressingMode = I2C_ADDRESS_MODE_7BIT"/>
+    </RefParameter> 
+    
+    <RefParameter Comment="Own address 1" CommentCH="本机地址1" DefaultValue="0" Group="Slave Features" GroupCH="从机参数" Max="7F" Min="0" Name="OwnAddress" Type="hexadecimal">
+        <Condition Diagnostic="Address value from 0x00 to 0x7F" Expression="DualAddressMode = ENABLE"/>    
+    </RefParameter>  
+    <RefParameter Comment="Own address 1" CommentCH="本机地址1" DefaultValue="0" Group="Slave Features" GroupCH="从机参数" Max="3FF" Min="0" Name="OwnAddress" Type="hexadecimal">       
+    </RefParameter>
+    
+    <!-- Secondary slave address -->
+    <RefParameter Comment="Own address 2" CommentCH="本机地址2" DefaultValue="0" Group="Slave Features" GroupCH="从机参数" Max="7F" Min="0" Name="OwnAddress2" Type="hexadecimal" Visible="true">
+    	  <Condition Diagnostic="Address value from 0x00 to 0x7F" Expression="DualAddressMode = ENABLE"/> 
+    </RefParameter>
+    
+     <RefParameter Comment="General Call address detection" CommentCH="广播地址识别" DefaultValue="I2C_GENERALCALL_DISABLE" Group="Slave Features" GroupCH="从机参数" Name="GeneralCallMode" Type="list">
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE"/>
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE"/>
+    </RefParameter>
+    
+    <RefParameter Comment="Smbus Mode" CommentCH="Smbus模式" DefaultValue="I2C_SMBUS_MODE_HOST" Group="SMBus Features" GroupCH="SMBus参数" Name="SMBusPeripheralMode" Type="list">
+        <PossibleValue Comment="Smbus Master " CommentCH="SMBus主机" Value="I2C_SMBUS_MODE_HOST"/>
+        <PossibleValue Comment="Smbus Slave" CommentCH="SMBus设备" Value="I2C_SMBUS_MODE_DEVICE"/>
+        <PossibleValue Comment="Smbus Slave + ARP" CommentCH="SMBus设备 + ARP" Value="I2C_SMBUS_MODE_DEVICE_ARP"/>
+    </RefParameter>
+    
+   
+     	
+    <!-- RefMode for I2C -->
+    <RefMode BaseMode="I2C" Name="I2C">
+        <Parameter Name="I2C_Mode"/> 
+        <Parameter Name="ClockSpeed"/> 
+        <Parameter Name="ClockSpeed1"/> 
+        <Parameter Name="DutyCycle"/>
+        <Parameter Name="StretchMode"/> 
+        <Parameter Name="AddressingMode"/>
+        <Parameter Name="DualAddressMode"/>          
+        <Parameter Name="OwnAddress"/>
+        <Parameter Name="OwnAddress2"/>             
+        <Parameter Name="GeneralCallMode"/> 
+    </RefMode>
+    <!-- RefMode for SMBus -->
+    <RefMode BaseMode="I2C" Name="SMBus-Alert-mode">
+        <Parameter Name="ClockSpeed"/>       
+        <Parameter Name="DutyCycle"/>
+        <Parameter Name="StretchMode"/> 
+        <Parameter Name="AddressingMode"/>
+        <Parameter Name="DualAddressMode"/>          
+        <Parameter Name="OwnAddress"/>
+        <Parameter Name="OwnAddress2"/>             
+        <Parameter Name="GeneralCallMode"/>
+        <Parameter Name="SMBusPeripheralMode"/> 
+    </RefMode>
+    <!-- RefMode for SMBus -->
+    <RefMode BaseMode="I2C" Name="SMBus-two-wire-Interface">
+        <Parameter Name="ClockSpeed"/>       
+        <Parameter Name="DutyCycle"/>
+        <Parameter Name="StretchMode"/> 
+        <Parameter Name="AddressingMode"/>
+        <Parameter Name="DualAddressMode"/>          
+        <Parameter Name="OwnAddress"/>
+        <Parameter Name="OwnAddress2"/>             
+        <Parameter Name="GeneralCallMode"/>
+        <Parameter Name="SMBusPeripheralMode"/>   
+    </RefMode>
+    
+    <!-- Signals -->
+    <ModeLogicOperator Name="OR">
+        <Mode Name="I2C" UserName="I2C" UserNameCH="I2C">
+            <ModeLogicOperator Name="XOR">
+                <Mode Name="I2C" UserName="I2C" UserNameCH="I2C">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="SCL"/>
+                        <Signal Name="SDA"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_Dma</Semaphore>
+                </Mode>
+                 <Mode Name="SMBus-Alert-mode" UserName="SMBus+Alert mode" UserNameCH="SMBus+提醒响应 模式">
+                    <Semaphore>$IpInstance_SMBUSF1_Enable</Semaphore> 
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="SCL"/>
+                        <Signal Name="SDA"/>
+                        <Signal Name="SMBA"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_Dma</Semaphore>
+                </Mode>
+                <Mode Name="SMBus-two-wire-Interface" UserName="SMBus mode" UserNameCH="SMBus 模式">
+                    <Semaphore>$IpInstance_SMBUSF1_Enable</Semaphore>
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="SCL"/>
+                        <Signal Name="SDA"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_Dma</Semaphore>
+                </Mode>
+            </ModeLogicOperator>
+        </Mode>
+    </ModeLogicOperator>
+    <RefSignal IOMode="MuxOutputOpenDrain" Name="SCL"/>        
+    <RefSignal IOMode="MuxOutputOpenDrain" Name="SDA"/>       
+    <RefSignal IOMode="MuxOutputOpenDrain" Name="SMBA"/>
+    <Semaphore>$IpInstanceUsed_ForRCC</Semaphore>
+</IP>

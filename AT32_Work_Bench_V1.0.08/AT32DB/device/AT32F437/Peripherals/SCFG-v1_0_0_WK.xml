@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<IP>
+    <About>System configuration controller</About>
+    <AboutCH>系统配置控制器</AboutCH>
+    
+    <RefParameter Name="PF15 Ultra Strength" Comment="PF15 Ultra high sourcing/sinking strength" CommentCH="PF15 超高电流推动/吸入能力" DefaultValue="FALSE" Type="list" Group="" Visible="false">
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE" />
+    </RefParameter>
+    <RefParameter Name="PF15 Ultra Strength" Comment="PF15 Ultra high sourcing/sinking strength" CommentCH="PF15 超高电流推动/吸入能力" DefaultValue="TRUE" Type="list" Group="" Visible="false">
+        <Condition Diagnostic="" Expression="$IpInstance_PF15Ultra"/>
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE" />
+    </RefParameter>
+    
+    <RefParameter Name="PF14 Ultra Strength" Comment="PF14 Ultra high sourcing/sinking strength" CommentCH="PF14 超高电流推动/吸入能力" DefaultValue="FALSE" Type="list" Group="" Visible="false">
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE" />
+    </RefParameter>
+    <RefParameter Name="PF14 Ultra Strength" Comment="PF14 Ultra high sourcing/sinking strength" CommentCH="PF14 超高电流推动/吸入能力" DefaultValue="TRUE" Type="list" Group="" Visible="false">
+        <Condition Diagnostic="" Expression="$IpInstance_PF14Ultra"/>
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE" />
+    </RefParameter>
+    
+    <RefParameter Name="PD15 Ultra Strength" Comment="PD15 Ultra high sourcing/sinking strength" CommentCH="PD15 超高电流推动/吸入能力" DefaultValue="FALSE" Type="list" Group="" Visible="false">
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE" />
+    </RefParameter>
+    <RefParameter Name="PD15 Ultra Strength" Comment="PD15 Ultra high sourcing/sinking strength" CommentCH="PD15 超高电流推动/吸入能力" DefaultValue="TRUE" Type="list" Group="" Visible="false">
+        <Condition Diagnostic="" Expression="$IpInstance_PD15Ultra"/>
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE" />
+    </RefParameter>
+    
+    <RefParameter Name="PD14 Ultra Strength" Comment="PD14 Ultra high sourcing/sinking strength" CommentCH="PD14 超高电流推动/吸入能力" DefaultValue="FALSE" Type="list" Group="" Visible="false">
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE" />
+    </RefParameter>
+    <RefParameter Name="PD14 Ultra Strength" Comment="PD14 Ultra high sourcing/sinking strength" CommentCH="PD14 超高电流推动/吸入能力" DefaultValue="TRUE" Type="list" Group="" Visible="false">
+        <Condition Diagnostic="" Expression="$IpInstance_PD14Ultra"/>
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE" />
+    </RefParameter>
+    
+    <RefParameter Name="PD13 Ultra Strength" Comment="PD13 Ultra high sourcing/sinking strength" CommentCH="PD13 超高电流推动/吸入能力" DefaultValue="FALSE" Type="list" Group="" Visible="false">
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE" />
+    </RefParameter>
+    <RefParameter Name="PD13 Ultra Strength" Comment="PD13 Ultra high sourcing/sinking strength" CommentCH="PD13 超高电流推动/吸入能力" DefaultValue="TRUE" Type="list" Group="" Visible="false">
+        <Condition Diagnostic="" Expression="$IpInstance_PD13Ultra"/>
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE" />
+    </RefParameter>
+    
+    <RefParameter Name="PD12 Ultra Strength" Comment="PD12 Ultra high sourcing/sinking strength" CommentCH="PD12 超高电流推动/吸入能力" DefaultValue="FALSE" Type="list" Group="" Visible="false">
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE" />
+    </RefParameter>
+    <RefParameter Name="PD12 Ultra Strength" Comment="PD12 Ultra high sourcing/sinking strength" CommentCH="PD12 超高电流推动/吸入能力" DefaultValue="TRUE" Type="list" Group="" Visible="false">
+        <Condition Diagnostic="" Expression="$IpInstance_PD12Ultra"/>
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE" />
+    </RefParameter>
+    
+     <RefParameter Name="PB10 Ultra Strength" Comment="PB10 Ultra high sourcing/sinking strength" CommentCH="PB10 超高电流推动/吸入能力" DefaultValue="FALSE" Type="list" Group="" Visible="false">
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE" />
+    </RefParameter>
+    <RefParameter Name="PB10 Ultra Strength" Comment="PB10 Ultra high sourcing/sinking strength" CommentCH="PB10 超高电流推动/吸入能力" DefaultValue="TRUE" Type="list" Group="" Visible="false">
+        <Condition Diagnostic="" Expression="$IpInstance_PB10Ultra"/>
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE" />
+    </RefParameter>
+    
+    <RefParameter Name="PB9 Ultra Strength" Comment="PB9 Ultra high sourcing/sinking strength" CommentCH="PB9 超高电流推动/吸入能力" DefaultValue="FALSE" Type="list" Group="" Visible="false">
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE" />
+    </RefParameter>
+    <RefParameter Name="PB9 Ultra Strength" Comment="PB9 Ultra high sourcing/sinking strength" CommentCH="PB9 超高电流推动/吸入能力" DefaultValue="TRUE" Type="list" Group="" Visible="false">
+        <Condition Diagnostic="" Expression="$IpInstance_PB9Ultra"/>
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE" />
+    </RefParameter>
+    
+    <RefParameter Name="PB3 Ultra Strength" Comment="PB3 Ultra high sourcing/sinking strength" CommentCH="PB3 超高电流推动/吸入能力" DefaultValue="FALSE" Type="list" Group="" Visible="false">
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE" />
+    </RefParameter>
+    <RefParameter Name="PB3 Ultra Strength" Comment="PB3 Ultra high sourcing/sinking strength" CommentCH="PB3 超高电流推动/吸入能力" DefaultValue="TRUE" Type="list" Group="" Visible="false">
+        <Condition Diagnostic="" Expression="$IpInstance_PB3Ultra"/>
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE" />
+    </RefParameter>
+
+
+<!-- ***********************************************************************************-->
+<!--/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\-->
+<!--/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/ REF MODE \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\-->
+<!--/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\-->
+<!-- ***********************************************************************************-->
+    <RefMode Name="Ultra Strength"  Abstract = "true">
+    	      <Parameter Name="PF15 Ultra Strength" />
+    	      <Parameter Name="PF14 Ultra Strength" />
+    	      <Parameter Name="PD15 Ultra Strength" />
+    	      <Parameter Name="PD14 Ultra Strength" />
+    	      <Parameter Name="PD13 Ultra Strength" />
+    	      <Parameter Name="PD12 Ultra Strength" />
+    	      <Parameter Name="PB10 Ultra Strength" />
+    	      <Parameter Name="PB9 Ultra Strength" />
+    	      <Parameter Name="PB3 Ultra Strength" />
+    </RefMode>
+
+    <ModeLogicOperator Name="OR"> 
+    	<Mode Name="PF15 Ultra Strength" UserName="PF15 Ultra high sourcing/sinking strength" UserNameCH="PF15 超高电流推动/吸入能力">
+            <ModeLogicOperator Name="OR">
+                <Mode Name="PF15 Ultra Strength" UserName="PF15 Ultra high sourcing/sinking strength" UserNameCH="PF15 超高电流推动/吸入能力">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="VS_PF15Ultra"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_PF15Ultra</Semaphore>
+                </Mode>                
+            </ModeLogicOperator>
+      </Mode>
+      
+      <Mode Name="PF14 Ultra Strength" UserName="PF14 Ultra high sourcing/sinking strength" UserNameCH="PF14 超高电流推动/吸入能力">
+            <ModeLogicOperator Name="OR">
+                <Mode Name="PF14 Ultra Strength" UserName="PF14 Ultra high sourcing/sinking strength" UserNameCH="PF14 超高电流推动/吸入能力">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="VS_PF14Ultra"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_PF14Ultra</Semaphore>
+                </Mode>                
+            </ModeLogicOperator>
+      </Mode>
+      
+      <Mode Name="PD15 Ultra Strength" UserName="PD15 Ultra high sourcing/sinking strength" UserNameCH="PD15 超高电流推动/吸入能力">
+            <ModeLogicOperator Name="OR">
+                <Mode Name="PD15 Ultra Strength" UserName="PD15 Ultra high sourcing/sinking strength" UserNameCH="PD15 超高电流推动/吸入能力">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="VS_PD15Ultra"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_PD15Ultra</Semaphore>
+                </Mode>                
+            </ModeLogicOperator>
+      </Mode>
+        
+      <Mode Name="PD14 Ultra Strength" UserName="PD14 Ultra high sourcing/sinking strength" UserNameCH="PD14 超高电流推动/吸入能力">
+            <ModeLogicOperator Name="OR">
+                <Mode Name="PD14 Ultra Strength" UserName="PD14 Ultra high sourcing/sinking strength" UserNameCH="PD14 超高电流推动/吸入能力">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="VS_PD14Ultra"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_PD14Ultra</Semaphore>
+                </Mode>                
+            </ModeLogicOperator>
+      </Mode>
+        
+      <Mode Name="PD13 Ultra Strength" UserName="PD13 Ultra high sourcing/sinking strength" UserNameCH="PD13 超高电流推动/吸入能力">
+            <ModeLogicOperator Name="OR">
+                <Mode Name="PD13 Ultra Strength" UserName="PD13 Ultra high sourcing/sinking strength" UserNameCH="PD13 超高电流推动/吸入能力">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="VS_PD13Ultra"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_PD13Ultra</Semaphore>
+                </Mode>                
+            </ModeLogicOperator>
+        </Mode>
+        
+        <Mode Name="PD12 Ultra Strength" UserName="PD12 Ultra high sourcing/sinking strength" UserNameCH="PD12 超高电流推动/吸入能力">
+            <ModeLogicOperator Name="OR">
+                <Mode Name="PD12 Ultra Strength" UserName="PD12 Ultra high sourcing/sinking strength" UserNameCH="PD12 超高电流推动/吸入能力">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="VS_PD12Ultra"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_PD12Ultra</Semaphore>
+                </Mode>                
+            </ModeLogicOperator>
+        </Mode>
+        
+        <Mode Name="PB10 Ultra Strength" UserName="PB10 Ultra high sourcing/sinking strength" UserNameCH="PB10 超高电流推动/吸入能力">
+            <ModeLogicOperator Name="OR">
+                <Mode Name="PB10 Ultra Strength" UserName="PB10 Ultra high sourcing/sinking strength" UserNameCH="PB10 超高电流推动/吸入能力">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="VS_PB10Ultra"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_PB10Ultra</Semaphore>
+                </Mode>                
+            </ModeLogicOperator>
+        </Mode>
+        
+        <Mode Name="PB9 Ultra Strength" UserName="PB9 Ultra high sourcing/sinking strength" UserNameCH="PB9 超高电流推动/吸入能力">
+            <ModeLogicOperator Name="OR">
+                <Mode Name="PB9 Ultra Strength" UserName="PB9 Ultra high sourcing/sinking strength" UserNameCH="PB9 超高电流推动/吸入能力">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="VS_PB9Ultra"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_PB9Ultra</Semaphore>
+                </Mode>                
+            </ModeLogicOperator>
+        </Mode>
+        
+        <Mode Name="PB3 Ultra Strength" UserName="PB3 Ultra high sourcing/sinking strength" UserNameCH="PB3 超高电流推动/吸入能力">
+            <ModeLogicOperator Name="OR">
+                <Mode Name="PB3 Ultra Strength" UserName="PB3 Ultra high sourcing/sinking strength" UserNameCH="PB3 超高电流推动/吸入能力">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="VS_PB3Ultra"/>
+                    </SignalLogicalOp>
+                    <Semaphore>$IpInstance_PB3Ultra</Semaphore>
+                </Mode>                
+            </ModeLogicOperator>
+        </Mode>
+        
+    </ModeLogicOperator>
+    
+    <RefSignal IOMode="Analog" Name="VS_PF15Ultra" Virtual="true"/>
+    <RefSignal IOMode="Analog" Name="VS_PF14Ultra" Virtual="true"/>
+    <RefSignal IOMode="Analog" Name="VS_PD15Ultra" Virtual="true"/>
+    <RefSignal IOMode="Analog" Name="VS_PD14Ultra" Virtual="true"/>
+    <RefSignal IOMode="Analog" Name="VS_PD13Ultra" Virtual="true"/>
+    <RefSignal IOMode="Analog" Name="VS_PD12Ultra" Virtual="true"/>
+    <RefSignal IOMode="Analog" Name="VS_PB10Ultra" Virtual="true"/>
+    <RefSignal IOMode="Analog" Name="VS_PB9Ultra" Virtual="true"/>
+    <RefSignal IOMode="Analog" Name="VS_PB3Ultra" Virtual="true"/>
+                       
+</IP>

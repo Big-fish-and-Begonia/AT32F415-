@@ -1,0 +1,496 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=gb2312">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:宋体;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:"MS Gothic";
+	panose-1:2 11 6 9 7 2 5 8 2 4;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:等线;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:微软雅黑;
+	panose-1:2 11 5 3 2 2 4 2 2 4;}
+@font-face
+	{font-family:"Microsoft JhengHei";
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"\@Microsoft JhengHei";}
+@font-face
+	{font-family:"\@MS Gothic";
+	panose-1:2 11 6 9 7 2 5 8 2 4;}
+@font-face
+	{font-family:"\@宋体";
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:"\@等线";
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:"\@微软雅黑";}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	font-size:10.5pt;
+	font-family:等线;}
+h3
+	{mso-style-link:"标题 3 字符";
+	margin-right:0cm;
+	margin-left:0cm;
+	font-size:13.5pt;
+	font-family:宋体;
+	font-weight:bold;}
+p.MsoHeader, li.MsoHeader, div.MsoHeader
+	{mso-style-link:"页眉 字符";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:center;
+	layout-grid-mode:char;
+	border:none;
+	padding:0cm;
+	font-size:9.0pt;
+	font-family:等线;}
+p.MsoFooter, li.MsoFooter, div.MsoFooter
+	{mso-style-link:"页脚 字符";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	layout-grid-mode:char;
+	font-size:9.0pt;
+	font-family:等线;}
+p
+	{margin-right:0cm;
+	margin-left:0cm;
+	font-size:12.0pt;
+	font-family:宋体;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	text-indent:21.0pt;
+	font-size:10.5pt;
+	font-family:等线;}
+span.3
+	{mso-style-name:"标题 3 字符";
+	mso-style-link:"标题 3";
+	font-family:宋体;
+	font-weight:bold;}
+span.a
+	{mso-style-name:"页眉 字符";
+	mso-style-link:页眉;}
+span.a0
+	{mso-style-name:"页脚 字符";
+	mso-style-link:页脚;}
+.MsoChpDefault
+	{font-family:等线;}
+ /* Page Definitions */
+ @page WordSection1
+	{size:595.3pt 841.9pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;
+	layout-grid:15.6pt;}
+div.WordSection1
+	{page:WordSection1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+
+</head>
+
+<body lang=ZH-CN style='text-justify-trim:punctuation'>
+
+<div class=WordSection1 style='layout-grid:15.6pt'>
+
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:15.0pt;margin-left:
+0cm;line-height:150%;background:white'><span lang=EN-US style='font-size:9.0pt;
+line-height:150%;font-family:"Arial",sans-serif'>AT32F405 series is based on
+ARM&reg;&nbsp;Cortex&reg;-M4 32-bit core operating at a frequency of up to 216 MHz.
+This device features a single-precision floating point unit (FPU), digital
+signal processor (DSP), up to 256 KB Flash memory and 96+6 KB SRAM (parity
+check support). It also embeds a 20 KB system memory with two functions: one
+that serves as a Bootloader, and another one that is one-time configurable as
+user instruction and data memory for achieving a maximum of 256 + 20 KB. It
+also incorporates independent HS USB OTG (internal PHY) and FS USB OTG
+(internal PHY) (support Xtal-less in device mode), 1x QSPI, 1x CAN, 8x UARTs,
+3x SPIs/I</span><span style='font-size:9.0pt;line-height:150%'>&sup2;</span><span
+lang=EN-US style='font-size:9.0pt;line-height:150%;font-family:"Arial",sans-serif'>Ss
+and 1x separate full-duplex I</span><span style='font-size:9.0pt;line-height:
+150%'>&sup2;</span><span lang=EN-US style='font-size:9.0pt;line-height:150%;
+font-family:"Arial",sans-serif'>S, 3x I</span><span style='font-size:9.0pt;
+line-height:150%'>&sup2;</span><span lang=EN-US style='font-size:9.0pt;line-height:
+150%;font-family:"Arial",sans-serif'>Cs, 1x 16-bit advanced timer, 7x 16-bit
+general-purpose timers, 1x 32-bit general-purpose timer, 2x 16-bit basic
+timers, 1x 12-bit 16-channel high-speed 2 Msps ADC. All I/Os have fast toggling
+capability and almost all of them are 5V tolerant. They can be used for a variety
+of purposes such as port remapping.</span></p>
+
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:15.0pt;margin-left:
+0cm;line-height:150%;background:white'><span lang=EN-US style='font-size:9.0pt;
+line-height:150%;font-family:"Arial",sans-serif'>The device operates in the
+temperature range of -40 to 105°C. It can be supplied in various package types
+including LQFP64, LQFP48, QFN48 and QFN32 to meet diverse demands. Thanks to
+its built-in HS+FS OTG feature (each with independent PHY), the AT32F405 is
+particularly suitable for applications like gaming, industrial automation, USB
+accessories, IoT, consumer electronics, among others.</span></p>
+
+<p style='margin-top:0cm;margin-right:0cm;margin-bottom:15.0pt;margin-left:
+0cm;line-height:150%;background:white'><span lang=EN-US style='font-size:10.5pt;
+line-height:150%;font-family:"Arial",sans-serif'>&nbsp;</span></p>
+
+<h3 style='margin-top:0cm;margin-right:0cm;margin-bottom:24.75pt;margin-left:
+0cm;background:white'><span lang=EN-US style='font-size:21.5pt;font-family:
+"Arial",sans-serif'>Key Features</span></h3>
+
+<p class=MsoNormal align=left style='margin-left:24.75pt;text-align:left;
+text-indent:-18.0pt;background:white'><span lang=EN-US style='font-size:10.0pt;
+font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><b><span lang=EN-US style='font-family:"Arial",sans-serif'>Performance</span></b></p>
+
+<p class=MsoNormal align=left style='margin-left:72.0pt;text-align:left;
+text-indent:-18.0pt;background:white'><span lang=EN-US style='font-size:10.0pt;
+font-family:"微软雅黑",sans-serif'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='font-family:"Arial",sans-serif'>ARM&reg;&nbsp;Cortex&reg;-M4
+MCU up to 216 MHz</span></p>
+
+<p class=MsoNormal align=left style='margin-left:72.0pt;text-align:left;
+text-indent:-18.0pt;background:white'><span lang=EN-US style='font-size:10.0pt;
+font-family:"微软雅黑",sans-serif'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='font-family:"Arial",sans-serif'>Single
+precision floating-point unit (FPU)</span></p>
+
+<p class=MsoNormal align=left style='margin-left:72.0pt;text-align:left;
+text-indent:-18.0pt;background:white'><span lang=EN-US style='font-size:10.0pt;
+font-family:"微软雅黑",sans-serif'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='font-family:"Arial",sans-serif'>DSP
+instructions</span></p>
+
+<p class=MsoNormal align=left style='margin-left:72.0pt;text-align:left;
+text-indent:-18.0pt;background:white'><span lang=EN-US style='font-size:10.0pt;
+font-family:"微软雅黑",sans-serif'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='font-family:"Arial",sans-serif'>2.4 to
+3.6 V application supply</span></p>
+
+<p class=MsoNormal align=left style='margin-left:72.0pt;text-align:left;
+text-indent:-18.0pt;background:white'><span lang=EN-US style='font-size:10.0pt;
+font-family:"微软雅黑",sans-serif'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='font-family:"Arial",sans-serif'>I/Os 5
+V-tolerant</span></p>
+
+<p class=MsoNormal align=left style='margin-left:72.0pt;text-align:left;
+text-indent:-18.0pt;background:white'><span lang=EN-US style='font-size:10.0pt;
+font-family:"微软雅黑",sans-serif'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='font-family:"Arial",sans-serif'>Temperature
+range -40 to + 105</span><span style='font-family:"Microsoft JhengHei",sans-serif'>°</span><span
+lang=EN-US style='font-family:"Arial",sans-serif'>C</span></p>
+
+<p class=MsoNormal align=left style='margin-left:24.75pt;text-align:left;
+text-indent:-18.0pt;background:white'><span lang=EN-US style='font-size:10.0pt;
+font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><b><span lang=EN-US style='font-family:"Arial",sans-serif'>Memories</span></b></p>
+
+<p class=MsoNormal align=left style='margin-left:72.0pt;text-align:left;
+text-indent:-18.0pt;background:white'><span lang=EN-US style='font-size:10.0pt;
+font-family:"微软雅黑",sans-serif'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='font-family:"Arial",sans-serif'>256
+KBytes of Flash memory</span></p>
+
+<p class=MsoNormal align=left style='margin-left:72.0pt;text-align:left;
+text-indent:-18.0pt;background:white'><span lang=EN-US style='font-size:10.0pt;
+font-family:"微软雅黑",sans-serif'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='font-family:"Arial",sans-serif'>102
+KBytes of SRAM</span></p>
+
+<p class=MsoNormal align=left style='margin-left:72.0pt;text-align:left;
+text-indent:-18.0pt;background:white'><span lang=EN-US style='font-size:10.0pt;
+font-family:"微软雅黑",sans-serif'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='font-family:"Arial",sans-serif'>sLib:
+configurable part of main Flash set as a library area with code executable but
+secured, non-readable</span></p>
+
+<p class=MsoNormal align=left style='margin-left:72.0pt;text-align:left;
+text-indent:-18.0pt;background:white'><span lang=EN-US style='font-size:10.0pt;
+font-family:"微软雅黑",sans-serif'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='font-family:"Arial",sans-serif'>1 x
+QSPIs, scalable Flash memory or RAM, address mapping support</span></p>
+
+<p class=MsoNormal align=left style='margin-left:24.75pt;text-align:left;
+text-indent:-18.0pt;background:white'><span lang=EN-US style='font-size:10.0pt;
+font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><b><span lang=EN-US style='font-family:"Arial",sans-serif'>Clock</span></b></p>
+
+<p class=MsoNormal align=left style='margin-left:72.0pt;text-align:left;
+text-indent:-18.0pt;background:white'><span lang=EN-US style='font-size:10.0pt;
+font-family:"微软雅黑",sans-serif'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='font-family:"Arial",sans-serif'>PLL (216
+MHz output)</span></p>
+
+<p class=MsoNormal align=left style='margin-left:72.0pt;text-align:left;
+text-indent:-18.0pt;background:white'><span lang=EN-US style='font-size:10.0pt;
+font-family:"微软雅黑",sans-serif'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='font-family:"Arial",sans-serif'>External
+high-speed 4 to 25 MHz crystal</span></p>
+
+<p class=MsoNormal align=left style='margin-left:72.0pt;text-align:left;
+text-indent:-18.0pt;background:white'><span lang=EN-US style='font-size:10.0pt;
+font-family:"微软雅黑",sans-serif'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='font-family:"Arial",sans-serif'>Internal
+high-speed 48 MHz RC oscillator (-40</span><span style='font-family:"Microsoft JhengHei",sans-serif'>°</span><span
+lang=EN-US style='font-family:"Arial",sans-serif'>C to 105</span><span
+style='font-family:"Microsoft JhengHei",sans-serif'>°</span><span lang=EN-US
+style='font-family:"Arial",sans-serif'>C)</span></p>
+
+<p class=MsoNormal align=left style='margin-left:72.0pt;text-align:left;
+text-indent:-18.0pt;background:white'><span lang=EN-US style='font-size:10.0pt;
+font-family:"微软雅黑",sans-serif'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='font-family:"Arial",sans-serif'>Automatic
+clock calibration (ACC) (accuracy 1 % at TA&nbsp;= 25</span><span
+style='font-family:"Microsoft JhengHei",sans-serif'>°</span><span lang=EN-US
+style='font-family:"Arial",sans-serif'>C, 2.5 % at TA= -40 to +105</span><span
+style='font-family:"Microsoft JhengHei",sans-serif'>°</span><span lang=EN-US
+style='font-family:"Arial",sans-serif'>C)</span></p>
+
+<p class=MsoNormal align=left style='margin-left:72.0pt;text-align:left;
+text-indent:-18.0pt;background:white'><span lang=EN-US style='font-size:10.0pt;
+font-family:"微软雅黑",sans-serif'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='font-family:"Arial",sans-serif'>Low speed
+external 32.768 kHz RTC crystal (LEXT)</span></p>
+
+<p class=MsoNormal align=left style='margin-left:72.0pt;text-align:left;
+text-indent:-18.0pt;background:white'><span lang=EN-US style='font-size:10.0pt;
+font-family:"微软雅黑",sans-serif'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='font-family:"Arial",sans-serif'>Internal
+low-speed 40 kHz RC oscillator</span></p>
+
+<p class=MsoNormal align=left style='margin-left:24.75pt;text-align:left;
+text-indent:-18.0pt;background:white'><span lang=EN-US style='font-size:10.0pt;
+font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><b><span lang=EN-US style='font-family:"Arial",sans-serif'>Reset
+and supply management</span></b></p>
+
+<p class=MsoNormal align=left style='margin-left:72.0pt;text-align:left;
+text-indent:-18.0pt;background:white'><span lang=EN-US style='font-size:10.0pt;
+font-family:"微软雅黑",sans-serif'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='font-family:"Arial",sans-serif'>Sleep,
+Deep sleep and Standby modes</span></p>
+
+<p class=MsoNormal align=left style='margin-left:72.0pt;text-align:left;
+text-indent:-18.0pt;background:white'><span lang=EN-US style='font-size:10.0pt;
+font-family:"微软雅黑",sans-serif'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='font-family:"Arial",sans-serif'>Power-on/Low-voltage
+reset (POR/LVR)</span></p>
+
+<p class=MsoNormal align=left style='margin-left:72.0pt;text-align:left;
+text-indent:-18.0pt;background:white'><span lang=EN-US style='font-size:10.0pt;
+font-family:"微软雅黑",sans-serif'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='font-family:"Arial",sans-serif'>Programmable
+voltage monitor (PVM)</span></p>
+
+<p class=MsoNormal align=left style='margin-left:72.0pt;text-align:left;
+text-indent:-18.0pt;background:white'><span lang=EN-US style='font-size:10.0pt;
+font-family:"微软雅黑",sans-serif'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='font-family:"Arial",sans-serif'>20 x
+32-bit battery powered registers (BPR)</span></p>
+
+<p class=MsoNormal align=left style='margin-left:24.75pt;text-align:left;
+text-indent:-18.0pt;background:white'><span lang=EN-US style='font-size:10.0pt;
+font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><b><span lang=EN-US style='font-family:"Arial",sans-serif'>Analog
+peripherals</span></b></p>
+
+<p class=MsoNormal align=left style='margin-left:72.0pt;text-align:left;
+text-indent:-18.0pt;background:white'><span lang=EN-US style='font-size:10.0pt;
+font-family:"微软雅黑",sans-serif'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='font-family:"Arial",sans-serif'>1 x
+12-bit 2 Msps A/D converter (up to 16 channels)</span></p>
+
+<p class=MsoNormal align=left style='margin-left:24.75pt;text-align:left;
+text-indent:-18.0pt;background:white'><span lang=EN-US style='font-size:10.0pt;
+font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><b><span lang=EN-US style='font-family:"Arial",sans-serif'>Timers</span></b></p>
+
+<p class=MsoNormal align=left style='margin-left:72.0pt;text-align:left;
+text-indent:-18.0pt;background:white'><span lang=EN-US style='font-size:10.0pt;
+font-family:"微软雅黑",sans-serif'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='font-family:"Arial",sans-serif'>1 x
+16-bit 7-channel advanced timer</span></p>
+
+<p class=MsoNormal align=left style='margin-left:72.0pt;text-align:left;
+text-indent:-18.0pt;background:white'><span lang=EN-US style='font-size:10.0pt;
+font-family:"微软雅黑",sans-serif'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='font-family:"Arial",sans-serif'>1 x
+32-bit and 7 x 16-bit general-purpose timers</span></p>
+
+<p class=MsoNormal align=left style='margin-left:72.0pt;text-align:left;
+text-indent:-18.0pt;background:white'><span lang=EN-US style='font-size:10.0pt;
+font-family:"微软雅黑",sans-serif'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='font-family:"Arial",sans-serif'>2 x
+16-bit basic timers</span></p>
+
+<p class=MsoNormal align=left style='margin-left:72.0pt;text-align:left;
+text-indent:-18.0pt;background:white'><span lang=EN-US style='font-size:10.0pt;
+font-family:"微软雅黑",sans-serif'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='font-family:"Arial",sans-serif'>2 x
+watchdog timers (general WDT and windowed WWDT)</span></p>
+
+<p class=MsoNormal align=left style='margin-left:72.0pt;text-align:left;
+text-indent:-18.0pt;background:white'><span lang=EN-US style='font-size:10.0pt;
+font-family:"微软雅黑",sans-serif'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='font-family:"Arial",sans-serif'>SysTick
+timer: a 24-bit downcounter</span></p>
+
+<p class=MsoNormal align=left style='margin-left:24.75pt;text-align:left;
+text-indent:-18.0pt;background:white'><span lang=EN-US style='font-size:10.0pt;
+font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><b><span lang=EN-US style='font-family:"Arial",sans-serif'>ERTC:
+enhanced RTC with alarm, subsecond accuracy and hardware calendar</span></b></p>
+
+<p class=MsoNormal align=left style='margin-left:24.75pt;text-align:left;
+text-indent:-18.0pt;background:white'><span lang=EN-US style='font-size:10.0pt;
+font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><b><span lang=EN-US style='font-family:"Arial",sans-serif'>Communication
+interfaces</span></b></p>
+
+<p class=MsoNormal align=left style='margin-left:72.0pt;text-align:left;
+text-indent:-18.0pt;background:white'><span lang=EN-US style='font-size:10.0pt;
+font-family:"微软雅黑",sans-serif'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='font-family:"Arial",sans-serif'>3 x I</span><span
+style='font-family:"Microsoft JhengHei",sans-serif'>&sup2;</span><span lang=EN-US
+style='font-family:"Arial",sans-serif'>C interfaces for SMBus/PMBus support</span></p>
+
+<p class=MsoNormal align=left style='margin-left:72.0pt;text-align:left;
+text-indent:-18.0pt;background:white'><span lang=EN-US style='font-size:10.0pt;
+font-family:"微软雅黑",sans-serif'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='font-family:"Arial",sans-serif'>3 x SPIs
+(36 Mbit/s), all with I</span><span style='font-family:"Microsoft JhengHei",sans-serif'>&sup2;</span><span
+lang=EN-US style='font-family:"Arial",sans-serif'>S interface multiplexed, any
+combination of two interfaces supports full-duplex</span></p>
+
+<p class=MsoNormal align=left style='margin-left:72.0pt;text-align:left;
+text-indent:-18.0pt;background:white'><span lang=EN-US style='font-size:10.0pt;
+font-family:"微软雅黑",sans-serif'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='font-family:"Arial",sans-serif'>1 x
+independent full-duplex I2S interface(I2SF)</span></p>
+
+<p class=MsoNormal align=left style='margin-left:72.0pt;text-align:left;
+text-indent:-18.0pt;background:white'><span lang=EN-US style='font-size:10.0pt;
+font-family:"微软雅黑",sans-serif'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='font-family:"Arial",sans-serif'>Up to 6 x
+USARTs and 2 x UARTs (with ISO7816 interface, LIN</span><span style='font-family:
+"Microsoft JhengHei",sans-serif'>，</span><span lang=EN-US style='font-family:
+"Arial",sans-serif'>IrDA and modem control)</span></p>
+
+<p class=MsoNormal align=left style='margin-left:72.0pt;text-align:left;
+text-indent:-18.0pt;background:white'><span lang=EN-US style='font-size:10.0pt;
+font-family:"微软雅黑",sans-serif'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='font-family:"Arial",sans-serif'>1 x OTGHS
+(including on-chip PHY), with 4 Kbytes of dedicated buffers</span></p>
+
+<p class=MsoNormal align=left style='margin-left:72.0pt;text-align:left;
+text-indent:-18.0pt;background:white'><span lang=EN-US style='font-size:10.0pt;
+font-family:"微软雅黑",sans-serif'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='font-family:"Arial",sans-serif'>1 x OTGFS
+(including on-chip PHY) interface (crystal-less in device mode)</span></p>
+
+<p class=MsoNormal align=left style='margin-left:72.0pt;text-align:left;
+text-indent:-18.0pt;background:white'><span lang=EN-US style='font-size:10.0pt;
+font-family:"微软雅黑",sans-serif'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='font-family:"Arial",sans-serif'>CAN
+interface (2.0B Active)</span></p>
+
+<p class=MsoNormal align=left style='margin-left:72.0pt;text-align:left;
+text-indent:-18.0pt;background:white'><span lang=EN-US style='font-size:10.0pt;
+font-family:"微软雅黑",sans-serif'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='font-family:"Arial",sans-serif'>Infrared
+transmitter (IRTMR)</span></p>
+
+<p class=MsoNormal align=left style='margin-left:24.75pt;text-align:left;
+text-indent:-18.0pt;background:white'><span lang=EN-US style='font-size:10.0pt;
+font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><b><span lang=EN-US style='font-family:"Arial",sans-serif'>DMA</span></b></p>
+
+<p class=MsoNormal align=left style='margin-left:72.0pt;text-align:left;
+text-indent:-18.0pt;background:white'><span lang=EN-US style='font-size:10.0pt;
+font-family:"微软雅黑",sans-serif'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='font-family:"Arial",sans-serif'>1 x
+14-channel DMA controller supports timers, ADC, I</span><span style='font-family:
+"Microsoft JhengHei",sans-serif'>&sup2;</span><span lang=EN-US style='font-family:
+"Arial",sans-serif'>Ss, SPIs, I</span><span style='font-family:"Microsoft JhengHei",sans-serif'>&sup2;</span><span
+lang=EN-US style='font-family:"Arial",sans-serif'>Cs, and USARTs</span></p>
+
+<p class=MsoNormal align=left style='margin-left:24.75pt;text-align:left;
+text-indent:-18.0pt;background:white'><span lang=EN-US style='font-size:10.0pt;
+font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><b><span lang=EN-US style='font-family:"Arial",sans-serif'>Fast
+I/O ports</span></b></p>
+
+<p class=MsoNormal align=left style='margin-left:72.0pt;text-align:left;
+text-indent:-18.0pt;background:white'><span lang=EN-US style='font-size:10.0pt;
+font-family:"微软雅黑",sans-serif'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='font-family:"Arial",sans-serif'>Up to 56
+I/O ports, all mappable on 16 external interrupts and almost all 5 V-tolerant</span></p>
+
+<p class=MsoNormal align=left style='margin-left:72.0pt;text-align:left;
+text-indent:-18.0pt;background:white'><span lang=EN-US style='font-size:10.0pt;
+font-family:"微软雅黑",sans-serif'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='font-family:"Arial",sans-serif'>All fast
+I/Os, control registers accessible with f&#7424;</span><span style='font-family:"MS Gothic"'>&#668;&#665;</span><span
+lang=EN-US style='font-family:"Arial",sans-serif'> speed</span></p>
+
+<p class=MsoNormal align=left style='margin-left:24.75pt;text-align:left;
+text-indent:-18.0pt;background:white'><span lang=EN-US style='font-size:10.0pt;
+font-family:Symbol'>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><b><span lang=EN-US style='font-family:"Arial",sans-serif'>Packages</span></b></p>
+
+<p class=MsoNormal align=left style='margin-left:72.0pt;text-align:left;
+text-indent:-18.0pt;background:white'><span lang=EN-US style='font-size:10.0pt;
+font-family:"微软雅黑",sans-serif'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='font-family:"Arial",sans-serif'>QFN32 4 x
+4 mm</span></p>
+
+<p class=MsoNormal align=left style='margin-left:72.0pt;text-align:left;
+text-indent:-18.0pt;background:white'><span lang=EN-US style='font-size:10.0pt;
+font-family:"微软雅黑",sans-serif'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='font-family:"Arial",sans-serif'>QFN48 6 x
+6 mm</span></p>
+
+<p class=MsoNormal align=left style='margin-left:72.0pt;text-align:left;
+text-indent:-18.0pt;background:white'><span lang=EN-US style='font-size:10.0pt;
+font-family:"微软雅黑",sans-serif'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='font-family:"Arial",sans-serif'>LQFP48 7
+x 7 mm</span></p>
+
+<p class=MsoNormal align=left style='margin-left:72.0pt;text-align:left;
+text-indent:-18.0pt;background:white'><span lang=EN-US style='font-size:10.0pt;
+font-family:"微软雅黑",sans-serif'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='font-family:"Arial",sans-serif'>LQFP64 7
+x 7 mm</span></p>
+
+<p class=MsoNormal align=left style='margin-left:72.0pt;text-align:left;
+text-indent:-18.0pt;background:white'><span lang=EN-US style='font-size:10.0pt;
+font-family:"微软雅黑",sans-serif'>-<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='font-family:"Arial",sans-serif'>LQFP64 10
+x 10 mm</span></p>
+
+</div>
+
+</body>
+
+</html>

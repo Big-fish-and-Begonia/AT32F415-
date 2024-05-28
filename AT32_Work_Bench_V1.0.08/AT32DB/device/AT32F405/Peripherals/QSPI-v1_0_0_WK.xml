@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<IP>
+    <About>Quad-SPI interface</About>
+    <AboutCH>四线SPI接口</AboutCH>
+
+   <RefParameter Comment="Instance" DefaultValue="QSPI$Index" Name="Instance" Type="" Visible="false"/>
+
+    <RefParameter Name="PortSwitch" Comment="XIP/CMD port switch selection" CommentCH="端口选择切换" DefaultValue="QSPI_PORT_XIP" Group="Basic Parameters" GroupCH="基础参数" Type="list">
+		<PossibleValue Comment="XIP Port" CommentCH="XIP端口" Value="QSPI_PORT_XIP"/>
+		<PossibleValue Comment="CMD Port" CommentCH="CMD端口" Value="QSPI_PORT_CMD"/>
+	</RefParameter>
+	
+	<RefParameter Name="ClkDivision" Comment="Clock frequency division" CommentCH="时钟频率分频系数" DefaultValue="QSPI_CLK_DIV_8" Group="Clock Parameters" GroupCH="时钟参数" Type="list">
+		<PossibleValue Comment="2" CommentCH="2" Value="QSPI_CLK_DIV_2"/>
+		<PossibleValue Comment="3" CommentCH="3" Value="QSPI_CLK_DIV_3"/>
+		<PossibleValue Comment="4" CommentCH="4" Value="QSPI_CLK_DIV_4"/>
+		<PossibleValue Comment="5" CommentCH="5" Value="QSPI_CLK_DIV_5"/>
+		<PossibleValue Comment="6" CommentCH="6" Value="QSPI_CLK_DIV_6"/>
+		<PossibleValue Comment="8" CommentCH="8" Value="QSPI_CLK_DIV_8"/>
+		<PossibleValue Comment="10" CommentCH="10" Value="QSPI_CLK_DIV_10"/>
+		<PossibleValue Comment="12" CommentCH="12" Value="QSPI_CLK_DIV_12"/>
+	</RefParameter> 
+	
+	<RefParameter Comment="Clock Source" CommentCH="时钟源" DefaultValue="AHB" Group="Clock Parameters" GroupCH="时钟参数" Name="CLOCK_SOURCE" Type="list" Visible="false">
+        <Condition Diagnostic="" Expression="Instance = QSPI1"/>
+        <PossibleValue Comment="AHB" CommentCH="AHB" Value="AHB"/>
+    </RefParameter>
+    
+	<RefParameter Name="ClockFrequency" Comment="Clock frequency" CommentCH="时钟频率" DefaultValue="108000000" Max="108000000" Min="0" Group="Clock Parameters" GroupCH="时钟参数" Type="string" Unit="Hz">
+	</RefParameter>
+	
+	<RefParameter Name="SckMode" Comment="SCK mode" CommentCH="时钟模式" DefaultValue="QSPI_SCK_MODE_0" Group="Clock Parameters" GroupCH="时钟参数" Type="list">
+		<PossibleValue Comment="Mode 0" CommentCH="模式0" Value="QSPI_SCK_MODE_0"/>
+		<PossibleValue Comment="Mode 3" CommentCH="模式3" Value="QSPI_SCK_MODE_3"/>
+	</RefParameter> 
+	
+	<RefParameter Name="BusyOffsetConfig" Comment="Busy offset config" CommentCH="busy位偏移配置" DefaultValue="QSPI_BUSY_OFFSET_0" Group="Basic Parameters" GroupCH="基础参数" Type="list">
+		<PossibleValue Comment="Offset 0 bit" CommentCH="偏移0位" Value="QSPI_BUSY_OFFSET_0"/>
+		<PossibleValue Comment="Offset 1 bit" CommentCH="偏移1位" Value="QSPI_BUSY_OFFSET_1"/>
+		<PossibleValue Comment="Offset 2 bit" CommentCH="偏移2位" Value="QSPI_BUSY_OFFSET_2"/>
+		<PossibleValue Comment="Offset 3 bit" CommentCH="偏移3位" Value="QSPI_BUSY_OFFSET_3"/>
+		<PossibleValue Comment="Offset 4 bit" CommentCH="偏移4位" Value="QSPI_BUSY_OFFSET_4"/>
+		<PossibleValue Comment="Offset 5 bit" CommentCH="偏移5位" Value="QSPI_BUSY_OFFSET_5"/>
+		<PossibleValue Comment="Offset 6 bit" CommentCH="偏移6位" Value="QSPI_BUSY_OFFSET_6"/>
+		<PossibleValue Comment="Offset 7 bit" CommentCH="偏移7位" Value="QSPI_BUSY_OFFSET_7"/>
+	</RefParameter>
+	
+	<RefParameter Name="DMARxThreshold" Comment="DMA RX threshold" CommentCH="DMA接收阈值" DefaultValue="QSPI_DMA_FIFO_THOD_WORD08" Group="Basic Parameters" GroupCH="基础参数" Type="list">
+		<PossibleValue Comment=" FIFO threshold 8 words" CommentCH="8字" Value="QSPI_DMA_FIFO_THOD_WORD08"/>
+		<PossibleValue Comment=" FIFO threshold 16 words" CommentCH="16字" Value="QSPI_DMA_FIFO_THOD_WORD16"/>
+		<PossibleValue Comment=" FIFO threshold 24 words" CommentCH="24字" Value="QSPI_DMA_FIFO_THOD_WORD24"/>
+	</RefParameter>
+	
+	<RefParameter Name="DMATxThreshold" Comment="DMA TX threshold" CommentCH="DMA发送阈值" DefaultValue="QSPI_DMA_FIFO_THOD_WORD08" Group="Basic Parameters" GroupCH="基础参数" Type="list">
+		<PossibleValue Comment=" FIFO threshold 8 words" CommentCH="8字" Value="QSPI_DMA_FIFO_THOD_WORD08"/>
+		<PossibleValue Comment=" FIFO threshold 16 words" CommentCH="16字" Value="QSPI_DMA_FIFO_THOD_WORD16"/>
+		<PossibleValue Comment=" FIFO threshold 24 words" CommentCH="24字" Value="QSPI_DMA_FIFO_THOD_WORD24"/>
+	</RefParameter>
+	
+	<RefParameter Name="XipCacheEnable" Comment="XIP cache enable" CommentCH="XIP端口缓存使能" DefaultValue="TRUE" Type="list" Group="Basic Parameters" GroupCH="基础参数">
+        <Condition Diagnostic="" Expression="PortSwitch = QSPI_PORT_XIP"/>
+        <PossibleValue Value="TRUE" Comment="Enable" CommentCH="开启" />
+        <PossibleValue Value="FALSE" Comment="Disable" CommentCH="关闭" />
+    </RefParameter>
+    
+    <RefParameter Name="XipCacheEnable" Comment="XIP cache enable" CommentCH="XIP端口缓存使能" DefaultValue="TRUE" Type="list" Group="Basic Parameters" GroupCH="基础参数" Visible="false">
+        <PossibleValue Value="TRUE" Comment="Enable" CommentCH="开启" />
+    </RefParameter>
+	
+    <RefParameter Name="EncryptionEnable" Comment="Encryption enable" CommentCH="加密使能" DefaultValue="FALSE" Type="list" Group="Basic Parameters" GroupCH="基础参数">
+        <PossibleValue Value="TRUE" Comment="Enable" CommentCH="开启" />
+        <PossibleValue Value="FALSE" Comment="Disable" CommentCH="关闭" />
+    </RefParameter>
+
+    <RefMode Name="QSPI_State" BaseMode="QSPI_State">
+    	   <Parameter Name="Instance"/>
+    	   <Parameter Name="ClkDivision"/>
+    	   <Parameter Name="ClockFrequency"/>
+    	   <Parameter Name="CLOCK_SOURCE"/>
+        <Parameter Name="SckMode"/>
+        <Parameter Name="PortSwitch"/>        
+        <Parameter Name="BusyOffsetConfig"/>
+        <Parameter Name="DMARxThreshold"/>
+        <Parameter Name="DMATxThreshold"/>
+        <Parameter Name="XipCacheEnable"/>
+        <Parameter Name="EncryptionEnable"/>
+    </RefMode>
+
+    <!-- ModeLogicOperator for QSPI -->
+    <ModeLogicOperator Name="OR">
+      <Mode Name="QSPI_State" UserName="Activated" UserNameCH="启用">
+        <ModeLogicOperator Name="XOR">
+          <Mode Name="QSPI_State" UserName="Activated" UserNameCH="启用">
+            <SignalLogicalOp Name="AND">
+              <Signal Name="CS" />
+              <Signal Name="SCK" />
+              <Signal Name="IO0" />
+              <Signal Name="IO1" />
+              <Signal Name="IO2" />
+              <Signal Name="IO3" />
+            </SignalLogicalOp>
+          </Mode>
+        </ModeLogicOperator>
+      </Mode>
+    </ModeLogicOperator>
+
+    <!-- RefSignal for QSPI -->
+    <RefSignal IOMode="MuxOutputPushPull" Name="CS"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="SCK"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="IO0"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="IO1"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="IO2"/>
+    <RefSignal IOMode="MuxOutputPushPull" Name="IO3"/>
+</IP>

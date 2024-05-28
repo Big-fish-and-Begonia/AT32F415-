@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<IP>
+    <About>Debug interface</About>
+    <AboutCH>调试接口</AboutCH>
+
+    <RefParameter Name="DEBUG" Comment="DEBUG" CommentCH="DEBUG" DefaultValue="DISABLE" Type="list" Group="Basic" GroupCH="Basic" Visible="false">
+        <PossibleValue Value="DISABLE" Comment="DISABLE" CommentCH="DISABLE"/>
+    </RefParameter>
+    <RefParameter Name="DEBUG" Comment="DEBUG" CommentCH="DEBUG" DefaultValue="SWD" Type="list" Group="Basic" GroupCH="Basic" Visible="false">
+        <Condition Diagnostic="" Expression="SWD$IpInstance"/>
+        <PossibleValue Value="SWD" Comment="SWD" CommentCH="SWD"/>
+    </RefParameter>
+    <RefParameter Name="DEBUG" Comment="DEBUG" CommentCH="DEBUG" DefaultValue="JTAG_4PIN" Type="list" Group="Basic" GroupCH="Basic" Visible="false">
+        <Condition Diagnostic="" Expression="JTAG_4PIN$IpInstance"/>
+        <PossibleValue Value="JTAG_4PIN" Comment="JTAG_4PIN" CommentCH="JTAG_4PIN"/>
+    </RefParameter>
+    <RefParameter Name="DEBUG" Comment="DEBUG" CommentCH="DEBUG" DefaultValue="JTAG_5PIN" Type="list" Group="Basic" GroupCH="Basic" Visible="false">
+        <Condition Diagnostic="" Expression="JTAG_5PIN$IpInstance"/>
+        <PossibleValue Value="JTAG_5PIN" Comment="JTAG_5PIN" CommentCH="JTAG_5PIN"/>
+    </RefParameter>
+    
+    <RefParameter Name="SWO" Comment="SWO" CommentCH="SWO" DefaultValue="DISABLE" Type="list" Group="Basic" GroupCH="Basic" Visible="false">
+        <PossibleValue Value="DISABLE" Comment="DISABLE" CommentCH="DISABLE"/>
+    </RefParameter>
+    <RefParameter Name="SWO" Comment="SWO" CommentCH="SWO" DefaultValue="ENABLE" Type="list" Group="Basic" GroupCH="Basic" Visible="false">
+        <Condition Diagnostic="" Expression="SWO$IpInstance"/>
+        <PossibleValue Value="ENABLE" Comment="ENABLE" CommentCH="ENABLE"/>
+    </RefParameter>
+    
+    <RefMode Name="Debug_init" Abstract="true">
+    	      <Parameter Name="DEBUG" />
+    	      <Parameter Name="SWO" />
+    </RefMode>
+    
+    
+   <!-- ModeLogicOperator for DEBUG -->
+    <ModeLogicOperator Name="OR">
+      <Mode Name="Debug interface" UserName="Debug interface" UserNameCH="调试接口">  
+			  <ModeLogicOperator Name="XOR">
+				  <Mode Name="SWD" UserName="SWD" UserNameCH="SWD">
+					  <SignalLogicalOp Name="AND">
+						  <Signal Name="JTMS_SWDIO"/>
+						  <Signal Name="JTCK_SWCLK"/>
+					  </SignalLogicalOp>
+					  <Semaphore>SWD$IpInstance</Semaphore>
+				  </Mode>
+				  <Mode Name="JTAG (4pin)" UserName="JTAG (4pin)" UserNameCH="JTAG (4脚)">
+					  <SignalLogicalOp Name="AND">
+						  <Signal Name="JTMS_SWDIO"/>
+						  <Signal Name="JTCK_SWCLK"/>
+						  <Signal Name="JTDI"/>
+						  <Signal Name="JTDO"/>
+					  </SignalLogicalOp>
+					  <Semaphore>JTAG_4PIN$IpInstance</Semaphore>
+				  </Mode>
+				  <Mode Name="JTAG (5pin)" UserName="JTAG (5pin)" UserNameCH="JTAG (5脚)">
+					  <SignalLogicalOp Name="AND">
+						  <Signal Name="JTMS_SWDIO"/>
+						  <Signal Name="JTCK_SWCLK"/>
+						  <Signal Name="JTDI"/>
+						  <Signal Name="JTDO"/>
+						  <Signal Name="NJTRST"/>
+					  </SignalLogicalOp>
+					  <Semaphore>JTAG_5PIN$IpInstance</Semaphore>
+				  </Mode>
+			  </ModeLogicOperator>			
+	 </Mode>
+      <Mode Name="SWO" UserName="SWO" UserNameCH="SWO">  
+      	        <Condition Expression="SWD$IpInstance"
+                    	                   Diagnostic="&quot;SWD&quot; must be selected as &quot;Debug interface&quot;" 
+                    	                   DiagnosticCH="&quot;调试接口&quot;需设置为&quot;SWD&quot;"/>
+			  <ModeLogicOperator Name="XOR">
+				  <Mode Name="SWO" UserName="SWO" UserNameCH="SWO">
+					  <SignalLogicalOp Name="AND">
+						  <Signal Name="SWO"/>
+					  </SignalLogicalOp>
+					  <Semaphore>SWO$IpInstance</Semaphore>
+				  </Mode>
+			  </ModeLogicOperator>			
+	 </Mode>
+    </ModeLogicOperator>
+
+    <!-- RefSignal for DEBUG -->
+    <RefSignal Name="VS_VM" Virtual="true"/>
+    
+    <RefSignal IOMode="System" Name="JTMS_SWDIO"/>
+    <RefSignal IOMode="System" Name="JTCK_SWCLK"/>
+    <RefSignal IOMode="System" Name="JTDI"/>
+    <RefSignal IOMode="System" Name="JTDO"/>
+    <RefSignal IOMode="System" Name="NJTRST"/>
+    <RefSignal IOMode="System" Name="SWO"/>
+</IP>

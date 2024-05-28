@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<IP>
+	
+	<!-- Description of IP. -->
+	<About>Digital Video parallel interface</About>
+	<AboutCH>数字摄像头并行接口</AboutCH>
+	
+	<RefParameter Comment="DVP Mode" CommentCH="DVP模式" DefaultValue="DVP_SYNC_MODE_EMBEDDED" Name="Mode" Type="list" Group="Mode settings" GroupCH="模式配置" Visible="false">
+		<Condition Diagnostic="" Expression="$IpInstance_Embedded"/>
+		<PossibleValue Comment="Embedded synchronization" CommentCH="内嵌码同步模式" Value="DVP_SYNC_MODE_EMBEDDED"/>
+	</RefParameter>	
+	<RefParameter Comment="DVP Mode" CommentCH="DVP模式" DefaultValue="DVP_SYNC_MODE_HARDWARE" Name="Mode" Type="list" Group="Mode settings" GroupCH="模式配置" Visible="false">
+		<Condition Diagnostic="" Expression="$IpInstance_Hardware"/>
+		<PossibleValue Comment="Hardware synchronization" CommentCH="硬件同步模式" Value="DVP_SYNC_MODE_HARDWARE"/>
+	</RefParameter>
+	
+	<RefParameter Comment="Pixel Data Length" CommentCH="像素大小" DefaultValue="DVP_PIXEL_DATA_LENGTH_8" Name="PixelDataLength" Type="list" Group="Mode settings" GroupCH="模式配置" Visible="false">
+		<Condition Diagnostic="" Expression="$IpInstance_8Bits"/>
+		<PossibleValue Comment="8 Bits" CommentCH="8位" Value="DVP_PIXEL_DATA_LENGTH_8"/>
+	</RefParameter>
+	<RefParameter Comment="Pixel Data Length" CommentCH="像素大小" DefaultValue="DVP_PIXEL_DATA_LENGTH_10" Name="PixelDataLength" Type="list" Group="Mode settings" GroupCH="模式配置" Visible="false">
+		<Condition Diagnostic="" Expression="$IpInstance_10Bits"/>
+		<PossibleValue Comment="10 Bits" CommentCH="10位" Value="DVP_PIXEL_DATA_LENGTH_10"/>
+	</RefParameter>
+	<RefParameter Comment="Pixel Data Length" CommentCH="像素大小" DefaultValue="DVP_PIXEL_DATA_LENGTH_12" Name="PixelDataLength" Type="list" Group="Mode settings" GroupCH="模式配置" Visible="false">
+		<Condition Diagnostic="" Expression="$IpInstance_12Bits"/>
+		<PossibleValue Comment="12 Bits" CommentCH="12位" Value="DVP_PIXEL_DATA_LENGTH_12"/>
+	</RefParameter>
+	<RefParameter Comment="Pixel Data Length" CommentCH="像素大小" DefaultValue="DVP_PIXEL_DATA_LENGTH_14" Name="PixelDataLength" Type="list" Group="Mode settings" GroupCH="模式配置" Visible="false">
+		<Condition Diagnostic="" Expression="$IpInstance_14Bits"/>
+		<PossibleValue Comment="14 Bits" CommentCH="14位" Value="DVP_PIXEL_DATA_LENGTH_14"/>
+	</RefParameter>
+	
+	<RefParameter Name="Capture_Function_Mode" Comment="Capture Function Mode" CommentCH="捕获模式" DefaultValue="DVP_CAP_FUNC_MODE_CONTINUOUS" Type="list" Group="Mode settings" GroupCH="模式配置">
+		<PossibleValue Comment="Continuous capture mode" CommentCH="连续捕获模式" Value="DVP_CAP_FUNC_MODE_CONTINUOUS"/>
+		<PossibleValue Comment="Single frame capture mode" CommentCH="单帧捕获模式" Value="DVP_CAP_FUNC_MODE_SINGLE"/>
+	</RefParameter>
+	
+	<RefParameter Name="PCLK_Polarity" Comment="PCLK polarity" CommentCH="PCLK 极性" DefaultValue="DVP_CLK_POLARITY_RISING" Type="list" Group="Mode settings" GroupCH="模式配置"  Reload="false">
+		<PossibleValue Comment="Rising Edge" CommentCH="上升沿" Value="DVP_CLK_POLARITY_RISING"/>
+		<PossibleValue Comment="Falling Edge" CommentCH="下降沿" Value="DVP_CLK_POLARITY_FALLING"/>
+	</RefParameter>
+	
+	<RefParameter Name="BasicFrame_Rate_Control" Comment="Basic frame rate control" CommentCH="基本型帧率控制" DefaultValue="DVP_BFRC_ALL" Type="list" Group="Mode settings" GroupCH="模式配置">
+		<PossibleValue Comment="All frames are captured or use enhanced frame rate control" CommentCH="全部捕获或使用进阶型帧率控制" Value="DVP_BFRC_ALL"/>
+		<PossibleValue Comment="Every alternate frame captured" CommentCH="两帧捕获一帧" Value="DVP_BFRC_HALF"/>
+		<PossibleValue Comment="One frame in 4 frames captured" CommentCH="四帧捕获一帧" Value="DVP_BFRC_QUARTER"/>
+	</RefParameter>
+	
+	<RefParameter Name="VSYNC_Event_Interrupt_Definition" Comment="VSYNC event and interrupt definition" CommentCH="VSYNC事件与中断状态选择" DefaultValue="DVP_VSEID_FRAME_END" Type="list" Group="Mode settings" GroupCH="模式配置"  Reload="false">
+		<PossibleValue Comment="Frame end" CommentCH="帧结束" Value="DVP_VSEID_FRAME_END"/>
+		<PossibleValue Comment="Frame start" CommentCH="帧开始" Value="DVP_VSEID_FRMAE_START"/>
+	</RefParameter>
+	
+	<RefParameter Name="HSYNC_Event_Interrupt_Definition" Comment="HSYNC event and interrupt definition" CommentCH="HSYNC事件与中断状态选择" DefaultValue="DVP_HSEID_LINE_END" Type="list" Group="Mode settings" GroupCH="模式配置"  Reload="false">
+		<PossibleValue Comment="Line end" CommentCH="行结束" Value="DVP_HSEID_LINE_END"/>
+		<PossibleValue Comment="Line start" CommentCH="行开始" Value="DVP_HSEID_LINE_START"/>
+	</RefParameter>
+	
+	<RefParameter Name="VSYNC_Polarity" Comment="VSYNC polarity" CommentCH="VSYNC 极性" DefaultValue="DVP_VSYNC_POLARITY_LOW" Type="list" Group="Mode settings" GroupCH="模式配置"  Reload="false">
+		<Condition Diagnostic="" Expression="$IpInstance_Hardware"/>
+		<Annotation Note="This bit defines the vertical synchronization signals.&#x000A;Frame start:&#x000A;  Low level: DVP_VSYNC low level indicates a Frame start signal. &#x000A;  High level: DVP_VSYNC high level indicates a Frame start signal.&#x000A;Frame effective:&#x000A;  Low level: DVP_VSYNC DVP_VSYNC low level indicates that the captured data is in vertical blanking&#x000A;  High level: DVP_VSYNC high level indicates that the captured data is in vertical blanking&#x000A;" 
+        	  	                   NoteCH="在不同的垂直同步信号下，该位的定义不同。&#x000A;帧开始：&#x000A;  低电平：DVP_VSYNC 低电平表示为帧开始信号。 &#x000A;  高电平：DVP_VSYNC 高电平表示为帧开始信号。&#x000A;帧有效：&#x000A;  低电平：DVP_VSYNC 低电平表示捕获数据处于垂直消隐。 &#x000A;  高电平：DVP_VSYNC 高电平表示捕获数据处于垂直消隐。&#x000A;"/>
+		<PossibleValue Comment="Low level" CommentCH="低电平" Value="DVP_VSYNC_POLARITY_LOW"/>
+		<PossibleValue Comment="High level" CommentCH="高电平" Value="DVP_VSYNC_POLARITY_HIGH"/>
+	</RefParameter>
+	
+	<RefParameter Name="HSYNC_Polarity" Comment="HSYNC polarity" CommentCH="HSYNC 极性" DefaultValue="DVP_HSYNC_POLARITY_LOW" Type="list" Group="Mode settings" GroupCH="模式配置"  Reload="false">
+		<Condition Diagnostic="" Expression="$IpInstance_Hardware"/>
+		<PossibleValue Comment="Low level" CommentCH="低电平" Value="DVP_HSYNC_POLARITY_LOW"/>
+		<PossibleValue Comment="High level" CommentCH="高电平" Value="DVP_HSYNC_POLARITY_HIGH"/>
+	</RefParameter>
+	
+	<RefParameter Name="JPEG_Format" Comment="JPEG format" CommentCH="JPEG 格式" DefaultValue="FALSE" Type="list" Group="Mode settings" GroupCH="模式配置"  Reload="false">
+		<Condition Diagnostic="" Expression="$IpInstance_Hardware"/>
+		<PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE"/>
+		<PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE"/>
+	</RefParameter>
+	
+	<RefParameter Name="DMA_Burst_Transaction" Comment="DMA burst transaction" CommentCH="直接存储器访问突发传输" DefaultValue="DVP_DMABT_SINGLE" Type="list" Group="Mode settings" GroupCH="模式配置"  Reload="false">
+		<Condition Diagnostic="" Expression="EDMARequest_DVP"/>
+		<Annotation Note="This configuration is enabled only when the EDMA is used for data transfer. If the DMA is used, this configuration must be disabled.&#x000A;" 
+        	  	                   NoteCH="仅当直接存储器访问接口使用EDMA进行数据传输时，方可使能此配置。若使用DMA，此配置须禁止。&#x000A;"/>
+        	<PossibleValue Comment="Disable" CommentCH="关闭" Value="DVP_DMABT_SINGLE"/>
+		<PossibleValue Comment="Enable" CommentCH="开启" Value="DVP_DMABT_BURST"/>
+	</RefParameter>
+	
+	<RefParameter Name="DMA_Burst_Transaction" Comment="DMA burst transaction" CommentCH="直接存储器访问突发传输" DefaultValue="DVP_DMABT_SINGLE" Type="list" Group="Mode settings" GroupCH="模式配置"  Reload="false">
+		<Annotation Note="This configuration is enabled only when the EDMA is used for data transfer. If the DMA is used, this configuration must be disabled.&#x000A;" 
+        	  	                   NoteCH="仅当直接存储器访问接口使用EDMA进行数据传输时，方可使能此配置。若使用DMA，此配置须禁止。&#x000A;"/>
+        	<PossibleValue Comment="Disable" CommentCH="关闭" Value="DVP_DMABT_SINGLE"/>
+	</RefParameter>
+
+<!-- Cropping window settings -->
+     <RefParameter Name="Cropping_Window" Comment="Cropping window" CommentCH="剪裁窗口" DefaultValue="TRUE" Type="list" Group="Cropping window settings" GroupCH="剪裁窗口设置"  Visible="false">
+		<Condition Diagnostic="" Expression="$IpInstance_Crop_Enable"/>
+		<PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE"/>
+	</RefParameter>
+	<RefParameter Name="Horizontal_Start" Comment="Horizontal start" CommentCH="水平起始点" DefaultValue="0" Max="3FFF" Min="0" Group="Cropping window settings" GroupCH="剪裁窗口设置" Type="hexadecimal"  Reload="false"/>
+	<RefParameter Name="Vertical_Start" Comment="Vertical start" CommentCH="垂直起始点" DefaultValue="0" Max="3FFF" Min="0" Group="Cropping window settings" GroupCH="剪裁窗口设置" Type="hexadecimal" Reload="false"/>
+	<RefParameter Name="Horizontal_Pixel_Number" Comment="Horizontal pixel number" CommentCH="水平尺寸" DefaultValue="0" Max="3FFF" Min="0" Group="Cropping window settings" GroupCH="剪裁窗口设置" Type="hexadecimal" Reload="false"/>
+	<RefParameter Name="Vertical_Line_Number" Comment="Vertical line number" CommentCH="垂直尺寸" DefaultValue="0" Max="3FFF" Min="0" Group="Cropping window settings" GroupCH="剪裁窗口设置" Type="hexadecimal" Reload="false"/>
+     <RefParameter Name="Number_Pixel_Bytes" Comment="number of pixel bytes" CommentCH="像素字节数" DefaultValue="1" Max="4" Min="1" Group="Cropping window settings" GroupCH="剪裁窗口设置" Type="integer"  Reload="false"/>
+   
+<!-- Embedded synchronization settings -->
+	<RefParameter Name="Frame_Start_Sync_Code" Comment="Frame start synchronization 4th code" CommentCH="帧开始内嵌同步码" DefaultValue="0" Max="255" Min="0" Group="Embedded synchronization settings" GroupCH="内嵌码同步设置" Type="integer"  Reload="false"/>
+	<RefParameter Name="Frame_End_Sync_Code" Comment="Frame end synchronization 4th code" CommentCH="帧结束内嵌同步码" DefaultValue="0" Max="255" Min="0" Group="Embedded synchronization settings" GroupCH="内嵌码同步设置" Type="integer"  Reload="false"/>
+	<RefParameter Name="Line_Start_Sync_Code" Comment="Line start synchronization 4th code" CommentCH="行开始内嵌同步码" DefaultValue="0" Max="255" Min="0" Group="Embedded synchronization settings" GroupCH="内嵌码同步设置" Type="integer"  Reload="false"/>
+	<RefParameter Name="Line_End_Sync_Code" Comment="Line end synchronization 4th code" CommentCH="行结束内嵌同步码" DefaultValue="0" Max="255" Min="0" Group="Embedded synchronization settings" GroupCH="内嵌码同步设置" Type="integer"  Reload="false"/>
+  
+<!-- Basic capture/drop settings -->
+	<RefParameter Name="Basic_LCDC" Comment="Basic line capture/drop control" CommentCH="基本型图像行捕获/舍弃控制" DefaultValue="DVP_LCDC_ALL" Type="list" Group="Basic capture/drop settings" GroupCH="基本型捕获/舍弃设置">
+		<PossibleValue Comment="All lines are captured or use enhanced image scaling resize feature" CommentCH="全部捕获或使用进阶型图像尺寸调缩功能" Value="DVP_LCDC_ALL"/>
+		<PossibleValue Comment="Capture one out of two lines" CommentCH="两条图像行捕获一条" Value="DVP_LCDC_ONE_IN_TWO"/>
+	</RefParameter>
+	<RefParameter Name="Basic_LCDS" Comment="Basic line capture/drop selection" CommentCH="基本型图像行捕获/舍弃选择" DefaultValue="DVP_LCDS_CAP_FIRST" Type="list" Group="Basic capture/drop settings" GroupCH="基本型捕获/舍弃设置"  Reload="false">
+		<Condition Diagnostic="" Expression="Basic_LCDC = DVP_LCDC_ONE_IN_TWO"/>
+		<PossibleValue Comment="Capture the first line and drop the next" CommentCH="捕获第一行数据并舍弃下一行" Value="DVP_LCDS_CAP_FIRST"/>
+		<PossibleValue Comment="Drop the first line and capture the next" CommentCH="舍弃第一行数据并捕获下一行" Value="DVP_LCDS_DROP_FIRST"/>
+	</RefParameter>
+	<RefParameter Name="Basic_LCDS" Comment="Basic line capture/drop selection" CommentCH="基本型图像行捕获/舍弃选择" DefaultValue="DVP_LCDS_CAP_FIRST" Type="list" Group="Basic capture/drop settings" GroupCH="基本型捕获/舍弃设置"  Reload="false" Visible="false">
+		<Condition Diagnostic="" Expression="Basic_LCDC = DVP_LCDC_ALL"/>
+		<PossibleValue Comment="Capture the first line and drop the next" CommentCH="捕获第一行数据并舍弃下一行" Value="DVP_LCDS_CAP_FIRST"/>
+	</RefParameter>
+	
+	<RefParameter Name="Basic_PCDC" Comment="Basic pixel capture/drop control" CommentCH="基本型像素捕获/舍弃控制" DefaultValue="DVP_PCDC_ALL" Type="list" Group="Basic capture/drop settings" GroupCH="基本型捕获/舍弃设置">
+		<PossibleValue Comment="All pixels are captured or use enhanced image scaling resize feature" CommentCH="全部捕获或使用进阶型图像尺寸调缩功能" Value="DVP_PCDC_ALL"/>
+		<PossibleValue Comment="Capture one in two pixel data" CommentCH="两个像素数据捕获一个" Value="DVP_PCDC_ONE_IN_TWO"/>
+		<PossibleValue Comment="Capture one in four pixel data" CommentCH="四个像素数据捕获一个" Value="DVP_PCDC_ONE_IN_FOUR"/>
+		<PossibleValue Comment="Capture two consecutive data in four pixel data" CommentCH="四个像素数据捕获连续两个" Value="DVP_PCDC_TWO_IN_FOUR"/>
+	</RefParameter>
+	<RefParameter Name="Basic_PCDS" Comment="Basic pixel capture/drop selection" CommentCH="基本型像素捕获/舍弃选择" DefaultValue="DVP_PCDS_CAP_FIRST" Type="list" Group="Basic capture/drop settings" GroupCH="基本型捕获/舍弃设置">
+		<Condition Diagnostic="" Expression="Basic_PCDC = DVP_PCDC_ONE_IN_TWO | Basic_PCDC = DVP_PCDC_ONE_IN_FOUR | Basic_PCDC = DVP_PCDC_TWO_IN_FOUR"/>
+		<PossibleValue Comment="Capture the first group and drop the next group" CommentCH="捕获第一组数据并舍弃下一组" Value="DVP_PCDS_CAP_FIRST"/>
+		<PossibleValue Comment="Drop the first group and capture the next group" CommentCH="舍弃第一组数据并捕获下一组" Value="DVP_PCDS_DROP_FIRST"/>
+	</RefParameter>
+	<RefParameter Name="Basic_PCDS" Comment="Basic pixel capture/drop selection" CommentCH="基本型像素捕获/舍弃选择" DefaultValue="DVP_PCDS_CAP_FIRST" Type="list" Group="Basic capture/drop settings" GroupCH="基本型捕获/舍弃设置" Visible="false">
+		<Condition Diagnostic="" Expression="Basic_PCDC = DVP_PCDC_ALL"/>
+		<PossibleValue Comment="Capture the first group and drop the next group" CommentCH="捕获第一组数据并舍弃下一组" Value="DVP_PCDS_CAP_FIRST"/>
+	</RefParameter>
+	<RefParameter Name="Basic_PCDES" Comment="Basic pixel capture/drop extended selection" CommentCH="基本型像素捕获/舍弃扩充选择" DefaultValue="DVP_PCDES_CAP_FIRST" Type="list" Group="Basic capture/drop settings" GroupCH="基本型捕获/舍弃设置"  Reload="false">
+		<Condition Diagnostic="" Expression="Basic_PCDC = DVP_PCDC_ONE_IN_FOUR &amp; Basic_PCDS = DVP_PCDS_CAP_FIRST"/>
+		<PossibleValue Comment="Capture the first pixel data and drop others" CommentCH="捕获第一个像素数据，舍弃其他" Value="DVP_PCDES_CAP_FIRST"/>
+		<PossibleValue Comment="Capture the second pixel data and drop others" CommentCH="捕获第二个像素数据，舍弃其他" Value="DVP_PCDES_DROP_FIRST"/>
+	</RefParameter>
+	<RefParameter Name="Basic_PCDES" Comment="Basic pixel capture/drop extended selection" CommentCH="基本型像素捕获/舍弃扩充选择" DefaultValue="DVP_PCDES_CAP_FIRST" Type="list" Group="Basic capture/drop settings" GroupCH="基本型捕获/舍弃设置"  Reload="false">
+		<Condition Diagnostic="" Expression="Basic_PCDC = DVP_PCDC_ONE_IN_FOUR &amp; Basic_PCDS = DVP_PCDS_DROP_FIRST"/>
+		<PossibleValue Comment="Capture the third pixel data and drop others" CommentCH="捕获第三个像素数据，舍弃其他" Value="DVP_PCDES_CAP_FIRST"/>
+		<PossibleValue Comment="Capture the forth pixel data and drop others" CommentCH="捕获第四个像素数据，舍弃其他" Value="DVP_PCDES_DROP_FIRST"/>
+	</RefParameter>
+	
+<!-- Enhanced function data format management settings -->
+	<RefParameter Name="Enhanced_Data_Format_Management" Comment="Enhanced function data format management" CommentCH="进阶功能数据管理" DefaultValue="DVP_EFDF_BYPASS" Type="list" Group="Enhanced function data format management settings" GroupCH="进阶功能数据管理设置">
+		<PossibleValue Comment="Disable" CommentCH="关闭" Value="DVP_EFDF_BYPASS"/>
+		<PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE"/>
+	</RefParameter>
+	
+	<RefParameter Name="Enhanced_Data_Format" Comment="Enhanced function data format" CommentCH="进阶功能数据格式" DefaultValue="DVP_EFDF_YUV422_UYVY" Type="list" Group="Enhanced function data format management settings" GroupCH="进阶功能数据管理设置"  Reload="false">
+		<Condition Diagnostic="" Expression="Enhanced_Data_Format_Management = TRUE"/>
+		<PossibleValue Comment="YUV422 (UYVY / VYUY) data format" CommentCH="YUV422（UYVY / VYUY）格式" Value="DVP_EFDF_YUV422_UYVY"/>
+		<PossibleValue Comment="YUV422 (YUYV / YVYU) data format" CommentCH="YUV422（YUYV / YVYU）格式" Value="DVP_EFDF_YUV422_YUYV"/>
+		<PossibleValue Comment="RGB565 and RGB555 data format" CommentCH="RGB565 与 RGB555 格式" Value="DVP_EFDF_RGB565_555"/>
+		<PossibleValue Comment="Y8 (Y only) data format" CommentCH="Y8（Y only）格式" Value="DVP_EFDF_Y8"/>
+	</RefParameter>
+	
+<!-- Enhanced image scaling resize settings -->
+	<RefParameter Name="Enhanced_Image_Scaling_Resize" Comment="Enhanced image scaling resize" CommentCH="进阶型图像尺寸调缩" DefaultValue="FALSE" Type="list" Group="Enhanced image scaling resize settings" GroupCH="进阶型图像尺寸调缩设置">
+		<Condition Diagnostic="" Expression="Enhanced_Data_Format_Management = TRUE &amp; Basic_LCDC = DVP_LCDC_ALL &amp; Basic_PCDC = DVP_PCDC_ALL"/>
+		<PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE"/>
+		<PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE"/>
+	</RefParameter>
+	<RefParameter Name="Enhanced_Image_Scaling_Resize" Comment="Enhanced image scaling resize" CommentCH="进阶型图像尺寸调缩" DefaultValue="FALSE" Type="list" Group="Enhanced image scaling resize settings" GroupCH="进阶型图像尺寸调缩设置" Visible="false">
+		<PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE"/>
+	</RefParameter>
+	
+	<RefParameter Name="Horizontal_Scaling_Resize_Source_Factor" Comment="Horizontal scaling resize source factor" CommentCH="水平尺寸调缩来源系数" DefaultValue="1" Max="1FFF" Min="1" Group="Enhanced image scaling resize settings" GroupCH="进阶型图像尺寸调缩设置" Type="hexadecimal">
+	<Condition Diagnostic="" Expression="Enhanced_Image_Scaling_Resize = TRUE"/>
+	</RefParameter>
+	
+	<RefParameter Name="Horizontal_Scaling_Resize_Target_Factor" Comment="Horizontal scaling resize target factor" CommentCH="水平尺寸调缩目标系数" DefaultValue="1" Max="1FFF" Min="1" Group="Enhanced image scaling resize settings" GroupCH="进阶型图像尺寸调缩设置" Type="hexadecimal">
+	<Condition Diagnostic="" Expression="Enhanced_Image_Scaling_Resize = TRUE"/>
+	</RefParameter>
+	
+	<RefParameter Name="Vertical_Scaling_Resize_Source_Factor" Comment="Vertical scaling resize source factor" CommentCH="垂直尺寸调缩来源系数" DefaultValue="1" Max="1FFF" Min="1" Group="Enhanced image scaling resize settings" GroupCH="进阶型图像尺寸调缩设置" Type="hexadecimal">
+	<Condition Diagnostic="" Expression="Enhanced_Image_Scaling_Resize = TRUE"/>
+	</RefParameter>
+	
+	<RefParameter Name="Vertical_Scaling_Resize_Target_Factor" Comment="Vertical scaling resize target factor" CommentCH="垂直尺寸调缩目标系数" DefaultValue="1" Max="1FFF" Min="1" Group="Enhanced image scaling resize settings" GroupCH="进阶型图像尺寸调缩设置" Type="hexadecimal">
+	<Condition Diagnostic="" Expression="Enhanced_Image_Scaling_Resize = TRUE"/>
+	</RefParameter>
+	
+<!-- Enhanced frame rate control settings -->
+	<RefParameter Name="Enhanced_Frame_Rate_Control" Comment="Enhanced frame rate control" CommentCH="进阶型帧率控制" DefaultValue="FALSE" Type="list" Group="Enhanced frame rate control settings" GroupCH="进阶型帧率控制设置">
+		<Condition Diagnostic="" Expression="Capture_Function_Mode = DVP_CAP_FUNC_MODE_CONTINUOUS &amp; BasicFrame_Rate_Control = DVP_BFRC_ALL"/>
+		<PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE"/>
+		<PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE"/>
+	</RefParameter>
+	<RefParameter Name="Enhanced_Frame_Rate_Control" Comment="Enhanced frame rate control" CommentCH="进阶型帧率控制" DefaultValue="FALSE" Type="list" Group="Enhanced frame rate control settings" GroupCH="进阶型帧率控制设置" Visible="false">
+		<PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE"/>
+	</RefParameter>
+	
+	<RefParameter Name="Frame_Rate_Contorl_Source_Factor" Comment="Frame rate contorl source factor" CommentCH="帧率控制来源系数" DefaultValue="1" Max="1F" Min="1" Group="Enhanced frame rate control settings" GroupCH="进阶型帧率控制设置" Type="hexadecimal">
+	<Condition Diagnostic="" Expression="Enhanced_Frame_Rate_Control = TRUE"/>
+	</RefParameter>
+	
+	<RefParameter Name="Frame_Rate_Contorl_Target_Factor" Comment="Frame rate control target factor" CommentCH="帧率控制目标系数" DefaultValue="1" Max="1F" Min="1" Group="Enhanced frame rate control settings" GroupCH="进阶型帧率控制设置" Type="hexadecimal">
+	<Condition Diagnostic="" Expression="Enhanced_Frame_Rate_Control = TRUE"/>
+	</RefParameter>
+	
+<!-- Monochrome image binarization settings -->
+	<RefParameter Name="Monochrome_Image_Binarization" Comment="Monochrome image binarization" CommentCH="灰阶图像二值化转换" DefaultValue="FALSE" Type="list" Group="Monochrome image binarization settings" GroupCH="灰阶图像二值化转换设置">
+		<Condition Diagnostic="" Expression="Enhanced_Data_Format_Management = TRUE"/>
+		<PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE"/>
+		<PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE"/>
+	</RefParameter>
+	<RefParameter Name="Monochrome_Image_Binarization" Comment="Monochrome image binarization" CommentCH="灰阶图像二值化转换" DefaultValue="FALSE" Type="list" Group="Monochrome image binarization settings" GroupCH="灰阶图像二值化转换设置" Visible="false">
+		<PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE"/>
+	</RefParameter>
+	
+	<RefParameter Name="Monochrome_Image_Binarization_Threshold" Comment="Monochrome image binarization threshold" CommentCH="灰阶图像二值化阀值" DefaultValue="0" Max="FF" Min="0" Group="Monochrome image binarization settings" GroupCH="灰阶图像二值化转换设置" Type="hexadecimal"  Reload="false">
+	<Condition Diagnostic="" Expression="Monochrome_Image_Binarization = TRUE"/>
+	</RefParameter>
+	
+<!-- Input data un-used settings -->
+	<RefParameter Name="Input_Data_Unused_Setting" Comment="Input data un-used setting" CommentCH="输入数据未使用配置方式" DefaultValue="DVP_IDUS_MSB" Type="list" Group="Input data un-used settings" GroupCH="输入数据未使用设置"  Reload="false">
+		<PossibleValue Comment="Unused data bit in the MSB" CommentCH="未使用数据位在 MSB" Value="DVP_IDUS_MSB"/>
+		<PossibleValue Comment="Unused data bit in the LSB" CommentCH="未使用数据位在 LSB" Value="DVP_IDUS_LSB"/>
+	</RefParameter>
+	<RefParameter Name="Input_Data_Unused_Bit_Number" Comment="Input data un-used bit number" CommentCH="输入数据未使用位数" DefaultValue="DVP_IDUN_0" Type="list" Group="Input data un-used settings" GroupCH="输入数据未使用设置"  Reload="false">
+		<PossibleValue Comment="No unused bits" CommentCH="无未使用位" Value="DVP_IDUN_0"/>
+		<PossibleValue Comment="2-bit unused data" CommentCH="2位未使用数据" Value="DVP_IDUN_2"/>
+		<PossibleValue Comment="4-bit unused data" CommentCH="4位未使用数据" Value="DVP_IDUN_4"/>
+		<PossibleValue Comment="6-bit unused data" CommentCH="6位未使用数据" Value="DVP_IDUN_6"/>
+	</RefParameter>
+
+	
+	<RefMode BaseMode="" Abstract = "true">
+		<Parameter Name="Mode"/>
+		<Parameter Name="PixelDataLength"/>
+		<Parameter Name="Capture_Function_Mode"/>
+		<Parameter Name="PCLK_Polarity"/>
+		<Parameter Name="BasicFrame_Rate_Control"/>
+		<Parameter Name="VSYNC_Event_Interrupt_Definition"/>
+		<Parameter Name="HSYNC_Event_Interrupt_Definition" />
+		<Parameter Name="VSYNC_Polarity"/>
+		<Parameter Name="HSYNC_Polarity"/>
+		<Parameter Name="JPEG_Format"/>
+		<Parameter Name="DMA_Burst_Transaction"/>
+		<!-- Basic capture/drop settings -->
+		<Parameter Name="Basic_LCDC"/>
+		<Parameter Name="Basic_LCDS"/>
+		<Parameter Name="Basic_PCDC"/>
+		<Parameter Name="Basic_PCDS"/>
+		<Parameter Name="Basic_PCDES"/>
+		<!-- Enhanced function data format management settings -->
+		<Parameter Name="Enhanced_Data_Format_Management"/>
+		<Parameter Name="Enhanced_Data_Format"/>
+		<!-- Enhanced image scaling resize settings -->
+		<Parameter Name="Enhanced_Image_Scaling_Resize"/>
+		<Parameter Name="Horizontal_Scaling_Resize_Source_Factor"/>
+		<Parameter Name="Horizontal_Scaling_Resize_Target_Factor"/>
+		<Parameter Name="Vertical_Scaling_Resize_Source_Factor"/>
+		<Parameter Name="Vertical_Scaling_Resize_Target_Factor"/>
+		<!-- Enhanced frame rate control settings -->
+		<Parameter Name="Enhanced_Frame_Rate_Control"/>
+		<Parameter Name="Frame_Rate_Contorl_Source_Factor"/>
+		<Parameter Name="Frame_Rate_Contorl_Target_Factor"/>
+		<!-- Monochrome image binarization settings -->
+		<Parameter Name="Monochrome_Image_Binarization"/>
+		<Parameter Name="Monochrome_Image_Binarization_Threshold"/>
+		<!-- Input data un-used settings -->
+		<Parameter Name="Input_Data_Unused_Setting"/>
+		<Parameter Name="Input_Data_Unused_Bit_Number"/>
+	</RefMode>
+
+     <RefMode BaseMode="Mode" Name="8Bits_Embedded_Sync">
+		<Parameter Name="Frame_Start_Sync_Code"/>
+		<Parameter Name="Frame_End_Sync_Code"/>
+		<Parameter Name="Line_Start_Sync_Code"/>
+		<Parameter Name="Line_End_Sync_Code"/>
+	</RefMode>
+	
+	<RefMode Name="Cropping_Window" BaseMode="Cropping_Window">
+		<Parameter Name="Cropping_Window"/>
+		<Parameter Name="Horizontal_Start"/>
+		<Parameter Name="Vertical_Start"/>
+		<Parameter Name="Horizontal_Pixel_Number"/>
+		<Parameter Name="Vertical_Line_Number"/>
+		<Parameter Name="Number_Pixel_Bytes"/>
+	</RefMode>
+	
+
+	
+	
+	<!-- ModeLogicOperator for DVP -->
+        <ModeLogicOperator Name="OR">
+            <Mode Name="Mode" UserName="Mode" UserNameCH="模式">
+            	  <ModeLogicOperator Name="XOR">
+                    <Mode Name="8Bits_Embedded_Sync" UserName="8 bits embedded synchronization" UserNameCH="8位内嵌码同步模式">
+                        <SignalLogicalOp Name="AND">
+                            <Signal Name="D0"/>
+                            <Signal Name="D1"/>
+                            <Signal Name="D2"/>
+                            <Signal Name="D3"/>
+                            <Signal Name="D4"/>
+                            <Signal Name="D5"/>
+                            <Signal Name="D6"/>
+                            <Signal Name="D7"/>
+                            <Signal Name="PCLK"/>
+                        </SignalLogicalOp>
+                         <Semaphore>$IpInstance_8Bits</Semaphore>
+                        <Semaphore>$IpInstance_Embedded</Semaphore>
+                        <Semaphore>$IpInstance_Mode_Enable</Semaphore>
+                    </Mode>
+                    <Mode Name="8Bits_Hardware_Sync" UserName="8 bits Hardware synchronization" UserNameCH="8位硬件同步模式">
+                        <SignalLogicalOp Name="AND">
+                            <Signal Name="D0"/>
+                            <Signal Name="D1"/>
+                            <Signal Name="D2"/>
+                            <Signal Name="D3"/>
+                            <Signal Name="D4"/>
+                            <Signal Name="D5"/>
+                            <Signal Name="D6"/>
+                            <Signal Name="D7"/>
+                            <Signal Name="HSYNC"/>
+                            <Signal Name="PCLK"/>
+                            <Signal Name="VSYNC"/>
+                        </SignalLogicalOp>
+                         <Semaphore>$IpInstance_8Bits</Semaphore>
+                        <Semaphore>$IpInstance_Hardware</Semaphore>
+                        <Semaphore>$IpInstance_Mode_Enable</Semaphore>
+                    </Mode>
+                    <Mode Name="10Bits_Hardware_Sync" UserName="10 bits Hardware synchronization" UserNameCH="10位硬件同步模式">
+                        <SignalLogicalOp Name="AND">
+                            <Signal Name="D0"/>
+                            <Signal Name="D1"/>
+                            <Signal Name="D2"/>
+                            <Signal Name="D3"/>
+                            <Signal Name="D4"/>
+                            <Signal Name="D5"/>
+                            <Signal Name="D6"/>
+                            <Signal Name="D7"/>
+                            <Signal Name="D8"/>
+                            <Signal Name="D9"/>
+                            <Signal Name="HSYNC"/>
+                            <Signal Name="PCLK"/>
+                            <Signal Name="VSYNC"/>
+                        </SignalLogicalOp>
+                         <Semaphore>$IpInstance_10Bits</Semaphore>
+                        <Semaphore>$IpInstance_Hardware</Semaphore>
+                        <Semaphore>$IpInstance_Mode_Enable</Semaphore>
+                    </Mode>
+                    <Mode Name="12Bits_Hardware_Sync" UserName="12 bits Hardware synchronization" UserNameCH="12位硬件同步模式">
+                        <SignalLogicalOp Name="AND">
+                            <Signal Name="D0"/>
+                            <Signal Name="D1"/>
+                            <Signal Name="D2"/>
+                            <Signal Name="D3"/>
+                            <Signal Name="D4"/>
+                            <Signal Name="D5"/>
+                            <Signal Name="D6"/>
+                            <Signal Name="D7"/>
+                            <Signal Name="D8"/>
+                            <Signal Name="D9"/>
+                            <Signal Name="D10"/>
+                            <Signal Name="D11"/>
+                            <Signal Name="HSYNC"/>
+                            <Signal Name="PCLK"/>
+                            <Signal Name="VSYNC"/>
+                        </SignalLogicalOp>
+                         <Semaphore>$IpInstance_12Bits</Semaphore>
+                        <Semaphore>$IpInstance_Hardware</Semaphore>
+                        <Semaphore>$IpInstance_Mode_Enable</Semaphore>
+                    </Mode>
+                    <Mode Name="14Bits_Hardware_Sync" UserName="14 bits Hardware synchronization" UserNameCH="14位硬件同步模式">
+                        <SignalLogicalOp Name="AND">
+                            <Signal Name="D0"/>
+                            <Signal Name="D1"/>
+                            <Signal Name="D2"/>
+                            <Signal Name="D3"/>
+                            <Signal Name="D4"/>
+                            <Signal Name="D5"/>
+                            <Signal Name="D6"/>
+                            <Signal Name="D7"/>
+                            <Signal Name="D8"/>
+                            <Signal Name="D9"/>
+                            <Signal Name="D10"/>
+                            <Signal Name="D11"/>
+                            <Signal Name="D12"/>
+                            <Signal Name="D13"/>
+                            <Signal Name="HSYNC"/>
+                            <Signal Name="PCLK"/>
+                            <Signal Name="VSYNC"/>
+                        </SignalLogicalOp>
+                         <Semaphore>$IpInstance_14Bits</Semaphore>
+                        <Semaphore>$IpInstance_Hardware</Semaphore>
+                        <Semaphore>$IpInstance_Mode_Enable</Semaphore>
+                    </Mode>
+                </ModeLogicOperator>
+            </Mode>
+		
+            <Mode Name="Cropping_Window" UserName="Enable Cropping Window" UserNameCH="使能剪裁窗口">
+                <ModeLogicOperator Name="OR">
+                    <Mode Name="Cropping_Window" UserName="Enable Cropping Window" UserNameCH="使能剪裁窗口">
+                        <SignalLogicalOp Name="AND">
+                            <Signal Name="VS_Cropping"/>
+                        </SignalLogicalOp>
+                        <Semaphore>$IpInstance_Crop_Enable</Semaphore>
+                    </Mode>
+                </ModeLogicOperator>
+                <Condition Expression="$IpInstance_Mode_Enable" Diagnostic="Must have a mode selected" DiagnosticCH="需选择模式"/>
+            </Mode>
+        </ModeLogicOperator>
+	
+	<!-- RefSignal for DVP -->
+	<RefSignal Name="D0" IOMode="MuxOutputPushPull"/>
+	<RefSignal Name="D1" IOMode="MuxOutputPushPull"/>
+	<RefSignal Name="D2" IOMode="MuxOutputPushPull"/>
+	<RefSignal Name="D3" IOMode="MuxOutputPushPull"/>
+	<RefSignal Name="D4" IOMode="MuxOutputPushPull"/>
+	<RefSignal Name="D5" IOMode="MuxOutputPushPull"/>
+	<RefSignal Name="D6" IOMode="MuxOutputPushPull"/>
+	<RefSignal Name="D7" IOMode="MuxOutputPushPull"/>
+	<RefSignal Name="D8" IOMode="MuxOutputPushPull"/>
+	<RefSignal Name="D9" IOMode="MuxOutputPushPull"/>
+	<RefSignal Name="D10" IOMode="MuxOutputPushPull"/>
+	<RefSignal Name="D11" IOMode="MuxOutputPushPull"/>
+	<RefSignal Name="D12" IOMode="MuxOutputPushPull"/>
+	<RefSignal Name="D13" IOMode="MuxOutputPushPull"/>
+	<RefSignal Name="HSYNC" IOMode="MuxOutputPushPull"/>
+	<RefSignal Name="PCLK" IOMode="MuxOutputPushPull"/>
+	<RefSignal Name="VSYNC" IOMode="MuxOutputPushPull"/>
+     <RefSignal Name="VS_Cropping" Virtual="true"/>
+</IP>

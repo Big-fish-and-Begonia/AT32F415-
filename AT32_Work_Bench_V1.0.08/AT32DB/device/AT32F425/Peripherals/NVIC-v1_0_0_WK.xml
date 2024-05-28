@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<IP >
+    <About>Nested vectored interrupt controller</About>
+    <AboutCH>嵌套向量中断控制器</AboutCH>
+    
+    <RefParameter Comment="Priority Group" CommentCH="优先级组" DefaultValue="NVIC_PRIORITY_GROUP_4" Group="" Name="PriorityGroup" Type="list">
+        <PossibleValue Comment="0 bits for pre-emption priority,  4 bits for subpriority" CommentCH="抢占优先级0位，子优先级4位" Semaphore="NVIC_PRIORITY_GROUP_0" Value="NVIC_PRIORITY_GROUP_0"/>
+        <PossibleValue Comment="1 bits for pre-emption priority,  3 bits for subpriority" CommentCH="抢占优先级1位，子优先级3位" Semaphore="NVIC_PRIORITY_GROUP_1" Value="NVIC_PRIORITY_GROUP_1"/>
+        <PossibleValue Comment="2 bits for pre-emption priority,  2 bits for subpriority" CommentCH="抢占优先级2位，子优先级2位" Semaphore="NVIC_PRIORITY_GROUP_2" Value="NVIC_PRIORITY_GROUP_2"/>
+        <PossibleValue Comment="3 bits for pre-emption priority,  1 bits for subpriority" CommentCH="抢占优先级3位，子优先级1位" Semaphore="NVIC_PRIORITY_GROUP_3" Value="NVIC_PRIORITY_GROUP_3"/>
+        <PossibleValue Comment="4 bits for pre-emption priority,  0 bits for subpriority" CommentCH="抢占优先级4位，子优先级0位" Semaphore="NVIC_PRIORITY_GROUP_4" Value="NVIC_PRIORITY_GROUP_4"/>
+    </RefParameter>
+    <RefParameter Comment="Preemption Priority" CommentCH="抢占优先级" DefaultValue="0" Group="" Max="0" Min="0" Name="PreemptionPriority" Type="integer">
+        <Condition Diagnostic="0 bits for pre-emption priority" Expression="NVIC_PRIORITY_GROUP_0"/>
+    </RefParameter>
+    <RefParameter Comment="Preemption Priority" CommentCH="抢占优先级" DefaultValue="0" Group="" Max="1" Min="0" Name="PreemptionPriority" Type="integer">
+        <Condition Diagnostic="1 bits for pre-emption priority" Expression="NVIC_PRIORITY_GROUP_1"/>
+    </RefParameter>
+    <RefParameter Comment="Preemption Priority" CommentCH="抢占优先级" DefaultValue="0" Group="" Max="3" Min="0" Name="PreemptionPriority" Type="integer">
+        <Condition Diagnostic="2 bits for pre-emption priority" Expression="NVIC_PRIORITY_GROUP_2"/>
+    </RefParameter>
+    <RefParameter Comment="Preemption Priority" CommentCH="抢占优先级" DefaultValue="0" Group="" Max="7" Min="0" Name="PreemptionPriority" Type="integer">
+        <Condition Diagnostic="3 bits for pre-emption priority" Expression="NVIC_PRIORITY_GROUP_3"/>
+    </RefParameter>
+    <RefParameter Comment="Preemption Priority" CommentCH="抢占优先级" DefaultValue="0" Group="" Max="15" Min="0" Name="PreemptionPriority" Type="integer">
+        <Condition Diagnostic="4 bits for pre-emption priority" Expression="NVIC_PRIORITY_GROUP_4"/>
+    </RefParameter>
+    <RefParameter Comment="Sub Priority" CommentCH="子优先级" DefaultValue="0" Group="" Max="15" Min="0" Name="SubPriority" Type="integer">
+        <Condition Diagnostic="4 bits for subpriority" Expression="NVIC_PRIORITY_GROUP_0"/>
+    </RefParameter>
+    <RefParameter Comment="Sub Priority" CommentCH="子优先级" DefaultValue="0" Group="" Max="7" Min="0" Name="SubPriority" Type="integer">
+        <Condition Diagnostic="3 bits for subpriority" Expression="NVIC_PRIORITY_GROUP_1"/>
+    </RefParameter>
+    <RefParameter Comment="Sub Priority" CommentCH="子优先级" DefaultValue="0" Group="" Max="3" Min="0" Name="SubPriority" Type="integer">
+        <Condition Diagnostic="2 bits for subpriority" Expression="NVIC_PRIORITY_GROUP_2"/>
+    </RefParameter>
+    <RefParameter Comment="Sub Priority" CommentCH="子优先级" DefaultValue="0" Group="" Max="1" Min="0" Name="SubPriority" Type="integer">
+        <Condition Diagnostic="1 bits for subpriority" Expression="NVIC_PRIORITY_GROUP_3"/>
+    </RefParameter>
+    <RefParameter Comment="Sub Priority" CommentCH="子优先级" DefaultValue="0" Group="" Max="0" Min="0" Name="SubPriority" Type="integer">
+        <Condition Diagnostic="0 bits for subpriority" Expression="NVIC_PRIORITY_GROUP_4"/>
+    </RefParameter>
+    <RefParameter Comment="Interrupt Table" CommentCH="中断表" DefaultValue="" Group="" Name="IRQn" Type="list" Visible="false">
+    	   <PossibleValue 
+    	   Condition="Reset"    
+    	   Comment="Reset_IRQ"    	                                             
+    	   CommentCH="Reset_IRQ"                                            
+    	   Diagnostic="reset vector, invoked on power up and warm reset"  
+    	   DiagnosticCH="复位中断"                     
+    	   Value="Reset_IRQn,Y,N:Y,N:0,N:0,Reset_Handler"/>
+    	   	
+    	   <PossibleValue 
+    	   	Condition="NonMaskableInt"    
+    	   	Comment="NonMaskableInt_IRQ"                                
+    	   	CommentCH="NonMaskableInt_IRQ"                        
+    	   	Diagnostic="non maskable interrupt"                                                    
+    	   	DiagnosticCH="不可屏蔽中断"                 
+    	   	Value="NonMaskableInt_IRQn,Y,N:Y,N:0,N:0,NMI_Handler"/>
+    	   	
+        <PossibleValue 
+        	 Condition="HardFault"    
+        	Comment="HardFault_IRQ"                                            
+        	CommentCH="HardFault_IRQ"                                    
+        	Diagnostic="hard fault, all classes of fault"                                            
+        	DiagnosticCH="硬件错误中断"                 
+        	Value="HardFault_IRQn,Y,N:Y,N:0,N:0,HardFault_Handler"/>
+        	
+        <PossibleValue 
+        	 Condition="MemoryManagement"    
+        	Comment="MemoryManagement_IRQ"                      
+        	CommentCH="MemoryManagement_IRQ"              
+        	Diagnostic="cortex-m4 memory management interrupt"                 
+        	DiagnosticCH="内存管理中断"                 
+        	Value="MemoryManagement_IRQn,Y,N:Y,Y:0,Y:0,MemManage_Handler"/>
+        	
+        <PossibleValue 
+        	 Condition="BusFault"    
+        	Comment="BusFault_IRQ"                                               
+        	CommentCH="BusFault_IRQ"                                       
+        	Diagnostic="cortex-m4 bus fault interrupt"                                          
+        	DiagnosticCH="总线错误中断"                 
+        	Value="BusFault_IRQn,Y,N:Y,Y:0,Y:0,BusFault_Handler"/>
+        	
+        <PossibleValue 
+        	 Condition="UsageFault"    
+        	Comment="UsageFault_IRQ"                                          
+        	CommentCH="UsageFault_IRQ"                                  
+        	Diagnostic="cortex-m4 usage fault interrupt"                                      
+        	DiagnosticCH="使用错误中断"                 
+        	Value="UsageFault_IRQn,Y,N:Y,Y:0,Y:0,UsageFault_Handler"/>
+        	
+        <PossibleValue 
+        	 Condition="SVCall"    
+        	Comment="SVCall_IRQ"                                                   
+        	CommentCH="SVCall_IRQ"                                          
+        	Diagnostic="cortex-m4 sv call interrupt"                                                
+        	DiagnosticCH="系统服务中断（SWI指令）"      
+        	Value="SVCall_IRQn,Y,N:Y,Y:0,Y:0,SVC_Handler"/>
+        	
+        <PossibleValue 
+        	 Condition="DebugMonitor"    
+        	Comment="DebugMonitor_IRQ"                                  
+        	CommentCH="DebugMonitor_IRQ"                          
+        	Diagnostic="cortex-m4 debug monitor interrupt"                               
+        	DiagnosticCH="调试监控器中断"               
+        	Value="DebugMonitor_IRQn,Y,N:Y,Y:0,Y:0,DebugMon_Handler"/>
+        	
+        <PossibleValue
+        	 Condition="PendSV"    
+        	Comment="PendSV_IRQ"                                                
+        	CommentCH="PendSV_IRQ"                                        
+        	Diagnostic="cortex-m4 pend sv interrupt"                                            
+        	DiagnosticCH="可挂起的系统服务中断"         
+        	Value="PendSV_IRQn,Y,N:Y,Y:0,Y:0,PendSV_Handler"/>
+        	
+        <PossibleValue
+        	 Condition="SysTick"     
+        	Comment="SysTick_IRQ"                                                 
+        	CommentCH="SysTick_IRQ"                                        
+        	Diagnostic="cortex-m4 system tick interrupt"                                      
+        	DiagnosticCH="系统嘀嗒中断"                
+        	Value="SysTick_IRQn,Y,Y:N,Y:0,Y:0,SysTick_Handler"/>
+        	  
+        <PossibleValue 
+        	 Condition="WWDT"    
+        	 Comment="WWDT_IRQ"                                                 
+        	CommentCH="WWDT_IRQ"                                           
+        	Diagnostic="window watchdog timer interrupt"                                  
+        	DiagnosticCH="窗口看门狗中断"               
+        	Value="WWDT_IRQn,N,Y:N,Y:0,Y:0,WWDT_IRQHandler"/>
+        	
+        <PossibleValue 
+        	 Condition="PVM"    
+        	 Comment="PVM_IRQ"                                                     
+        	CommentCH="PVM_IRQ"                                               
+        	Diagnostic="pvm through exint line detection interrupt"                   
+        	DiagnosticCH="电源电压检测中断"             
+        	Value="PVM_IRQn,N,Y:N,Y:0,Y:0,PVM_IRQHandler"/>
+        	
+        <PossibleValue 
+        	 Condition="ERTC"    
+        	 Comment="ERTC_IRQ"                                                    
+        	CommentCH="ERTC_IRQ"                                              
+        	Diagnostic="ertc global interrupt "                                                           
+        	DiagnosticCH="实时时钟全局中断"             
+        	Value="ERTC_IRQn,N,Y:N,Y:0,Y:0,ERTC_IRQHandler"/>
+        	
+        <PossibleValue 
+        	 Condition="FLASH"    
+        	 Comment="FLASH_IRQ"                                                  
+        	CommentCH="FLASH_IRQ"                                          
+        	Diagnostic="flash global interrupt"                                                          
+        	DiagnosticCH="Flash全局中断"                
+        	Value="FLASH_IRQn,Y,Y:N,Y:0,Y:0,FLASH_IRQHandler"/>
+        	
+        <PossibleValue 
+        	 Condition="CRM"    
+        	 Comment="CRM_IRQ"                                                     
+        	CommentCH="CRM_IRQ"                                              
+        	Diagnostic="crm global interrupt"                                                           
+        	DiagnosticCH="时钟复位管理全局中断"         
+        	Value="CRM_IRQn,Y,Y:N,Y:0,Y:0,CRM_IRQHandler"/>       
+        	
+        <PossibleValue 
+        	 Condition="EXINT0;EXINT1"    
+        	 Comment="EXINT1_0_IRQ"                                            
+        	CommentCH="EXINT1_0_IRQ"                                      
+        	Diagnostic="external line1~0 interrupt"                                                   
+        	DiagnosticCH="外部中断线1_0中断"            
+        	Value="EXINT1_0_IRQn,N,Y:N,Y:0,Y:0,EXINT1_0_IRQHandler"/>
+        	
+        <PossibleValue 
+        	 Condition="EXINT2;EXINT3"    
+        	 Comment="EXINT3_2_IRQ"                                            
+        	CommentCH="EXINT3_2_IRQ"                                      
+        	Diagnostic="external line3~2 interrupt"                                                   
+        	DiagnosticCH="外部中断线3_2中断"            
+        	Value="EXINT3_2_IRQn,N,Y:N,Y:0,Y:0,EXINT3_2_IRQHandler"/>
+        	
+        <PossibleValue 
+        	 Condition="EXINT4;EXINT5;EXINT6;EXINT7;EXINT8;EXINT9;EXINT10;EXINT11;EXINT12;EXINT13;EXINT14;EXINT15"    
+        	 Comment="EXINT15_4_IRQ"                                          
+        	CommentCH="EXINT15_4_IRQ"                                    
+        	Diagnostic="external line15~4 interrupt"                                                
+        	DiagnosticCH="外部中断线15_4中断"           
+        	Value="EXINT15_4_IRQn,N,Y:N,Y:0,Y:0,EXINT15_4_IRQHandler"/>
+        	
+        	<PossibleValue 
+        	Condition="ACC" 
+        	Comment="ACC_IRQ"                                                     
+        	CommentCH="ACC_IRQ"                                                  
+        	Diagnostic="acc interrupt"                                                                         
+        	DiagnosticCH="ACC全局中断"                            
+        	Value="ACC_IRQn,N,Y:N,Y:0,Y:0,ACC_IRQHandler"/>
+        	
+        <PossibleValue 
+        	 Condition="DMA1_Channel1"    
+        	 Comment="DMA1_Channel1_IRQ"                               
+        	CommentCH="DMA1_Channel1_IRQ"                          
+        	Diagnostic="dma1 channel 1 global interrupt"                                       
+        	DiagnosticCH="DMA1通道1全局中断"            
+        	Value="DMA1_Channel1_IRQn,N,Y:N,Y:0,Y:0,DMA1_Channel1_IRQHandler"/>
+        	
+        <PossibleValue 
+        	 Condition="DMA1_Channel2;DMA1_Channel3"    
+        	 Comment="DMA1_Channel3_2_IRQ"                           
+        	CommentCH="DMA1_Channel3_2_IRQ"                      
+        	Diagnostic="dma1 channel 3~2 global interrupt"                                  
+        	DiagnosticCH="DMA1通道3_2全局中断"          
+        	Value="DMA1_Channel3_2_IRQn,N,Y:N,Y:0,Y:0,DMA1_Channel3_2_IRQHandler"/>
+        	
+        <PossibleValue 
+        	 Condition="DMA1_Channel4;DMA1_Channel5;DMA1_Channel6;DMA1_Channel7"    
+        	 Comment="DMA1_Channel7_4_IRQ"                           
+        	CommentCH="DMA1_Channel7_4_IRQ"                      
+        	Diagnostic="dma1 channel 7~4 global interrupt"                                  
+        	DiagnosticCH="DMA1通道7_4全局中断"         
+        	Value="DMA1_Channel7_4_IRQn,N,Y:N,Y:0,Y:0,DMA1_Channel7_4_IRQHandler"/>
+        	
+        <PossibleValue 
+        	 Condition="ADC1"    
+        	 Comment="ADC1_IRQ"                                        
+        	CommentCH="ADC1_IRQ"                                    
+        	Diagnostic="adc1 global interrupt"                             
+        	DiagnosticCH="ADC1全局中断"         
+        	Value="ADC1_IRQn,N,Y:N,Y:0,Y:0,ADC1_IRQHandler"/>
+        	
+        <PossibleValue 
+        	 Condition="TMR1"    
+        	 Comment="TMR1_BRK_OVF_TRG_HALL_IRQ"          
+        	 CommentCH="TMR1_BRK_OVF_TRG_HALL_IRQ"       
+        	 Diagnostic="tmr1 brake overflow trigger and hall interrupt"              
+        	 DiagnosticCH="TMR1刹车/溢出/触发/霍尔中断"  
+        	 Value="TMR1_BRK_OVF_TRG_HALL_IRQn,N,Y:N,Y:0,Y:0,TMR1_BRK_OVF_TRG_HALL_IRQHandler"/>    
+        	     
+        <PossibleValue 
+        	 Condition="TMR1"    
+        	 Comment="TMR1_CH_IRQ"                                           
+        	CommentCH="TMR1_CH_IRQ"                                       
+        	Diagnostic="tmr1 channel interrupt"                                                        
+        	DiagnosticCH="TMR1捕获比较中断"             
+        	Value="TMR1_CH_IRQn,N,Y:N,Y:0,Y:0,TMR1_CH_IRQHandler"/>
+        	
+        	<PossibleValue 
+        	 Condition="TMR2"    
+        	 Comment="TMR2_GLOBAL_IRQ"                                  
+        	CommentCH="TMR2_GLOBAL_IRQ"                             
+        	Diagnostic="tmr2 global interrupt"                                                           
+        	DiagnosticCH="TMR2全局中断"                 
+        	Value="TMR2_GLOBAL_IRQn,N,Y:N,Y:0,Y:0,TMR2_GLOBAL_IRQHandler"/>
+        	
+        <PossibleValue 
+        	 Condition="TMR3"    
+        	 Comment="TMR3_GLOBAL_IRQ"                                  
+        	CommentCH="TMR3_GLOBAL_IRQ"                             
+        	Diagnostic="tmr3 global interrupt"                                                           
+        	DiagnosticCH="TMR3全局中断"                 
+        	Value="TMR3_GLOBAL_IRQn,N,Y:N,Y:0,Y:0,TMR3_GLOBAL_IRQHandler"/>
+        	
+        <PossibleValue 
+        	 Condition="TMR6"    
+        	 Comment="TMR6_GLOBAL_IRQ"                                 
+        	CommentCH="TMR6_GLOBAL_IRQ"                             
+        	Diagnostic="tmr6 global interrupt"                                                           
+        	DiagnosticCH="TMR6全局中断"                 
+        	Value="TMR6_GLOBAL_IRQn,N,Y:N,Y:0,Y:0,TMR6_GLOBAL_IRQHandler"/>
+        	
+        	<PossibleValue 
+        	 Condition="TMR7"    
+        	 Comment="TMR7_GLOBAL_IRQ"                                 
+        	CommentCH="TMR7_GLOBAL_IRQ"                             
+        	Diagnostic="tmr7 global interrupt"                                                           
+        	DiagnosticCH="TMR7全局中断"                 
+        	Value="TMR7_GLOBAL_IRQn,N,Y:N,Y:0,Y:0,TMR7_GLOBAL_IRQHandler"/>
+        	
+        <PossibleValue 
+        	 Condition="TMR14"    
+        	 Comment="TMR14_GLOBAL_IRQ"                               
+        	CommentCH="TMR14_GLOBAL_IRQ"                            
+        	Diagnostic="tmr14 global interrupt"                                                        
+        	DiagnosticCH="TMR14全局中断"                
+        	Value="TMR14_GLOBAL_IRQn,N,Y:N,Y:0,Y:0,TMR14_GLOBAL_IRQHandler"/>
+        	
+        <PossibleValue 
+        	 Condition="TMR15"    
+        	 Comment="TMR15_GLOBAL_IRQ"                               
+        	CommentCH="TMR15_GLOBAL_IRQ"                            
+        	Diagnostic="tmr15 global interrupt"                                                        
+        	DiagnosticCH="TMR15全局中断"                
+        	Value="TMR15_GLOBAL_IRQn,N,Y:N,Y:0,Y:0,TMR15_GLOBAL_IRQHandler"/>
+        	
+        <PossibleValue 
+        	 Condition="TMR16"    
+        	 Comment="TMR16_GLOBAL_IRQ"                               
+        	CommentCH="TMR16_GLOBAL_IRQ"                            
+        	Diagnostic="tmr16 global interrupt"                                                        
+        	DiagnosticCH="TMR16全局中断"                
+        	Value="TMR16_GLOBAL_IRQn,N,Y:N,Y:0,Y:0,TMR16_GLOBAL_IRQHandler"/>
+        	
+        <PossibleValue 
+        	 Condition="TMR17"    
+        	 Comment="TMR17_GLOBAL_IRQ"                               
+        	CommentCH="TMR17_GLOBAL_IRQ"                            
+        	Diagnostic="tmr17 global interrupt"                                                        
+        	DiagnosticCH="TMR17全局中断"                
+        	Value="TMR17_GLOBAL_IRQn,N,Y:N,Y:0,Y:0,TMR17_GLOBAL_IRQHandler"/>  
+        	      
+        <PossibleValue 
+        	 Condition="I2C1"    
+        	 Comment="I2C1_EVT_IRQ"                                            
+        	CommentCH="I2C1_EVT_IRQ"                                         
+        	Diagnostic="i2c1 event interrupt"                                                             
+        	DiagnosticCH="I2C1事件中断"                 
+        	Value="I2C1_EVT_IRQn,N,Y:N,Y:0,Y:0,I2C1_EVT_IRQHandler"/>
+        	
+        <PossibleValue 
+        	 Condition="I2C2"    
+        	 Comment="I2C2_EVT_IRQ"                                            
+        	CommentCH="I2C2_EVT_IRQ"                                         
+        	Diagnostic="i2c2 event interrupt"                                                             
+        	DiagnosticCH="I2C2事件中断"                 
+        	Value="I2C2_EVT_IRQn,N,Y:N,Y:0,Y:0,I2C2_EVT_IRQHandler"/> 
+        	       
+        <PossibleValue 
+        	 Condition="SPI1"    
+        	 Comment="SPI1_IRQ"                                                    
+        	CommentCH="SPI1_IRQ"                                                   
+        	Diagnostic="spi1 global interrupt"                                                           
+        	DiagnosticCH="SPI1全局中断"                 
+        	Value="SPI1_IRQn,N,Y:N,Y:0,Y:0,SPI1_IRQHandler"/>
+        	
+        <PossibleValue 
+        	 Condition="SPI2"    
+        	 Comment="SPI2_IRQ"                                                    
+        	CommentCH="SPI2_IRQ"                                                   
+        	Diagnostic="spi2 global interrupt"                                                           
+        	DiagnosticCH="SPI2全局中断"                 
+        	Value="SPI2_IRQn,N,Y:N,Y:0,Y:0,SPI2_IRQHandler"/>        
+        	
+        <PossibleValue 
+        	 Condition="USART1"    
+        	 Comment="USART1_IRQ"                                             
+        	CommentCH="USART1_IRQ"                                            
+        	Diagnostic="usart1 global interrupt"                                                       
+        	DiagnosticCH="USART1全局中断"               
+        	Value="USART1_IRQn,N,Y:N,Y:0,Y:0,USART1_IRQHandler"/>
+        	
+        <PossibleValue 
+        	 Condition="USART2"    
+        	 Comment="USART2_IRQ"                                            
+        	 CommentCH="USART2_IRQ"                                            
+        	 Diagnostic="usart2 global interrupt"                                                       
+        	 DiagnosticCH="USART2全局中断"               
+        	 Value="USART2_IRQn,N,Y:N,Y:0,Y:0,USART2_IRQHandler"/>     
+        	 
+        	 <PossibleValue 
+        	 Condition="USART3;USART4"    
+        	 Comment="USART4_3_IRQ"                                            
+        	 CommentCH="USART4_3_IRQ"                                            
+        	 Diagnostic="usart4_3 global interrupt"                                                       
+        	 DiagnosticCH="USART4_3全局中断"               
+        	 Value="USART4_3_IRQn,N,Y:N,Y:0,Y:0,USART4_3_IRQHandler"/>    
+        	 
+        	 <PossibleValue 
+        	 Condition="CAN1"    
+        	 Comment="CAN1_IRQ"                                            
+        	 CommentCH="CAN1_IRQ"                                            
+        	 Diagnostic="can1 global interrupt"                                                       
+        	 DiagnosticCH="CAN1全局中断"               
+        	 Value="CAN1_IRQn,N,Y:N,Y:0,Y:0,CAN1_IRQHandler"/>   
+        	 
+        	 <PossibleValue 
+        	 Condition="USB_OTGFS1"    
+        	 Comment="OTGFS1_IRQ"                                            
+        	 CommentCH="OTGFS1_IRQ"                                            
+        	 Diagnostic="otgfs1 global interrupt"                                                       
+        	 DiagnosticCH="OTGFS1全局中断"               
+        	 Value="OTGFS1_IRQn,N,Y:N,Y:0,Y:0,OTGFS1_IRQHandler"/>   
+        	    
+        <PossibleValue 
+        	 Condition="I2C1"    
+        	 Comment="I2C1_ERR_IRQ"                                          
+        	 CommentCH="I2C1_ERR_IRQ"                                          
+        	 Diagnostic="i2c1 error interrupt"                                                             
+        	 DiagnosticCH="I2C1错误中断"                 
+        	 Value="I2C1_ERR_IRQn,N,Y:N,Y:0,Y:0,I2C1_ERR_IRQHandler"/>
+        	 
+        	 <PossibleValue 
+        	 Condition="SPI3"    
+        	 Comment="SPI3_IRQ"                                            
+        	 CommentCH="SPI3_IRQ"                                            
+        	 Diagnostic="spi3 global interrupt"                                                       
+        	 DiagnosticCH="SPI3全局中断"               
+        	 Value="SPI3_IRQn,N,Y:N,Y:0,Y:0,SPI3_IRQHandler"/>   
+        	 
+        <PossibleValue 
+        	 Condition="I2C2"    
+        	 Comment="I2C2_ERR_IRQ"                                           
+        	CommentCH="I2C2_ERR_IRQ"                                          
+        	Diagnostic="i2c2 error interrupt"                                                             
+        	DiagnosticCH="I2C2错误中断"                
+        	Value="I2C2_ERR_IRQn,N,Y:N,Y:0,Y:0,I2C2_ERR_IRQHandler"/>     
+        	
+        	<PossibleValue 
+        	 Condition="TMR13"    
+        	 Comment="TMR13_GLOBAL_IRQ"                               
+        	CommentCH="TMR13_GLOBAL_IRQ"                            
+        	Diagnostic="tmr13 global interrupt"                                                        
+        	DiagnosticCH="TMR13全局中断"                
+        	Value="TMR13_GLOBAL_IRQn,N,Y:N,Y:0,Y:0,TMR13_GLOBAL_IRQHandler"/>  
+    </RefParameter>
+</IP>

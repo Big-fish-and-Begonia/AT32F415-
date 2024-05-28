@@ -1,0 +1,1550 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<IP>
+    <About>Analog-to-digital converter</About> 
+    <AboutCH> 模拟/数字转换</AboutCH>  
+
+    <RefParameter Name="Mode" Comment="Mode" CommentCH="模式" DefaultValue="ADC_INDEPENDENT_MODE" Type="list" Group="ADCs Common Settings" GroupCH="ADC公共设置">
+        <PossibleValue Comment="Independent mode" CommentCH="独立模式" Value="ADC_INDEPENDENT_MODE" Semaphore="$IpInstance_Mode_ADC_INDEPENDENT_MODE"/>
+    </RefParameter>     
+     
+    <RefParameter Name="TemperatureVINTRV" Comment="Temperature VINTRV" CommentCH="内部温度传感器/内部参考电压" DefaultValue="TRUE" Type="list"  Visible="false">
+    	   <Condition Expression="$IpInstance_CHANNEL_16 | $IpInstance_CHANNEL_17"/>
+         <PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE"/>                
+    </RefParameter>    
+    
+    <RefParameter Name="TemperatureVINTRV" Comment="Temperature VINTRV" CommentCH="内部温度传感器/内部参考电压" DefaultValue="FALSE" Type="list"  Visible="false">
+         <PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE"/>                
+    </RefParameter>                	
+
+     <!-- ADC_Settings parameters --> 
+    <!-- possible value of DataAlign parameter -->
+    <RefParameter Name="DataAlign" Comment="Data Alignment" CommentCH="数据对齐" DefaultValue="ADC_RIGHT_ALIGNMENT" Type="list" Group="ADC Settings" GroupCH="ADC设置">
+        <PossibleValue Comment="Right alignment" CommentCH="右对齐" Value="ADC_RIGHT_ALIGNMENT"  Semaphore="$IpInstance_DataAlign_ADC_RIGHT_ALIGNMENT"/>
+        <PossibleValue Comment="Left alignment" CommentCH="左对齐" Value="ADC_LEFT_ALIGNMENT"  Semaphore="$IpInstance_DataAlign_ADC_LEFT_ALIGNMENT"/>
+        <Description>Select the alignment of the data stored after conversion.</Description>
+    </RefParameter>
+   
+    <!-- SequenceMode -->
+    <RefParameter Name="SequenceMode" Comment="Sequence Mode" CommentCH="序列模式" DefaultValue="FALSE" Type="list" Group="ADC Settings" GroupCH="ADC设置">
+         <PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE"/>   
+         <Description>Enable or Disable the Sequence Mode</Description>
+    </RefParameter>
+
+    <RefParameter Name="SequenceMode" Comment="Sequence Mode" CommentCH="序列模式" DefaultValue="TRUE" Type="list" Group="ADC Settings" GroupCH="ADC设置">
+    	   <Condition Expression="NbrOfOrdinarySequence > 1 | NbrOfPreemptedSequence > 1"/>
+         <PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE"/>                
+         <Description>Enable or Disable the Sequence Mode</Description>
+    </RefParameter>    
+    
+    
+    <!-- RefMode of ADC_Ordinary_ConversionMode --> 
+    <RefParameter Name="EnableOrdinaryConversion" Comment="Enable Ordinary Conversions" CommentCH="开启普通组转换" DefaultValue="ENABLE" Type="list" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="ENABLE"/>
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="DISABLE" />
+        <Description>Enable/Disable Ordinary Conversion</Description> 
+    </RefParameter>
+    -*
+    <!-- Possible values of RepeatMode parameter -->
+    <RefParameter Name="RepeatMode" Comment="Repeat Mode" CommentCH="反复模式" DefaultValue="FALSE" Type="list" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置" Visible="false">
+        <Condition Expression="EnableOrdinaryConversion = DISABLE"/>
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE"  Semaphore="$IpInstance_RepeatMode_FALSE"/>
+    </RefParameter>    
+    <RefParameter Name="RepeatMode" Comment="Repeat Mode" CommentCH="反复模式" DefaultValue="FALSE" Type="list" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+        <Condition Expression="OrdinaryPartitionedMode = TRUE | Mode = ADC_ORDINARY_LONGSHIFT_PREEMPT_SMLT_MODE | Mode = ADC_ORDINARY_LONGSHIFT_ONLY_MODE"/>
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE"  Semaphore="$IpInstance_RepeatMode_FALSE"/>
+    </RefParameter>
+    <RefParameter Name="RepeatMode" Comment="Repeat Mode" CommentCH="反复模式" DefaultValue="FALSE" Type="list" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE"  Semaphore="$IpInstance_RepeatMode_FALSE"/>
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE" Condition="OrdinaryPartitionedMode = FALSE &amp; Mode != ADC_ORDINARY_LONGSHIFT_PREEMPT_SMLT_MODE&amp; Mode != ADC_ORDINARY_LONGSHIFT_ONLY_MODE" Semaphore="$IpInstance_RepeatMode_TRUE"/>
+        <Description>Enable or Disable the Repeat Mode</Description>
+    </RefParameter>
+	    
+    <!-- Possible values of OrdinaryPartitionedMode parameter -->
+    <RefParameter Name="OrdinaryPartitionedMode" Comment="Ordinary Partitioned Mode" CommentCH="普通组分割模式" DefaultValue="FALSE" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置" Type="list" Visible="false">
+    	  <Condition Expression="EnableOrdinaryConversion = DISABLE"/>
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE" Semaphore="$IpInstance_OrdinaryPartitionedMode_FALSE"/>
+    </RefParameter>
+    <RefParameter Name="OrdinaryPartitionedMode" Comment="Ordinary Partitioned Mode" CommentCH="普通组分割模式" DefaultValue="FALSE" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置" Type="list">
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="FALSE"  Semaphore="$IpInstance_OrdinaryPartitionedMode_FALSE"/>
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="TRUE" Condition="RepeatMode = FALSE &amp;SequenceMode = TRUE"  Semaphore="$IpInstance_OrdinaryPartitionedMode_TRUE"/>
+        <Description>Enable or Disable the Ordinary Partitioned Mode</Description>
+    </RefParameter>
+	    
+    <!-- Possible values of NbrOfOrdinaryPartitioned parameter -->
+     <RefParameter Name="NbrOfOrdinaryPartitioned" Comment="Number Of Ordinary Partitioned" CommentCH="普通组分割数目" DefaultValue="1" Max="1" Min="1" Type="integer" Visible="false">
+    	<Condition Expression="OrdinaryPartitionedMode = FALSE" Diagnostic=""/>
+    </RefParameter>
+    <RefParameter Name="NbrOfOrdinaryPartitioned" Comment="Number Of Ordinary Partitioned" CommentCH="普通组分割数目" DefaultValue="1" Max="8" Min="1" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置" Type="integer"/>
+
+    <!-- OrdinaryTriggerSource -->
+    <RefParameter Name="OrdinaryTriggerSource" Comment="Ordinary Trigger Source" CommentCH="普通组触发源" DefaultValue="ADC_ORDINARY_TRIG_SOFTWARE" Type="list" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置" Visible="false">
+        <Condition Expression="EnableOrdinaryConversion = DISABLE" Diagnostic=""/>
+        <PossibleValue Comment="Software(OCSWTRG) control bit as trigger source" CommentCH="普通组软件触发" Value="ADC12_ORDINARY_TRIG_SOFTWARE"/>
+    </RefParameter>
+    <RefParameter Name="OrdinaryTriggerSource" Comment="Ordinary Trigger Source" CommentCH="普通组触发源" DefaultValue="ADC12_ORDINARY_TRIG_EXINT11_TMR1TRGOUT" Type="list" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+        <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;OrdinaryExternalTrigger_$IpInstance"/>
+        <PossibleValue Comment="EXINT Line11 event as trigger source" CommentCH="EXINT Line11触发" Value="ADC12_ORDINARY_TRIG_EXINT11_TMR1TRGOUT"/>
+    </RefParameter>
+      
+    <RefParameter Name="OrdinaryTriggerSource" Comment="Ordinary Trigger Source" CommentCH="普通组触发源" DefaultValue="ADC_ORDINARY_TRIG_SOFTWARE" Type="list" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+    	   <Condition Expression="EnableOrdinaryConversion = ENABLE" Diagnostic=""/>
+        <PossibleValue Comment="Software(OCSWTRG) control bit as trigger source" CommentCH="普通组软件触发" Value="ADC12_ORDINARY_TRIG_SOFTWARE"/>
+        <PossibleValue Comment="TMR1 CH1 event as trigger source" CommentCH="TMR1通道1触发" Value="ADC12_ORDINARY_TRIG_TMR1CH1"/>
+        <PossibleValue Comment="TMR1 CH2 event as trigger source" CommentCH="TMR1通道2触发" Value="ADC12_ORDINARY_TRIG_TMR1CH2"/>
+        <PossibleValue Comment="TMR1 CH3 event as trigger source" CommentCH="TMR1通道3触发" Value="ADC12_ORDINARY_TRIG_TMR1CH3"/>
+        <PossibleValue Comment="TMR2 CH2 event as trigger source" CommentCH="TMR2通道2触发" Value="ADC12_ORDINARY_TRIG_TMR2CH2"/>
+        <PossibleValue Comment="TMR3 trgout event as trigger source" CommentCH="TMR3 TRGO触发" Value="ADC12_ORDINARY_TRIG_TMR3TRGOUT"/>
+        <PossibleValue Comment="TMR4 CH4 event as trigger source" CommentCH="TMR4通道4触发" Value="ADC12_ORDINARY_TRIG_TMR4CH4"/>
+        <PossibleValue Comment="TMR1 trgout event as trigger source" CommentCH="TMR1 TRGO触发" Value="ADC12_ORDINARY_TRIG_TMR1TRGOUT"/>
+    </RefParameter>
+    
+    <!-- Possible values of NbrOfOrdinarySequence parameter !!!!! the Group is not the same !!!!!! -->
+    <RefParameter  Name="NbrOfOrdinarySequence" Comment="Number Of Ordinary Sequence" CommentCH="普通组通道数目" DefaultValue="1" Max="1" Min="1"Type="integer" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置" Visible="false">
+        <Condition Expression="EnableOrdinaryConversion = DISABLE" Diagnostic=""/>
+    </RefParameter>
+    <RefParameter  Name="NbrOfOrdinarySequence" Comment="Number Of Ordinary Sequence" CommentCH="普通组通道数目" DefaultValue="1" Max="1" Min="1"Type="integer" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+        <Condition Expression="Mode = ADC_ORDINARY_LONGSHIFT_PREEMPT_SMLT_MODE | Mode = ADC_ORDINARY_LONGSHIFT_ONLY_MODE" Diagnostic=""/>
+    </RefParameter>
+    <RefParameter Name="NbrOfOrdinarySequence" Comment="Number Of Ordinary Sequence" CommentCH="普通组通道数目" DefaultValue="1" Max="16" Min="1" Type="integer" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+    </RefParameter>
+ 
+    <!-- Sequence 1 -->
+    <RefParameter Name="Channel_OrdinarySequence_1" Comment="Sequence 1 Channel" CommentCH="序列第1个通道选择" DefaultValue="" Type="list" Visible="true" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+    	  <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 0" Diagnostic=""/>
+        <PossibleValue Comment="Channel 0" CommentCH="通道0" Value="ADC_CHANNEL_0" Condition="$IpInstance_CHANNEL_0" Action="Remove"/>
+        <PossibleValue Comment="Channel 1" CommentCH="通道1" Value="ADC_CHANNEL_1" Condition="$IpInstance_CHANNEL_1" Action="Remove"/>
+        <PossibleValue Comment="Channel 2" CommentCH="通道2" Value="ADC_CHANNEL_2" Condition="$IpInstance_CHANNEL_2" Action="Remove"/>
+        <PossibleValue Comment="Channel 3" CommentCH="通道3" Value="ADC_CHANNEL_3" Condition="$IpInstance_CHANNEL_3" Action="Remove"/>
+        <PossibleValue Comment="Channel 4" CommentCH="通道4" Value="ADC_CHANNEL_4" Condition="$IpInstance_CHANNEL_4" Action="Remove"/>
+        <PossibleValue Comment="Channel 5" CommentCH="通道5" Value="ADC_CHANNEL_5" Condition="$IpInstance_CHANNEL_5" Action="Remove"/>
+        <PossibleValue Comment="Channel 6" CommentCH="通道6" Value="ADC_CHANNEL_6" Condition="$IpInstance_CHANNEL_6" Action="Remove"/>
+        <PossibleValue Comment="Channel 7" CommentCH="通道7" Value="ADC_CHANNEL_7" Condition="$IpInstance_CHANNEL_7" Action="Remove"/>
+        <PossibleValue Comment="Channel 8" CommentCH="通道8" Value="ADC_CHANNEL_8" Condition="$IpInstance_CHANNEL_8" Action="Remove"/>
+        <PossibleValue Comment="Channel 9" CommentCH="通道9" Value="ADC_CHANNEL_9" Condition="$IpInstance_CHANNEL_9" Action="Remove"/>
+        <PossibleValue Comment="Channel 10" CommentCH="通道10" Value="ADC_CHANNEL_10" Condition="$IpInstance_CHANNEL_10" Action="Remove"/>
+        <PossibleValue Comment="Channel 11" CommentCH="通道11" Value="ADC_CHANNEL_11" Condition="$IpInstance_CHANNEL_11" Action="Remove"/>
+        <PossibleValue Comment="Channel 12" CommentCH="通道12" Value="ADC_CHANNEL_12" Condition="$IpInstance_CHANNEL_12" Action="Remove"/>
+        <PossibleValue Comment="Channel 13" CommentCH="通道13" Value="ADC_CHANNEL_13" Condition="$IpInstance_CHANNEL_13" Action="Remove"/>
+        <PossibleValue Comment="Channel 14" CommentCH="通道14" Value="ADC_CHANNEL_14" Condition="$IpInstance_CHANNEL_14" Action="Remove"/>
+        <PossibleValue Comment="Channel 15" CommentCH="通道15" Value="ADC_CHANNEL_15" Condition="$IpInstance_CHANNEL_15" Action="Remove"/>
+        <PossibleValue Comment="Channel Temperature Sensor" CommentCH="内部温度传感器" Value="ADC_CHANNEL_16" Condition="$IpInstance_CHANNEL_16" Action="Remove"/>
+        <PossibleValue Comment="Channel VINTRV" CommentCH="内部参考电压" Value="ADC_CHANNEL_17" Condition="$IpInstance_CHANNEL_17" Action="Remove"/>
+    </RefParameter>	   
+    <RefParameter Name="SamplingTime_OrdinarySequence_1" Comment="Sequence 1 Sampling Time" CommentCH="序列第1个通道采样时间" DefaultValue="ADC_SAMPLETIME_1_5" Type="list" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+        <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 0 &amp; Mode = ADC_ORDINARY_LONGSHIFT_PREEMPT_SMLT_MODE | Mode = ADC_ORDINARY_LONGSHIFT_ONLY_MODE" Diagnostic=""/>
+        <PossibleValue Comment="1.5 Cycles" CommentCH="1.5个ADCCLK周期" Value="ADC_SAMPLETIME_1_5" Semaphore="$IpInstance_OrdinarySequence_1_ADC_SAMPLETIME_1_5"/>
+        <PossibleValue Comment="7.5 Cycles" CommentCH="7.5个ADCCLK周期" Value="ADC_SAMPLETIME_7_5" Semaphore="$IpInstance_OrdinarySequence_1_ADC_SAMPLETIME_7_5"/>
+        <PossibleValue Comment="13.5 Cycles" CommentCH="13.5个ADCCLK周期" Value="ADC_SAMPLETIME_13_5" Semaphore="$IpInstance_OrdinarySequence_1_ADC_SAMPLETIME_13_5"/>
+        <Description>Ordinary Channel x sampling time selection</Description>
+    </RefParameter>
+    <RefParameter Name="SamplingTime_OrdinarySequence_1" Comment="Sequence 1 Sampling Time" CommentCH="序列第1个通道采样时间" DefaultValue="ADC_SAMPLETIME_1_5" Type="list" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+        <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 0 &amp; Mode = ADC_ORDINARY_SHORTSHIFT_PREEMPT_SMLT_MODE | Mode = ADC_ORDINARY_SHORTSHIFT_ONLY_MODE" Diagnostic=""/>
+        <PossibleValue Comment="1.5 Cycles" CommentCH="1.5个ADCCLK周期" Value="ADC_SAMPLETIME_1_5" Semaphore="$IpInstance_OrdinarySequence_1_ADC_SAMPLETIME_1_5"/>
+        <Description>Ordinary Channel x sampling time selection</Description>
+    </RefParameter>
+    <RefParameter Name="SamplingTime_OrdinarySequence_1" Comment="Sequence 1 Sampling Time" CommentCH="序列第1个通道采样时间" DefaultValue="ADC_SAMPLETIME_1_5" Type="list" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+        <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 0" Diagnostic=""/>
+        <PossibleValue Comment="1.5 Cycles" CommentCH="1.5个ADCCLK周期" Value="ADC_SAMPLETIME_1_5" Semaphore="$IpInstance_OrdinarySequence_1_ADC_SAMPLETIME_1_5"/>
+        <PossibleValue Comment="7.5 Cycles" CommentCH="7.5个ADCCLK周期" Value="ADC_SAMPLETIME_7_5" Semaphore="$IpInstance_OrdinarySequence_1_ADC_SAMPLETIME_7_5"/>
+        <PossibleValue Comment="13.5 Cycles" CommentCH="13.5个ADCCLK周期" Value="ADC_SAMPLETIME_13_5" Semaphore="$IpInstance_OrdinarySequence_1_ADC_SAMPLETIME_13_5"/>
+        <PossibleValue Comment="28.5 Cycles" CommentCH="28.5个ADCCLK周期" Value="ADC_SAMPLETIME_28_5" Semaphore="$IpInstance_OrdinarySequence_1_ADC_SAMPLETIME_28_5"/>
+        <PossibleValue Comment="41.5 Cycles" CommentCH="41.5个ADCCLK周期" Value="ADC_SAMPLETIME_41_5" Semaphore="$IpInstance_OrdinarySequence_1_ADC_SAMPLETIME_41_5"/>
+        <PossibleValue Comment="55.5 Cycles" CommentCH="55.5个ADCCLK周期" Value="ADC_SAMPLETIME_55_5" Semaphore="$IpInstance_OrdinarySequence_1_ADC_SAMPLETIME_55_5"/>
+        <PossibleValue Comment="71.5 Cycles" CommentCH="71.5个ADCCLK周期" Value="ADC_SAMPLETIME_71_5" Semaphore="$IpInstance_OrdinarySequence_1_ADC_SAMPLETIME_71_5"/>
+        <PossibleValue Comment="239.5 Cycles" CommentCH="239.5个ADCCLK周期" Value="ADC_SAMPLETIME_239_5" Semaphore="$IpInstance_OrdinarySequence_1_ADC_SAMPLETIME_239_5"/>
+        <Description>Ordinary Channel x sampling time selection</Description>
+    </RefParameter>
+    
+    <!-- Sequence 2 -->
+    <RefParameter Name="Channel_OrdinarySequence_2" Comment="Sequence 2 Channel" CommentCH="序列第2个通道选择" DefaultValue="" Type="list" Visible="true" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+    	  <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 1" Diagnostic=""/>
+        <PossibleValue Comment="Channel 0" CommentCH="通道0" Value="ADC_CHANNEL_0" Condition="$IpInstance_CHANNEL_0" Action="Remove"/>
+        <PossibleValue Comment="Channel 1" CommentCH="通道1" Value="ADC_CHANNEL_1" Condition="$IpInstance_CHANNEL_1" Action="Remove"/>
+        <PossibleValue Comment="Channel 2" CommentCH="通道2" Value="ADC_CHANNEL_2" Condition="$IpInstance_CHANNEL_2" Action="Remove"/>
+        <PossibleValue Comment="Channel 3" CommentCH="通道3" Value="ADC_CHANNEL_3" Condition="$IpInstance_CHANNEL_3" Action="Remove"/>
+        <PossibleValue Comment="Channel 4" CommentCH="通道4" Value="ADC_CHANNEL_4" Condition="$IpInstance_CHANNEL_4" Action="Remove"/>
+        <PossibleValue Comment="Channel 5" CommentCH="通道5" Value="ADC_CHANNEL_5" Condition="$IpInstance_CHANNEL_5" Action="Remove"/>
+        <PossibleValue Comment="Channel 6" CommentCH="通道6" Value="ADC_CHANNEL_6" Condition="$IpInstance_CHANNEL_6" Action="Remove"/>
+        <PossibleValue Comment="Channel 7" CommentCH="通道7" Value="ADC_CHANNEL_7" Condition="$IpInstance_CHANNEL_7" Action="Remove"/>
+        <PossibleValue Comment="Channel 8" CommentCH="通道8" Value="ADC_CHANNEL_8" Condition="$IpInstance_CHANNEL_8" Action="Remove"/>
+        <PossibleValue Comment="Channel 9" CommentCH="通道9" Value="ADC_CHANNEL_9" Condition="$IpInstance_CHANNEL_9" Action="Remove"/>
+        <PossibleValue Comment="Channel 10" CommentCH="通道10" Value="ADC_CHANNEL_10" Condition="$IpInstance_CHANNEL_10" Action="Remove"/>
+        <PossibleValue Comment="Channel 11" CommentCH="通道11" Value="ADC_CHANNEL_11" Condition="$IpInstance_CHANNEL_11" Action="Remove"/>
+        <PossibleValue Comment="Channel 12" CommentCH="通道12" Value="ADC_CHANNEL_12" Condition="$IpInstance_CHANNEL_12" Action="Remove"/>
+        <PossibleValue Comment="Channel 13" CommentCH="通道13" Value="ADC_CHANNEL_13" Condition="$IpInstance_CHANNEL_13" Action="Remove"/>
+        <PossibleValue Comment="Channel 14" CommentCH="通道14" Value="ADC_CHANNEL_14" Condition="$IpInstance_CHANNEL_14" Action="Remove"/>
+        <PossibleValue Comment="Channel 15" CommentCH="通道15" Value="ADC_CHANNEL_15" Condition="$IpInstance_CHANNEL_15" Action="Remove"/>
+        <PossibleValue Comment="Channel Temperature Sensor" CommentCH="内部温度传感器" Value="ADC_CHANNEL_16" Condition="$IpInstance_CHANNEL_16" Action="Remove"/>
+        <PossibleValue Comment="Channel VINTRV" CommentCH="内部参考电压" Value="ADC_CHANNEL_17" Condition="$IpInstance_CHANNEL_17" Action="Remove"/>
+    </RefParameter>	   
+    <RefParameter Name="SamplingTime_OrdinarySequence_2" Comment="Sequence 2 Sampling Time" CommentCH="序列第2个通道采样时间" DefaultValue="ADC_SAMPLETIME_1_5" Type="list" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+        <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 1 &amp; Mode = ADC_ORDINARY_LONGSHIFT_PREEMPT_SMLT_MODE | Mode = ADC_ORDINARY_LONGSHIFT_ONLY_MODE" Diagnostic=""/>
+        <PossibleValue Comment="1.5 Cycles" CommentCH="1.5个ADCCLK周期" Value="ADC_SAMPLETIME_1_5" Semaphore="$IpInstance_OrdinarySequence_2_ADC_SAMPLETIME_1_5"/>
+        <PossibleValue Comment="7.5 Cycles" CommentCH="7.5个ADCCLK周期" Value="ADC_SAMPLETIME_7_5" Semaphore="$IpInstance_OrdinarySequence_2_ADC_SAMPLETIME_7_5"/>
+        <PossibleValue Comment="13.5 Cycles" CommentCH="13.5个ADCCLK周期" Value="ADC_SAMPLETIME_13_5" Semaphore="$IpInstance_OrdinarySequence_2_ADC_SAMPLETIME_13_5"/>
+        <Description>Ordinary Channel x sampling time selection</Description>
+    </RefParameter>
+    <RefParameter Name="SamplingTime_OrdinarySequence_2" Comment="Sequence 2 Sampling Time" CommentCH="序列第2个通道采样时间" DefaultValue="ADC_SAMPLETIME_1_5" Type="list" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+        <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 1 &amp; Mode = ADC_ORDINARY_SHORTSHIFT_PREEMPT_SMLT_MODE | Mode = ADC_ORDINARY_SHORTSHIFT_ONLY_MODE" Diagnostic=""/>
+        <PossibleValue Comment="1.5 Cycles" CommentCH="1.5个ADCCLK周期" Value="ADC_SAMPLETIME_1_5" Semaphore="$IpInstance_OrdinarySequence_2_ADC_SAMPLETIME_1_5"/>
+        <Description>Ordinary Channel x sampling time selection</Description>
+    </RefParameter>
+    <RefParameter Name="SamplingTime_OrdinarySequence_2" Comment="Sequence 2 Sampling Time" CommentCH="序列第2个通道采样时间" DefaultValue="ADC_SAMPLETIME_1_5" Type="list" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+        <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 1" Diagnostic=""/>
+        <PossibleValue Comment="1.5 Cycles" CommentCH="1.5个ADCCLK周期" Value="ADC_SAMPLETIME_1_5" Semaphore="$IpInstance_OrdinarySequence_2_ADC_SAMPLETIME_1_5"/>
+        <PossibleValue Comment="7.5 Cycles" CommentCH="7.5个ADCCLK周期" Value="ADC_SAMPLETIME_7_5" Semaphore="$IpInstance_OrdinarySequence_2_ADC_SAMPLETIME_7_5"/>
+        <PossibleValue Comment="13.5 Cycles" CommentCH="13.5个ADCCLK周期" Value="ADC_SAMPLETIME_13_5" Semaphore="$IpInstance_OrdinarySequence_2_ADC_SAMPLETIME_13_5"/>
+        <PossibleValue Comment="28.5 Cycles" CommentCH="28.5个ADCCLK周期" Value="ADC_SAMPLETIME_28_5" Semaphore="$IpInstance_OrdinarySequence_2_ADC_SAMPLETIME_28_5"/>
+        <PossibleValue Comment="41.5 Cycles" CommentCH="41.5个ADCCLK周期" Value="ADC_SAMPLETIME_41_5" Semaphore="$IpInstance_OrdinarySequence_2_ADC_SAMPLETIME_41_5"/>
+        <PossibleValue Comment="55.5 Cycles" CommentCH="55.5个ADCCLK周期" Value="ADC_SAMPLETIME_55_5" Semaphore="$IpInstance_OrdinarySequence_2_ADC_SAMPLETIME_55_5"/>
+        <PossibleValue Comment="71.5 Cycles" CommentCH="71.5个ADCCLK周期" Value="ADC_SAMPLETIME_71_5" Semaphore="$IpInstance_OrdinarySequence_2_ADC_SAMPLETIME_71_5"/>
+        <PossibleValue Comment="239.5 Cycles" CommentCH="239.5个ADCCLK周期" Value="ADC_SAMPLETIME_239_5" Semaphore="$IpInstance_OrdinarySequence_2_ADC_SAMPLETIME_239_5"/>
+        <Description>Ordinary Channel x sampling time selection</Description>
+    </RefParameter>
+    
+     <!-- Sequence 3 -->
+    <RefParameter Name="Channel_OrdinarySequence_3" Comment="Sequence 3 Channel" CommentCH="序列第3个通道选择" DefaultValue="" Type="list" Visible="true" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+    	  <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 2" Diagnostic=""/>
+        <PossibleValue Comment="Channel 0" CommentCH="通道0" Value="ADC_CHANNEL_0" Condition="$IpInstance_CHANNEL_0" Action="Remove"/>
+        <PossibleValue Comment="Channel 1" CommentCH="通道1" Value="ADC_CHANNEL_1" Condition="$IpInstance_CHANNEL_1" Action="Remove"/>
+        <PossibleValue Comment="Channel 2" CommentCH="通道2" Value="ADC_CHANNEL_2" Condition="$IpInstance_CHANNEL_2" Action="Remove"/>
+        <PossibleValue Comment="Channel 3" CommentCH="通道3" Value="ADC_CHANNEL_3" Condition="$IpInstance_CHANNEL_3" Action="Remove"/>
+        <PossibleValue Comment="Channel 4" CommentCH="通道4" Value="ADC_CHANNEL_4" Condition="$IpInstance_CHANNEL_4" Action="Remove"/>
+        <PossibleValue Comment="Channel 5" CommentCH="通道5" Value="ADC_CHANNEL_5" Condition="$IpInstance_CHANNEL_5" Action="Remove"/>
+        <PossibleValue Comment="Channel 6" CommentCH="通道6" Value="ADC_CHANNEL_6" Condition="$IpInstance_CHANNEL_6" Action="Remove"/>
+        <PossibleValue Comment="Channel 7" CommentCH="通道7" Value="ADC_CHANNEL_7" Condition="$IpInstance_CHANNEL_7" Action="Remove"/>
+        <PossibleValue Comment="Channel 8" CommentCH="通道8" Value="ADC_CHANNEL_8" Condition="$IpInstance_CHANNEL_8" Action="Remove"/>
+        <PossibleValue Comment="Channel 9" CommentCH="通道9" Value="ADC_CHANNEL_9" Condition="$IpInstance_CHANNEL_9" Action="Remove"/>
+        <PossibleValue Comment="Channel 10" CommentCH="通道10" Value="ADC_CHANNEL_10" Condition="$IpInstance_CHANNEL_10" Action="Remove"/>
+        <PossibleValue Comment="Channel 11" CommentCH="通道11" Value="ADC_CHANNEL_11" Condition="$IpInstance_CHANNEL_11" Action="Remove"/>
+        <PossibleValue Comment="Channel 12" CommentCH="通道12" Value="ADC_CHANNEL_12" Condition="$IpInstance_CHANNEL_12" Action="Remove"/>
+        <PossibleValue Comment="Channel 13" CommentCH="通道13" Value="ADC_CHANNEL_13" Condition="$IpInstance_CHANNEL_13" Action="Remove"/>
+        <PossibleValue Comment="Channel 14" CommentCH="通道14" Value="ADC_CHANNEL_14" Condition="$IpInstance_CHANNEL_14" Action="Remove"/>
+        <PossibleValue Comment="Channel 15" CommentCH="通道15" Value="ADC_CHANNEL_15" Condition="$IpInstance_CHANNEL_15" Action="Remove"/>
+        <PossibleValue Comment="Channel Temperature Sensor" CommentCH="内部温度传感器" Value="ADC_CHANNEL_16" Condition="$IpInstance_CHANNEL_16" Action="Remove"/>
+        <PossibleValue Comment="Channel VINTRV" CommentCH="内部参考电压" Value="ADC_CHANNEL_17" Condition="$IpInstance_CHANNEL_17" Action="Remove"/>
+    </RefParameter>	   
+    <RefParameter Name="SamplingTime_OrdinarySequence_3" Comment="Sequence 3 Sampling Time" CommentCH="序列第3个通道采样时间" DefaultValue="ADC_SAMPLETIME_1_5" Type="list" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+        <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 2 &amp; Mode = ADC_ORDINARY_LONGSHIFT_PREEMPT_SMLT_MODE | Mode = ADC_ORDINARY_LONGSHIFT_ONLY_MODE" Diagnostic=""/>
+        <PossibleValue Comment="1.5 Cycles" CommentCH="1.5个ADCCLK周期" Value="ADC_SAMPLETIME_1_5" Semaphore="$IpInstance_OrdinarySequence_3_ADC_SAMPLETIME_1_5"/>
+        <PossibleValue Comment="7.5 Cycles" CommentCH="7.5个ADCCLK周期" Value="ADC_SAMPLETIME_7_5" Semaphore="$IpInstance_OrdinarySequence_3_ADC_SAMPLETIME_7_5"/>
+        <PossibleValue Comment="13.5 Cycles" CommentCH="13.5个ADCCLK周期" Value="ADC_SAMPLETIME_13_5" Semaphore="$IpInstance_OrdinarySequence_3_ADC_SAMPLETIME_13_5"/>
+        <Description>Ordinary Channel x sampling time selection</Description>
+    </RefParameter>
+    <RefParameter Name="SamplingTime_OrdinarySequence_3" Comment="Sequence 3 Sampling Time" CommentCH="序列第3个通道采样时间" DefaultValue="ADC_SAMPLETIME_1_5" Type="list" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+        <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 2 &amp; Mode = ADC_ORDINARY_SHORTSHIFT_PREEMPT_SMLT_MODE | Mode = ADC_ORDINARY_SHORTSHIFT_ONLY_MODE" Diagnostic=""/>
+        <PossibleValue Comment="1.5 Cycles" CommentCH="1.5个ADCCLK周期" Value="ADC_SAMPLETIME_1_5" Semaphore="$IpInstance_OrdinarySequence_3_ADC_SAMPLETIME_1_5"/>
+        <Description>Ordinary Channel x sampling time selection</Description>
+    </RefParameter>
+    <RefParameter Name="SamplingTime_OrdinarySequence_3" Comment="Sequence 3 Sampling Time" CommentCH="序列第3个通道采样时间" DefaultValue="ADC_SAMPLETIME_1_5" Type="list" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+        <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 2" Diagnostic=""/>
+        <PossibleValue Comment="1.5 Cycles" CommentCH="1.5个ADCCLK周期" Value="ADC_SAMPLETIME_1_5" Semaphore="$IpInstance_OrdinarySequence_3_ADC_SAMPLETIME_1_5"/>
+        <PossibleValue Comment="7.5 Cycles" CommentCH="7.5个ADCCLK周期" Value="ADC_SAMPLETIME_7_5" Semaphore="$IpInstance_OrdinarySequence_3_ADC_SAMPLETIME_7_5"/>
+        <PossibleValue Comment="13.5 Cycles" CommentCH="13.5个ADCCLK周期" Value="ADC_SAMPLETIME_13_5" Semaphore="$IpInstance_OrdinarySequence_3_ADC_SAMPLETIME_13_5"/>
+        <PossibleValue Comment="28.5 Cycles" CommentCH="28.5个ADCCLK周期" Value="ADC_SAMPLETIME_28_5" Semaphore="$IpInstance_OrdinarySequence_3_ADC_SAMPLETIME_28_5"/>
+        <PossibleValue Comment="41.5 Cycles" CommentCH="41.5个ADCCLK周期" Value="ADC_SAMPLETIME_41_5" Semaphore="$IpInstance_OrdinarySequence_3_ADC_SAMPLETIME_41_5"/>
+        <PossibleValue Comment="55.5 Cycles" CommentCH="55.5个ADCCLK周期" Value="ADC_SAMPLETIME_55_5" Semaphore="$IpInstance_OrdinarySequence_3_ADC_SAMPLETIME_55_5"/>
+        <PossibleValue Comment="71.5 Cycles" CommentCH="71.5个ADCCLK周期" Value="ADC_SAMPLETIME_71_5" Semaphore="$IpInstance_OrdinarySequence_3_ADC_SAMPLETIME_71_5"/>
+        <PossibleValue Comment="239.5 Cycles" CommentCH="239.5个ADCCLK周期" Value="ADC_SAMPLETIME_239_5" Semaphore="$IpInstance_OrdinarySequence_3_ADC_SAMPLETIME_239_5"/>
+        <Description>Ordinary Channel x sampling time selection</Description>
+    </RefParameter>
+    
+     <!-- Sequence 4 -->
+    <RefParameter Name="Channel_OrdinarySequence_4" Comment="Sequence 4 Channel" CommentCH="序列第4个通道选择" DefaultValue="" Type="list" Visible="true" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+    	  <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 3" Diagnostic=""/>
+        <PossibleValue Comment="Channel 0" CommentCH="通道0" Value="ADC_CHANNEL_0" Condition="$IpInstance_CHANNEL_0" Action="Remove"/>
+        <PossibleValue Comment="Channel 1" CommentCH="通道1" Value="ADC_CHANNEL_1" Condition="$IpInstance_CHANNEL_1" Action="Remove"/>
+        <PossibleValue Comment="Channel 2" CommentCH="通道2" Value="ADC_CHANNEL_2" Condition="$IpInstance_CHANNEL_2" Action="Remove"/>
+        <PossibleValue Comment="Channel 3" CommentCH="通道3" Value="ADC_CHANNEL_3" Condition="$IpInstance_CHANNEL_3" Action="Remove"/>
+        <PossibleValue Comment="Channel 4" CommentCH="通道4" Value="ADC_CHANNEL_4" Condition="$IpInstance_CHANNEL_4" Action="Remove"/>
+        <PossibleValue Comment="Channel 5" CommentCH="通道5" Value="ADC_CHANNEL_5" Condition="$IpInstance_CHANNEL_5" Action="Remove"/>
+        <PossibleValue Comment="Channel 6" CommentCH="通道6" Value="ADC_CHANNEL_6" Condition="$IpInstance_CHANNEL_6" Action="Remove"/>
+        <PossibleValue Comment="Channel 7" CommentCH="通道7" Value="ADC_CHANNEL_7" Condition="$IpInstance_CHANNEL_7" Action="Remove"/>
+        <PossibleValue Comment="Channel 8" CommentCH="通道8" Value="ADC_CHANNEL_8" Condition="$IpInstance_CHANNEL_8" Action="Remove"/>
+        <PossibleValue Comment="Channel 9" CommentCH="通道9" Value="ADC_CHANNEL_9" Condition="$IpInstance_CHANNEL_9" Action="Remove"/>
+        <PossibleValue Comment="Channel 10" CommentCH="通道10" Value="ADC_CHANNEL_10" Condition="$IpInstance_CHANNEL_10" Action="Remove"/>
+        <PossibleValue Comment="Channel 11" CommentCH="通道11" Value="ADC_CHANNEL_11" Condition="$IpInstance_CHANNEL_11" Action="Remove"/>
+        <PossibleValue Comment="Channel 12" CommentCH="通道12" Value="ADC_CHANNEL_12" Condition="$IpInstance_CHANNEL_12" Action="Remove"/>
+        <PossibleValue Comment="Channel 13" CommentCH="通道13" Value="ADC_CHANNEL_13" Condition="$IpInstance_CHANNEL_13" Action="Remove"/>
+        <PossibleValue Comment="Channel 14" CommentCH="通道14" Value="ADC_CHANNEL_14" Condition="$IpInstance_CHANNEL_14" Action="Remove"/>
+        <PossibleValue Comment="Channel 15" CommentCH="通道15" Value="ADC_CHANNEL_15" Condition="$IpInstance_CHANNEL_15" Action="Remove"/>
+        <PossibleValue Comment="Channel Temperature Sensor" CommentCH="内部温度传感器" Value="ADC_CHANNEL_16" Condition="$IpInstance_CHANNEL_16" Action="Remove"/>
+        <PossibleValue Comment="Channel VINTRV" CommentCH="内部参考电压" Value="ADC_CHANNEL_17" Condition="$IpInstance_CHANNEL_17" Action="Remove"/>
+    </RefParameter>	   
+    <RefParameter Name="SamplingTime_OrdinarySequence_4" Comment="Sequence 4 Sampling Time" CommentCH="序列第4个通道采样时间" DefaultValue="ADC_SAMPLETIME_1_5" Type="list" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+        <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 3 &amp; Mode = ADC_ORDINARY_LONGSHIFT_PREEMPT_SMLT_MODE | Mode = ADC_ORDINARY_LONGSHIFT_ONLY_MODE" Diagnostic=""/>
+        <PossibleValue Comment="1.5 Cycles" CommentCH="1.5个ADCCLK周期" Value="ADC_SAMPLETIME_1_5" Semaphore="$IpInstance_OrdinarySequence_4_ADC_SAMPLETIME_1_5"/>
+        <PossibleValue Comment="7.5 Cycles" CommentCH="7.5个ADCCLK周期" Value="ADC_SAMPLETIME_7_5" Semaphore="$IpInstance_OrdinarySequence_4_ADC_SAMPLETIME_7_5"/>
+        <PossibleValue Comment="13.5 Cycles" CommentCH="13.5个ADCCLK周期" Value="ADC_SAMPLETIME_13_5" Semaphore="$IpInstance_OrdinarySequence_4_ADC_SAMPLETIME_13_5"/>
+        <Description>Ordinary Channel x sampling time selection</Description>
+    </RefParameter>
+    <RefParameter Name="SamplingTime_OrdinarySequence_4" Comment="Sequence 4 Sampling Time" CommentCH="序列第4个通道采样时间" DefaultValue="ADC_SAMPLETIME_1_5" Type="list" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+        <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 3 &amp; Mode = ADC_ORDINARY_SHORTSHIFT_PREEMPT_SMLT_MODE | Mode = ADC_ORDINARY_SHORTSHIFT_ONLY_MODE" Diagnostic=""/>
+        <PossibleValue Comment="1.5 Cycles" CommentCH="1.5个ADCCLK周期" Value="ADC_SAMPLETIME_1_5" Semaphore="$IpInstance_OrdinarySequence_4_ADC_SAMPLETIME_1_5"/>
+        <Description>Ordinary Channel x sampling time selection</Description>
+    </RefParameter>
+    <RefParameter Name="SamplingTime_OrdinarySequence_4" Comment="Sequence 4 Sampling Time" CommentCH="序列第4个通道采样时间" DefaultValue="ADC_SAMPLETIME_1_5" Type="list" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+        <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 3" Diagnostic=""/>
+        <PossibleValue Comment="1.5 Cycles" CommentCH="1.5个ADCCLK周期" Value="ADC_SAMPLETIME_1_5" Semaphore="$IpInstance_OrdinarySequence_4_ADC_SAMPLETIME_1_5"/>
+        <PossibleValue Comment="7.5 Cycles" CommentCH="7.5个ADCCLK周期" Value="ADC_SAMPLETIME_7_5" Semaphore="$IpInstance_OrdinarySequence_4_ADC_SAMPLETIME_7_5"/>
+        <PossibleValue Comment="13.5 Cycles" CommentCH="13.5个ADCCLK周期" Value="ADC_SAMPLETIME_13_5" Semaphore="$IpInstance_OrdinarySequence_4_ADC_SAMPLETIME_13_5"/>
+        <PossibleValue Comment="28.5 Cycles" CommentCH="28.5个ADCCLK周期" Value="ADC_SAMPLETIME_28_5" Semaphore="$IpInstance_OrdinarySequence_4_ADC_SAMPLETIME_28_5"/>
+        <PossibleValue Comment="41.5 Cycles" CommentCH="41.5个ADCCLK周期" Value="ADC_SAMPLETIME_41_5" Semaphore="$IpInstance_OrdinarySequence_4_ADC_SAMPLETIME_41_5"/>
+        <PossibleValue Comment="55.5 Cycles" CommentCH="55.5个ADCCLK周期" Value="ADC_SAMPLETIME_55_5" Semaphore="$IpInstance_OrdinarySequence_4_ADC_SAMPLETIME_55_5"/>
+        <PossibleValue Comment="71.5 Cycles" CommentCH="71.5个ADCCLK周期" Value="ADC_SAMPLETIME_71_5" Semaphore="$IpInstance_OrdinarySequence_4_ADC_SAMPLETIME_71_5"/>
+        <PossibleValue Comment="239.5 Cycles" CommentCH="239.5个ADCCLK周期" Value="ADC_SAMPLETIME_239_5" Semaphore="$IpInstance_OrdinarySequence_4_ADC_SAMPLETIME_239_5"/>
+        <Description>Ordinary Channel x sampling time selection</Description>
+    </RefParameter>
+    
+     <!-- Sequence 5 -->
+    <RefParameter Name="Channel_OrdinarySequence_5" Comment="Sequence 5 Channel" CommentCH="序列第5个通道选择" DefaultValue="" Type="list" Visible="true" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+    	  <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 4" Diagnostic=""/>
+        <PossibleValue Comment="Channel 0" CommentCH="通道0" Value="ADC_CHANNEL_0" Condition="$IpInstance_CHANNEL_0" Action="Remove"/>
+        <PossibleValue Comment="Channel 1" CommentCH="通道1" Value="ADC_CHANNEL_1" Condition="$IpInstance_CHANNEL_1" Action="Remove"/>
+        <PossibleValue Comment="Channel 2" CommentCH="通道2" Value="ADC_CHANNEL_2" Condition="$IpInstance_CHANNEL_2" Action="Remove"/>
+        <PossibleValue Comment="Channel 3" CommentCH="通道3" Value="ADC_CHANNEL_3" Condition="$IpInstance_CHANNEL_3" Action="Remove"/>
+        <PossibleValue Comment="Channel 4" CommentCH="通道4" Value="ADC_CHANNEL_4" Condition="$IpInstance_CHANNEL_4" Action="Remove"/>
+        <PossibleValue Comment="Channel 5" CommentCH="通道5" Value="ADC_CHANNEL_5" Condition="$IpInstance_CHANNEL_5" Action="Remove"/>
+        <PossibleValue Comment="Channel 6" CommentCH="通道6" Value="ADC_CHANNEL_6" Condition="$IpInstance_CHANNEL_6" Action="Remove"/>
+        <PossibleValue Comment="Channel 7" CommentCH="通道7" Value="ADC_CHANNEL_7" Condition="$IpInstance_CHANNEL_7" Action="Remove"/>
+        <PossibleValue Comment="Channel 8" CommentCH="通道8" Value="ADC_CHANNEL_8" Condition="$IpInstance_CHANNEL_8" Action="Remove"/>
+        <PossibleValue Comment="Channel 9" CommentCH="通道9" Value="ADC_CHANNEL_9" Condition="$IpInstance_CHANNEL_9" Action="Remove"/>
+        <PossibleValue Comment="Channel 10" CommentCH="通道10" Value="ADC_CHANNEL_10" Condition="$IpInstance_CHANNEL_10" Action="Remove"/>
+        <PossibleValue Comment="Channel 11" CommentCH="通道11" Value="ADC_CHANNEL_11" Condition="$IpInstance_CHANNEL_11" Action="Remove"/>
+        <PossibleValue Comment="Channel 12" CommentCH="通道12" Value="ADC_CHANNEL_12" Condition="$IpInstance_CHANNEL_12" Action="Remove"/>
+        <PossibleValue Comment="Channel 13" CommentCH="通道13" Value="ADC_CHANNEL_13" Condition="$IpInstance_CHANNEL_13" Action="Remove"/>
+        <PossibleValue Comment="Channel 14" CommentCH="通道14" Value="ADC_CHANNEL_14" Condition="$IpInstance_CHANNEL_14" Action="Remove"/>
+        <PossibleValue Comment="Channel 15" CommentCH="通道15" Value="ADC_CHANNEL_15" Condition="$IpInstance_CHANNEL_15" Action="Remove"/>
+        <PossibleValue Comment="Channel Temperature Sensor" CommentCH="内部温度传感器" Value="ADC_CHANNEL_16" Condition="$IpInstance_CHANNEL_16" Action="Remove"/>
+        <PossibleValue Comment="Channel VINTRV" CommentCH="内部参考电压" Value="ADC_CHANNEL_17" Condition="$IpInstance_CHANNEL_17" Action="Remove"/>
+    </RefParameter>	   
+    <RefParameter Name="SamplingTime_OrdinarySequence_5" Comment="Sequence 5 Sampling Time" CommentCH="序列第5个通道采样时间" DefaultValue="ADC_SAMPLETIME_1_5" Type="list" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+        <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 4 &amp; Mode = ADC_ORDINARY_LONGSHIFT_PREEMPT_SMLT_MODE | Mode = ADC_ORDINARY_LONGSHIFT_ONLY_MODE" Diagnostic=""/>
+        <PossibleValue Comment="1.5 Cycles" CommentCH="1.5个ADCCLK周期" Value="ADC_SAMPLETIME_1_5" Semaphore="$IpInstance_OrdinarySequence_5_ADC_SAMPLETIME_1_5"/>
+        <PossibleValue Comment="7.5 Cycles" CommentCH="7.5个ADCCLK周期" Value="ADC_SAMPLETIME_7_5" Semaphore="$IpInstance_OrdinarySequence_5_ADC_SAMPLETIME_7_5"/>
+        <PossibleValue Comment="13.5 Cycles" CommentCH="13.5个ADCCLK周期" Value="ADC_SAMPLETIME_13_5" Semaphore="$IpInstance_OrdinarySequence_5_ADC_SAMPLETIME_13_5"/>
+        <Description>Ordinary Channel x sampling time selection</Description>
+    </RefParameter>
+    <RefParameter Name="SamplingTime_OrdinarySequence_5" Comment="Sequence 5 Sampling Time" CommentCH="序列第5个通道采样时间" DefaultValue="ADC_SAMPLETIME_1_5" Type="list" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+        <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 4 &amp; Mode = ADC_ORDINARY_SHORTSHIFT_PREEMPT_SMLT_MODE | Mode = ADC_ORDINARY_SHORTSHIFT_ONLY_MODE" Diagnostic=""/>
+        <PossibleValue Comment="1.5 Cycles" CommentCH="1.5个ADCCLK周期" Value="ADC_SAMPLETIME_1_5" Semaphore="$IpInstance_OrdinarySequence_5_ADC_SAMPLETIME_1_5"/>
+        <Description>Ordinary Channel x sampling time selection</Description>
+    </RefParameter>
+    <RefParameter Name="SamplingTime_OrdinarySequence_5" Comment="Sequence 5 Sampling Time" CommentCH="序列第5个通道采样时间" DefaultValue="ADC_SAMPLETIME_1_5" Type="list" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+        <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 4" Diagnostic=""/>
+        <PossibleValue Comment="1.5 Cycles" CommentCH="1.5个ADCCLK周期" Value="ADC_SAMPLETIME_1_5" Semaphore="$IpInstance_OrdinarySequence_5_ADC_SAMPLETIME_1_5"/>
+        <PossibleValue Comment="7.5 Cycles" CommentCH="7.5个ADCCLK周期" Value="ADC_SAMPLETIME_7_5" Semaphore="$IpInstance_OrdinarySequence_5_ADC_SAMPLETIME_7_5"/>
+        <PossibleValue Comment="13.5 Cycles" CommentCH="13.5个ADCCLK周期" Value="ADC_SAMPLETIME_13_5" Semaphore="$IpInstance_OrdinarySequence_5_ADC_SAMPLETIME_13_5"/>
+        <PossibleValue Comment="28.5 Cycles" CommentCH="28.5个ADCCLK周期" Value="ADC_SAMPLETIME_28_5" Semaphore="$IpInstance_OrdinarySequence_5_ADC_SAMPLETIME_28_5"/>
+        <PossibleValue Comment="41.5 Cycles" CommentCH="41.5个ADCCLK周期" Value="ADC_SAMPLETIME_41_5" Semaphore="$IpInstance_OrdinarySequence_5_ADC_SAMPLETIME_41_5"/>
+        <PossibleValue Comment="55.5 Cycles" CommentCH="55.5个ADCCLK周期" Value="ADC_SAMPLETIME_55_5" Semaphore="$IpInstance_OrdinarySequence_5_ADC_SAMPLETIME_55_5"/>
+        <PossibleValue Comment="71.5 Cycles" CommentCH="71.5个ADCCLK周期" Value="ADC_SAMPLETIME_71_5" Semaphore="$IpInstance_OrdinarySequence_5_ADC_SAMPLETIME_71_5"/>
+        <PossibleValue Comment="239.5 Cycles" CommentCH="239.5个ADCCLK周期" Value="ADC_SAMPLETIME_239_5" Semaphore="$IpInstance_OrdinarySequence_5_ADC_SAMPLETIME_239_5"/>
+        <Description>Ordinary Channel x sampling time selection</Description>
+    </RefParameter>
+    
+     <!-- Sequence 6 -->
+    <RefParameter Name="Channel_OrdinarySequence_6" Comment="Sequence 6 Channel" CommentCH="序列第6个通道选择" DefaultValue="" Type="list" Visible="true" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+    	  <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 5" Diagnostic=""/>
+        <PossibleValue Comment="Channel 0" CommentCH="通道0" Value="ADC_CHANNEL_0" Condition="$IpInstance_CHANNEL_0" Action="Remove"/>
+        <PossibleValue Comment="Channel 1" CommentCH="通道1" Value="ADC_CHANNEL_1" Condition="$IpInstance_CHANNEL_1" Action="Remove"/>
+        <PossibleValue Comment="Channel 2" CommentCH="通道2" Value="ADC_CHANNEL_2" Condition="$IpInstance_CHANNEL_2" Action="Remove"/>
+        <PossibleValue Comment="Channel 3" CommentCH="通道3" Value="ADC_CHANNEL_3" Condition="$IpInstance_CHANNEL_3" Action="Remove"/>
+        <PossibleValue Comment="Channel 4" CommentCH="通道4" Value="ADC_CHANNEL_4" Condition="$IpInstance_CHANNEL_4" Action="Remove"/>
+        <PossibleValue Comment="Channel 5" CommentCH="通道5" Value="ADC_CHANNEL_5" Condition="$IpInstance_CHANNEL_5" Action="Remove"/>
+        <PossibleValue Comment="Channel 6" CommentCH="通道6" Value="ADC_CHANNEL_6" Condition="$IpInstance_CHANNEL_6" Action="Remove"/>
+        <PossibleValue Comment="Channel 7" CommentCH="通道7" Value="ADC_CHANNEL_7" Condition="$IpInstance_CHANNEL_7" Action="Remove"/>
+        <PossibleValue Comment="Channel 8" CommentCH="通道8" Value="ADC_CHANNEL_8" Condition="$IpInstance_CHANNEL_8" Action="Remove"/>
+        <PossibleValue Comment="Channel 9" CommentCH="通道9" Value="ADC_CHANNEL_9" Condition="$IpInstance_CHANNEL_9" Action="Remove"/>
+        <PossibleValue Comment="Channel 10" CommentCH="通道10" Value="ADC_CHANNEL_10" Condition="$IpInstance_CHANNEL_10" Action="Remove"/>
+        <PossibleValue Comment="Channel 11" CommentCH="通道11" Value="ADC_CHANNEL_11" Condition="$IpInstance_CHANNEL_11" Action="Remove"/>
+        <PossibleValue Comment="Channel 12" CommentCH="通道12" Value="ADC_CHANNEL_12" Condition="$IpInstance_CHANNEL_12" Action="Remove"/>
+        <PossibleValue Comment="Channel 13" CommentCH="通道13" Value="ADC_CHANNEL_13" Condition="$IpInstance_CHANNEL_13" Action="Remove"/>
+        <PossibleValue Comment="Channel 14" CommentCH="通道14" Value="ADC_CHANNEL_14" Condition="$IpInstance_CHANNEL_14" Action="Remove"/>
+        <PossibleValue Comment="Channel 15" CommentCH="通道15" Value="ADC_CHANNEL_15" Condition="$IpInstance_CHANNEL_15" Action="Remove"/>
+        <PossibleValue Comment="Channel Temperature Sensor" CommentCH="内部温度传感器" Value="ADC_CHANNEL_16" Condition="$IpInstance_CHANNEL_16" Action="Remove"/>
+        <PossibleValue Comment="Channel VINTRV" CommentCH="内部参考电压" Value="ADC_CHANNEL_17" Condition="$IpInstance_CHANNEL_17" Action="Remove"/>
+    </RefParameter>	   
+    <RefParameter Name="SamplingTime_OrdinarySequence_6" Comment="Sequence 6 Sampling Time" CommentCH="序列第6个通道采样时间" DefaultValue="ADC_SAMPLETIME_1_5" Type="list" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+        <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 5 &amp; Mode = ADC_ORDINARY_LONGSHIFT_PREEMPT_SMLT_MODE | Mode = ADC_ORDINARY_LONGSHIFT_ONLY_MODE" Diagnostic=""/>
+        <PossibleValue Comment="1.5 Cycles" CommentCH="1.5个ADCCLK周期" Value="ADC_SAMPLETIME_1_5" Semaphore="$IpInstance_OrdinarySequence_6_ADC_SAMPLETIME_1_5"/>
+        <PossibleValue Comment="7.5 Cycles" CommentCH="7.5个ADCCLK周期" Value="ADC_SAMPLETIME_7_5" Semaphore="$IpInstance_OrdinarySequence_6_ADC_SAMPLETIME_7_5"/>
+        <PossibleValue Comment="13.5 Cycles" CommentCH="13.5个ADCCLK周期" Value="ADC_SAMPLETIME_13_5" Semaphore="$IpInstance_OrdinarySequence_6_ADC_SAMPLETIME_13_5"/>
+        <Description>Ordinary Channel x sampling time selection</Description>
+    </RefParameter>
+    <RefParameter Name="SamplingTime_OrdinarySequence_6" Comment="Sequence 6 Sampling Time" CommentCH="序列第6个通道采样时间" DefaultValue="ADC_SAMPLETIME_1_5" Type="list" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+        <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 5 &amp; Mode = ADC_ORDINARY_SHORTSHIFT_PREEMPT_SMLT_MODE | Mode = ADC_ORDINARY_SHORTSHIFT_ONLY_MODE" Diagnostic=""/>
+        <PossibleValue Comment="1.5 Cycles" CommentCH="1.5个ADCCLK周期" Value="ADC_SAMPLETIME_1_5" Semaphore="$IpInstance_OrdinarySequence_6_ADC_SAMPLETIME_1_5"/>
+        <Description>Ordinary Channel x sampling time selection</Description>
+    </RefParameter>
+    <RefParameter Name="SamplingTime_OrdinarySequence_6" Comment="Sequence 6 Sampling Time" CommentCH="序列第6个通道采样时间" DefaultValue="ADC_SAMPLETIME_1_5" Type="list" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+        <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 5" Diagnostic=""/>
+        <PossibleValue Comment="1.5 Cycles" CommentCH="1.5个ADCCLK周期" Value="ADC_SAMPLETIME_1_5" Semaphore="$IpInstance_OrdinarySequence_6_ADC_SAMPLETIME_1_5"/>
+        <PossibleValue Comment="7.5 Cycles" CommentCH="7.5个ADCCLK周期" Value="ADC_SAMPLETIME_7_5" Semaphore="$IpInstance_OrdinarySequence_6_ADC_SAMPLETIME_7_5"/>
+        <PossibleValue Comment="13.5 Cycles" CommentCH="13.5个ADCCLK周期" Value="ADC_SAMPLETIME_13_5" Semaphore="$IpInstance_OrdinarySequence_6_ADC_SAMPLETIME_13_5"/>
+        <PossibleValue Comment="28.5 Cycles" CommentCH="28.5个ADCCLK周期" Value="ADC_SAMPLETIME_28_5" Semaphore="$IpInstance_OrdinarySequence_6_ADC_SAMPLETIME_28_5"/>
+        <PossibleValue Comment="41.5 Cycles" CommentCH="41.5个ADCCLK周期" Value="ADC_SAMPLETIME_41_5" Semaphore="$IpInstance_OrdinarySequence_6_ADC_SAMPLETIME_41_5"/>
+        <PossibleValue Comment="55.5 Cycles" CommentCH="55.5个ADCCLK周期" Value="ADC_SAMPLETIME_55_5" Semaphore="$IpInstance_OrdinarySequence_6_ADC_SAMPLETIME_55_5"/>
+        <PossibleValue Comment="71.5 Cycles" CommentCH="71.5个ADCCLK周期" Value="ADC_SAMPLETIME_71_5" Semaphore="$IpInstance_OrdinarySequence_6_ADC_SAMPLETIME_71_5"/>
+        <PossibleValue Comment="239.5 Cycles" CommentCH="239.5个ADCCLK周期" Value="ADC_SAMPLETIME_239_5" Semaphore="$IpInstance_OrdinarySequence_6_ADC_SAMPLETIME_239_5"/>
+        <Description>Ordinary Channel x sampling time selection</Description>
+    </RefParameter>
+    
+     <!-- Sequence 7 -->
+    <RefParameter Name="Channel_OrdinarySequence_7" Comment="Sequence 7 Channel" CommentCH="序列第7个通道选择" DefaultValue="" Type="list" Visible="true" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+    	  <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 6" Diagnostic=""/>
+        <PossibleValue Comment="Channel 0" CommentCH="通道0" Value="ADC_CHANNEL_0" Condition="$IpInstance_CHANNEL_0" Action="Remove"/>
+        <PossibleValue Comment="Channel 1" CommentCH="通道1" Value="ADC_CHANNEL_1" Condition="$IpInstance_CHANNEL_1" Action="Remove"/>
+        <PossibleValue Comment="Channel 2" CommentCH="通道2" Value="ADC_CHANNEL_2" Condition="$IpInstance_CHANNEL_2" Action="Remove"/>
+        <PossibleValue Comment="Channel 3" CommentCH="通道3" Value="ADC_CHANNEL_3" Condition="$IpInstance_CHANNEL_3" Action="Remove"/>
+        <PossibleValue Comment="Channel 4" CommentCH="通道4" Value="ADC_CHANNEL_4" Condition="$IpInstance_CHANNEL_4" Action="Remove"/>
+        <PossibleValue Comment="Channel 5" CommentCH="通道5" Value="ADC_CHANNEL_5" Condition="$IpInstance_CHANNEL_5" Action="Remove"/>
+        <PossibleValue Comment="Channel 6" CommentCH="通道6" Value="ADC_CHANNEL_6" Condition="$IpInstance_CHANNEL_6" Action="Remove"/>
+        <PossibleValue Comment="Channel 7" CommentCH="通道7" Value="ADC_CHANNEL_7" Condition="$IpInstance_CHANNEL_7" Action="Remove"/>
+        <PossibleValue Comment="Channel 8" CommentCH="通道8" Value="ADC_CHANNEL_8" Condition="$IpInstance_CHANNEL_8" Action="Remove"/>
+        <PossibleValue Comment="Channel 9" CommentCH="通道9" Value="ADC_CHANNEL_9" Condition="$IpInstance_CHANNEL_9" Action="Remove"/>
+        <PossibleValue Comment="Channel 10" CommentCH="通道10" Value="ADC_CHANNEL_10" Condition="$IpInstance_CHANNEL_10" Action="Remove"/>
+        <PossibleValue Comment="Channel 11" CommentCH="通道11" Value="ADC_CHANNEL_11" Condition="$IpInstance_CHANNEL_11" Action="Remove"/>
+        <PossibleValue Comment="Channel 12" CommentCH="通道12" Value="ADC_CHANNEL_12" Condition="$IpInstance_CHANNEL_12" Action="Remove"/>
+        <PossibleValue Comment="Channel 13" CommentCH="通道13" Value="ADC_CHANNEL_13" Condition="$IpInstance_CHANNEL_13" Action="Remove"/>
+        <PossibleValue Comment="Channel 14" CommentCH="通道14" Value="ADC_CHANNEL_14" Condition="$IpInstance_CHANNEL_14" Action="Remove"/>
+        <PossibleValue Comment="Channel 15" CommentCH="通道15" Value="ADC_CHANNEL_15" Condition="$IpInstance_CHANNEL_15" Action="Remove"/>
+        <PossibleValue Comment="Channel Temperature Sensor" CommentCH="内部温度传感器" Value="ADC_CHANNEL_16" Condition="$IpInstance_CHANNEL_16" Action="Remove"/>
+        <PossibleValue Comment="Channel VINTRV" CommentCH="内部参考电压" Value="ADC_CHANNEL_17" Condition="$IpInstance_CHANNEL_17" Action="Remove"/>
+    </RefParameter>	   
+    <RefParameter Name="SamplingTime_OrdinarySequence_7" Comment="Sequence 7 Sampling Time" CommentCH="序列第7个通道采样时间" DefaultValue="ADC_SAMPLETIME_1_5" Type="list" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+        <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 6 &amp; Mode = ADC_ORDINARY_LONGSHIFT_PREEMPT_SMLT_MODE | Mode = ADC_ORDINARY_LONGSHIFT_ONLY_MODE" Diagnostic=""/>
+        <PossibleValue Comment="1.5 Cycles" CommentCH="1.5个ADCCLK周期" Value="ADC_SAMPLETIME_1_5" Semaphore="$IpInstance_OrdinarySequence_7_ADC_SAMPLETIME_1_5"/>
+        <PossibleValue Comment="7.5 Cycles" CommentCH="7.5个ADCCLK周期" Value="ADC_SAMPLETIME_7_5" Semaphore="$IpInstance_OrdinarySequence_7_ADC_SAMPLETIME_7_5"/>
+        <PossibleValue Comment="13.5 Cycles" CommentCH="13.5个ADCCLK周期" Value="ADC_SAMPLETIME_13_5" Semaphore="$IpInstance_OrdinarySequence_7_ADC_SAMPLETIME_13_5"/>
+        <Description>Ordinary Channel x sampling time selection</Description>
+    </RefParameter>
+    <RefParameter Name="SamplingTime_OrdinarySequence_7" Comment="Sequence 7 Sampling Time" CommentCH="序列第7个通道采样时间" DefaultValue="ADC_SAMPLETIME_1_5" Type="list" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+        <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 6 &amp; Mode = ADC_ORDINARY_SHORTSHIFT_PREEMPT_SMLT_MODE | Mode = ADC_ORDINARY_SHORTSHIFT_ONLY_MODE" Diagnostic=""/>
+        <PossibleValue Comment="1.5 Cycles" CommentCH="1.5个ADCCLK周期" Value="ADC_SAMPLETIME_1_5" Semaphore="$IpInstance_OrdinarySequence_7_ADC_SAMPLETIME_1_5"/>
+        <Description>Ordinary Channel x sampling time selection</Description>
+    </RefParameter>
+    <RefParameter Name="SamplingTime_OrdinarySequence_7" Comment="Sequence 7 Sampling Time" CommentCH="序列第7个通道采样时间" DefaultValue="ADC_SAMPLETIME_1_5" Type="list" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+        <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 6" Diagnostic=""/>
+        <PossibleValue Comment="1.5 Cycles" CommentCH="1.5个ADCCLK周期" Value="ADC_SAMPLETIME_1_5" Semaphore="$IpInstance_OrdinarySequence_7_ADC_SAMPLETIME_1_5"/>
+        <PossibleValue Comment="7.5 Cycles" CommentCH="7.5个ADCCLK周期" Value="ADC_SAMPLETIME_7_5" Semaphore="$IpInstance_OrdinarySequence_7_ADC_SAMPLETIME_7_5"/>
+        <PossibleValue Comment="13.5 Cycles" CommentCH="13.5个ADCCLK周期" Value="ADC_SAMPLETIME_13_5" Semaphore="$IpInstance_OrdinarySequence_7_ADC_SAMPLETIME_13_5"/>
+        <PossibleValue Comment="28.5 Cycles" CommentCH="28.5个ADCCLK周期" Value="ADC_SAMPLETIME_28_5" Semaphore="$IpInstance_OrdinarySequence_7_ADC_SAMPLETIME_28_5"/>
+        <PossibleValue Comment="41.5 Cycles" CommentCH="41.5个ADCCLK周期" Value="ADC_SAMPLETIME_41_5" Semaphore="$IpInstance_OrdinarySequence_7_ADC_SAMPLETIME_41_5"/>
+        <PossibleValue Comment="55.5 Cycles" CommentCH="55.5个ADCCLK周期" Value="ADC_SAMPLETIME_55_5" Semaphore="$IpInstance_OrdinarySequence_7_ADC_SAMPLETIME_55_5"/>
+        <PossibleValue Comment="71.5 Cycles" CommentCH="71.5个ADCCLK周期" Value="ADC_SAMPLETIME_71_5" Semaphore="$IpInstance_OrdinarySequence_7_ADC_SAMPLETIME_71_5"/>
+        <PossibleValue Comment="239.5 Cycles" CommentCH="239.5个ADCCLK周期" Value="ADC_SAMPLETIME_239_5" Semaphore="$IpInstance_OrdinarySequence_7_ADC_SAMPLETIME_239_5"/>
+        <Description>Ordinary Channel x sampling time selection</Description>
+    </RefParameter>
+    
+     <!-- Sequence 8 -->
+    <RefParameter Name="Channel_OrdinarySequence_8" Comment="Sequence 8 Channel" CommentCH="序列第8个通道选择" DefaultValue="" Type="list" Visible="true" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+    	  <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 7" Diagnostic=""/>
+        <PossibleValue Comment="Channel 0" CommentCH="通道0" Value="ADC_CHANNEL_0" Condition="$IpInstance_CHANNEL_0" Action="Remove"/>
+        <PossibleValue Comment="Channel 1" CommentCH="通道1" Value="ADC_CHANNEL_1" Condition="$IpInstance_CHANNEL_1" Action="Remove"/>
+        <PossibleValue Comment="Channel 2" CommentCH="通道2" Value="ADC_CHANNEL_2" Condition="$IpInstance_CHANNEL_2" Action="Remove"/>
+        <PossibleValue Comment="Channel 3" CommentCH="通道3" Value="ADC_CHANNEL_3" Condition="$IpInstance_CHANNEL_3" Action="Remove"/>
+        <PossibleValue Comment="Channel 4" CommentCH="通道4" Value="ADC_CHANNEL_4" Condition="$IpInstance_CHANNEL_4" Action="Remove"/>
+        <PossibleValue Comment="Channel 5" CommentCH="通道5" Value="ADC_CHANNEL_5" Condition="$IpInstance_CHANNEL_5" Action="Remove"/>
+        <PossibleValue Comment="Channel 6" CommentCH="通道6" Value="ADC_CHANNEL_6" Condition="$IpInstance_CHANNEL_6" Action="Remove"/>
+        <PossibleValue Comment="Channel 7" CommentCH="通道7" Value="ADC_CHANNEL_7" Condition="$IpInstance_CHANNEL_7" Action="Remove"/>
+        <PossibleValue Comment="Channel 8" CommentCH="通道8" Value="ADC_CHANNEL_8" Condition="$IpInstance_CHANNEL_8" Action="Remove"/>
+        <PossibleValue Comment="Channel 9" CommentCH="通道9" Value="ADC_CHANNEL_9" Condition="$IpInstance_CHANNEL_9" Action="Remove"/>
+        <PossibleValue Comment="Channel 10" CommentCH="通道10" Value="ADC_CHANNEL_10" Condition="$IpInstance_CHANNEL_10" Action="Remove"/>
+        <PossibleValue Comment="Channel 11" CommentCH="通道11" Value="ADC_CHANNEL_11" Condition="$IpInstance_CHANNEL_11" Action="Remove"/>
+        <PossibleValue Comment="Channel 12" CommentCH="通道12" Value="ADC_CHANNEL_12" Condition="$IpInstance_CHANNEL_12" Action="Remove"/>
+        <PossibleValue Comment="Channel 13" CommentCH="通道13" Value="ADC_CHANNEL_13" Condition="$IpInstance_CHANNEL_13" Action="Remove"/>
+        <PossibleValue Comment="Channel 14" CommentCH="通道14" Value="ADC_CHANNEL_14" Condition="$IpInstance_CHANNEL_14" Action="Remove"/>
+        <PossibleValue Comment="Channel 15" CommentCH="通道15" Value="ADC_CHANNEL_15" Condition="$IpInstance_CHANNEL_15" Action="Remove"/>
+        <PossibleValue Comment="Channel Temperature Sensor" CommentCH="内部温度传感器" Value="ADC_CHANNEL_16" Condition="$IpInstance_CHANNEL_16" Action="Remove"/>
+        <PossibleValue Comment="Channel VINTRV" CommentCH="内部参考电压" Value="ADC_CHANNEL_17" Condition="$IpInstance_CHANNEL_17" Action="Remove"/>
+    </RefParameter>	   
+    <RefParameter Name="SamplingTime_OrdinarySequence_8" Comment="Sequence 8 Sampling Time" CommentCH="序列第8个通道采样时间" DefaultValue="ADC_SAMPLETIME_1_5" Type="list" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+        <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 7 &amp; Mode = ADC_ORDINARY_LONGSHIFT_PREEMPT_SMLT_MODE | Mode = ADC_ORDINARY_LONGSHIFT_ONLY_MODE" Diagnostic=""/>
+        <PossibleValue Comment="1.5 Cycles" CommentCH="1.5个ADCCLK周期" Value="ADC_SAMPLETIME_1_5" Semaphore="$IpInstance_OrdinarySequence_8_ADC_SAMPLETIME_1_5"/>
+        <PossibleValue Comment="7.5 Cycles" CommentCH="7.5个ADCCLK周期" Value="ADC_SAMPLETIME_7_5" Semaphore="$IpInstance_OrdinarySequence_8_ADC_SAMPLETIME_7_5"/>
+        <PossibleValue Comment="13.5 Cycles" CommentCH="13.5个ADCCLK周期" Value="ADC_SAMPLETIME_13_5" Semaphore="$IpInstance_OrdinarySequence_8_ADC_SAMPLETIME_13_5"/>
+        <Description>Ordinary Channel x sampling time selection</Description>
+    </RefParameter>
+    <RefParameter Name="SamplingTime_OrdinarySequence_8" Comment="Sequence 8 Sampling Time" CommentCH="序列第8个通道采样时间" DefaultValue="ADC_SAMPLETIME_1_5" Type="list" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+        <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 7 &amp; Mode = ADC_ORDINARY_SHORTSHIFT_PREEMPT_SMLT_MODE | Mode = ADC_ORDINARY_SHORTSHIFT_ONLY_MODE" Diagnostic=""/>
+        <PossibleValue Comment="1.5 Cycles" CommentCH="1.5个ADCCLK周期" Value="ADC_SAMPLETIME_1_5" Semaphore="$IpInstance_OrdinarySequence_8_ADC_SAMPLETIME_1_5"/>
+        <Description>Ordinary Channel x sampling time selection</Description>
+    </RefParameter>
+    <RefParameter Name="SamplingTime_OrdinarySequence_8" Comment="Sequence 8 Sampling Time" CommentCH="序列第8个通道采样时间" DefaultValue="ADC_SAMPLETIME_1_5" Type="list" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+        <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 7" Diagnostic=""/>
+        <PossibleValue Comment="1.5 Cycles" CommentCH="1.5个ADCCLK周期" Value="ADC_SAMPLETIME_1_5" Semaphore="$IpInstance_OrdinarySequence_8_ADC_SAMPLETIME_1_5"/>
+        <PossibleValue Comment="7.5 Cycles" CommentCH="7.5个ADCCLK周期" Value="ADC_SAMPLETIME_7_5" Semaphore="$IpInstance_OrdinarySequence_8_ADC_SAMPLETIME_7_5"/>
+        <PossibleValue Comment="13.5 Cycles" CommentCH="13.5个ADCCLK周期" Value="ADC_SAMPLETIME_13_5" Semaphore="$IpInstance_OrdinarySequence_8_ADC_SAMPLETIME_13_5"/>
+        <PossibleValue Comment="28.5 Cycles" CommentCH="28.5个ADCCLK周期" Value="ADC_SAMPLETIME_28_5" Semaphore="$IpInstance_OrdinarySequence_8_ADC_SAMPLETIME_28_5"/>
+        <PossibleValue Comment="41.5 Cycles" CommentCH="41.5个ADCCLK周期" Value="ADC_SAMPLETIME_41_5" Semaphore="$IpInstance_OrdinarySequence_8_ADC_SAMPLETIME_41_5"/>
+        <PossibleValue Comment="55.5 Cycles" CommentCH="55.5个ADCCLK周期" Value="ADC_SAMPLETIME_55_5" Semaphore="$IpInstance_OrdinarySequence_8_ADC_SAMPLETIME_55_5"/>
+        <PossibleValue Comment="71.5 Cycles" CommentCH="71.5个ADCCLK周期" Value="ADC_SAMPLETIME_71_5" Semaphore="$IpInstance_OrdinarySequence_8_ADC_SAMPLETIME_71_5"/>
+        <PossibleValue Comment="239.5 Cycles" CommentCH="239.5个ADCCLK周期" Value="ADC_SAMPLETIME_239_5" Semaphore="$IpInstance_OrdinarySequence_8_ADC_SAMPLETIME_239_5"/>
+        <Description>Ordinary Channel x sampling time selection</Description>
+    </RefParameter>
+    
+     <!-- Sequence 9 -->
+    <RefParameter Name="Channel_OrdinarySequence_9" Comment="Sequence 9 Channel" CommentCH="序列第9个通道选择" DefaultValue="" Type="list" Visible="true" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+    	  <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 8" Diagnostic=""/>
+        <PossibleValue Comment="Channel 0" CommentCH="通道0" Value="ADC_CHANNEL_0" Condition="$IpInstance_CHANNEL_0" Action="Remove"/>
+        <PossibleValue Comment="Channel 1" CommentCH="通道1" Value="ADC_CHANNEL_1" Condition="$IpInstance_CHANNEL_1" Action="Remove"/>
+        <PossibleValue Comment="Channel 2" CommentCH="通道2" Value="ADC_CHANNEL_2" Condition="$IpInstance_CHANNEL_2" Action="Remove"/>
+        <PossibleValue Comment="Channel 3" CommentCH="通道3" Value="ADC_CHANNEL_3" Condition="$IpInstance_CHANNEL_3" Action="Remove"/>
+        <PossibleValue Comment="Channel 4" CommentCH="通道4" Value="ADC_CHANNEL_4" Condition="$IpInstance_CHANNEL_4" Action="Remove"/>
+        <PossibleValue Comment="Channel 5" CommentCH="通道5" Value="ADC_CHANNEL_5" Condition="$IpInstance_CHANNEL_5" Action="Remove"/>
+        <PossibleValue Comment="Channel 6" CommentCH="通道6" Value="ADC_CHANNEL_6" Condition="$IpInstance_CHANNEL_6" Action="Remove"/>
+        <PossibleValue Comment="Channel 7" CommentCH="通道7" Value="ADC_CHANNEL_7" Condition="$IpInstance_CHANNEL_7" Action="Remove"/>
+        <PossibleValue Comment="Channel 8" CommentCH="通道8" Value="ADC_CHANNEL_8" Condition="$IpInstance_CHANNEL_8" Action="Remove"/>
+        <PossibleValue Comment="Channel 9" CommentCH="通道9" Value="ADC_CHANNEL_9" Condition="$IpInstance_CHANNEL_9" Action="Remove"/>
+        <PossibleValue Comment="Channel 10" CommentCH="通道10" Value="ADC_CHANNEL_10" Condition="$IpInstance_CHANNEL_10" Action="Remove"/>
+        <PossibleValue Comment="Channel 11" CommentCH="通道11" Value="ADC_CHANNEL_11" Condition="$IpInstance_CHANNEL_11" Action="Remove"/>
+        <PossibleValue Comment="Channel 12" CommentCH="通道12" Value="ADC_CHANNEL_12" Condition="$IpInstance_CHANNEL_12" Action="Remove"/>
+        <PossibleValue Comment="Channel 13" CommentCH="通道13" Value="ADC_CHANNEL_13" Condition="$IpInstance_CHANNEL_13" Action="Remove"/>
+        <PossibleValue Comment="Channel 14" CommentCH="通道14" Value="ADC_CHANNEL_14" Condition="$IpInstance_CHANNEL_14" Action="Remove"/>
+        <PossibleValue Comment="Channel 15" CommentCH="通道15" Value="ADC_CHANNEL_15" Condition="$IpInstance_CHANNEL_15" Action="Remove"/>
+        <PossibleValue Comment="Channel Temperature Sensor" CommentCH="内部温度传感器" Value="ADC_CHANNEL_16" Condition="$IpInstance_CHANNEL_16" Action="Remove"/>
+        <PossibleValue Comment="Channel VINTRV" CommentCH="内部参考电压" Value="ADC_CHANNEL_17" Condition="$IpInstance_CHANNEL_17" Action="Remove"/>
+    </RefParameter>	   
+    <RefParameter Name="SamplingTime_OrdinarySequence_9" Comment="Sequence 9 Sampling Time" CommentCH="序列第9个通道采样时间" DefaultValue="ADC_SAMPLETIME_1_5" Type="list" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+        <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 8 &amp; Mode = ADC_ORDINARY_LONGSHIFT_PREEMPT_SMLT_MODE | Mode = ADC_ORDINARY_LONGSHIFT_ONLY_MODE" Diagnostic=""/>
+        <PossibleValue Comment="1.5 Cycles" CommentCH="1.5个ADCCLK周期" Value="ADC_SAMPLETIME_1_5" Semaphore="$IpInstance_OrdinarySequence_9_ADC_SAMPLETIME_1_5"/>
+        <PossibleValue Comment="7.5 Cycles" CommentCH="7.5个ADCCLK周期" Value="ADC_SAMPLETIME_7_5" Semaphore="$IpInstance_OrdinarySequence_9_ADC_SAMPLETIME_7_5"/>
+        <PossibleValue Comment="13.5 Cycles" CommentCH="13.5个ADCCLK周期" Value="ADC_SAMPLETIME_13_5" Semaphore="$IpInstance_OrdinarySequence_9_ADC_SAMPLETIME_13_5"/>
+        <Description>Ordinary Channel x sampling time selection</Description>
+    </RefParameter>
+    <RefParameter Name="SamplingTime_OrdinarySequence_9" Comment="Sequence 9 Sampling Time" CommentCH="序列第9个通道采样时间" DefaultValue="ADC_SAMPLETIME_1_5" Type="list" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+        <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 8 &amp; Mode = ADC_ORDINARY_SHORTSHIFT_PREEMPT_SMLT_MODE | Mode = ADC_ORDINARY_SHORTSHIFT_ONLY_MODE" Diagnostic=""/>
+        <PossibleValue Comment="1.5 Cycles" CommentCH="1.5个ADCCLK周期" Value="ADC_SAMPLETIME_1_5" Semaphore="$IpInstance_OrdinarySequence_9_ADC_SAMPLETIME_1_5"/>
+        <Description>Ordinary Channel x sampling time selection</Description>
+    </RefParameter>
+    <RefParameter Name="SamplingTime_OrdinarySequence_9" Comment="Sequence 9 Sampling Time" CommentCH="序列第9个通道采样时间" DefaultValue="ADC_SAMPLETIME_1_5" Type="list" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+        <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 8" Diagnostic=""/>
+        <PossibleValue Comment="1.5 Cycles" CommentCH="1.5个ADCCLK周期" Value="ADC_SAMPLETIME_1_5" Semaphore="$IpInstance_OrdinarySequence_9_ADC_SAMPLETIME_1_5"/>
+        <PossibleValue Comment="7.5 Cycles" CommentCH="7.5个ADCCLK周期" Value="ADC_SAMPLETIME_7_5" Semaphore="$IpInstance_OrdinarySequence_9_ADC_SAMPLETIME_7_5"/>
+        <PossibleValue Comment="13.5 Cycles" CommentCH="13.5个ADCCLK周期" Value="ADC_SAMPLETIME_13_5" Semaphore="$IpInstance_OrdinarySequence_9_ADC_SAMPLETIME_13_5"/>
+        <PossibleValue Comment="28.5 Cycles" CommentCH="28.5个ADCCLK周期" Value="ADC_SAMPLETIME_28_5" Semaphore="$IpInstance_OrdinarySequence_9_ADC_SAMPLETIME_28_5"/>
+        <PossibleValue Comment="41.5 Cycles" CommentCH="41.5个ADCCLK周期" Value="ADC_SAMPLETIME_41_5" Semaphore="$IpInstance_OrdinarySequence_9_ADC_SAMPLETIME_41_5"/>
+        <PossibleValue Comment="55.5 Cycles" CommentCH="55.5个ADCCLK周期" Value="ADC_SAMPLETIME_55_5" Semaphore="$IpInstance_OrdinarySequence_9_ADC_SAMPLETIME_55_5"/>
+        <PossibleValue Comment="71.5 Cycles" CommentCH="71.5个ADCCLK周期" Value="ADC_SAMPLETIME_71_5" Semaphore="$IpInstance_OrdinarySequence_9_ADC_SAMPLETIME_71_5"/>
+        <PossibleValue Comment="239.5 Cycles" CommentCH="239.5个ADCCLK周期" Value="ADC_SAMPLETIME_239_5" Semaphore="$IpInstance_OrdinarySequence_9_ADC_SAMPLETIME_239_5"/>
+        <Description>Ordinary Channel x sampling time selection</Description>
+    </RefParameter>
+    
+     <!-- Sequence 10 -->
+    <RefParameter Name="Channel_OrdinarySequence_10" Comment="Sequence 10 Channel" CommentCH="序列第10个通道选择" DefaultValue="" Type="list" Visible="true" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+    	  <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 9" Diagnostic=""/>
+        <PossibleValue Comment="Channel 0" CommentCH="通道0" Value="ADC_CHANNEL_0" Condition="$IpInstance_CHANNEL_0" Action="Remove"/>
+        <PossibleValue Comment="Channel 1" CommentCH="通道1" Value="ADC_CHANNEL_1" Condition="$IpInstance_CHANNEL_1" Action="Remove"/>
+        <PossibleValue Comment="Channel 2" CommentCH="通道2" Value="ADC_CHANNEL_2" Condition="$IpInstance_CHANNEL_2" Action="Remove"/>
+        <PossibleValue Comment="Channel 3" CommentCH="通道3" Value="ADC_CHANNEL_3" Condition="$IpInstance_CHANNEL_3" Action="Remove"/>
+        <PossibleValue Comment="Channel 4" CommentCH="通道4" Value="ADC_CHANNEL_4" Condition="$IpInstance_CHANNEL_4" Action="Remove"/>
+        <PossibleValue Comment="Channel 5" CommentCH="通道5" Value="ADC_CHANNEL_5" Condition="$IpInstance_CHANNEL_5" Action="Remove"/>
+        <PossibleValue Comment="Channel 6" CommentCH="通道6" Value="ADC_CHANNEL_6" Condition="$IpInstance_CHANNEL_6" Action="Remove"/>
+        <PossibleValue Comment="Channel 7" CommentCH="通道7" Value="ADC_CHANNEL_7" Condition="$IpInstance_CHANNEL_7" Action="Remove"/>
+        <PossibleValue Comment="Channel 8" CommentCH="通道8" Value="ADC_CHANNEL_8" Condition="$IpInstance_CHANNEL_8" Action="Remove"/>
+        <PossibleValue Comment="Channel 9" CommentCH="通道9" Value="ADC_CHANNEL_9" Condition="$IpInstance_CHANNEL_9" Action="Remove"/>
+        <PossibleValue Comment="Channel 10" CommentCH="通道10" Value="ADC_CHANNEL_10" Condition="$IpInstance_CHANNEL_10" Action="Remove"/>
+        <PossibleValue Comment="Channel 11" CommentCH="通道11" Value="ADC_CHANNEL_11" Condition="$IpInstance_CHANNEL_11" Action="Remove"/>
+        <PossibleValue Comment="Channel 12" CommentCH="通道12" Value="ADC_CHANNEL_12" Condition="$IpInstance_CHANNEL_12" Action="Remove"/>
+        <PossibleValue Comment="Channel 13" CommentCH="通道13" Value="ADC_CHANNEL_13" Condition="$IpInstance_CHANNEL_13" Action="Remove"/>
+        <PossibleValue Comment="Channel 14" CommentCH="通道14" Value="ADC_CHANNEL_14" Condition="$IpInstance_CHANNEL_14" Action="Remove"/>
+        <PossibleValue Comment="Channel 15" CommentCH="通道15" Value="ADC_CHANNEL_15" Condition="$IpInstance_CHANNEL_15" Action="Remove"/>
+        <PossibleValue Comment="Channel Temperature Sensor" CommentCH="内部温度传感器" Value="ADC_CHANNEL_16" Condition="$IpInstance_CHANNEL_16" Action="Remove"/>
+        <PossibleValue Comment="Channel VINTRV" CommentCH="内部参考电压" Value="ADC_CHANNEL_17" Condition="$IpInstance_CHANNEL_17" Action="Remove"/>
+    </RefParameter>	   
+    <RefParameter Name="SamplingTime_OrdinarySequence_10" Comment="Sequence 10 Sampling Time" CommentCH="序列第10个通道采样时间" DefaultValue="ADC_SAMPLETIME_1_5" Type="list" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+        <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 9 &amp; Mode = ADC_ORDINARY_LONGSHIFT_PREEMPT_SMLT_MODE | Mode = ADC_ORDINARY_LONGSHIFT_ONLY_MODE" Diagnostic=""/>
+        <PossibleValue Comment="1.5 Cycles" CommentCH="1.5个ADCCLK周期" Value="ADC_SAMPLETIME_1_5" Semaphore="$IpInstance_OrdinarySequence_10_ADC_SAMPLETIME_1_5"/>
+        <PossibleValue Comment="7.5 Cycles" CommentCH="7.5个ADCCLK周期" Value="ADC_SAMPLETIME_7_5" Semaphore="$IpInstance_OrdinarySequence_10_ADC_SAMPLETIME_7_5"/>
+        <PossibleValue Comment="13.5 Cycles" CommentCH="13.5个ADCCLK周期" Value="ADC_SAMPLETIME_13_5" Semaphore="$IpInstance_OrdinarySequence_10_ADC_SAMPLETIME_13_5"/>
+        <Description>Ordinary Channel x sampling time selection</Description>
+    </RefParameter>
+    <RefParameter Name="SamplingTime_OrdinarySequence_10" Comment="Sequence 10 Sampling Time" CommentCH="序列第10个通道采样时间" DefaultValue="ADC_SAMPLETIME_1_5" Type="list" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+        <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 9 &amp; Mode = ADC_ORDINARY_SHORTSHIFT_PREEMPT_SMLT_MODE | Mode = ADC_ORDINARY_SHORTSHIFT_ONLY_MODE" Diagnostic=""/>
+        <PossibleValue Comment="1.5 Cycles" CommentCH="1.5个ADCCLK周期" Value="ADC_SAMPLETIME_1_5" Semaphore="$IpInstance_OrdinarySequence_10_ADC_SAMPLETIME_1_5"/>
+        <Description>Ordinary Channel x sampling time selection</Description>
+    </RefParameter>
+    <RefParameter Name="SamplingTime_OrdinarySequence_10" Comment="Sequence 10 Sampling Time" CommentCH="序列第10个通道采样时间" DefaultValue="ADC_SAMPLETIME_1_5" Type="list" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+        <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 9" Diagnostic=""/>
+        <PossibleValue Comment="1.5 Cycles" CommentCH="1.5个ADCCLK周期" Value="ADC_SAMPLETIME_1_5" Semaphore="$IpInstance_OrdinarySequence_10_ADC_SAMPLETIME_1_5"/>
+        <PossibleValue Comment="7.5 Cycles" CommentCH="7.5个ADCCLK周期" Value="ADC_SAMPLETIME_7_5" Semaphore="$IpInstance_OrdinarySequence_10_ADC_SAMPLETIME_7_5"/>
+        <PossibleValue Comment="13.5 Cycles" CommentCH="13.5个ADCCLK周期" Value="ADC_SAMPLETIME_13_5" Semaphore="$IpInstance_OrdinarySequence_10_ADC_SAMPLETIME_13_5"/>
+        <PossibleValue Comment="28.5 Cycles" CommentCH="28.5个ADCCLK周期" Value="ADC_SAMPLETIME_28_5" Semaphore="$IpInstance_OrdinarySequence_10_ADC_SAMPLETIME_28_5"/>
+        <PossibleValue Comment="41.5 Cycles" CommentCH="41.5个ADCCLK周期" Value="ADC_SAMPLETIME_41_5" Semaphore="$IpInstance_OrdinarySequence_10_ADC_SAMPLETIME_41_5"/>
+        <PossibleValue Comment="55.5 Cycles" CommentCH="55.5个ADCCLK周期" Value="ADC_SAMPLETIME_55_5" Semaphore="$IpInstance_OrdinarySequence_10_ADC_SAMPLETIME_55_5"/>
+        <PossibleValue Comment="71.5 Cycles" CommentCH="71.5个ADCCLK周期" Value="ADC_SAMPLETIME_71_5" Semaphore="$IpInstance_OrdinarySequence_10_ADC_SAMPLETIME_71_5"/>
+        <PossibleValue Comment="239.5 Cycles" CommentCH="239.5个ADCCLK周期" Value="ADC_SAMPLETIME_239_5" Semaphore="$IpInstance_OrdinarySequence_10_ADC_SAMPLETIME_239_5"/>
+        <Description>Ordinary Channel x sampling time selection</Description>
+    </RefParameter>
+    
+    <!-- Sequence 11 -->
+    <RefParameter Name="Channel_OrdinarySequence_11" Comment="Sequence 11 Channel" CommentCH="序列第11个通道选择" DefaultValue="" Type="list" Visible="true" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+    	  <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 10" Diagnostic=""/>
+        <PossibleValue Comment="Channel 0" CommentCH="通道0" Value="ADC_CHANNEL_0" Condition="$IpInstance_CHANNEL_0" Action="Remove"/>
+        <PossibleValue Comment="Channel 1" CommentCH="通道1" Value="ADC_CHANNEL_1" Condition="$IpInstance_CHANNEL_1" Action="Remove"/>
+        <PossibleValue Comment="Channel 2" CommentCH="通道2" Value="ADC_CHANNEL_2" Condition="$IpInstance_CHANNEL_2" Action="Remove"/>
+        <PossibleValue Comment="Channel 3" CommentCH="通道3" Value="ADC_CHANNEL_3" Condition="$IpInstance_CHANNEL_3" Action="Remove"/>
+        <PossibleValue Comment="Channel 4" CommentCH="通道4" Value="ADC_CHANNEL_4" Condition="$IpInstance_CHANNEL_4" Action="Remove"/>
+        <PossibleValue Comment="Channel 5" CommentCH="通道5" Value="ADC_CHANNEL_5" Condition="$IpInstance_CHANNEL_5" Action="Remove"/>
+        <PossibleValue Comment="Channel 6" CommentCH="通道6" Value="ADC_CHANNEL_6" Condition="$IpInstance_CHANNEL_6" Action="Remove"/>
+        <PossibleValue Comment="Channel 7" CommentCH="通道7" Value="ADC_CHANNEL_7" Condition="$IpInstance_CHANNEL_7" Action="Remove"/>
+        <PossibleValue Comment="Channel 8" CommentCH="通道8" Value="ADC_CHANNEL_8" Condition="$IpInstance_CHANNEL_8" Action="Remove"/>
+        <PossibleValue Comment="Channel 9" CommentCH="通道9" Value="ADC_CHANNEL_9" Condition="$IpInstance_CHANNEL_9" Action="Remove"/>
+        <PossibleValue Comment="Channel 10" CommentCH="通道10" Value="ADC_CHANNEL_10" Condition="$IpInstance_CHANNEL_10" Action="Remove"/>
+        <PossibleValue Comment="Channel 11" CommentCH="通道11" Value="ADC_CHANNEL_11" Condition="$IpInstance_CHANNEL_11" Action="Remove"/>
+        <PossibleValue Comment="Channel 12" CommentCH="通道12" Value="ADC_CHANNEL_12" Condition="$IpInstance_CHANNEL_12" Action="Remove"/>
+        <PossibleValue Comment="Channel 13" CommentCH="通道13" Value="ADC_CHANNEL_13" Condition="$IpInstance_CHANNEL_13" Action="Remove"/>
+        <PossibleValue Comment="Channel 14" CommentCH="通道14" Value="ADC_CHANNEL_14" Condition="$IpInstance_CHANNEL_14" Action="Remove"/>
+        <PossibleValue Comment="Channel 15" CommentCH="通道15" Value="ADC_CHANNEL_15" Condition="$IpInstance_CHANNEL_15" Action="Remove"/>
+        <PossibleValue Comment="Channel Temperature Sensor" CommentCH="内部温度传感器" Value="ADC_CHANNEL_16" Condition="$IpInstance_CHANNEL_16" Action="Remove"/>
+        <PossibleValue Comment="Channel VINTRV" CommentCH="内部参考电压" Value="ADC_CHANNEL_17" Condition="$IpInstance_CHANNEL_17" Action="Remove"/>
+    </RefParameter>	   
+    <RefParameter Name="SamplingTime_OrdinarySequence_11" Comment="Sequence 11 Sampling Time" CommentCH="序列第11个通道采样时间" DefaultValue="ADC_SAMPLETIME_1_5" Type="list" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+        <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 10 &amp; Mode = ADC_ORDINARY_LONGSHIFT_PREEMPT_SMLT_MODE | Mode = ADC_ORDINARY_LONGSHIFT_ONLY_MODE" Diagnostic=""/>
+        <PossibleValue Comment="1.5 Cycles" CommentCH="1.5个ADCCLK周期" Value="ADC_SAMPLETIME_1_5" Semaphore="$IpInstance_OrdinarySequence_11_ADC_SAMPLETIME_1_5"/>
+        <PossibleValue Comment="7.5 Cycles" CommentCH="7.5个ADCCLK周期" Value="ADC_SAMPLETIME_7_5" Semaphore="$IpInstance_OrdinarySequence_11_ADC_SAMPLETIME_7_5"/>
+        <PossibleValue Comment="13.5 Cycles" CommentCH="13.5个ADCCLK周期" Value="ADC_SAMPLETIME_13_5" Semaphore="$IpInstance_OrdinarySequence_11_ADC_SAMPLETIME_13_5"/>
+        <Description>Ordinary Channel x sampling time selection</Description>
+    </RefParameter>
+    <RefParameter Name="SamplingTime_OrdinarySequence_11" Comment="Sequence 11 Sampling Time" CommentCH="序列第11个通道采样时间" DefaultValue="ADC_SAMPLETIME_1_5" Type="list" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+        <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 10 &amp; Mode = ADC_ORDINARY_SHORTSHIFT_PREEMPT_SMLT_MODE | Mode = ADC_ORDINARY_SHORTSHIFT_ONLY_MODE" Diagnostic=""/>
+        <PossibleValue Comment="1.5 Cycles" CommentCH="1.5个ADCCLK周期" Value="ADC_SAMPLETIME_1_5" Semaphore="$IpInstance_OrdinarySequence_11_ADC_SAMPLETIME_1_5"/>
+        <Description>Ordinary Channel x sampling time selection</Description>
+    </RefParameter>
+    <RefParameter Name="SamplingTime_OrdinarySequence_11" Comment="Sequence 11 Sampling Time" CommentCH="序列第11个通道采样时间" DefaultValue="ADC_SAMPLETIME_1_5" Type="list" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+        <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 10" Diagnostic=""/>
+        <PossibleValue Comment="1.5 Cycles" CommentCH="1.5个ADCCLK周期" Value="ADC_SAMPLETIME_1_5" Semaphore="$IpInstance_OrdinarySequence_11_ADC_SAMPLETIME_1_5"/>
+        <PossibleValue Comment="7.5 Cycles" CommentCH="7.5个ADCCLK周期" Value="ADC_SAMPLETIME_7_5" Semaphore="$IpInstance_OrdinarySequence_11_ADC_SAMPLETIME_7_5"/>
+        <PossibleValue Comment="13.5 Cycles" CommentCH="13.5个ADCCLK周期" Value="ADC_SAMPLETIME_13_5" Semaphore="$IpInstance_OrdinarySequence_11_ADC_SAMPLETIME_13_5"/>
+        <PossibleValue Comment="28.5 Cycles" CommentCH="28.5个ADCCLK周期" Value="ADC_SAMPLETIME_28_5" Semaphore="$IpInstance_OrdinarySequence_11_ADC_SAMPLETIME_28_5"/>
+        <PossibleValue Comment="41.5 Cycles" CommentCH="41.5个ADCCLK周期" Value="ADC_SAMPLETIME_41_5" Semaphore="$IpInstance_OrdinarySequence_11_ADC_SAMPLETIME_41_5"/>
+        <PossibleValue Comment="55.5 Cycles" CommentCH="55.5个ADCCLK周期" Value="ADC_SAMPLETIME_55_5" Semaphore="$IpInstance_OrdinarySequence_11_ADC_SAMPLETIME_55_5"/>
+        <PossibleValue Comment="71.5 Cycles" CommentCH="71.5个ADCCLK周期" Value="ADC_SAMPLETIME_71_5" Semaphore="$IpInstance_OrdinarySequence_11_ADC_SAMPLETIME_71_5"/>
+        <PossibleValue Comment="239.5 Cycles" CommentCH="239.5个ADCCLK周期" Value="ADC_SAMPLETIME_239_5" Semaphore="$IpInstance_OrdinarySequence_11_ADC_SAMPLETIME_239_5"/>
+        <Description>Ordinary Channel x sampling time selection</Description>
+    </RefParameter>
+    
+    <!-- Sequence 12 -->
+    <RefParameter Name="Channel_OrdinarySequence_12" Comment="Sequence 12 Channel" CommentCH="序列第12个通道选择" DefaultValue="" Type="list" Visible="true" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+    	  <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 11" Diagnostic=""/>
+        <PossibleValue Comment="Channel 0" CommentCH="通道0" Value="ADC_CHANNEL_0" Condition="$IpInstance_CHANNEL_0" Action="Remove"/>
+        <PossibleValue Comment="Channel 1" CommentCH="通道1" Value="ADC_CHANNEL_1" Condition="$IpInstance_CHANNEL_1" Action="Remove"/>
+        <PossibleValue Comment="Channel 2" CommentCH="通道2" Value="ADC_CHANNEL_2" Condition="$IpInstance_CHANNEL_2" Action="Remove"/>
+        <PossibleValue Comment="Channel 3" CommentCH="通道3" Value="ADC_CHANNEL_3" Condition="$IpInstance_CHANNEL_3" Action="Remove"/>
+        <PossibleValue Comment="Channel 4" CommentCH="通道4" Value="ADC_CHANNEL_4" Condition="$IpInstance_CHANNEL_4" Action="Remove"/>
+        <PossibleValue Comment="Channel 5" CommentCH="通道5" Value="ADC_CHANNEL_5" Condition="$IpInstance_CHANNEL_5" Action="Remove"/>
+        <PossibleValue Comment="Channel 6" CommentCH="通道6" Value="ADC_CHANNEL_6" Condition="$IpInstance_CHANNEL_6" Action="Remove"/>
+        <PossibleValue Comment="Channel 7" CommentCH="通道7" Value="ADC_CHANNEL_7" Condition="$IpInstance_CHANNEL_7" Action="Remove"/>
+        <PossibleValue Comment="Channel 8" CommentCH="通道8" Value="ADC_CHANNEL_8" Condition="$IpInstance_CHANNEL_8" Action="Remove"/>
+        <PossibleValue Comment="Channel 9" CommentCH="通道9" Value="ADC_CHANNEL_9" Condition="$IpInstance_CHANNEL_9" Action="Remove"/>
+        <PossibleValue Comment="Channel 10" CommentCH="通道10" Value="ADC_CHANNEL_10" Condition="$IpInstance_CHANNEL_10" Action="Remove"/>
+        <PossibleValue Comment="Channel 11" CommentCH="通道11" Value="ADC_CHANNEL_11" Condition="$IpInstance_CHANNEL_11" Action="Remove"/>
+        <PossibleValue Comment="Channel 12" CommentCH="通道12" Value="ADC_CHANNEL_12" Condition="$IpInstance_CHANNEL_12" Action="Remove"/>
+        <PossibleValue Comment="Channel 13" CommentCH="通道13" Value="ADC_CHANNEL_13" Condition="$IpInstance_CHANNEL_13" Action="Remove"/>
+        <PossibleValue Comment="Channel 14" CommentCH="通道14" Value="ADC_CHANNEL_14" Condition="$IpInstance_CHANNEL_14" Action="Remove"/>
+        <PossibleValue Comment="Channel 15" CommentCH="通道15" Value="ADC_CHANNEL_15" Condition="$IpInstance_CHANNEL_15" Action="Remove"/>
+        <PossibleValue Comment="Channel Temperature Sensor" CommentCH="内部温度传感器" Value="ADC_CHANNEL_16" Condition="$IpInstance_CHANNEL_16" Action="Remove"/>
+        <PossibleValue Comment="Channel VINTRV" CommentCH="内部参考电压" Value="ADC_CHANNEL_17" Condition="$IpInstance_CHANNEL_17" Action="Remove"/>
+    </RefParameter>	   
+    <RefParameter Name="SamplingTime_OrdinarySequence_12" Comment="Sequence 12 Sampling Time" CommentCH="序列第12个通道采样时间" DefaultValue="ADC_SAMPLETIME_1_5" Type="list" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+        <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 11 &amp; Mode = ADC_ORDINARY_LONGSHIFT_PREEMPT_SMLT_MODE | Mode = ADC_ORDINARY_LONGSHIFT_ONLY_MODE" Diagnostic=""/>
+        <PossibleValue Comment="1.5 Cycles" CommentCH="1.5个ADCCLK周期" Value="ADC_SAMPLETIME_1_5" Semaphore="$IpInstance_OrdinarySequence_12_ADC_SAMPLETIME_1_5"/>
+        <PossibleValue Comment="7.5 Cycles" CommentCH="7.5个ADCCLK周期" Value="ADC_SAMPLETIME_7_5" Semaphore="$IpInstance_OrdinarySequence_12_ADC_SAMPLETIME_7_5"/>
+        <PossibleValue Comment="13.5 Cycles" CommentCH="13.5个ADCCLK周期" Value="ADC_SAMPLETIME_13_5" Semaphore="$IpInstance_OrdinarySequence_12_ADC_SAMPLETIME_13_5"/>
+        <Description>Ordinary Channel x sampling time selection</Description>
+    </RefParameter>
+    <RefParameter Name="SamplingTime_OrdinarySequence_12" Comment="Sequence 12 Sampling Time" CommentCH="序列第12个通道采样时间" DefaultValue="ADC_SAMPLETIME_1_5" Type="list" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+        <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 11 &amp; Mode = ADC_ORDINARY_SHORTSHIFT_PREEMPT_SMLT_MODE | Mode = ADC_ORDINARY_SHORTSHIFT_ONLY_MODE" Diagnostic=""/>
+        <PossibleValue Comment="1.5 Cycles" CommentCH="1.5个ADCCLK周期" Value="ADC_SAMPLETIME_1_5" Semaphore="$IpInstance_OrdinarySequence_12_ADC_SAMPLETIME_1_5"/>
+        <Description>Ordinary Channel x sampling time selection</Description>
+    </RefParameter>
+    <RefParameter Name="SamplingTime_OrdinarySequence_12" Comment="Sequence 12 Sampling Time" CommentCH="序列第12个通道采样时间" DefaultValue="ADC_SAMPLETIME_1_5" Type="list" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+        <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 11" Diagnostic=""/>
+        <PossibleValue Comment="1.5 Cycles" CommentCH="1.5个ADCCLK周期" Value="ADC_SAMPLETIME_1_5" Semaphore="$IpInstance_OrdinarySequence_12_ADC_SAMPLETIME_1_5"/>
+        <PossibleValue Comment="7.5 Cycles" CommentCH="7.5个ADCCLK周期" Value="ADC_SAMPLETIME_7_5" Semaphore="$IpInstance_OrdinarySequence_12_ADC_SAMPLETIME_7_5"/>
+        <PossibleValue Comment="13.5 Cycles" CommentCH="13.5个ADCCLK周期" Value="ADC_SAMPLETIME_13_5" Semaphore="$IpInstance_OrdinarySequence_12_ADC_SAMPLETIME_13_5"/>
+        <PossibleValue Comment="28.5 Cycles" CommentCH="28.5个ADCCLK周期" Value="ADC_SAMPLETIME_28_5" Semaphore="$IpInstance_OrdinarySequence_12_ADC_SAMPLETIME_28_5"/>
+        <PossibleValue Comment="41.5 Cycles" CommentCH="41.5个ADCCLK周期" Value="ADC_SAMPLETIME_41_5" Semaphore="$IpInstance_OrdinarySequence_12_ADC_SAMPLETIME_41_5"/>
+        <PossibleValue Comment="55.5 Cycles" CommentCH="55.5个ADCCLK周期" Value="ADC_SAMPLETIME_55_5" Semaphore="$IpInstance_OrdinarySequence_12_ADC_SAMPLETIME_55_5"/>
+        <PossibleValue Comment="71.5 Cycles" CommentCH="71.5个ADCCLK周期" Value="ADC_SAMPLETIME_71_5" Semaphore="$IpInstance_OrdinarySequence_12_ADC_SAMPLETIME_71_5"/>
+        <PossibleValue Comment="239.5 Cycles" CommentCH="239.5个ADCCLK周期" Value="ADC_SAMPLETIME_239_5" Semaphore="$IpInstance_OrdinarySequence_12_ADC_SAMPLETIME_239_5"/>
+        <Description>Ordinary Channel x sampling time selection</Description>
+    </RefParameter>
+    
+     <!-- Sequence 13 -->
+    <RefParameter Name="Channel_OrdinarySequence_13" Comment="Sequence 13 Channel" CommentCH="序列第13个通道选择" DefaultValue="" Type="list" Visible="true" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+    	  <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 12" Diagnostic=""/>
+        <PossibleValue Comment="Channel 0" CommentCH="通道0" Value="ADC_CHANNEL_0" Condition="$IpInstance_CHANNEL_0" Action="Remove"/>
+        <PossibleValue Comment="Channel 1" CommentCH="通道1" Value="ADC_CHANNEL_1" Condition="$IpInstance_CHANNEL_1" Action="Remove"/>
+        <PossibleValue Comment="Channel 2" CommentCH="通道2" Value="ADC_CHANNEL_2" Condition="$IpInstance_CHANNEL_2" Action="Remove"/>
+        <PossibleValue Comment="Channel 3" CommentCH="通道3" Value="ADC_CHANNEL_3" Condition="$IpInstance_CHANNEL_3" Action="Remove"/>
+        <PossibleValue Comment="Channel 4" CommentCH="通道4" Value="ADC_CHANNEL_4" Condition="$IpInstance_CHANNEL_4" Action="Remove"/>
+        <PossibleValue Comment="Channel 5" CommentCH="通道5" Value="ADC_CHANNEL_5" Condition="$IpInstance_CHANNEL_5" Action="Remove"/>
+        <PossibleValue Comment="Channel 6" CommentCH="通道6" Value="ADC_CHANNEL_6" Condition="$IpInstance_CHANNEL_6" Action="Remove"/>
+        <PossibleValue Comment="Channel 7" CommentCH="通道7" Value="ADC_CHANNEL_7" Condition="$IpInstance_CHANNEL_7" Action="Remove"/>
+        <PossibleValue Comment="Channel 8" CommentCH="通道8" Value="ADC_CHANNEL_8" Condition="$IpInstance_CHANNEL_8" Action="Remove"/>
+        <PossibleValue Comment="Channel 9" CommentCH="通道9" Value="ADC_CHANNEL_9" Condition="$IpInstance_CHANNEL_9" Action="Remove"/>
+        <PossibleValue Comment="Channel 10" CommentCH="通道10" Value="ADC_CHANNEL_10" Condition="$IpInstance_CHANNEL_10" Action="Remove"/>
+        <PossibleValue Comment="Channel 11" CommentCH="通道11" Value="ADC_CHANNEL_11" Condition="$IpInstance_CHANNEL_11" Action="Remove"/>
+        <PossibleValue Comment="Channel 12" CommentCH="通道12" Value="ADC_CHANNEL_12" Condition="$IpInstance_CHANNEL_12" Action="Remove"/>
+        <PossibleValue Comment="Channel 13" CommentCH="通道13" Value="ADC_CHANNEL_13" Condition="$IpInstance_CHANNEL_13" Action="Remove"/>
+        <PossibleValue Comment="Channel 14" CommentCH="通道14" Value="ADC_CHANNEL_14" Condition="$IpInstance_CHANNEL_14" Action="Remove"/>
+        <PossibleValue Comment="Channel 15" CommentCH="通道15" Value="ADC_CHANNEL_15" Condition="$IpInstance_CHANNEL_15" Action="Remove"/>
+        <PossibleValue Comment="Channel Temperature Sensor" CommentCH="内部温度传感器" Value="ADC_CHANNEL_16" Condition="$IpInstance_CHANNEL_16" Action="Remove"/>
+        <PossibleValue Comment="Channel VINTRV" CommentCH="内部参考电压" Value="ADC_CHANNEL_17" Condition="$IpInstance_CHANNEL_17" Action="Remove"/>
+    </RefParameter>	   
+    <RefParameter Name="SamplingTime_OrdinarySequence_13" Comment="Sequence 13 Sampling Time" CommentCH="序列第13个通道采样时间" DefaultValue="ADC_SAMPLETIME_1_5" Type="list" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+        <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 12 &amp; Mode = ADC_ORDINARY_LONGSHIFT_PREEMPT_SMLT_MODE | Mode = ADC_ORDINARY_LONGSHIFT_ONLY_MODE" Diagnostic=""/>
+        <PossibleValue Comment="1.5 Cycles" CommentCH="1.5个ADCCLK周期" Value="ADC_SAMPLETIME_1_5" Semaphore="$IpInstance_OrdinarySequence_13_ADC_SAMPLETIME_1_5"/>
+        <PossibleValue Comment="7.5 Cycles" CommentCH="7.5个ADCCLK周期" Value="ADC_SAMPLETIME_7_5" Semaphore="$IpInstance_OrdinarySequence_13_ADC_SAMPLETIME_7_5"/>
+        <PossibleValue Comment="13.5 Cycles" CommentCH="13.5个ADCCLK周期" Value="ADC_SAMPLETIME_13_5" Semaphore="$IpInstance_OrdinarySequence_13_ADC_SAMPLETIME_13_5"/>
+        <Description>Ordinary Channel x sampling time selection</Description>
+    </RefParameter>
+    <RefParameter Name="SamplingTime_OrdinarySequence_13" Comment="Sequence 13 Sampling Time" CommentCH="序列第13个通道采样时间" DefaultValue="ADC_SAMPLETIME_1_5" Type="list" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+        <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 12 &amp; Mode = ADC_ORDINARY_SHORTSHIFT_PREEMPT_SMLT_MODE | Mode = ADC_ORDINARY_SHORTSHIFT_ONLY_MODE" Diagnostic=""/>
+        <PossibleValue Comment="1.5 Cycles" CommentCH="1.5个ADCCLK周期" Value="ADC_SAMPLETIME_1_5" Semaphore="$IpInstance_OrdinarySequence_13_ADC_SAMPLETIME_1_5"/>
+        <Description>Ordinary Channel x sampling time selection</Description>
+    </RefParameter>
+    <RefParameter Name="SamplingTime_OrdinarySequence_13" Comment="Sequence 13 Sampling Time" CommentCH="序列第13个通道采样时间" DefaultValue="ADC_SAMPLETIME_1_5" Type="list" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+        <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 12" Diagnostic=""/>
+        <PossibleValue Comment="1.5 Cycles" CommentCH="1.5个ADCCLK周期" Value="ADC_SAMPLETIME_1_5" Semaphore="$IpInstance_OrdinarySequence_13_ADC_SAMPLETIME_1_5"/>
+        <PossibleValue Comment="7.5 Cycles" CommentCH="7.5个ADCCLK周期" Value="ADC_SAMPLETIME_7_5" Semaphore="$IpInstance_OrdinarySequence_13_ADC_SAMPLETIME_7_5"/>
+        <PossibleValue Comment="13.5 Cycles" CommentCH="13.5个ADCCLK周期" Value="ADC_SAMPLETIME_13_5" Semaphore="$IpInstance_OrdinarySequence_13_ADC_SAMPLETIME_13_5"/>
+        <PossibleValue Comment="28.5 Cycles" CommentCH="28.5个ADCCLK周期" Value="ADC_SAMPLETIME_28_5" Semaphore="$IpInstance_OrdinarySequence_13_ADC_SAMPLETIME_28_5"/>
+        <PossibleValue Comment="41.5 Cycles" CommentCH="41.5个ADCCLK周期" Value="ADC_SAMPLETIME_41_5" Semaphore="$IpInstance_OrdinarySequence_13_ADC_SAMPLETIME_41_5"/>
+        <PossibleValue Comment="55.5 Cycles" CommentCH="55.5个ADCCLK周期" Value="ADC_SAMPLETIME_55_5" Semaphore="$IpInstance_OrdinarySequence_13_ADC_SAMPLETIME_55_5"/>
+        <PossibleValue Comment="71.5 Cycles" CommentCH="71.5个ADCCLK周期" Value="ADC_SAMPLETIME_71_5" Semaphore="$IpInstance_OrdinarySequence_13_ADC_SAMPLETIME_71_5"/>
+        <PossibleValue Comment="239.5 Cycles" CommentCH="239.5个ADCCLK周期" Value="ADC_SAMPLETIME_239_5" Semaphore="$IpInstance_OrdinarySequence_13_ADC_SAMPLETIME_239_5"/>
+        <Description>Ordinary Channel x sampling time selection</Description>
+    </RefParameter>
+    
+     <!-- Sequence 14 -->
+    <RefParameter Name="Channel_OrdinarySequence_14" Comment="Sequence 14 Channel" CommentCH="序列第14个通道选择" DefaultValue="" Type="list" Visible="true" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+    	  <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 13" Diagnostic=""/>
+        <PossibleValue Comment="Channel 0" CommentCH="通道0" Value="ADC_CHANNEL_0" Condition="$IpInstance_CHANNEL_0" Action="Remove"/>
+        <PossibleValue Comment="Channel 1" CommentCH="通道1" Value="ADC_CHANNEL_1" Condition="$IpInstance_CHANNEL_1" Action="Remove"/>
+        <PossibleValue Comment="Channel 2" CommentCH="通道2" Value="ADC_CHANNEL_2" Condition="$IpInstance_CHANNEL_2" Action="Remove"/>
+        <PossibleValue Comment="Channel 3" CommentCH="通道3" Value="ADC_CHANNEL_3" Condition="$IpInstance_CHANNEL_3" Action="Remove"/>
+        <PossibleValue Comment="Channel 4" CommentCH="通道4" Value="ADC_CHANNEL_4" Condition="$IpInstance_CHANNEL_4" Action="Remove"/>
+        <PossibleValue Comment="Channel 5" CommentCH="通道5" Value="ADC_CHANNEL_5" Condition="$IpInstance_CHANNEL_5" Action="Remove"/>
+        <PossibleValue Comment="Channel 6" CommentCH="通道6" Value="ADC_CHANNEL_6" Condition="$IpInstance_CHANNEL_6" Action="Remove"/>
+        <PossibleValue Comment="Channel 7" CommentCH="通道7" Value="ADC_CHANNEL_7" Condition="$IpInstance_CHANNEL_7" Action="Remove"/>
+        <PossibleValue Comment="Channel 8" CommentCH="通道8" Value="ADC_CHANNEL_8" Condition="$IpInstance_CHANNEL_8" Action="Remove"/>
+        <PossibleValue Comment="Channel 9" CommentCH="通道9" Value="ADC_CHANNEL_9" Condition="$IpInstance_CHANNEL_9" Action="Remove"/>
+        <PossibleValue Comment="Channel 10" CommentCH="通道10" Value="ADC_CHANNEL_10" Condition="$IpInstance_CHANNEL_10" Action="Remove"/>
+        <PossibleValue Comment="Channel 11" CommentCH="通道11" Value="ADC_CHANNEL_11" Condition="$IpInstance_CHANNEL_11" Action="Remove"/>
+        <PossibleValue Comment="Channel 12" CommentCH="通道12" Value="ADC_CHANNEL_12" Condition="$IpInstance_CHANNEL_12" Action="Remove"/>
+        <PossibleValue Comment="Channel 13" CommentCH="通道13" Value="ADC_CHANNEL_13" Condition="$IpInstance_CHANNEL_13" Action="Remove"/>
+        <PossibleValue Comment="Channel 14" CommentCH="通道14" Value="ADC_CHANNEL_14" Condition="$IpInstance_CHANNEL_14" Action="Remove"/>
+        <PossibleValue Comment="Channel 15" CommentCH="通道15" Value="ADC_CHANNEL_15" Condition="$IpInstance_CHANNEL_15" Action="Remove"/>
+        <PossibleValue Comment="Channel Temperature Sensor" CommentCH="内部温度传感器" Value="ADC_CHANNEL_16" Condition="$IpInstance_CHANNEL_16" Action="Remove"/>
+        <PossibleValue Comment="Channel VINTRV" CommentCH="内部参考电压" Value="ADC_CHANNEL_17" Condition="$IpInstance_CHANNEL_17" Action="Remove"/>
+    </RefParameter>	   
+    <RefParameter Name="SamplingTime_OrdinarySequence_14" Comment="Sequence 14 Sampling Time" CommentCH="序列第14个通道采样时间" DefaultValue="ADC_SAMPLETIME_1_5" Type="list" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+        <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 13 &amp; Mode = ADC_ORDINARY_LONGSHIFT_PREEMPT_SMLT_MODE | Mode = ADC_ORDINARY_LONGSHIFT_ONLY_MODE" Diagnostic=""/>
+        <PossibleValue Comment="1.5 Cycles" CommentCH="1.5个ADCCLK周期" Value="ADC_SAMPLETIME_1_5" Semaphore="$IpInstance_OrdinarySequence_14_ADC_SAMPLETIME_1_5"/>
+        <PossibleValue Comment="7.5 Cycles" CommentCH="7.5个ADCCLK周期" Value="ADC_SAMPLETIME_7_5" Semaphore="$IpInstance_OrdinarySequence_14_ADC_SAMPLETIME_7_5"/>
+        <PossibleValue Comment="13.5 Cycles" CommentCH="13.5个ADCCLK周期" Value="ADC_SAMPLETIME_13_5" Semaphore="$IpInstance_OrdinarySequence_14_ADC_SAMPLETIME_13_5"/>
+        <Description>Ordinary Channel x sampling time selection</Description>
+    </RefParameter>
+    <RefParameter Name="SamplingTime_OrdinarySequence_14" Comment="Sequence 14 Sampling Time" CommentCH="序列第14个通道采样时间" DefaultValue="ADC_SAMPLETIME_1_5" Type="list" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+        <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 13 &amp; Mode = ADC_ORDINARY_SHORTSHIFT_PREEMPT_SMLT_MODE | Mode = ADC_ORDINARY_SHORTSHIFT_ONLY_MODE" Diagnostic=""/>
+        <PossibleValue Comment="1.5 Cycles" CommentCH="1.5个ADCCLK周期" Value="ADC_SAMPLETIME_1_5" Semaphore="$IpInstance_OrdinarySequence_14_ADC_SAMPLETIME_1_5"/>
+        <Description>Ordinary Channel x sampling time selection</Description>
+    </RefParameter>
+    <RefParameter Name="SamplingTime_OrdinarySequence_14" Comment="Sequence 14 Sampling Time" CommentCH="序列第14个通道采样时间" DefaultValue="ADC_SAMPLETIME_1_5" Type="list" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+        <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 13" Diagnostic=""/>
+        <PossibleValue Comment="1.5 Cycles" CommentCH="1.5个ADCCLK周期" Value="ADC_SAMPLETIME_1_5" Semaphore="$IpInstance_OrdinarySequence_14_ADC_SAMPLETIME_1_5"/>
+        <PossibleValue Comment="7.5 Cycles" CommentCH="7.5个ADCCLK周期" Value="ADC_SAMPLETIME_7_5" Semaphore="$IpInstance_OrdinarySequence_14_ADC_SAMPLETIME_7_5"/>
+        <PossibleValue Comment="13.5 Cycles" CommentCH="13.5个ADCCLK周期" Value="ADC_SAMPLETIME_13_5" Semaphore="$IpInstance_OrdinarySequence_14_ADC_SAMPLETIME_13_5"/>
+        <PossibleValue Comment="28.5 Cycles" CommentCH="28.5个ADCCLK周期" Value="ADC_SAMPLETIME_28_5" Semaphore="$IpInstance_OrdinarySequence_14_ADC_SAMPLETIME_28_5"/>
+        <PossibleValue Comment="41.5 Cycles" CommentCH="41.5个ADCCLK周期" Value="ADC_SAMPLETIME_41_5" Semaphore="$IpInstance_OrdinarySequence_14_ADC_SAMPLETIME_41_5"/>
+        <PossibleValue Comment="55.5 Cycles" CommentCH="55.5个ADCCLK周期" Value="ADC_SAMPLETIME_55_5" Semaphore="$IpInstance_OrdinarySequence_14_ADC_SAMPLETIME_55_5"/>
+        <PossibleValue Comment="71.5 Cycles" CommentCH="71.5个ADCCLK周期" Value="ADC_SAMPLETIME_71_5" Semaphore="$IpInstance_OrdinarySequence_14_ADC_SAMPLETIME_71_5"/>
+        <PossibleValue Comment="239.5 Cycles" CommentCH="239.5个ADCCLK周期" Value="ADC_SAMPLETIME_239_5" Semaphore="$IpInstance_OrdinarySequence_14_ADC_SAMPLETIME_239_5"/>
+        <Description>Ordinary Channel x sampling time selection</Description>
+    </RefParameter>
+    
+     <!-- Sequence 15 -->
+    <RefParameter Name="Channel_OrdinarySequence_15" Comment="Sequence 15 Channel" CommentCH="序列第15个通道选择" DefaultValue="" Type="list" Visible="true" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+    	  <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 14" Diagnostic=""/>
+        <PossibleValue Comment="Channel 0" CommentCH="通道0" Value="ADC_CHANNEL_0" Condition="$IpInstance_CHANNEL_0" Action="Remove"/>
+        <PossibleValue Comment="Channel 1" CommentCH="通道1" Value="ADC_CHANNEL_1" Condition="$IpInstance_CHANNEL_1" Action="Remove"/>
+        <PossibleValue Comment="Channel 2" CommentCH="通道2" Value="ADC_CHANNEL_2" Condition="$IpInstance_CHANNEL_2" Action="Remove"/>
+        <PossibleValue Comment="Channel 3" CommentCH="通道3" Value="ADC_CHANNEL_3" Condition="$IpInstance_CHANNEL_3" Action="Remove"/>
+        <PossibleValue Comment="Channel 4" CommentCH="通道4" Value="ADC_CHANNEL_4" Condition="$IpInstance_CHANNEL_4" Action="Remove"/>
+        <PossibleValue Comment="Channel 5" CommentCH="通道5" Value="ADC_CHANNEL_5" Condition="$IpInstance_CHANNEL_5" Action="Remove"/>
+        <PossibleValue Comment="Channel 6" CommentCH="通道6" Value="ADC_CHANNEL_6" Condition="$IpInstance_CHANNEL_6" Action="Remove"/>
+        <PossibleValue Comment="Channel 7" CommentCH="通道7" Value="ADC_CHANNEL_7" Condition="$IpInstance_CHANNEL_7" Action="Remove"/>
+        <PossibleValue Comment="Channel 8" CommentCH="通道8" Value="ADC_CHANNEL_8" Condition="$IpInstance_CHANNEL_8" Action="Remove"/>
+        <PossibleValue Comment="Channel 9" CommentCH="通道9" Value="ADC_CHANNEL_9" Condition="$IpInstance_CHANNEL_9" Action="Remove"/>
+        <PossibleValue Comment="Channel 10" CommentCH="通道10" Value="ADC_CHANNEL_10" Condition="$IpInstance_CHANNEL_10" Action="Remove"/>
+        <PossibleValue Comment="Channel 11" CommentCH="通道11" Value="ADC_CHANNEL_11" Condition="$IpInstance_CHANNEL_11" Action="Remove"/>
+        <PossibleValue Comment="Channel 12" CommentCH="通道12" Value="ADC_CHANNEL_12" Condition="$IpInstance_CHANNEL_12" Action="Remove"/>
+        <PossibleValue Comment="Channel 13" CommentCH="通道13" Value="ADC_CHANNEL_13" Condition="$IpInstance_CHANNEL_13" Action="Remove"/>
+        <PossibleValue Comment="Channel 14" CommentCH="通道14" Value="ADC_CHANNEL_14" Condition="$IpInstance_CHANNEL_14" Action="Remove"/>
+        <PossibleValue Comment="Channel 15" CommentCH="通道15" Value="ADC_CHANNEL_15" Condition="$IpInstance_CHANNEL_15" Action="Remove"/>
+        <PossibleValue Comment="Channel Temperature Sensor" CommentCH="内部温度传感器" Value="ADC_CHANNEL_16" Condition="$IpInstance_CHANNEL_16" Action="Remove"/>
+        <PossibleValue Comment="Channel VINTRV" CommentCH="内部参考电压" Value="ADC_CHANNEL_17" Condition="$IpInstance_CHANNEL_17" Action="Remove"/>
+    </RefParameter>	   
+    <RefParameter Name="SamplingTime_OrdinarySequence_15" Comment="Sequence 15 Sampling Time" CommentCH="序列第15个通道采样时间" DefaultValue="ADC_SAMPLETIME_1_5" Type="list" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+        <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 14 &amp; Mode = ADC_ORDINARY_LONGSHIFT_PREEMPT_SMLT_MODE | Mode = ADC_ORDINARY_LONGSHIFT_ONLY_MODE" Diagnostic=""/>
+        <PossibleValue Comment="1.5 Cycles" CommentCH="1.5个ADCCLK周期" Value="ADC_SAMPLETIME_1_5" Semaphore="$IpInstance_OrdinarySequence_15_ADC_SAMPLETIME_1_5"/>
+        <PossibleValue Comment="7.5 Cycles" CommentCH="7.5个ADCCLK周期" Value="ADC_SAMPLETIME_7_5" Semaphore="$IpInstance_OrdinarySequence_15_ADC_SAMPLETIME_7_5"/>
+        <PossibleValue Comment="13.5 Cycles" CommentCH="13.5个ADCCLK周期" Value="ADC_SAMPLETIME_13_5" Semaphore="$IpInstance_OrdinarySequence_15_ADC_SAMPLETIME_13_5"/>
+        <Description>Ordinary Channel x sampling time selection</Description>
+    </RefParameter>
+    <RefParameter Name="SamplingTime_OrdinarySequence_15" Comment="Sequence 15 Sampling Time" CommentCH="序列第15个通道采样时间" DefaultValue="ADC_SAMPLETIME_1_5" Type="list" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+        <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 14 &amp; Mode = ADC_ORDINARY_SHORTSHIFT_PREEMPT_SMLT_MODE | Mode = ADC_ORDINARY_SHORTSHIFT_ONLY_MODE" Diagnostic=""/>
+        <PossibleValue Comment="1.5 Cycles" CommentCH="1.5个ADCCLK周期" Value="ADC_SAMPLETIME_1_5" Semaphore="$IpInstance_OrdinarySequence_15_ADC_SAMPLETIME_1_5"/>
+        <Description>Ordinary Channel x sampling time selection</Description>
+    </RefParameter>
+    <RefParameter Name="SamplingTime_OrdinarySequence_15" Comment="Sequence 15 Sampling Time" CommentCH="序列第15个通道采样时间" DefaultValue="ADC_SAMPLETIME_1_5" Type="list" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+        <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 14" Diagnostic=""/>
+        <PossibleValue Comment="1.5 Cycles" CommentCH="1.5个ADCCLK周期" Value="ADC_SAMPLETIME_1_5" Semaphore="$IpInstance_OrdinarySequence_15_ADC_SAMPLETIME_1_5"/>
+        <PossibleValue Comment="7.5 Cycles" CommentCH="7.5个ADCCLK周期" Value="ADC_SAMPLETIME_7_5" Semaphore="$IpInstance_OrdinarySequence_15_ADC_SAMPLETIME_7_5"/>
+        <PossibleValue Comment="13.5 Cycles" CommentCH="13.5个ADCCLK周期" Value="ADC_SAMPLETIME_13_5" Semaphore="$IpInstance_OrdinarySequence_15_ADC_SAMPLETIME_13_5"/>
+        <PossibleValue Comment="28.5 Cycles" CommentCH="28.5个ADCCLK周期" Value="ADC_SAMPLETIME_28_5" Semaphore="$IpInstance_OrdinarySequence_15_ADC_SAMPLETIME_28_5"/>
+        <PossibleValue Comment="41.5 Cycles" CommentCH="41.5个ADCCLK周期" Value="ADC_SAMPLETIME_41_5" Semaphore="$IpInstance_OrdinarySequence_15_ADC_SAMPLETIME_41_5"/>
+        <PossibleValue Comment="55.5 Cycles" CommentCH="55.5个ADCCLK周期" Value="ADC_SAMPLETIME_55_5" Semaphore="$IpInstance_OrdinarySequence_15_ADC_SAMPLETIME_55_5"/>
+        <PossibleValue Comment="71.5 Cycles" CommentCH="71.5个ADCCLK周期" Value="ADC_SAMPLETIME_71_5" Semaphore="$IpInstance_OrdinarySequence_15_ADC_SAMPLETIME_71_5"/>
+        <PossibleValue Comment="239.5 Cycles" CommentCH="239.5个ADCCLK周期" Value="ADC_SAMPLETIME_239_5" Semaphore="$IpInstance_OrdinarySequence_15_ADC_SAMPLETIME_239_5"/>
+        <Description>Ordinary Channel x sampling time selection</Description>
+    </RefParameter>
+    
+     <!-- Sequence 16 -->
+    <RefParameter Name="Channel_OrdinarySequence_16" Comment="Sequence 16 Channel" CommentCH="序列第16个通道选择" DefaultValue="" Type="list" Visible="true" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+    	  <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 15" Diagnostic=""/>
+        <PossibleValue Comment="Channel 0" CommentCH="通道0" Value="ADC_CHANNEL_0" Condition="$IpInstance_CHANNEL_0" Action="Remove"/>
+        <PossibleValue Comment="Channel 1" CommentCH="通道1" Value="ADC_CHANNEL_1" Condition="$IpInstance_CHANNEL_1" Action="Remove"/>
+        <PossibleValue Comment="Channel 2" CommentCH="通道2" Value="ADC_CHANNEL_2" Condition="$IpInstance_CHANNEL_2" Action="Remove"/>
+        <PossibleValue Comment="Channel 3" CommentCH="通道3" Value="ADC_CHANNEL_3" Condition="$IpInstance_CHANNEL_3" Action="Remove"/>
+        <PossibleValue Comment="Channel 4" CommentCH="通道4" Value="ADC_CHANNEL_4" Condition="$IpInstance_CHANNEL_4" Action="Remove"/>
+        <PossibleValue Comment="Channel 5" CommentCH="通道5" Value="ADC_CHANNEL_5" Condition="$IpInstance_CHANNEL_5" Action="Remove"/>
+        <PossibleValue Comment="Channel 6" CommentCH="通道6" Value="ADC_CHANNEL_6" Condition="$IpInstance_CHANNEL_6" Action="Remove"/>
+        <PossibleValue Comment="Channel 7" CommentCH="通道7" Value="ADC_CHANNEL_7" Condition="$IpInstance_CHANNEL_7" Action="Remove"/>
+        <PossibleValue Comment="Channel 8" CommentCH="通道8" Value="ADC_CHANNEL_8" Condition="$IpInstance_CHANNEL_8" Action="Remove"/>
+        <PossibleValue Comment="Channel 9" CommentCH="通道9" Value="ADC_CHANNEL_9" Condition="$IpInstance_CHANNEL_9" Action="Remove"/>
+        <PossibleValue Comment="Channel 10" CommentCH="通道10" Value="ADC_CHANNEL_10" Condition="$IpInstance_CHANNEL_10" Action="Remove"/>
+        <PossibleValue Comment="Channel 11" CommentCH="通道11" Value="ADC_CHANNEL_11" Condition="$IpInstance_CHANNEL_11" Action="Remove"/>
+        <PossibleValue Comment="Channel 12" CommentCH="通道12" Value="ADC_CHANNEL_12" Condition="$IpInstance_CHANNEL_12" Action="Remove"/>
+        <PossibleValue Comment="Channel 13" CommentCH="通道13" Value="ADC_CHANNEL_13" Condition="$IpInstance_CHANNEL_13" Action="Remove"/>
+        <PossibleValue Comment="Channel 14" CommentCH="通道14" Value="ADC_CHANNEL_14" Condition="$IpInstance_CHANNEL_14" Action="Remove"/>
+        <PossibleValue Comment="Channel 15" CommentCH="通道15" Value="ADC_CHANNEL_15" Condition="$IpInstance_CHANNEL_15" Action="Remove"/>
+        <PossibleValue Comment="Channel Temperature Sensor" CommentCH="内部温度传感器" Value="ADC_CHANNEL_16" Condition="$IpInstance_CHANNEL_16" Action="Remove"/>
+        <PossibleValue Comment="Channel VINTRV" CommentCH="内部参考电压" Value="ADC_CHANNEL_17" Condition="$IpInstance_CHANNEL_17" Action="Remove"/>
+    </RefParameter>	   
+    <RefParameter Name="SamplingTime_OrdinarySequence_16" Comment="Sequence 16 Sampling Time" CommentCH="序列第16个通道采样时间" DefaultValue="ADC_SAMPLETIME_1_5" Type="list" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+        <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 15 &amp; Mode = ADC_ORDINARY_LONGSHIFT_PREEMPT_SMLT_MODE | Mode = ADC_ORDINARY_LONGSHIFT_ONLY_MODE" Diagnostic=""/>
+        <PossibleValue Comment="1.5 Cycles" CommentCH="1.5个ADCCLK周期" Value="ADC_SAMPLETIME_1_5" Semaphore="$IpInstance_OrdinarySequence_16_ADC_SAMPLETIME_1_5"/>
+        <PossibleValue Comment="7.5 Cycles" CommentCH="7.5个ADCCLK周期" Value="ADC_SAMPLETIME_7_5" Semaphore="$IpInstance_OrdinarySequence_16_ADC_SAMPLETIME_7_5"/>
+        <PossibleValue Comment="13.5 Cycles" CommentCH="13.5个ADCCLK周期" Value="ADC_SAMPLETIME_13_5" Semaphore="$IpInstance_OrdinarySequence_16_ADC_SAMPLETIME_13_5"/>
+        <Description>Ordinary Channel x sampling time selection</Description>
+    </RefParameter>
+    <RefParameter Name="SamplingTime_OrdinarySequence_16" Comment="Sequence 16 Sampling Time" CommentCH="序列第16个通道采样时间" DefaultValue="ADC_SAMPLETIME_1_5" Type="list" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+        <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 15 &amp; Mode = ADC_ORDINARY_SHORTSHIFT_PREEMPT_SMLT_MODE | Mode = ADC_ORDINARY_SHORTSHIFT_ONLY_MODE" Diagnostic=""/>
+        <PossibleValue Comment="1.5 Cycles" CommentCH="1.5个ADCCLK周期" Value="ADC_SAMPLETIME_1_5" Semaphore="$IpInstance_OrdinarySequence_16_ADC_SAMPLETIME_1_5"/>
+        <Description>Ordinary Channel x sampling time selection</Description>
+    </RefParameter>
+    <RefParameter Name="SamplingTime_OrdinarySequence_16" Comment="Sequence 16 Sampling Time" CommentCH="序列第16个通道采样时间" DefaultValue="ADC_SAMPLETIME_1_5" Type="list" Group="ADC Ordinary Conversion Settings" GroupCH="ADC普通组设置">
+        <Condition Expression="EnableOrdinaryConversion = ENABLE &amp;NbrOfOrdinarySequence > 15" Diagnostic=""/>
+        <PossibleValue Comment="1.5 Cycles" CommentCH="1.5个ADCCLK周期" Value="ADC_SAMPLETIME_1_5" Semaphore="$IpInstance_OrdinarySequence_16_ADC_SAMPLETIME_1_5"/>
+        <PossibleValue Comment="7.5 Cycles" CommentCH="7.5个ADCCLK周期" Value="ADC_SAMPLETIME_7_5" Semaphore="$IpInstance_OrdinarySequence_16_ADC_SAMPLETIME_7_5"/>
+        <PossibleValue Comment="13.5 Cycles" CommentCH="13.5个ADCCLK周期" Value="ADC_SAMPLETIME_13_5" Semaphore="$IpInstance_OrdinarySequence_16_ADC_SAMPLETIME_13_5"/>
+        <PossibleValue Comment="28.5 Cycles" CommentCH="28.5个ADCCLK周期" Value="ADC_SAMPLETIME_28_5" Semaphore="$IpInstance_OrdinarySequence_16_ADC_SAMPLETIME_28_5"/>
+        <PossibleValue Comment="41.5 Cycles" CommentCH="41.5个ADCCLK周期" Value="ADC_SAMPLETIME_41_5" Semaphore="$IpInstance_OrdinarySequence_16_ADC_SAMPLETIME_41_5"/>
+        <PossibleValue Comment="55.5 Cycles" CommentCH="55.5个ADCCLK周期" Value="ADC_SAMPLETIME_55_5" Semaphore="$IpInstance_OrdinarySequence_16_ADC_SAMPLETIME_55_5"/>
+        <PossibleValue Comment="71.5 Cycles" CommentCH="71.5个ADCCLK周期" Value="ADC_SAMPLETIME_71_5" Semaphore="$IpInstance_OrdinarySequence_16_ADC_SAMPLETIME_71_5"/>
+        <PossibleValue Comment="239.5 Cycles" CommentCH="239.5个ADCCLK周期" Value="ADC_SAMPLETIME_239_5" Semaphore="$IpInstance_OrdinarySequence_16_ADC_SAMPLETIME_239_5"/>
+        <Description>Ordinary Channel x sampling time selection</Description>
+    </RefParameter>
+    
+    <!-- Parameters of  ADC_Preempted_ConversionMode Mode -->
+    <RefParameter Name="EnablePreemptedConversion" Comment="Enable Preempted Conversions" CommentCH="开启抢占通道转换" DefaultValue="DISABLE" Group="ADC Preempted Conversion Settings" GroupCH="ADC抢占组设置" Type="list">
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="ENABLE" Semaphore="Preempted_Mode_Enabled"/>
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="DISABLE"/>
+        <Description>Enable/Disable Preempted Conversion</Description> 
+    </RefParameter>
+    <RefParameter Name="EnablePreemptedConversion" Comment="Enable Preempted Conversions" CommentCH="开启抢占通道转换" DefaultValue="DISABLE" Group="ADC Preempted Conversion Settings" GroupCH="ADC抢占组设置" Type="list">
+        <Condition Diagnostic="" Expression="Mode = ADC_ORDINARY_LONGSHIFT_ONLY_MODE | Mode = ADC_ORDINARY_SHORTSHIFT_ONLY_MODE"/>
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="DISABLE"/>
+        <Description>Enable/Disable Preempted Conversion</Description> 
+    </RefParameter> 
+    <RefParameter Name="EnablePreemptedConversion" Comment="Enable Preempted Conversions" CommentCH="开启抢占通道转换" DefaultValue="ENABLE" Group="ADC Preempted Conversion Settings" GroupCH="ADC抢占组设置" Type="list">
+        <Condition Diagnostic="" Expression="Mode = ADC_PREEMPT_SMLT_ONLY_MODE | Mode = ADC_PREEMPT_INTERLTRIG_ONLY_MODE"/>
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="ENABLE" Semaphore="Preempted_Mode_Enabled"/>
+        <Description>Enable/Disable Preempted Conversion</Description> 
+    </RefParameter>
+    
+    <!-- Possible Value of PreemptedConvMode parameter -->
+    <RefParameter Name="PreemptedConvMode" Comment="Preempted Conversion Mode" CommentCH="抢占组转换模式" DefaultValue="None" Group="ADC Preempted Conversion Settings" GroupCH="ADC抢占组设置" Type="list">
+    	  <Condition Expression="EnablePreemptedConversion = ENABLE" Diagnostic=""/>
+        <PossibleValue Comment="None" CommentCH="无" Value="None"/>
+        <PossibleValue Comment="PreemptedPartitioned Mode" CommentCH="抢占组分割模式" Value="Partitioned"/>
+        <PossibleValue Comment="Preempted Auto Mode" CommentCH="抢占组自动转换模式" Value="AutoPreempted" Condition="OrdinaryPartitionedMode = FALSE &amp;EnableOrdinaryConversion = ENABLE"/>
+        <Description>Preempted Conversion Mode selection</Description>
+    </RefParameter>
+  
+    <!--  -->        
+    <!-- Possible Value of PreemptedTriggerSource parameter -->
+    <RefParameter Name="PreemptedTriggerSource" Comment="Preempted Trigger Source" CommentCH="抢占组触发源" DefaultValue="DISABLE" Group="ADC Preempted Conversion Settings" GroupCH="ADC抢占组设置" Type="list" >
+		<Condition Diagnostic="" Expression="EnablePreemptedConversion = ENABLE &amp;PreemptedConvMode = AutoPreempted"/>
+        <PossibleValue Comment="Disable (Preempted Auto Mode selected)" CommentCH="关闭(抢占组自动转换模式)" Value="DISABLE"/>
+	  </RefParameter>
+    <RefParameter Name="PreemptedTriggerSource" Comment="Preempted Trigger Source" CommentCH="抢占组触发源" DefaultValue="ADC12_PREEMPT_TRIG_EXINT15_TMR1CH4" Type="list" Group="ADC Preempted Conversion Settings" GroupCH="ADC抢占组设置">
+        <Condition Expression="EnablePreemptedConversion = ENABLE &amp;PreemptedExternalTrigger_$IpInstance" Diagnostic=""/>
+        <PossibleValue Comment="EXINT Line15 event as trigger source" CommentCH="EXINT Line15触发" Value="ADC12_PREEMPT_TRIG_EXINT15_TMR1CH4"/>
+    </RefParameter>
+    <RefParameter Name="PreemptedTriggerSource" Comment="Preempted Trigger Source" CommentCH="抢占组触发源" DefaultValue="ADC12_PREEMPT_TRIG_SOFTWARE" Type="list" Group="ADC Preempted Conversion Settings" GroupCH="ADC抢占组设置">
+    	  <Condition Expression="EnablePreemptedConversion = ENABLE" Diagnostic=""/>
+        <PossibleValue Comment="Software(PCSWTRG) control bit as trigger source" CommentCH="抢占组软件触发" Value="ADC12_PREEMPT_TRIG_SOFTWARE"/>
+        <PossibleValue Comment="TMR1 trgout event as trigger source" CommentCH="TMR1 TRGO触发" Value="ADC12_PREEMPT_TRIG_TMR1TRGOUT"/>
+        <PossibleValue Comment="TMR1 CH4 event as trigger source" CommentCH="TMR1 通道4触发" Value="ADC12_PREEMPT_TRIG_TMR1CH4"/>
+        <PossibleValue Comment="TMR2 trgout event as trigger source" CommentCH="TMR2 TRGO触发" Value="ADC12_PREEMPT_TRIG_TMR2TRGOUT"/>
+        <PossibleValue Comment="TMR2 CH1 event as trigger source" CommentCH="TMR2 通道1触发" Value="ADC12_PREEMPT_TRIG_TMR2CH1"/>
+        <PossibleValue Comment="TMR3 CH4 event as trigger source" CommentCH="TMR3 通道4触发" Value="ADC12_PREEMPT_TRIG_TMR3CH4"/>
+        <PossibleValue Comment="TMR4 trgout event as trigger source" CommentCH="TMR4 TRGO触发" Value="ADC12_PREEMPT_TRIG_TMR4TRGOUT"/>
+        <PossibleValue Comment="TMR1 CH1 event as trigger source" CommentCH="TMR1 通道1触发" Value="ADC12_PREEMPT_TRIG_TMR1CH1"/>
+    </RefParameter>
+    
+    <!-- Possible value of Preempted ITMode parameter -->
+    <RefParameter Comment="Interrupt" CommentCH="中断" DefaultValue="DISABLE" Name="PreemptedInterrupt" Type="list" Group="ADC Preempted Conversion Settings" GroupCH="ADC抢占组设置">
+    	  <Condition Expression="EnablePreemptedConversion = ENABLE" Diagnostic=""/>
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="DISABLE"/>
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="ENABLE"/>
+    </RefParameter> 
+    
+    <!-- Possible Value of NbrOfPreemptedSequence parameter -->
+    <RefParameter Comment="Number Of Preempted Sequence" CommentCH="抢占组通道数目" DefaultValue="1" Max="4" Min="1" Name="NbrOfPreemptedSequence" Type="integer" Group="ADC Preempted Conversion Settings" GroupCH="ADC抢占组设置">
+        <Condition Expression="EnablePreemptedConversion = ENABLE" Diagnostic=""/>
+        <Description>Number of preempted channels to be converted</Description>
+    </RefParameter>
+    
+    <!-- Sequence 1 -->
+    <RefParameter Comment="Sequence 1 Channel" CommentCH="序列第1个通道选择" DefaultValue="" Name="Channel_PreemptedSequence_1" Type="list" Visible="true" Group="ADC Preempted Conversion Settings" GroupCH="ADC抢占组设置">
+    	  <Condition Expression="EnablePreemptedConversion = ENABLE &amp;NbrOfPreemptedSequence > 0" Diagnostic=""/>
+        <PossibleValue Comment="Channel 0" CommentCH="通道0" Value="ADC_CHANNEL_0" Condition="$IpInstance_CHANNEL_0" Action="Remove"/>
+        <PossibleValue Comment="Channel 1" CommentCH="通道1" Value="ADC_CHANNEL_1" Condition="$IpInstance_CHANNEL_1" Action="Remove"/>
+        <PossibleValue Comment="Channel 2" CommentCH="通道2" Value="ADC_CHANNEL_2" Condition="$IpInstance_CHANNEL_2" Action="Remove"/>
+        <PossibleValue Comment="Channel 3" CommentCH="通道3" Value="ADC_CHANNEL_3" Condition="$IpInstance_CHANNEL_3" Action="Remove"/>
+        <PossibleValue Comment="Channel 4" CommentCH="通道4" Value="ADC_CHANNEL_4" Condition="$IpInstance_CHANNEL_4" Action="Remove"/>
+        <PossibleValue Comment="Channel 5" CommentCH="通道5" Value="ADC_CHANNEL_5" Condition="$IpInstance_CHANNEL_5" Action="Remove"/>
+        <PossibleValue Comment="Channel 6" CommentCH="通道6" Value="ADC_CHANNEL_6" Condition="$IpInstance_CHANNEL_6" Action="Remove"/>
+        <PossibleValue Comment="Channel 7" CommentCH="通道7" Value="ADC_CHANNEL_7" Condition="$IpInstance_CHANNEL_7" Action="Remove"/>
+        <PossibleValue Comment="Channel 8" CommentCH="通道8" Value="ADC_CHANNEL_8" Condition="$IpInstance_CHANNEL_8" Action="Remove"/>
+        <PossibleValue Comment="Channel 9" CommentCH="通道9" Value="ADC_CHANNEL_9" Condition="$IpInstance_CHANNEL_9" Action="Remove"/>
+        <PossibleValue Comment="Channel 10" CommentCH="通道10" Value="ADC_CHANNEL_10" Condition="$IpInstance_CHANNEL_10" Action="Remove"/>
+        <PossibleValue Comment="Channel 11" CommentCH="通道11" Value="ADC_CHANNEL_11" Condition="$IpInstance_CHANNEL_11" Action="Remove"/>
+        <PossibleValue Comment="Channel 12" CommentCH="通道12" Value="ADC_CHANNEL_12" Condition="$IpInstance_CHANNEL_12" Action="Remove"/>
+        <PossibleValue Comment="Channel 13" CommentCH="通道13" Value="ADC_CHANNEL_13" Condition="$IpInstance_CHANNEL_13" Action="Remove"/>
+        <PossibleValue Comment="Channel 14" CommentCH="通道14" Value="ADC_CHANNEL_14" Condition="$IpInstance_CHANNEL_14" Action="Remove"/>
+        <PossibleValue Comment="Channel 15" CommentCH="通道15" Value="ADC_CHANNEL_15" Condition="$IpInstance_CHANNEL_15" Action="Remove"/>
+        <PossibleValue Comment="Channel Temperature Sensor" CommentCH="内部温度传感器" Value="ADC_CHANNEL_16" Condition="$IpInstance_CHANNEL_16" Action="Remove"/>
+        <PossibleValue Comment="Channel VINTRV" CommentCH="内部参考电压" Value="ADC_CHANNEL_17" Condition="$IpInstance_CHANNEL_17" Action="Remove"/>
+    </RefParameter>	    
+    <RefParameter Comment="Sequence 1 Sampling Time" CommentCH="序列第1个通道采样时间" DefaultValue="ADC_SAMPLETIME_1_5" Name="SamplingTime_PreemptedSequence_1" Type="list" Group="ADC Preempted Conversion Settings" GroupCH="ADC抢占组设置">
+        <Condition Expression="EnablePreemptedConversion = ENABLE &amp;NbrOfPreemptedSequence > 0" Diagnostic=""/>
+        <PossibleValue Comment="1.5 Cycles" CommentCH="1.5个ADCCLK周期" Value="ADC_SAMPLETIME_1_5" Semaphore="$IpInstance_PreemptedSequence_1_ADC_SAMPLETIME_1_5"/>
+        <PossibleValue Comment="7.5 Cycles" CommentCH="7.5个ADCCLK周期" Value="ADC_SAMPLETIME_7_5" Semaphore="$IpInstance_PreemptedSequence_1_ADC_SAMPLETIME_7_5"/>
+        <PossibleValue Comment="13.5 Cycles" CommentCH="13.5个ADCCLK周期" Value="ADC_SAMPLETIME_13_5" Semaphore="$IpInstance_PreemptedSequence_1_ADC_SAMPLETIME_13_5"/>
+        <PossibleValue Comment="28.5 Cycles" CommentCH="28.5个ADCCLK周期" Value="ADC_SAMPLETIME_28_5" Semaphore="$IpInstance_PreemptedSequence_1_ADC_SAMPLETIME_28_5"/>
+        <PossibleValue Comment="41.5 Cycles" CommentCH="41.5个ADCCLK周期" Value="ADC_SAMPLETIME_41_5" Semaphore="$IpInstance_PreemptedSequence_1_ADC_SAMPLETIME_41_5"/>
+        <PossibleValue Comment="55.5 Cycles" CommentCH="55.5个ADCCLK周期" Value="ADC_SAMPLETIME_55_5" Semaphore="$IpInstance_PreemptedSequence_1_ADC_SAMPLETIME_55_5"/>
+        <PossibleValue Comment="71.5 Cycles" CommentCH="71.5个ADCCLK周期" Value="ADC_SAMPLETIME_71_5" Semaphore="$IpInstance_PreemptedSequence_1_ADC_SAMPLETIME_71_5"/>
+        <PossibleValue Comment="239.5 Cycles" CommentCH="239.5个ADCCLK周期" Value="ADC_SAMPLETIME_239_5" Semaphore="$IpInstance_PreemptedSequence_1_ADC_SAMPLETIME_239_5"/>
+    </RefParameter>
+    <RefParameter Comment="Sequence 1 Preempted Offset" CommentCH="序列第1个通道数据偏移" DefaultValue="0" Max="FFF" Min="0" Name="PreemptedOffset_PreemptedSequence_1" Type="hexadecimal" Group="ADC Preempted Conversion Settings" GroupCH="ADC抢占组设置" Reload="false">
+    	  <Condition Expression="EnablePreemptedConversion = ENABLE &amp;NbrOfPreemptedSequence > 0" Diagnostic=""/>
+        <Description>Data offset for preempted channel </Description>
+    </RefParameter>    
+    <RefParameter Comment="ADC preempt channel 1" CommentCH="抢占组序列第1个通道" DefaultValue="ADC_PREEMPT_CHANNEL_1" Name="ADC_Preempt_channel_1" Type="list" Group="ADC Preempted Conversion Settings" GroupCH="ADC抢占组设置" Visible="false">
+    	  <Condition Expression="EnablePreemptedConversion = ENABLE &amp;NbrOfPreemptedSequence > 0" Diagnostic=""/>
+        <PossibleValue Comment="PREEMPT_CHANNEL_1" CommentCH="抢占组序列第1个通道" Value="ADC_PREEMPT_CHANNEL_1"/>
+    </RefParameter>
+    
+    <!-- Sequence 2 -->
+    <RefParameter Comment="Sequence 2 Channel" CommentCH="序列第2个通道选择" DefaultValue="" Name="Channel_PreemptedSequence_2" Type="list" Visible="true" Group="ADC Preempted Conversion Settings" GroupCH="ADC抢占组设置">
+    	  <Condition Expression="EnablePreemptedConversion = ENABLE &amp;NbrOfPreemptedSequence > 1" Diagnostic=""/>
+        <PossibleValue Comment="Channel 0" CommentCH="通道0" Value="ADC_CHANNEL_0" Condition="$IpInstance_CHANNEL_0" Action="Remove"/>
+        <PossibleValue Comment="Channel 1" CommentCH="通道1" Value="ADC_CHANNEL_1" Condition="$IpInstance_CHANNEL_1" Action="Remove"/>
+        <PossibleValue Comment="Channel 2" CommentCH="通道2" Value="ADC_CHANNEL_2" Condition="$IpInstance_CHANNEL_2" Action="Remove"/>
+        <PossibleValue Comment="Channel 3" CommentCH="通道3" Value="ADC_CHANNEL_3" Condition="$IpInstance_CHANNEL_3" Action="Remove"/>
+        <PossibleValue Comment="Channel 4" CommentCH="通道4" Value="ADC_CHANNEL_4" Condition="$IpInstance_CHANNEL_4" Action="Remove"/>
+        <PossibleValue Comment="Channel 5" CommentCH="通道5" Value="ADC_CHANNEL_5" Condition="$IpInstance_CHANNEL_5" Action="Remove"/>
+        <PossibleValue Comment="Channel 6" CommentCH="通道6" Value="ADC_CHANNEL_6" Condition="$IpInstance_CHANNEL_6" Action="Remove"/>
+        <PossibleValue Comment="Channel 7" CommentCH="通道7" Value="ADC_CHANNEL_7" Condition="$IpInstance_CHANNEL_7" Action="Remove"/>
+        <PossibleValue Comment="Channel 8" CommentCH="通道8" Value="ADC_CHANNEL_8" Condition="$IpInstance_CHANNEL_8" Action="Remove"/>
+        <PossibleValue Comment="Channel 9" CommentCH="通道9" Value="ADC_CHANNEL_9" Condition="$IpInstance_CHANNEL_9" Action="Remove"/>
+        <PossibleValue Comment="Channel 10" CommentCH="通道10" Value="ADC_CHANNEL_10" Condition="$IpInstance_CHANNEL_10" Action="Remove"/>
+        <PossibleValue Comment="Channel 11" CommentCH="通道11" Value="ADC_CHANNEL_11" Condition="$IpInstance_CHANNEL_11" Action="Remove"/>
+        <PossibleValue Comment="Channel 12" CommentCH="通道12" Value="ADC_CHANNEL_12" Condition="$IpInstance_CHANNEL_12" Action="Remove"/>
+        <PossibleValue Comment="Channel 13" CommentCH="通道13" Value="ADC_CHANNEL_13" Condition="$IpInstance_CHANNEL_13" Action="Remove"/>
+        <PossibleValue Comment="Channel 14" CommentCH="通道14" Value="ADC_CHANNEL_14" Condition="$IpInstance_CHANNEL_14" Action="Remove"/>
+        <PossibleValue Comment="Channel 15" CommentCH="通道15" Value="ADC_CHANNEL_15" Condition="$IpInstance_CHANNEL_15" Action="Remove"/>
+        <PossibleValue Comment="Channel Temperature Sensor" CommentCH="内部温度传感器" Value="ADC_CHANNEL_16" Condition="$IpInstance_CHANNEL_16" Action="Remove"/>
+        <PossibleValue Comment="Channel VINTRV" CommentCH="内部参考电压" Value="ADC_CHANNEL_17" Condition="$IpInstance_CHANNEL_17" Action="Remove"/>
+    </RefParameter>	    
+    <RefParameter Comment="Sequence 2 Sampling Time" CommentCH="序列第2个通道采样时间" DefaultValue="ADC_SAMPLETIME_1_5" Name="SamplingTime_PreemptedSequence_2" Type="list" Group="ADC Preempted Conversion Settings" GroupCH="ADC抢占组设置">
+        <Condition Expression="EnablePreemptedConversion = ENABLE &amp;NbrOfPreemptedSequence > 1" Diagnostic=""/>
+        <PossibleValue Comment="1.5 Cycles" CommentCH="1.5个ADCCLK周期" Value="ADC_SAMPLETIME_1_5" Semaphore="$IpInstance_PreemptedSequence_2_ADC_SAMPLETIME_1_5"/>
+        <PossibleValue Comment="7.5 Cycles" CommentCH="7.5个ADCCLK周期" Value="ADC_SAMPLETIME_7_5" Semaphore="$IpInstance_PreemptedSequence_2_ADC_SAMPLETIME_7_5"/>
+        <PossibleValue Comment="13.5 Cycles" CommentCH="13.5个ADCCLK周期" Value="ADC_SAMPLETIME_13_5" Semaphore="$IpInstance_PreemptedSequence_2_ADC_SAMPLETIME_13_5"/>
+        <PossibleValue Comment="28.5 Cycles" CommentCH="28.5个ADCCLK周期" Value="ADC_SAMPLETIME_28_5" Semaphore="$IpInstance_PreemptedSequence_2_ADC_SAMPLETIME_28_5"/>
+        <PossibleValue Comment="41.5 Cycles" CommentCH="41.5个ADCCLK周期" Value="ADC_SAMPLETIME_41_5" Semaphore="$IpInstance_PreemptedSequence_2_ADC_SAMPLETIME_41_5"/>
+        <PossibleValue Comment="55.5 Cycles" CommentCH="55.5个ADCCLK周期" Value="ADC_SAMPLETIME_55_5" Semaphore="$IpInstance_PreemptedSequence_2_ADC_SAMPLETIME_55_5"/>
+        <PossibleValue Comment="71.5 Cycles" CommentCH="71.5个ADCCLK周期" Value="ADC_SAMPLETIME_71_5" Semaphore="$IpInstance_PreemptedSequence_2_ADC_SAMPLETIME_71_5"/>
+        <PossibleValue Comment="239.5 Cycles" CommentCH="239.5个ADCCLK周期" Value="ADC_SAMPLETIME_239_5" Semaphore="$IpInstance_PreemptedSequence_2_ADC_SAMPLETIME_239_5"/>
+        <Description>Ordinary Channel x sampling time selection</Description>
+    </RefParameter>
+    <RefParameter Comment="Sequence 2 Preempted Offset" CommentCH="序列第2个通道数据偏移" DefaultValue="0" Max="FFF" Min="0" Name="PreemptedOffset_PreemptedSequence_2" Type="hexadecimal" Group="ADC Preempted Conversion Settings" GroupCH="ADC抢占组设置" Reload="false">
+    	  <Condition Expression="EnablePreemptedConversion = ENABLE &amp;NbrOfPreemptedSequence > 1" Diagnostic=""/>
+        <Description>Data offset for preempted channel </Description>
+    </RefParameter>
+    <RefParameter Comment="ADC preempt channel 2" CommentCH="抢占组序列第2个通道" DefaultValue="ADC_PREEMPT_CHANNEL_2" Name="ADC_Preempt_channel_2" Type="list" Group="ADC Preempted Conversion Settings" GroupCH="ADC抢占组设置" Visible="false">
+    	  <Condition Expression="EnablePreemptedConversion = ENABLE &amp;NbrOfPreemptedSequence > 1" Diagnostic=""/>
+        <PossibleValue Comment="PREEMPT_CHANNEL_2" CommentCH="抢占组序列第2个通道" Value="ADC_PREEMPT_CHANNEL_2"/>
+    </RefParameter>
+    
+    <!-- Sequence 3 -->
+    <RefParameter Comment="Sequence 3 Channel" CommentCH="序列第3个通道选择" DefaultValue="" Name="Channel_PreemptedSequence_3" Type="list" Visible="true" Group="ADC Preempted Conversion Settings" GroupCH="ADC抢占组设置">
+    	  <Condition Expression="EnablePreemptedConversion = ENABLE &amp;NbrOfPreemptedSequence > 2" Diagnostic=""/>
+        <PossibleValue Comment="Channel 0" CommentCH="通道0" Value="ADC_CHANNEL_0" Condition="$IpInstance_CHANNEL_0" Action="Remove"/>
+        <PossibleValue Comment="Channel 1" CommentCH="通道1" Value="ADC_CHANNEL_1" Condition="$IpInstance_CHANNEL_1" Action="Remove"/>
+        <PossibleValue Comment="Channel 2" CommentCH="通道2" Value="ADC_CHANNEL_2" Condition="$IpInstance_CHANNEL_2" Action="Remove"/>
+        <PossibleValue Comment="Channel 3" CommentCH="通道3" Value="ADC_CHANNEL_3" Condition="$IpInstance_CHANNEL_3" Action="Remove"/>
+        <PossibleValue Comment="Channel 4" CommentCH="通道4" Value="ADC_CHANNEL_4" Condition="$IpInstance_CHANNEL_4" Action="Remove"/>
+        <PossibleValue Comment="Channel 5" CommentCH="通道5" Value="ADC_CHANNEL_5" Condition="$IpInstance_CHANNEL_5" Action="Remove"/>
+        <PossibleValue Comment="Channel 6" CommentCH="通道6" Value="ADC_CHANNEL_6" Condition="$IpInstance_CHANNEL_6" Action="Remove"/>
+        <PossibleValue Comment="Channel 7" CommentCH="通道7" Value="ADC_CHANNEL_7" Condition="$IpInstance_CHANNEL_7" Action="Remove"/>
+        <PossibleValue Comment="Channel 8" CommentCH="通道8" Value="ADC_CHANNEL_8" Condition="$IpInstance_CHANNEL_8" Action="Remove"/>
+        <PossibleValue Comment="Channel 9" CommentCH="通道9" Value="ADC_CHANNEL_9" Condition="$IpInstance_CHANNEL_9" Action="Remove"/>
+        <PossibleValue Comment="Channel 10" CommentCH="通道10" Value="ADC_CHANNEL_10" Condition="$IpInstance_CHANNEL_10" Action="Remove"/>
+        <PossibleValue Comment="Channel 11" CommentCH="通道11" Value="ADC_CHANNEL_11" Condition="$IpInstance_CHANNEL_11" Action="Remove"/>
+        <PossibleValue Comment="Channel 12" CommentCH="通道12" Value="ADC_CHANNEL_12" Condition="$IpInstance_CHANNEL_12" Action="Remove"/>
+        <PossibleValue Comment="Channel 13" CommentCH="通道13" Value="ADC_CHANNEL_13" Condition="$IpInstance_CHANNEL_13" Action="Remove"/>
+        <PossibleValue Comment="Channel 14" CommentCH="通道14" Value="ADC_CHANNEL_14" Condition="$IpInstance_CHANNEL_14" Action="Remove"/>
+        <PossibleValue Comment="Channel 15" CommentCH="通道15" Value="ADC_CHANNEL_15" Condition="$IpInstance_CHANNEL_15" Action="Remove"/>
+        <PossibleValue Comment="Channel Temperature Sensor" CommentCH="内部温度传感器" Value="ADC_CHANNEL_16" Condition="$IpInstance_CHANNEL_16" Action="Remove"/>
+        <PossibleValue Comment="Channel VINTRV" CommentCH="内部参考电压" Value="ADC_CHANNEL_17" Condition="$IpInstance_CHANNEL_17" Action="Remove"/>
+    </RefParameter>	    
+    <RefParameter Comment="Sequence 3 Sampling Time" CommentCH="序列第3个通道采样时间" DefaultValue="ADC_SAMPLETIME_1_5" Name="SamplingTime_PreemptedSequence_3" Type="list" Group="ADC Preempted Conversion Settings" GroupCH="ADC抢占组设置">
+        <Condition Expression="EnablePreemptedConversion = ENABLE &amp;NbrOfPreemptedSequence > 2" Diagnostic=""/>
+        <PossibleValue Comment="1.5 Cycles" CommentCH="1.5个ADCCLK周期" Value="ADC_SAMPLETIME_1_5" Semaphore="$IpInstance_PreemptedSequence_3_ADC_SAMPLETIME_1_5"/>
+        <PossibleValue Comment="7.5 Cycles" CommentCH="7.5个ADCCLK周期" Value="ADC_SAMPLETIME_7_5" Semaphore="$IpInstance_PreemptedSequence_3_ADC_SAMPLETIME_7_5"/>
+        <PossibleValue Comment="13.5 Cycles" CommentCH="13.5个ADCCLK周期" Value="ADC_SAMPLETIME_13_5" Semaphore="$IpInstance_PreemptedSequence_3_ADC_SAMPLETIME_13_5"/>
+        <PossibleValue Comment="28.5 Cycles" CommentCH="28.5个ADCCLK周期" Value="ADC_SAMPLETIME_28_5" Semaphore="$IpInstance_PreemptedSequence_3_ADC_SAMPLETIME_28_5"/>
+        <PossibleValue Comment="41.5 Cycles" CommentCH="41.5个ADCCLK周期" Value="ADC_SAMPLETIME_41_5" Semaphore="$IpInstance_PreemptedSequence_3_ADC_SAMPLETIME_41_5"/>
+        <PossibleValue Comment="55.5 Cycles" CommentCH="55.5个ADCCLK周期" Value="ADC_SAMPLETIME_55_5" Semaphore="$IpInstance_PreemptedSequence_3_ADC_SAMPLETIME_55_5"/>
+        <PossibleValue Comment="71.5 Cycles" CommentCH="71.5个ADCCLK周期" Value="ADC_SAMPLETIME_71_5" Semaphore="$IpInstance_PreemptedSequence_3_ADC_SAMPLETIME_71_5"/>
+        <PossibleValue Comment="239.5 Cycles" CommentCH="239.5个ADCCLK周期" Value="ADC_SAMPLETIME_239_5" Semaphore="$IpInstance_PreemptedSequence_3_ADC_SAMPLETIME_239_5"/>
+        <Description>Ordinary Channel x sampling time selection</Description>
+    </RefParameter>
+    <RefParameter Comment="Sequence 3 Preempted Offset" CommentCH="序列第3个通道数据偏移" DefaultValue="0" Max="FFF" Min="0" Name="PreemptedOffset_PreemptedSequence_3" Type="hexadecimal" Group="ADC Preempted Conversion Settings" GroupCH="ADC抢占组设置" Reload="false">
+    	  <Condition Expression="EnablePreemptedConversion = ENABLE &amp;NbrOfPreemptedSequence > 2" Diagnostic=""/>
+        <Description>Data offset for preempted channel </Description>
+    </RefParameter>
+    <RefParameter Comment="ADC preempt channel 3" CommentCH="抢占组序列第3个通道" DefaultValue="ADC_PREEMPT_CHANNEL_3" Name="ADC_Preempt_channel_3" Type="list" Group="ADC Preempted Conversion Settings" GroupCH="ADC抢占组设置" Visible="false">
+    	  <Condition Expression="EnablePreemptedConversion = ENABLE &amp;NbrOfPreemptedSequence > 2" Diagnostic=""/>
+        <PossibleValue Comment="PREEMPT_CHANNEL_3" CommentCH="抢占组序列第3个通道" Value="ADC_PREEMPT_CHANNEL_3"/>
+    </RefParameter>
+    
+    <!-- Sequence 4 -->
+    <RefParameter Comment="Sequence 4 Channel" CommentCH="序列第4个通道选择" DefaultValue="" Name="Channel_PreemptedSequence_4" Type="list" Visible="true" Group="ADC Preempted Conversion Settings" GroupCH="ADC抢占组设置">
+    	  <Condition Expression="EnablePreemptedConversion = ENABLE &amp;NbrOfPreemptedSequence > 3" Diagnostic=""/>
+        <PossibleValue Comment="Channel 0" CommentCH="通道0" Value="ADC_CHANNEL_0" Condition="$IpInstance_CHANNEL_0" Action="Remove"/>
+        <PossibleValue Comment="Channel 1" CommentCH="通道1" Value="ADC_CHANNEL_1" Condition="$IpInstance_CHANNEL_1" Action="Remove"/>
+        <PossibleValue Comment="Channel 2" CommentCH="通道2" Value="ADC_CHANNEL_2" Condition="$IpInstance_CHANNEL_2" Action="Remove"/>
+        <PossibleValue Comment="Channel 3" CommentCH="通道3" Value="ADC_CHANNEL_3" Condition="$IpInstance_CHANNEL_3" Action="Remove"/>
+        <PossibleValue Comment="Channel 4" CommentCH="通道4" Value="ADC_CHANNEL_4" Condition="$IpInstance_CHANNEL_4" Action="Remove"/>
+        <PossibleValue Comment="Channel 5" CommentCH="通道5" Value="ADC_CHANNEL_5" Condition="$IpInstance_CHANNEL_5" Action="Remove"/>
+        <PossibleValue Comment="Channel 6" CommentCH="通道6" Value="ADC_CHANNEL_6" Condition="$IpInstance_CHANNEL_6" Action="Remove"/>
+        <PossibleValue Comment="Channel 7" CommentCH="通道7" Value="ADC_CHANNEL_7" Condition="$IpInstance_CHANNEL_7" Action="Remove"/>
+        <PossibleValue Comment="Channel 8" CommentCH="通道8" Value="ADC_CHANNEL_8" Condition="$IpInstance_CHANNEL_8" Action="Remove"/>
+        <PossibleValue Comment="Channel 9" CommentCH="通道9" Value="ADC_CHANNEL_9" Condition="$IpInstance_CHANNEL_9" Action="Remove"/>
+        <PossibleValue Comment="Channel 10" CommentCH="通道10" Value="ADC_CHANNEL_10" Condition="$IpInstance_CHANNEL_10" Action="Remove"/>
+        <PossibleValue Comment="Channel 11" CommentCH="通道11" Value="ADC_CHANNEL_11" Condition="$IpInstance_CHANNEL_11" Action="Remove"/>
+        <PossibleValue Comment="Channel 12" CommentCH="通道12" Value="ADC_CHANNEL_12" Condition="$IpInstance_CHANNEL_12" Action="Remove"/>
+        <PossibleValue Comment="Channel 13" CommentCH="通道13" Value="ADC_CHANNEL_13" Condition="$IpInstance_CHANNEL_13" Action="Remove"/>
+        <PossibleValue Comment="Channel 14" CommentCH="通道14" Value="ADC_CHANNEL_14" Condition="$IpInstance_CHANNEL_14" Action="Remove"/>
+        <PossibleValue Comment="Channel 15" CommentCH="通道15" Value="ADC_CHANNEL_15" Condition="$IpInstance_CHANNEL_15" Action="Remove"/>
+        <PossibleValue Comment="Channel Temperature Sensor" CommentCH="内部温度传感器" Value="ADC_CHANNEL_16" Condition="$IpInstance_CHANNEL_16" Action="Remove"/>
+        <PossibleValue Comment="Channel VINTRV" CommentCH="内部参考电压" Value="ADC_CHANNEL_17" Condition="$IpInstance_CHANNEL_17" Action="Remove"/>
+    </RefParameter>	    
+    <RefParameter Comment="Sequence 4 Sampling Time" CommentCH="序列第4个通道采样时间" DefaultValue="ADC_SAMPLETIME_1_5" Name="SamplingTime_PreemptedSequence_4" Type="list" Group="ADC Preempted Conversion Settings" GroupCH="ADC抢占组设置">
+        <Condition Expression="EnablePreemptedConversion = ENABLE &amp;NbrOfPreemptedSequence > 3" Diagnostic=""/>
+        <PossibleValue Comment="1.5 Cycles" CommentCH="1.5个ADCCLK周期" Value="ADC_SAMPLETIME_1_5" Semaphore="$IpInstance_PreemptedSequence_4_ADC_SAMPLETIME_1_5"/>
+        <PossibleValue Comment="7.5 Cycles" CommentCH="7.5个ADCCLK周期" Value="ADC_SAMPLETIME_7_5" Semaphore="$IpInstance_PreemptedSequence_4_ADC_SAMPLETIME_7_5"/>
+        <PossibleValue Comment="13.5 Cycles" CommentCH="13.5个ADCCLK周期" Value="ADC_SAMPLETIME_13_5" Semaphore="$IpInstance_PreemptedSequence_4_ADC_SAMPLETIME_13_5"/>
+        <PossibleValue Comment="28.5 Cycles" CommentCH="28.5个ADCCLK周期" Value="ADC_SAMPLETIME_28_5" Semaphore="$IpInstance_PreemptedSequence_4_ADC_SAMPLETIME_28_5"/>
+        <PossibleValue Comment="41.5 Cycles" CommentCH="41.5个ADCCLK周期" Value="ADC_SAMPLETIME_41_5" Semaphore="$IpInstance_PreemptedSequence_4_ADC_SAMPLETIME_41_5"/>
+        <PossibleValue Comment="55.5 Cycles" CommentCH="55.5个ADCCLK周期" Value="ADC_SAMPLETIME_55_5" Semaphore="$IpInstance_PreemptedSequence_4_ADC_SAMPLETIME_55_5"/>
+        <PossibleValue Comment="71.5 Cycles" CommentCH="71.5个ADCCLK周期" Value="ADC_SAMPLETIME_71_5" Semaphore="$IpInstance_PreemptedSequence_4_ADC_SAMPLETIME_71_5"/>
+        <PossibleValue Comment="239.5 Cycles" CommentCH="239.5个ADCCLK周期" Value="ADC_SAMPLETIME_239_5" Semaphore="$IpInstance_PreemptedSequence_4_ADC_SAMPLETIME_239_5"/>
+        <Description>Ordinary Channel x sampling time selection</Description>
+    </RefParameter>
+    <RefParameter Comment="Sequence 4 Preempted Offset" CommentCH="序列第4个通道数据偏移" DefaultValue="0" Max="FFF" Min="0" Name="PreemptedOffset_PreemptedSequence_4" Type="hexadecimal" Group="ADC Preempted Conversion Settings" GroupCH="ADC抢占组设置" Reload="false">
+    	  <Condition Expression="EnablePreemptedConversion = ENABLE &amp;NbrOfPreemptedSequence > 3" Diagnostic=""/>
+        <Description>Data offset for preempted channel </Description>
+    </RefParameter>
+    <RefParameter Comment="ADC preempt channel 4" CommentCH="抢占组序列第4个通道" DefaultValue="ADC_PREEMPT_CHANNEL_4" Name="ADC_Preempt_channel_4" Type="list" Group="ADC Preempted Conversion Settings" GroupCH="ADC抢占组设置" Visible="false">
+    	  <Condition Expression="EnablePreemptedConversion = ENABLE &amp;NbrOfPreemptedSequence > 3" Diagnostic=""/>
+        <PossibleValue Comment="PREEMPT_CHANNEL_4" CommentCH="抢占组序列第4个通道" Value="ADC_PREEMPT_CHANNEL_4"/>
+    </RefParameter>
+
+    <!-- Voltage Monitoring parameters -->
+    <!-- Possible value of EnableVoltageMonitoring parameter -->
+    <RefParameter Comment="Enable Voltage Monitoring" CommentCH="开启电压监测" DefaultValue="DISABLE" Name="EnableVoltageMonitoring" Type="list" Group="Voltage Monitoring" GroupCH="电压监测" Visible="false">
+        <Condition Expression="EnableOrdinaryConversion = DISABLE &amp;EnablePreemptedConversion = DISABLE" Diagnostic=""/>
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="DISABLE"/>
+    </RefParameter>
+    <RefParameter Comment="Enable Voltage Monitoring" CommentCH="开启电压监测" DefaultValue="DISABLE" Name="EnableVoltageMonitoring" Type="list" Group="Voltage Monitoring" GroupCH="电压监测">
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="ENABLE"/>
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="DISABLE"/>
+    </RefParameter>
+	    
+    <!-- Possible value of VoltageMonitoringMode parameters -->
+    <RefParameter Comment="Voltage Monitoring Mode" CommentCH="电压监测模式" DefaultValue="null" Name="VoltageMonitoringMode" Type="list" Group="Voltage Monitoring" GroupCH="电压监测" Visible="false">
+        <Condition Expression="EnableVoltageMonitoring = DISABLE" Diagnostic=""/>
+    </RefParameter>	
+    
+    <RefParameter Comment="Voltage Monitoring Mode" CommentCH="电压监测模式" DefaultValue="ADC_VMONITOR_SINGLE_ORDINARY" Name="VoltageMonitoringMode" Type="list" Group="Voltage Monitoring" GroupCH="电压监测">
+        <Condition Expression="EnablePreemptedConversion = DISABLE &amp;EnableOrdinaryConversion = ENABLE" Diagnostic=""/>
+        <PossibleValue Comment="Single ordinary channel" CommentCH="监测单一普通通道" Value="ADC_VMONITOR_SINGLE_ORDINARY"  Semaphore="SingleOrdinary$IpInstance"/>
+        <PossibleValue Comment="Single ordinary or preempted channel" CommentCH="监测单一普通/抢占通道" Value="ADC_VMONITOR_SINGLE_ORDINARY_PREEMPT" Semaphore="SinglePreemptedOrOrdinary$IpInstance"/>
+        <PossibleValue Comment="All ordinary channels" CommentCH="监测所有普通通道" Value="ADC_VMONITOR_ALL_ORDINARY" Semaphore="AllOrdinary$IpInstance"/>
+        <PossibleValue Comment="All ordinary and preempted channels" CommentCH="监测所有普通/抢占通道" Value="ADC_VMONITOR_ALL_ORDINARY_PREEMPT" Semaphore="AllOrdinaryPreempted$IpInstance"/>
+        <Description>Configures the ADC Voltage Monitoring mode.</Description>
+    </RefParameter>
+	
+	  <RefParameter Comment="Voltage Monitoring Mode" CommentCH="电压监测模式" efaultValue="ADC_VMONITOR_SINGLE_PREEMPT" Name="VoltageMonitoringMode" Type="list" Group="Voltage Monitoring" GroupCH="电压监测">
+        <Condition Expression="EnablePreemptedConversion = ENABLE &amp;EnableOrdinaryConversion = DISABLE" Diagnostic=""/>
+		    <PossibleValue Comment="Single preempted channel" CommentCH="监测单一抢占通道" Value="ADC_VMONITOR_SINGLE_PREEMPT" Semaphore="SinglePreempted$IpInstance" />
+        <PossibleValue Comment="Single ordinary or preempted channel" CommentCH="监测单一普通/抢占通道" Value="ADC_VMONITOR_SINGLE_ORDINARY_PREEMPT" Semaphore="SinglePreemptedOrOrdinary$IpInstance" />
+        <PossibleValue Comment="All preempted channels" CommentCH="监测所有抢占通道" Value="ADC_VMONITOR_ALL_PREEMPT" Semaphore="AllPreempted$IpInstance"/>
+        <PossibleValue Comment="All ordinary and preempted channels" CommentCH="监测所有普通/抢占通道" Value="ADC_VMONITOR_ALL_ORDINARY_PREEMPT" Semaphore="AllOrdinaryPreempted$IpInstance"/>
+        <Description>Configures the ADC Voltage Monitoring mode.</Description>
+    </RefParameter>
+
+    <RefParameter Comment="Voltage Monitoring Mode" CommentCH="电压监测模式" DefaultValue="ADC_VMONITOR_SINGLE_ORDINARY" Name="VoltageMonitoringMode" Type="list" Group="Voltage Monitoring" GroupCH="电压监测">
+        <PossibleValue Comment="Single ordinary channel" CommentCH="监测单一普通通道" Value="ADC_VMONITOR_SINGLE_ORDINARY" Semaphore="SingleOrdinary$IpInstance" />
+        <PossibleValue Comment="Single preempted channel" CommentCH="监测单一抢占通道" Value="ADC_VMONITOR_SINGLE_PREEMPT" Semaphore="SinglePreempted$IpInstance" />
+        <PossibleValue Comment="Single ordinary or preempted channel" CommentCH="监测单一普通/抢占通道" Value="ADC_VMONITOR_SINGLE_ORDINARY_PREEMPT" Semaphore="SinglePreemptedOrOrdinary$IpInstance" />
+        <PossibleValue Comment="All ordinary channels" CommentCH="监测所有普通通道" Value="ADC_VMONITOR_ALL_ORDINARY" Semaphore="AllOrdinary$IpInstance"/>
+        <PossibleValue Comment="All preempted channels" CommentCH="监测所有抢占通道" Value="ADC_VMONITOR_ALL_PREEMPT" Semaphore="AllPreempted$IpInstance"/>
+        <PossibleValue Comment="All ordinary and preempted channels" CommentCH="监测所有普通/抢占通道" Value="ADC_VMONITOR_ALL_ORDINARY_PREEMPT" Semaphore="AllOrdinaryPreempted$IpInstance"/>
+        <Description>Configures the ADC Voltage Monitoring mode.</Description>
+    </RefParameter>
+        
+    <!-- Possible value of VoltageMonitoringChannel parameter -->
+    <RefParameter Comment="Voltage Monitoring Channel" CommentCH="单个电压监测通道选择" DefaultValue="null" Name="VoltageMonitoringChannel" Type="list" Group="Voltage Monitoring" GroupCH="电压监测" Visible="false">
+        <Condition Expression="EnableVoltageMonitoring = DISABLE" Diagnostic=""/>
+    </RefParameter>
+    <RefParameter Comment="Voltage Monitoring Channel" CommentCH="单个电压监测通道选择" DefaultValue="null" Name="VoltageMonitoringChannel" Type="list" Group="Voltage Monitoring" GroupCH="电压监测" Visible="false">
+        <Condition Expression="AllOrdinary$IpInstance" Diagnostic=""/>
+    </RefParameter>
+    <RefParameter Comment="Voltage Monitoring Channel" CommentCH="单个电压监测通道选择" DefaultValue="null" Name="VoltageMonitoringChannel" Type="list" Group="Voltage Monitoring" GroupCH="电压监测" Visible="false">
+        <Condition Expression="AllPreempted$IpInstance" Diagnostic=""/>
+    </RefParameter>
+    <RefParameter Comment="Voltage Monitoring Channel" CommentCH="单个电压监测通道选择" DefaultValue="null" Name="VoltageMonitoringChannel" Type="list" Group="Voltage Monitoring" GroupCH="电压监测" Visible="false">
+        <Condition Expression="AllOrdinaryPreempted$IpInstance" Diagnostic=""/>
+    </RefParameter>
+    <RefParameter Comment="Voltage Monitoring Channel" CommentCH="单个电压监测通道选择" DefaultValue="" Name="VoltageMonitoringChannel" Type="list" Group="Voltage Monitoring" GroupCH="电压监测">
+        <PossibleValue Comment="Channel 0" CommentCH="通道0" Value="ADC_CHANNEL_0"/>
+        <PossibleValue Comment="Channel 1" CommentCH="通道1" Value="ADC_CHANNEL_1"/>
+        <PossibleValue Comment="Channel 2" CommentCH="通道2" Value="ADC_CHANNEL_2"/>
+        <PossibleValue Comment="Channel 3" CommentCH="通道3" Value="ADC_CHANNEL_3"/>
+        <PossibleValue Comment="Channel 4" CommentCH="通道4" Value="ADC_CHANNEL_4"/>
+        <PossibleValue Comment="Channel 5" CommentCH="通道5" Value="ADC_CHANNEL_5"/>
+        <PossibleValue Comment="Channel 6" CommentCH="通道6" Value="ADC_CHANNEL_6"/>
+        <PossibleValue Comment="Channel 7" CommentCH="通道7" Value="ADC_CHANNEL_7"/>
+        <PossibleValue Comment="Channel 8" CommentCH="通道8" Value="ADC_CHANNEL_8"/>
+        <PossibleValue Comment="Channel 9" CommentCH="通道9" Value="ADC_CHANNEL_9"/>
+        <PossibleValue Comment="Channel 10" CommentCH="通道10" Value="ADC_CHANNEL_10"/>
+        <PossibleValue Comment="Channel 11" CommentCH="通道11" Value="ADC_CHANNEL_11"/>
+        <PossibleValue Comment="Channel 12" CommentCH="通道12" Value="ADC_CHANNEL_12"/>
+        <PossibleValue Comment="Channel 13" CommentCH="通道13" Value="ADC_CHANNEL_13"/>
+        <PossibleValue Comment="Channel 14" CommentCH="通道14" Value="ADC_CHANNEL_14"/>
+        <PossibleValue Comment="Channel 15" CommentCH="通道15" Value="ADC_CHANNEL_15"/>
+        <PossibleValue Comment="Temperature sensor Channel" CommentCH="内部温度传感器通道" Value="ADC_CHANNEL_16"/>
+        <PossibleValue Comment="Channel VINTRV" CommentCH="内部参考电压" Value="ADC_CHANNEL_17"/>
+    </RefParameter>
+        
+    <!-- Possible value of HighBoundary parameter -->
+    <RefParameter Comment="High Boundary" CommentCH="电压监测高边界值" DefaultValue="0" Max="FFF" Min="=#AWD1LowBoundary" Name="AWD1HighBoundary" Type="hexadecimal" Group="Voltage Monitoring" GroupCH="电压监测">
+    	  <Condition Expression="EnableVoltageMonitoring = ENABLE" Diagnostic=""/>
+    </RefParameter>
+	    
+    <!-- Possible value of LowBoundary parameter -->
+    <RefParameter Comment="Low Boundary" CommentCH="电压监测低边界值" DefaultValue="0" Max="=#AWD1HighBoundary" Min="0" Name="AWD1LowBoundary" Type="hexadecimal" Group="Voltage Monitoring" GroupCH="电压监测">
+    	  <Condition Expression="EnableVoltageMonitoring = ENABLE" Diagnostic=""/>
+    </RefParameter>
+    
+    <!-- Possible value of Voltage Monitoring ITMode parameter -->
+    <RefParameter Comment="Interrupt" CommentCH="中断" DefaultValue="DISABLE" Name="VoltageMonitoringInterrupt" Type="list" Group="Voltage Monitoring" GroupCH="电压监测">
+    	  <Condition Expression="EnableVoltageMonitoring = ENABLE" Diagnostic=""/>
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="DISABLE"/>
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="ENABLE"/>
+    </RefParameter> 
+    
+    <!-- Possible value of AD_Calibration parameter -->
+    <RefParameter Comment="A/D Calibration" CommentCH="A/D校准" DefaultValue="ENABLE" Name="AD_Calibration" Type="list" Group="A/D Calibration" GroupCH="A/D校准">
+        <PossibleValue Comment="Disable" CommentCH="关闭" Value="DISABLE"/>
+        <PossibleValue Comment="Enable" CommentCH="开启" Value="ENABLE"/>
+    </RefParameter> 
+
+    
+        <!-- ADC multi mode -->
+    <RefMode Name="ADCs_Settings" Abstract="true">
+    	  <Parameter Name="TemperatureVINTRV"/>
+        <Parameter Name="Mode"/>
+        <!-- ADC_Settings parameters --> 
+        <ConfigForMode>ADC_OrdinaryConfig</ConfigForMode>
+        <Parameter Name="DataAlign"/>
+        <Parameter Name="SequenceMode"/>
+        <!-- RefMode of ADC_Ordinary_ConversionMode -->    
+        <Parameter Name="EnableOrdinaryConversion"/>
+        <Parameter Name="RepeatMode"/>
+        <Parameter Name="OrdinaryPartitionedMode"/>
+        <Parameter Name="NbrOfOrdinaryPartitioned"/>
+        <Parameter Name="OrdinaryTriggerSource"/>
+        <Parameter Name="NbrOfOrdinarySequence"/>        
+        <Parameter Name="Channel_OrdinarySequence_1"/>
+        <Parameter Name="SamplingTime_OrdinarySequence_1"/>
+        <Parameter Name="Channel_OrdinarySequence_2"/>
+        <Parameter Name="SamplingTime_OrdinarySequence_2"/>
+        <Parameter Name="Channel_OrdinarySequence_3"/>
+        <Parameter Name="SamplingTime_OrdinarySequence_3"/>
+        <Parameter Name="Channel_OrdinarySequence_4"/>
+        <Parameter Name="SamplingTime_OrdinarySequence_4"/>
+        <Parameter Name="Channel_OrdinarySequence_5"/>
+        <Parameter Name="SamplingTime_OrdinarySequence_5"/>
+        <Parameter Name="Channel_OrdinarySequence_6"/>
+        <Parameter Name="SamplingTime_OrdinarySequence_6"/>
+        <Parameter Name="Channel_OrdinarySequence_7"/>
+        <Parameter Name="SamplingTime_OrdinarySequence_7"/>
+        <Parameter Name="Channel_OrdinarySequence_8"/>
+        <Parameter Name="SamplingTime_OrdinarySequence_8"/>
+        <Parameter Name="Channel_OrdinarySequence_9"/>
+        <Parameter Name="SamplingTime_OrdinarySequence_9"/>
+        <Parameter Name="Channel_OrdinarySequence_10"/>
+        <Parameter Name="SamplingTime_OrdinarySequence_10"/>
+        <Parameter Name="Channel_OrdinarySequence_11"/>
+        <Parameter Name="SamplingTime_OrdinarySequence_11"/>
+        <Parameter Name="Channel_OrdinarySequence_12"/>
+        <Parameter Name="SamplingTime_OrdinarySequence_12"/>
+        <Parameter Name="Channel_OrdinarySequence_13"/>
+        <Parameter Name="SamplingTime_OrdinarySequence_13"/>
+        <Parameter Name="Channel_OrdinarySequence_14"/>
+        <Parameter Name="SamplingTime_OrdinarySequence_14"/>
+        <Parameter Name="Channel_OrdinarySequence_15"/>
+        <Parameter Name="SamplingTime_OrdinarySequence_15"/>
+        <Parameter Name="Channel_OrdinarySequence_16"/>
+        <Parameter Name="SamplingTime_OrdinarySequence_16"/>
+        <Parameter Name="Channel_OrdinarySequence_17"/>
+        <Parameter Name="SamplingTime_OrdinarySequence_17"/>
+        <Parameter Name="Channel_OrdinarySequence_18"/>
+        <Parameter Name="SamplingTime_OrdinarySequence_18"/>
+        <Parameter Name="Channel_OrdinarySequence_19"/>
+        <Parameter Name="SamplingTime_OrdinarySequence_19"/>
+        <Parameter Name="Channel_OrdinarySequence_20"/>
+        <Parameter Name="SamplingTime_OrdinarySequence_20"/>
+        <Parameter Name="Channel_OrdinarySequence_21"/>
+        <Parameter Name="SamplingTime_OrdinarySequence_21"/>
+        <Parameter Name="Channel_OrdinarySequence_22"/>
+        <Parameter Name="SamplingTime_OrdinarySequence_22"/>
+    <!-- Parameters of  ADC_Preempted_ConversionMode Mode -->
+        <Parameter Name="EnablePreemptedConversion"/>       
+        <Parameter Name="PreemptedConvMode"/> 
+        <Parameter Name="PreemptedTriggerSource"/>        
+        <Parameter Name="PreemptedInterrupt"/>
+        <Parameter Name="NbrOfPreemptedSequence"/>
+        <Parameter Name="Channel_PreemptedSequence_1"/>
+        <Parameter Name="SamplingTime_PreemptedSequence_1"/>
+        <Parameter Name="PreemptedOffset_PreemptedSequence_1"/>
+        <Parameter Name="ADC_Preempt_channel_1"/>
+        <Parameter Name="Channel_PreemptedSequence_2"/>
+        <Parameter Name="SamplingTime_PreemptedSequence_2"/>
+        <Parameter Name="PreemptedOffset_PreemptedSequence_2"/>
+        <Parameter Name="ADC_Preempt_channel_2"/>
+        <Parameter Name="Channel_PreemptedSequence_3"/>
+        <Parameter Name="SamplingTime_PreemptedSequence_3"/>
+        <Parameter Name="PreemptedOffset_PreemptedSequence_3"/>
+        <Parameter Name="ADC_Preempt_channel_3"/>
+        <Parameter Name="Channel_PreemptedSequence_4"/>
+        <Parameter Name="SamplingTime_PreemptedSequence_4"/>
+        <Parameter Name="PreemptedOffset_PreemptedSequence_4"/>
+        <Parameter Name="ADC_Preempt_channel_4"/>
+    <!-- Voltage Monitoring parameters -->
+        <Parameter Name="EnableVoltageMonitoring"/>
+        <Parameter Name="VoltageMonitoringMode"/>
+        <Parameter Name="VoltageMonitoringChannel"/>
+        <Parameter Name="AWD1HighBoundary"/>
+        <Parameter Name="AWD1LowBoundary"/>
+        <Parameter Name="VoltageMonitoringInterrupt"/>
+        <Parameter Name="AD_Calibration"/>
+    </RefMode>
+    
+   
+    <!-- Modes -->
+    <ModeLogicOperator Name="OR">
+        <Mode Name="IN0" UserName="IN0" UserNameCH="IN0">
+            <ModeLogicOperator Name="OR">
+                <Mode Name="IN0" UserName="IN0" UserNameCH="IN0">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="IN0"/>
+                    </SignalLogicalOp>
+                </Mode>
+            </ModeLogicOperator>
+            <Semaphore>$IpInstance_CHANNEL_0</Semaphore>
+            <Semaphore>channelSelected$IpInstance</Semaphore>
+        </Mode>
+        <Mode Name="IN1" UserName="IN1" UserNameCH="IN1">
+            <ModeLogicOperator Name="OR">
+                <Mode Name="IN1" UserName="IN1" UserNameCH="IN1">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="IN1"/>
+                    </SignalLogicalOp>
+                </Mode>
+            </ModeLogicOperator>
+            <Semaphore>$IpInstance_CHANNEL_1</Semaphore>
+            <Semaphore>channelSelected$IpInstance</Semaphore>
+        </Mode>
+        <Mode Name="IN2" UserName="IN2" UserNameCH="IN2">
+            <ModeLogicOperator Name="OR">
+                <Mode Name="IN2" UserName="IN2" UserNameCH="IN2">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="IN2"/>
+                    </SignalLogicalOp>
+                </Mode>
+            </ModeLogicOperator>
+            <Semaphore>$IpInstance_CHANNEL_2</Semaphore>
+            <Semaphore>channelSelected$IpInstance</Semaphore>
+        </Mode>
+        <Mode Name="IN3" UserName="IN3" UserNameCH="IN3">
+            <ModeLogicOperator Name="OR">
+                <Mode Name="IN3" UserName="IN3" UserNameCH="IN3">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="IN3"/>
+                    </SignalLogicalOp>
+                </Mode>
+            </ModeLogicOperator>
+            <Semaphore>$IpInstance_CHANNEL_3</Semaphore>
+            <Semaphore>channelSelected$IpInstance</Semaphore>
+        </Mode>
+        <Mode Name="IN4" UserName="IN4" UserNameCH="IN4">
+            <ModeLogicOperator Name="OR">
+                <Mode Name="IN4" UserName="IN4" UserNameCH="IN4">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="IN4"/>
+                    </SignalLogicalOp>
+                </Mode>
+            </ModeLogicOperator>
+            <Semaphore>$IpInstance_CHANNEL_4</Semaphore>
+            <Semaphore>channelSelected$IpInstance</Semaphore>
+        </Mode>
+        <Mode Name="IN5" UserName="IN5" UserNameCH="IN5">
+            <ModeLogicOperator Name="OR">
+                <Mode Name="IN5" UserName="IN5" UserNameCH="IN5">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="IN5"/>
+                    </SignalLogicalOp>
+                </Mode>
+            </ModeLogicOperator>
+            <Semaphore>$IpInstance_CHANNEL_5</Semaphore>
+            <Semaphore>channelSelected$IpInstance</Semaphore>
+        </Mode>
+        <Mode Name="IN6" UserName="IN6" UserNameCH="IN6">
+            <ModeLogicOperator Name="OR">
+                <Mode Name="IN6" UserName="IN6" UserNameCH="IN6">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="IN6"/>
+                    </SignalLogicalOp>
+                </Mode>
+            </ModeLogicOperator>
+            <Semaphore>$IpInstance_CHANNEL_6</Semaphore>
+            <Semaphore>channelSelected$IpInstance</Semaphore>
+        </Mode>
+        <Mode Name="IN7" UserName="IN7" UserNameCH="IN7">
+            <ModeLogicOperator Name="OR">
+                <Mode Name="IN7" UserName="IN7" UserNameCH="IN7">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="IN7"/>
+                    </SignalLogicalOp>
+                </Mode>
+            </ModeLogicOperator>
+            <Semaphore>$IpInstance_CHANNEL_7</Semaphore>
+            <Semaphore>channelSelected$IpInstance</Semaphore>
+        </Mode>
+        <Mode Name="IN8" UserName="IN8" UserNameCH="IN8">
+            <ModeLogicOperator Name="OR">
+                <Mode Name="IN8" UserName="IN8" UserNameCH="IN8">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="IN8"/>
+                    </SignalLogicalOp>
+                </Mode>
+            </ModeLogicOperator>
+            <Semaphore>$IpInstance_CHANNEL_8</Semaphore>
+            <Semaphore>channelSelected$IpInstance</Semaphore>
+        </Mode>
+        <Mode Name="IN9" UserName="IN9" UserNameCH="IN9">
+            <ModeLogicOperator Name="OR">
+                <Mode Name="IN9" UserName="IN9" UserNameCH="IN9">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="IN9"/>
+                    </SignalLogicalOp>
+                </Mode>
+            </ModeLogicOperator>
+            <Semaphore>$IpInstance_CHANNEL_9</Semaphore>
+            <Semaphore>channelSelected$IpInstance</Semaphore>
+        </Mode>
+        <Mode Name="IN10" UserName="IN10" UserNameCH="IN10">
+            <ModeLogicOperator Name="OR">
+                <Mode Name="IN10" UserName="IN10" UserNameCH="IN10">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="IN10"/>
+                    </SignalLogicalOp>
+                </Mode>
+            </ModeLogicOperator>
+            <Semaphore>$IpInstance_CHANNEL_10</Semaphore>
+            <Semaphore>channelSelected$IpInstance</Semaphore>
+        </Mode>
+        <Mode Name="IN11" UserName="IN11" UserNameCH="IN11">
+            <ModeLogicOperator Name="OR">
+                <Mode Name="IN11" UserName="IN11" UserNameCH="IN11">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="IN11"/>
+                    </SignalLogicalOp>
+                </Mode>
+            </ModeLogicOperator>
+            <Semaphore>$IpInstance_CHANNEL_11</Semaphore>
+            <Semaphore>channelSelected$IpInstance</Semaphore>
+        </Mode>
+        <Mode Name="IN12" UserName="IN12" UserNameCH="IN12">
+            <ModeLogicOperator Name="OR">
+                <Mode Name="IN12" UserName="IN12" UserNameCH="IN12">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="IN12"/>
+                    </SignalLogicalOp>
+                </Mode>
+            </ModeLogicOperator>
+            <Semaphore>$IpInstance_CHANNEL_12</Semaphore>
+            <Semaphore>channelSelected$IpInstance</Semaphore>
+        </Mode>
+        <Mode Name="IN13" UserName="IN13" UserNameCH="IN13">
+            <ModeLogicOperator Name="OR">
+                <Mode Name="IN13" UserName="IN13" UserNameCH="IN13">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="IN13"/>
+                    </SignalLogicalOp>
+                </Mode>
+            </ModeLogicOperator>
+            <Semaphore>$IpInstance_CHANNEL_13</Semaphore>
+            <Semaphore>channelSelected$IpInstance</Semaphore>
+        </Mode>
+        <Mode Name="IN14" UserName="IN14" UserNameCH="IN14">
+            <ModeLogicOperator Name="OR">
+                <Mode Name="IN14" UserName="IN14" UserNameCH="IN14">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="IN14"/>
+                    </SignalLogicalOp>
+                </Mode>
+            </ModeLogicOperator>
+            <Semaphore>$IpInstance_CHANNEL_14</Semaphore>
+            <Semaphore>channelSelected$IpInstance</Semaphore>
+        </Mode>
+        <Mode Name="IN15" UserName="IN15" UserNameCH="IN15">
+            <ModeLogicOperator Name="OR">
+                <Mode Name="IN15" UserName="IN15" UserNameCH="IN15">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="IN15"/>
+                    </SignalLogicalOp>
+                </Mode>
+            </ModeLogicOperator>
+            <Semaphore>$IpInstance_CHANNEL_15</Semaphore>
+            <Semaphore>channelSelected$IpInstance</Semaphore>
+        </Mode>
+		
+        <!-- Internal channels -->
+        <Mode Name="IN-TempSens" UserName="Temperature sensor Channel" UserNameCH="内部温度传感器通道">
+            <ModeLogicOperator Name="XOR">
+                <Mode Name="IN-TempSens" UserName="Temperature sensor Channel" UserNameCH="内部温度传感器通道">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="TempSens_Input"/>
+                    </SignalLogicalOp>
+                </Mode>
+            </ModeLogicOperator>
+            <Semaphore>$IpInstance_CHANNEL_16</Semaphore>
+            <Semaphore>channelSelected$IpInstance</Semaphore>
+        </Mode>
+        <Mode Name="VINTRV" UserName="VINTRV Channel" UserNameCH="内部参考电压通道">
+            <ModeLogicOperator Name="XOR">
+                <Mode Name="VINTRV" UserName="VINTRV Channel" UserNameCH="内部参考电压通道">
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="Vref_Input"/>
+                    </SignalLogicalOp>
+                </Mode>
+            </ModeLogicOperator>
+            <Semaphore>$IpInstance_CHANNEL_17</Semaphore>
+            <Semaphore>channelSelected$IpInstance</Semaphore>
+        </Mode>        
+		
+        <!-- Triggers Mode -->
+        <Mode Name="Preempted-Conversion-Trigger" UserName="EXINT Conversion Trigger" UserNameCH="EXINT触发">
+            <ModeLogicOperator Name="XOR">
+                <Mode Name="EXTI15-Preempted-Conversion-Trigger" UserName="Preempted Trigger by EXINT" UserNameCH="抢占组由EXINT触发">
+                    <Condition Expression="EXINT_15"
+                	  	                   Diagnostic="Need to activate &quot;EXINT15&quot; first"
+                    	                   DiagnosticCH="需先开启 &quot;EXINT15&quot;"/>
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="EXINT15"/>
+                    </SignalLogicalOp>
+                     <Semaphore>PreemptedExternalTrigger_$IpInstance</Semaphore>
+                </Mode>
+                <Mode Name="EXTI11-Ordinary-Conversion-Trigger" UserName="Ordinary Trigger by EXINT " UserNameCH="普通组由EXINT触发">
+                    <Condition Expression="EXINT_11"
+                	  	                   Diagnostic="Need to activate &quot;EXINT11&quot; first"
+                    	                   DiagnosticCH="需先开启 &quot;EXINT11&quot;"/>
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="EXINT11"/>
+                    </SignalLogicalOp>
+                    <Semaphore>OrdinaryExternalTrigger_$IpInstance</Semaphore>
+                </Mode>
+                <Mode Name="EXTI15-Preempted-EXTI11-Ordinary-Conversion-Trigger" UserName="Preempted and Ordinary Trigger by EXINT" UserNameCH="抢占和普通组均由EXINT触发">
+                    <Condition Expression="EXINT_11 &amp; EXINT_15"
+                	  	                   Diagnostic="Need to activate &quot;EXINT11&quot; and &quot;EXINT15&quot; first"
+                    	                   DiagnosticCH="需先开启 &quot;EXINT11&quot; 和 &quot;EXINT15&quot;"/>                   
+                    <SignalLogicalOp Name="AND">
+                        <Signal Name="EXINT15"/>
+                        <Signal Name="EXINT11"/>
+                    </SignalLogicalOp>
+                    <Semaphore>PreemptedExternalTrigger_$IpInstance</Semaphore>
+                    <Semaphore>OrdinaryExternalTrigger_$IpInstance</Semaphore>
+                </Mode>
+            </ModeLogicOperator>
+            <Condition Expression="channelSelected$IpInstance" Diagnostic="Available only if at least one channel is selected" DiagnosticCH="需至少选择一个通道"/>
+        </Mode>
+    </ModeLogicOperator>
+	
+    <RefSignal IOMode="Analog" Name="IN0"/>
+    <RefSignal IOMode="Analog" Name="IN1"/>
+    <RefSignal IOMode="Analog" Name="IN2"/>
+    <RefSignal IOMode="Analog" Name="IN3"/>
+    <RefSignal IOMode="Analog" Name="IN4"/>
+    <RefSignal IOMode="Analog" Name="IN5"/>
+    <RefSignal IOMode="Analog" Name="IN6"/>
+    <RefSignal IOMode="Analog" Name="IN7"/>
+    <RefSignal IOMode="Analog" Name="IN8"/>
+    <RefSignal IOMode="Analog" Name="IN9"/>
+    <RefSignal IOMode="Analog" Name="IN10"/>
+    <RefSignal IOMode="Analog" Name="IN11"/>
+    <RefSignal IOMode="Analog" Name="IN12"/>
+    <RefSignal IOMode="Analog" Name="IN13"/>
+    <RefSignal IOMode="Analog" Name="IN14"/>
+    <RefSignal IOMode="Analog" Name="IN15"/>
+    <RefSignal IOMode="Analog" Name="TempSens_Input" Virtual="true"/>
+    <RefSignal IOMode="Analog" Name="Vref_Input" Virtual="true"/>
+    <RefSignal IOMode="Input" Name="EXINT11" Virtual="true"/>
+    <RefSignal IOMode="Input" Name="EXINT15" Virtual="true"/>
+    <Semaphore>USE_$IpInstance</Semaphore>
+</IP>

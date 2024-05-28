@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+    <MCUInfo>
+        <MCUSerials>AT32F415</MCUSerials>
+        <MCUName>AT32F415CBT7</MCUName>
+        <MCUPackage>LQFP48</MCUPackage>
+    </MCUInfo>
+    <CRC>
+        <Mode>
+            <ModeSub name="CRC_State" value="TRUE"/>
+        </Mode>
+    </CRC>
+    <DEBUG>
+        <Mode>
+            <ModeSub name="Debug interface" value="SWD"/>
+        </Mode>
+    </DEBUG>
+    <ERTC>
+        <Mode>
+            <ModeSub name="ERTC_Enabled" value="TRUE"/>
+            <ModeSub name="ERTC_Calendar" value="TRUE"/>
+        </Mode>
+    </ERTC>
+    <EXINT>
+        <Mode>
+            <ModeSub name="EXINT1" value="TRUE"/>
+        </Mode>
+    </EXINT>
+    <I2C1>
+        <Mode>
+            <ModeSub name="I2C" value="I2C"/>
+        </Mode>
+        <Parameters>
+            <ParametersSub name="DualAddressMode" value="DISABLE"/>
+            <ParametersSub name="GeneralCallMode" value="FALSE"/>
+        </Parameters>
+    </I2C1>
+    <I2C2>
+        <Mode>
+            <ModeSub name="I2C" value="I2C"/>
+        </Mode>
+        <Parameters>
+            <ParametersSub name="DualAddressMode" value="DISABLE"/>
+            <ParametersSub name="GeneralCallMode" value="FALSE"/>
+        </Parameters>
+    </I2C2>
+    <SPI1>
+        <Mode>
+            <ModeSub name="Mode" value="Full_Duplex_Master"/>
+        </Mode>
+        <Parameters>
+            <ParametersSub name="TransmissionMode" value="SPI_TRANSMIT_FULL_DUPLEX"/>
+            <ParametersSub name="Mode" value="SPI_MODE_MASTER"/>
+            <ParametersSub name="FirstBit" value="SPI_FIRST_BIT_MSB"/>
+            <ParametersSub name="ClkDivision" value="SPI_MCLK_DIV_2"/>
+            <ParametersSub name="ClockFrequency" value="36000000"/>
+        </Parameters>
+    </SPI1>
+    <SPI2>
+        <Mode>
+            <ModeSub name="Mode" value="Full_Duplex_Master"/>
+        </Mode>
+        <Parameters>
+            <ParametersSub name="TransmissionMode" value="SPI_TRANSMIT_FULL_DUPLEX"/>
+            <ParametersSub name="Mode" value="SPI_MODE_MASTER"/>
+            <ParametersSub name="FirstBit" value="SPI_FIRST_BIT_MSB"/>
+            <ParametersSub name="ClkDivision" value="SPI_MCLK_DIV_8"/>
+            <ParametersSub name="ClockFrequency" value="9000000"/>
+        </Parameters>
+    </SPI2>
+    <TMR3>
+        <Mode>
+            <ModeSub name="Multi-Channels" value="Encoder_Mode"/>
+            <ModeSub name="Activated" value="TRUE"/>
+        </Mode>
+    </TMR3>
+    <USART1>
+        <Mode>
+            <ModeSub name="Mode" value="Asynchronous"/>
+        </Mode>
+    </USART1>
+    <USART2>
+        <Mode>
+            <ModeSub name="Mode" value="Asynchronous"/>
+        </Mode>
+    </USART2>
+    <USART3>
+        <Mode>
+            <ModeSub name="Mode" value="Asynchronous"/>
+        </Mode>
+    </USART3>
+    <USB_OTGFS1>
+        <Mode>
+            <ModeSub name="Mode" value="Host_Only"/>
+        </Mode>
+    </USB_OTGFS1>
+    <NVIC>
+        <ShowType>0</ShowType>
+        <SysTick_Handler>0;0;0</SysTick_Handler>
+        <TAMP_STAMP_IRQHandler>0;0;0</TAMP_STAMP_IRQHandler>
+        <ERTC_WKUP_IRQHandler>0;0;0</ERTC_WKUP_IRQHandler>
+        <FLASH_IRQHandler>0;0;0</FLASH_IRQHandler>
+        <CRM_IRQHandler>0;0;0</CRM_IRQHandler>
+        <EXINT1_IRQHandler>1;0;0</EXINT1_IRQHandler>
+        <TMR3_GLOBAL_IRQHandler>1;0;0</TMR3_GLOBAL_IRQHandler>
+        <I2C1_EVT_IRQHandler>1;0;0</I2C1_EVT_IRQHandler>
+        <I2C1_ERR_IRQHandler>1;0;0</I2C1_ERR_IRQHandler>
+        <I2C2_EVT_IRQHandler>1;0;0</I2C2_EVT_IRQHandler>
+        <I2C2_ERR_IRQHandler>1;0;0</I2C2_ERR_IRQHandler>
+        <SPI1_IRQHandler>1;0;0</SPI1_IRQHandler>
+        <SPI2_IRQHandler>1;0;0</SPI2_IRQHandler>
+        <USART1_IRQHandler>1;0;0</USART1_IRQHandler>
+        <USART2_IRQHandler>1;0;0</USART2_IRQHandler>
+        <USART3_IRQHandler>1;0;0</USART3_IRQHandler>
+        <ERTCAlarm_IRQHandler>0;0;0</ERTCAlarm_IRQHandler>
+        <OTGFS1_WKUP_IRQHandler>0;0;0</OTGFS1_WKUP_IRQHandler>
+        <OTGFS1_IRQHandler>0;0;0</OTGFS1_IRQHandler>
+    </NVIC>
+    <ClockConfiguration>
+        <rtcsel>0</rtcsel>
+        <hext>8.000000</hext>
+        <pllhextdiv>0</pllhextdiv>
+        <pllrcs>1</pllrcs>
+        <pllmode>0</pllmode>
+        <pllmult>36</pllmult>
+        <pllms>1</pllms>
+        <pllns>72</pllns>
+        <pllfr>4</pllfr>
+        <sclkselect>1</sclkselect>
+        <ahbdiv>1</ahbdiv>
+        <apb1div>2</apb1div>
+        <apb2div>2</apb2div>
+        <usbdiv>3.0</usbdiv>
+        <hicktosclk>0</hicktosclk>
+        <clkout>0</clkout>
+        <clkoutdiv>1</clkoutdiv>
+        <adcdiv>4</adcdiv>
+    </ClockConfiguration>
+    <PINInfo>
+        <PinSub pinname="PC13" signalname="GPIO_Output" signaltype="3"/>
+        <PinSub pinname="PA1" signalname="EXINT1" signaltype="3"/>
+        <PinSub pinname="PA2" signalname="USART2_TX" signaltype="2"/>
+        <PinSub pinname="PA3" signalname="USART2_RX" signaltype="2"/>
+        <PinSub pinname="PA4" signalname="GPIO_Input" signaltype="3"/>
+        <PinSub pinname="PA5" signalname="SPI1_SCK" signaltype="2"/>
+        <PinSub pinname="PA6" signalname="SPI1_MISO" signaltype="2"/>
+        <PinSub pinname="PA7" signalname="SPI1_MOSI" signaltype="2"/>
+        <PinSub pinname="PB10" signalname="USART3_TX" signaltype="2"/>
+        <PinSub pinname="PB11" signalname="USART3_RX" signaltype="2"/>
+        <PinSub pinname="PB13" signalname="SPI2_SCK" signaltype="2"/>
+        <PinSub pinname="PB14" signalname="SPI2_MISO" signaltype="2"/>
+        <PinSub pinname="PB15" signalname="SPI2_MOSI" signaltype="2"/>
+        <PinSub pinname="PA9" signalname="USART1_TX" signaltype="2"/>
+        <PinSub pinname="PA10" signalname="USART1_RX" signaltype="2"/>
+        <PinSub pinname="PA11" signalname="USB_OTGFS1_D-" signaltype="2"/>
+        <PinSub pinname="PA12" signalname="USB_OTGFS1_D+" signaltype="2"/>
+        <PinSub pinname="PA13" signalname="DEBUG_JTMS_SWDIO" signaltype="2"/>
+        <PinSub pinname="PF6" signalname="I2C2_SCL" signaltype="2"/>
+        <PinSub pinname="PF7" signalname="I2C2_SDA" signaltype="2"/>
+        <PinSub pinname="PA14" signalname="DEBUG_JTCK_SWCLK" signaltype="2"/>
+        <PinSub pinname="PB4" signalname="TMR3_CH1" signaltype="2"/>
+        <PinSub pinname="PB5" signalname="TMR3_CH2" signaltype="2"/>
+        <PinSub pinname="PB6" signalname="I2C1_SCL" signaltype="2"/>
+        <PinSub pinname="PB7" signalname="I2C1_SDA" signaltype="2"/>
+    </PINInfo>
+    <ProjectInfomation>
+        <ProjectName>F415</ProjectName>
+        <ProjectLocation>C:/Users/Admin/Desktop/AT32_Work_Bench_V1.0.08</ProjectLocation>
+        <ToolchainIDE>AT32_IDE</ToolchainIDE>
+        <KeepUserCode>true</KeepUserCode>
+        <MinHeapSize>0x200</MinHeapSize>
+        <MinStackSize>0x400</MinStackSize>
+        <UseFirmware>true</UseFirmware>
+        <PackageVersion></PackageVersion>
+    </ProjectInfomation>
+</Root>
