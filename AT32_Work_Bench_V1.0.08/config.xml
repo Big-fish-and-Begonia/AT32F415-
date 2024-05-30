@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Configuration>
+    <PackagePath>C:/Users/Admin/WorkBench/Repository/Package</PackagePath>
+    <ProjectLocation>C:/Users/Admin/Desktop/GIT储存库/AT32F415-</ProjectLocation>
+    <ToolchainIDE>MDK_V5</ToolchainIDE>
+</Configuration>
