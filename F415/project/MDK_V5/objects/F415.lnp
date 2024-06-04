@@ -2,6 +2,8 @@
 ".\objects\main.o"
 ".\objects\at32f415_wk_config.o"
 ".\objects\at32f415_int.o"
+".\objects\value.o"
+".\objects\delay.o"
 ".\objects\at32f415_crc.o"
 ".\objects\at32f415_crm.o"
 ".\objects\at32f415_debug.o"
@@ -16,9 +18,10 @@
 ".\objects\at32f415_tmr.o"
 ".\objects\at32f415_usart.o"
 ".\objects\at32f415_usb.o"
+".\objects\at32f415_dma.o"
 ".\objects\system_at32f415.o"
 ".\objects\startup_at32f415.o"
---strict --scatter ".\objects\F415.sct"
+--library_type=microlib --strict --scatter ".\objects\F415.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
 --list ".\listings\F415.map" -o .\objects\F415.axf

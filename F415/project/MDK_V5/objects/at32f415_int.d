@@ -14,6 +14,7 @@
 .\objects\at32f415_int.o: ..\..\libraries\cmsis\cm4\device_support\at32f415.h
 .\objects\at32f415_int.o: ..\..\libraries\drivers\inc\at32f415_crm.h
 .\objects\at32f415_int.o: ..\..\libraries\drivers\inc\at32f415_debug.h
+.\objects\at32f415_int.o: ..\..\libraries\drivers\inc\at32f415_dma.h
 .\objects\at32f415_int.o: ..\..\libraries\drivers\inc\at32f415_ertc.h
 .\objects\at32f415_int.o: ..\..\libraries\drivers\inc\at32f415_exint.h
 .\objects\at32f415_int.o: ..\..\libraries\drivers\inc\at32f415_flash.h
@@ -25,3 +26,5 @@
 .\objects\at32f415_int.o: ..\..\libraries\drivers\inc\at32f415_tmr.h
 .\objects\at32f415_int.o: ..\..\libraries\drivers\inc\at32f415_usart.h
 .\objects\at32f415_int.o: ..\..\libraries\drivers\inc\at32f415_usb.h
+.\objects\at32f415_int.o: ..\MDK_V5\value.h
+.\objects\at32f415_int.o: C:\Keil_v5\ARM\ARMV5\Bin\..\include\string.h

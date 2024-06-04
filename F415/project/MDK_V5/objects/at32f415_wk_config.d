@@ -14,6 +14,7 @@
 .\objects\at32f415_wk_config.o: ..\..\libraries\cmsis\cm4\device_support\at32f415.h
 .\objects\at32f415_wk_config.o: ..\..\libraries\drivers\inc\at32f415_crm.h
 .\objects\at32f415_wk_config.o: ..\..\libraries\drivers\inc\at32f415_debug.h
+.\objects\at32f415_wk_config.o: ..\..\libraries\drivers\inc\at32f415_dma.h
 .\objects\at32f415_wk_config.o: ..\..\libraries\drivers\inc\at32f415_ertc.h
 .\objects\at32f415_wk_config.o: ..\..\libraries\drivers\inc\at32f415_exint.h
 .\objects\at32f415_wk_config.o: ..\..\libraries\drivers\inc\at32f415_flash.h

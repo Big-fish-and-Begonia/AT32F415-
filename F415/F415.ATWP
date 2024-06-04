@@ -94,14 +94,54 @@
             <ModeSub name="Mode" value="Host_Only"/>
         </Mode>
     </USB_OTGFS1>
+    <DMA>
+        <SPI1_RX>
+            <ParametersSub name="Instance" value="DMA1_Channel5"/>
+        </SPI1_RX>
+        <SPI1_TX>
+            <ParametersSub name="Instance" value="DMA1_Channel6"/>
+        </SPI1_TX>
+        <SPI2_RX>
+            <ParametersSub name="Instance" value="DMA2_Channel2"/>
+        </SPI2_RX>
+        <SPI2_TX>
+            <ParametersSub name="Instance" value="DMA2_Channel3"/>
+        </SPI2_TX>
+        <USART1_RX>
+            <ParametersSub name="Instance" value="DMA1_Channel1"/>
+        </USART1_RX>
+        <USART2_RX>
+            <ParametersSub name="Instance" value="DMA1_Channel3"/>
+        </USART2_RX>
+        <USART2_TX>
+            <ParametersSub name="Instance" value="DMA1_Channel4"/>
+        </USART2_TX>
+        <USART3_RX>
+            <ParametersSub name="Instance" value="DMA1_Channel7"/>
+        </USART3_RX>
+        <USART3_TX>
+            <ParametersSub name="Instance" value="DMA2_Channel1"/>
+        </USART3_TX>
+        <I2C1_RX>
+            <ParametersSub name="Instance" value="DMA2_Channel4"/>
+        </I2C1_RX>
+        <I2C1_TX>
+            <ParametersSub name="Instance" value="DMA2_Channel5"/>
+        </I2C1_TX>
+    </DMA>
     <NVIC>
-        <ShowType>0</ShowType>
         <SysTick_Handler>0;0;0</SysTick_Handler>
         <TAMP_STAMP_IRQHandler>0;0;0</TAMP_STAMP_IRQHandler>
         <ERTC_WKUP_IRQHandler>0;0;0</ERTC_WKUP_IRQHandler>
         <FLASH_IRQHandler>0;0;0</FLASH_IRQHandler>
         <CRM_IRQHandler>0;0;0</CRM_IRQHandler>
         <EXINT1_IRQHandler>1;0;0</EXINT1_IRQHandler>
+        <DMA1_Channel1_IRQHandler>1;0;0</DMA1_Channel1_IRQHandler>
+        <DMA1_Channel3_IRQHandler>1;0;0</DMA1_Channel3_IRQHandler>
+        <DMA1_Channel4_IRQHandler>1;0;0</DMA1_Channel4_IRQHandler>
+        <DMA1_Channel5_IRQHandler>1;0;0</DMA1_Channel5_IRQHandler>
+        <DMA1_Channel6_IRQHandler>1;0;0</DMA1_Channel6_IRQHandler>
+        <DMA1_Channel7_IRQHandler>1;0;0</DMA1_Channel7_IRQHandler>
         <TMR3_GLOBAL_IRQHandler>1;0;0</TMR3_GLOBAL_IRQHandler>
         <I2C1_EVT_IRQHandler>1;0;0</I2C1_EVT_IRQHandler>
         <I2C1_ERR_IRQHandler>1;0;0</I2C1_ERR_IRQHandler>
@@ -114,6 +154,10 @@
         <USART3_IRQHandler>1;0;0</USART3_IRQHandler>
         <ERTCAlarm_IRQHandler>0;0;0</ERTCAlarm_IRQHandler>
         <OTGFS1_WKUP_IRQHandler>0;0;0</OTGFS1_WKUP_IRQHandler>
+        <DMA2_Channel1_IRQHandler>1;0;0</DMA2_Channel1_IRQHandler>
+        <DMA2_Channel2_IRQHandler>1;0;0</DMA2_Channel2_IRQHandler>
+        <DMA2_Channel3_IRQHandler>1;0;0</DMA2_Channel3_IRQHandler>
+        <DMA2_Channel4_5_IRQHandler>1;0;0</DMA2_Channel4_5_IRQHandler>
         <OTGFS1_IRQHandler>0;0;0</OTGFS1_IRQHandler>
     </NVIC>
     <ClockConfiguration>
@@ -137,7 +181,6 @@
         <adcdiv>4</adcdiv>
     </ClockConfiguration>
     <PINInfo>
-        <PinSub pinname="PC13" signalname="GPIO_Output" signaltype="3"/>
         <PinSub pinname="PA1" signalname="EXINT1" signaltype="3"/>
         <PinSub pinname="PA2" signalname="USART2_TX" signaltype="2"/>
         <PinSub pinname="PA3" signalname="USART2_RX" signaltype="2"/>
@@ -145,11 +188,16 @@
         <PinSub pinname="PA5" signalname="SPI1_SCK" signaltype="2"/>
         <PinSub pinname="PA6" signalname="SPI1_MISO" signaltype="2"/>
         <PinSub pinname="PA7" signalname="SPI1_MOSI" signaltype="2"/>
+        <PinSub pinname="PB0" signalname="GPIO_Output" signaltype="3"/>
+        <PinSub pinname="PB1" signalname="GPIO_Output" signaltype="3"/>
+        <PinSub pinname="PB2/BOOT1" signalname="GPIO_Output" signaltype="3"/>
         <PinSub pinname="PB10" signalname="USART3_TX" signaltype="2"/>
         <PinSub pinname="PB11" signalname="USART3_RX" signaltype="2"/>
+        <PinSub pinname="PB12" signalname="GPIO_Output" signaltype="3"/>
         <PinSub pinname="PB13" signalname="SPI2_SCK" signaltype="2"/>
         <PinSub pinname="PB14" signalname="SPI2_MISO" signaltype="2"/>
         <PinSub pinname="PB15" signalname="SPI2_MOSI" signaltype="2"/>
+        <PinSub pinname="PA8" signalname="GPIO_Output" signaltype="3"/>
         <PinSub pinname="PA9" signalname="USART1_TX" signaltype="2"/>
         <PinSub pinname="PA10" signalname="USART1_RX" signaltype="2"/>
         <PinSub pinname="PA11" signalname="USB_OTGFS1_D-" signaltype="2"/>
@@ -158,6 +206,8 @@
         <PinSub pinname="PF6" signalname="I2C2_SCL" signaltype="2"/>
         <PinSub pinname="PF7" signalname="I2C2_SDA" signaltype="2"/>
         <PinSub pinname="PA14" signalname="DEBUG_JTCK_SWCLK" signaltype="2"/>
+        <PinSub pinname="PA15" signalname="GPIO_Output" signaltype="3"/>
+        <PinSub pinname="PB3" signalname="GPIO_Output" signaltype="3"/>
         <PinSub pinname="PB4" signalname="TMR3_CH1" signaltype="2"/>
         <PinSub pinname="PB5" signalname="TMR3_CH2" signaltype="2"/>
         <PinSub pinname="PB6" signalname="I2C1_SCL" signaltype="2"/>

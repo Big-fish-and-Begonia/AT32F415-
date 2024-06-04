@@ -13,6 +13,7 @@
 .\objects\at32f415_i2c.o: ..\inc\at32f415_conf.h
 .\objects\at32f415_i2c.o: ..\..\libraries\drivers\inc\at32f415_crm.h
 .\objects\at32f415_i2c.o: ..\..\libraries\drivers\inc\at32f415_debug.h
+.\objects\at32f415_i2c.o: ..\..\libraries\drivers\inc\at32f415_dma.h
 .\objects\at32f415_i2c.o: ..\..\libraries\drivers\inc\at32f415_ertc.h
 .\objects\at32f415_i2c.o: ..\..\libraries\drivers\inc\at32f415_exint.h
 .\objects\at32f415_i2c.o: ..\..\libraries\drivers\inc\at32f415_flash.h

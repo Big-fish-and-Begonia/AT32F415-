@@ -57,52 +57,52 @@ extern "C" {
 
 /* add user code begin dma define */
 /* user can only modify the dma define value */
-//#define DMA1_CHANNEL1_BUFFER_SIZE   0
-//#define DMA1_CHANNEL1_MEMORY_BASE_ADDR   0
+#define DMA1_CHANNEL1_BUFFER_SIZE   512
+#define DMA1_CHANNEL1_MEMORY_BASE_ADDR   0
 //#define DMA1_CHANNEL1_PERIPHERAL_BASE_ADDR  0
 
 //#define DMA1_CHANNEL2_BUFFER_SIZE   0
 //#define DMA1_CHANNEL2_MEMORY_BASE_ADDR   0
 //#define DMA1_CHANNEL2_PERIPHERAL_BASE_ADDR   0
 
-//#define DMA1_CHANNEL3_BUFFER_SIZE   0
-//#define DMA1_CHANNEL3_MEMORY_BASE_ADDR   0
+#define DMA1_CHANNEL3_BUFFER_SIZE   0
+#define DMA1_CHANNEL3_MEMORY_BASE_ADDR   0
 //#define DMA1_CHANNEL3_PERIPHERAL_BASE_ADDR   0
 
-//#define DMA1_CHANNEL4_BUFFER_SIZE   0
-//#define DMA1_CHANNEL4_MEMORY_BASE_ADDR   0
+#define DMA1_CHANNEL4_BUFFER_SIZE   0
+#define DMA1_CHANNEL4_MEMORY_BASE_ADDR   0
 //#define DMA1_CHANNEL4_PERIPHERAL_BASE_ADDR   0
 
-//#define DMA1_CHANNEL5_BUFFER_SIZE   0
-//#define DMA1_CHANNEL5_MEMORY_BASE_ADDR   0
+#define DMA1_CHANNEL5_BUFFER_SIZE   0
+#define DMA1_CHANNEL5_MEMORY_BASE_ADDR   0
 //#define DMA1_CHANNEL5_PERIPHERAL_BASE_ADDR   0
 
-//#define DMA1_CHANNEL6_BUFFER_SIZE   0
-//#define DMA1_CHANNEL6_MEMORY_BASE_ADDR   0
+#define DMA1_CHANNEL6_BUFFER_SIZE   0
+#define DMA1_CHANNEL6_MEMORY_BASE_ADDR   0
 //#define DMA1_CHANNEL6_PERIPHERAL_BASE_ADDR   0
 
-//#define DMA1_CHANNEL7_BUFFER_SIZE   0
-//#define DMA1_CHANNEL7_MEMORY_BASE_ADDR   0
+#define DMA1_CHANNEL7_BUFFER_SIZE   0
+#define DMA1_CHANNEL7_MEMORY_BASE_ADDR   0
 //#define DMA1_CHANNEL7_PERIPHERAL_BASE_ADDR   0
 
-//#define DMA2_CHANNEL1_BUFFER_SIZE   0
-//#define DMA2_CHANNEL1_MEMORY_BASE_ADDR   0
+#define DMA2_CHANNEL1_BUFFER_SIZE   0
+#define DMA2_CHANNEL1_MEMORY_BASE_ADDR   0
 //#define DMA2_CHANNEL1_PERIPHERAL_BASE_ADDR   0
 
-//#define DMA2_CHANNEL2_BUFFER_SIZE   0
-//#define DMA2_CHANNEL2_MEMORY_BASE_ADDR   0
+#define DMA2_CHANNEL2_BUFFER_SIZE   0
+#define DMA2_CHANNEL2_MEMORY_BASE_ADDR   0
 //#define DMA2_CHANNEL2_PERIPHERAL_BASE_ADDR   0
 
-//#define DMA2_CHANNEL3_BUFFER_SIZE   0
-//#define DMA2_CHANNEL3_MEMORY_BASE_ADDR   0
+#define DMA2_CHANNEL3_BUFFER_SIZE   0
+#define DMA2_CHANNEL3_MEMORY_BASE_ADDR   0
 //#define DMA2_CHANNEL3_PERIPHERAL_BASE_ADDR   0
 
-//#define DMA2_CHANNEL4_BUFFER_SIZE   0
-//#define DMA2_CHANNEL4_MEMORY_BASE_ADDR   0
+#define DMA2_CHANNEL4_BUFFER_SIZE   0
+#define DMA2_CHANNEL4_MEMORY_BASE_ADDR   0
 //#define DMA2_CHANNEL4_PERIPHERAL_BASE_ADDR   0
 
-//#define DMA2_CHANNEL5_BUFFER_SIZE   0
-//#define DMA2_CHANNEL5_MEMORY_BASE_ADDR   0
+#define DMA2_CHANNEL5_BUFFER_SIZE   0
+#define DMA2_CHANNEL5_MEMORY_BASE_ADDR   0
 //#define DMA2_CHANNEL5_PERIPHERAL_BASE_ADDR   0
 
 //#define DMA2_CHANNEL6_BUFFER_SIZE   0
@@ -165,6 +165,43 @@ extern "C" {
 
   /* init crc function. */
   void wk_crc_init(void);
+
+  /* init dma1 channel1 */
+  void wk_dma1_channel1_init(void);
+
+  /* init dma1 channel3 */
+  void wk_dma1_channel3_init(void);
+
+  /* init dma1 channel4 */
+  void wk_dma1_channel4_init(void);
+
+  /* init dma1 channel5 */
+  void wk_dma1_channel5_init(void);
+
+  /* init dma1 channel6 */
+  void wk_dma1_channel6_init(void);
+
+  /* init dma1 channel7 */
+  void wk_dma1_channel7_init(void);
+
+  /* init dma2 channel1 */
+  void wk_dma2_channel1_init(void);
+
+  /* init dma2 channel2 */
+  void wk_dma2_channel2_init(void);
+
+  /* init dma2 channel3 */
+  void wk_dma2_channel3_init(void);
+
+  /* init dma2 channel4 */
+  void wk_dma2_channel4_init(void);
+
+  /* init dma2 channel5 */
+  void wk_dma2_channel5_init(void);
+
+  /* config dma channel transfer parameter */
+  /* user need to modify parameters memory_base_addr and buffer_size */
+  void wk_dma_channel_config(dma_channel_type* dmax_channely, uint32_t peripheral_base_addr, uint32_t memory_base_addr, uint16_t buffer_size);
 
 /* add user code begin exported functions */
 

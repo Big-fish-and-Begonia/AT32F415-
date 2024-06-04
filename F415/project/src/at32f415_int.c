@@ -29,7 +29,8 @@
 
 /* private includes ----------------------------------------------------------*/
 /* add user code begin private includes */
-
+#include "value.h"
+#include "string.h"
 /* add user code end private includes */
 
 /* private typedef -----------------------------------------------------------*/
@@ -220,6 +221,96 @@ void EXINT1_IRQHandler(void)
 }
 
 /**
+  * @brief  this function handles DMA1 Channel 1 handler.
+  * @param  none
+  * @retval none
+  */
+void DMA1_Channel1_IRQHandler(void)
+{
+  /* add user code begin DMA1_Channel1_IRQ 0 */
+
+  /* add user code end DMA1_Channel1_IRQ 0 */
+  /* add user code begin DMA1_Channel1_IRQ 1 */
+
+  /* add user code end DMA1_Channel1_IRQ 1 */
+}
+
+/**
+  * @brief  this function handles DMA1 Channel 3 handler.
+  * @param  none
+  * @retval none
+  */
+void DMA1_Channel3_IRQHandler(void)
+{
+  /* add user code begin DMA1_Channel3_IRQ 0 */
+
+  /* add user code end DMA1_Channel3_IRQ 0 */
+  /* add user code begin DMA1_Channel3_IRQ 1 */
+
+  /* add user code end DMA1_Channel3_IRQ 1 */
+}
+
+/**
+  * @brief  this function handles DMA1 Channel 4 handler.
+  * @param  none
+  * @retval none
+  */
+void DMA1_Channel4_IRQHandler(void)
+{
+  /* add user code begin DMA1_Channel4_IRQ 0 */
+
+  /* add user code end DMA1_Channel4_IRQ 0 */
+  /* add user code begin DMA1_Channel4_IRQ 1 */
+
+  /* add user code end DMA1_Channel4_IRQ 1 */
+}
+
+/**
+  * @brief  this function handles DMA1 Channel 5 handler.
+  * @param  none
+  * @retval none
+  */
+void DMA1_Channel5_IRQHandler(void)
+{
+  /* add user code begin DMA1_Channel5_IRQ 0 */
+
+  /* add user code end DMA1_Channel5_IRQ 0 */
+  /* add user code begin DMA1_Channel5_IRQ 1 */
+
+  /* add user code end DMA1_Channel5_IRQ 1 */
+}
+
+/**
+  * @brief  this function handles DMA1 Channel 6 handler.
+  * @param  none
+  * @retval none
+  */
+void DMA1_Channel6_IRQHandler(void)
+{
+  /* add user code begin DMA1_Channel6_IRQ 0 */
+
+  /* add user code end DMA1_Channel6_IRQ 0 */
+  /* add user code begin DMA1_Channel6_IRQ 1 */
+
+  /* add user code end DMA1_Channel6_IRQ 1 */
+}
+
+/**
+  * @brief  this function handles DMA1 Channel 7 handler.
+  * @param  none
+  * @retval none
+  */
+void DMA1_Channel7_IRQHandler(void)
+{
+  /* add user code begin DMA1_Channel7_IRQ 0 */
+
+  /* add user code end DMA1_Channel7_IRQ 0 */
+  /* add user code begin DMA1_Channel7_IRQ 1 */
+
+  /* add user code end DMA1_Channel7_IRQ 1 */
+}
+
+/**
   * @brief  this function handles TMR3 handler.
   * @param  none
   * @retval none
@@ -332,7 +423,17 @@ void SPI2_IRQHandler(void)
 void USART1_IRQHandler(void)
 {
   /* add user code begin USART1_IRQ 0 */
-
+	uint8_t clear;
+	if(usart_flag_get(USART1, USART_IDLEF_FLAG) != RESET)
+	{
+		clear=USART1->sts;                                              // USART1���������жϱ�־λ
+		clear=USART1->dt;												// USART1���������жϱ�־λ
+		clear&=0;
+		UART_1.Uartrxsta = 1; //�������ɱ�־λ
+		UART_1.USART_RX_LEN = 512 - dma_data_number_get(DMA1_CHANNEL1);
+		memcpy(debug_rx,UART_1.USART_RX_Buff,UART_1.USART_RX_LEN);
+		usart1dmarecv(UART_1.USART_RX_Buff,UART_1.USART_RX_LEN);
+	}
   /* add user code end USART1_IRQ 0 */
   /* add user code begin USART1_IRQ 1 */
 
@@ -367,6 +468,66 @@ void USART3_IRQHandler(void)
   /* add user code begin USART3_IRQ 1 */
 
   /* add user code end USART3_IRQ 1 */
+}
+
+/**
+  * @brief  this function handles DMA2 Channel 1 handler.
+  * @param  none
+  * @retval none
+  */
+void DMA2_Channel1_IRQHandler(void)
+{
+  /* add user code begin DMA2_Channel1_IRQ 0 */
+
+  /* add user code end DMA2_Channel1_IRQ 0 */
+  /* add user code begin DMA2_Channel1_IRQ 1 */
+
+  /* add user code end DMA2_Channel1_IRQ 1 */
+}
+
+/**
+  * @brief  this function handles DMA2 Channel 2 handler.
+  * @param  none
+  * @retval none
+  */
+void DMA2_Channel2_IRQHandler(void)
+{
+  /* add user code begin DMA2_Channel2_IRQ 0 */
+
+  /* add user code end DMA2_Channel2_IRQ 0 */
+  /* add user code begin DMA2_Channel2_IRQ 1 */
+
+  /* add user code end DMA2_Channel2_IRQ 1 */
+}
+
+/**
+  * @brief  this function handles DMA2 Channel 3 handler.
+  * @param  none
+  * @retval none
+  */
+void DMA2_Channel3_IRQHandler(void)
+{
+  /* add user code begin DMA2_Channel3_IRQ 0 */
+
+  /* add user code end DMA2_Channel3_IRQ 0 */
+  /* add user code begin DMA2_Channel3_IRQ 1 */
+
+  /* add user code end DMA2_Channel3_IRQ 1 */
+}
+
+/**
+  * @brief  this function handles DMA2 Channel4 & Channel5 handler.
+  * @param  none
+  * @retval none
+  */
+void DMA2_Channel4_5_IRQHandler(void)
+{
+  /* add user code begin DMA2_Channel4_5_IRQ 0 */
+
+  /* add user code end DMA2_Channel4_5_IRQ 0 */
+  /* add user code begin DMA2_Channel4_5_IRQ 1 */
+
+  /* add user code end DMA2_Channel4_5_IRQ 1 */
 }
 
 /* add user code begin 1 */

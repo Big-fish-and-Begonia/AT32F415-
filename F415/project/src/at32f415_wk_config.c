@@ -147,6 +147,12 @@ void wk_system_clock_config(void)
   */
 void wk_periph_clock_config(void)
 {
+  /* enable dma1 periph clock */
+  crm_periph_clock_enable(CRM_DMA1_PERIPH_CLOCK, TRUE);
+
+  /* enable dma2 periph clock */
+  crm_periph_clock_enable(CRM_DMA2_PERIPH_CLOCK, TRUE);
+
   /* enable crc periph clock */
   crm_periph_clock_enable(CRM_CRC_PERIPH_CLOCK, TRUE);
 
@@ -161,9 +167,6 @@ void wk_periph_clock_config(void)
 
   /* enable gpiob periph clock */
   crm_periph_clock_enable(CRM_GPIOB_PERIPH_CLOCK, TRUE);
-
-  /* enable gpioc periph clock */
-  crm_periph_clock_enable(CRM_GPIOC_PERIPH_CLOCK, TRUE);
 
   /* enable gpiof periph clock */
   crm_periph_clock_enable(CRM_GPIOF_PERIPH_CLOCK, TRUE);
@@ -217,6 +220,12 @@ void wk_nvic_config(void)
   nvic_priority_group_config(NVIC_PRIORITY_GROUP_4);
 
   nvic_irq_enable(EXINT1_IRQn, 0, 0);
+  nvic_irq_enable(DMA1_Channel1_IRQn, 0, 0);
+  nvic_irq_enable(DMA1_Channel3_IRQn, 0, 0);
+  nvic_irq_enable(DMA1_Channel4_IRQn, 0, 0);
+  nvic_irq_enable(DMA1_Channel5_IRQn, 0, 0);
+  nvic_irq_enable(DMA1_Channel6_IRQn, 0, 0);
+  nvic_irq_enable(DMA1_Channel7_IRQn, 0, 0);
   nvic_irq_enable(TMR3_GLOBAL_IRQn, 0, 0);
   nvic_irq_enable(I2C1_EVT_IRQn, 0, 0);
   nvic_irq_enable(I2C1_ERR_IRQn, 0, 0);
@@ -227,6 +236,10 @@ void wk_nvic_config(void)
   nvic_irq_enable(USART1_IRQn, 0, 0);
   nvic_irq_enable(USART2_IRQn, 0, 0);
   nvic_irq_enable(USART3_IRQn, 0, 0);
+  nvic_irq_enable(DMA2_Channel1_IRQn, 0, 0);
+  nvic_irq_enable(DMA2_Channel2_IRQn, 0, 0);
+  nvic_irq_enable(DMA2_Channel3_IRQn, 0, 0);
+  nvic_irq_enable(DMA2_Channel4_5_IRQn, 0, 0);
 }
 
 /**
@@ -254,14 +267,22 @@ void wk_gpio_config(void)
   gpio_init(GPIOA, &gpio_init_struct);
 
   /* gpio output config */
-  gpio_bits_reset(GPIOC, GPIO_PINS_13);
+  gpio_bits_reset(GPIOB, GPIO_PINS_0 | GPIO_PINS_1 | GPIO_PINS_2 | GPIO_PINS_12 | GPIO_PINS_3);
+  gpio_bits_reset(GPIOA, GPIO_PINS_8 | GPIO_PINS_15);
 
   gpio_init_struct.gpio_drive_strength = GPIO_DRIVE_STRENGTH_MODERATE;
   gpio_init_struct.gpio_out_type = GPIO_OUTPUT_PUSH_PULL;
   gpio_init_struct.gpio_mode = GPIO_MODE_OUTPUT;
-  gpio_init_struct.gpio_pins = GPIO_PINS_13;
+  gpio_init_struct.gpio_pins = GPIO_PINS_0 | GPIO_PINS_1 | GPIO_PINS_2 | GPIO_PINS_12 | GPIO_PINS_3;
   gpio_init_struct.gpio_pull = GPIO_PULL_NONE;
-  gpio_init(GPIOC, &gpio_init_struct);
+  gpio_init(GPIOB, &gpio_init_struct);
+
+  gpio_init_struct.gpio_drive_strength = GPIO_DRIVE_STRENGTH_MODERATE;
+  gpio_init_struct.gpio_out_type = GPIO_OUTPUT_PUSH_PULL;
+  gpio_init_struct.gpio_mode = GPIO_MODE_OUTPUT;
+  gpio_init_struct.gpio_pins = GPIO_PINS_8 | GPIO_PINS_15;
+  gpio_init_struct.gpio_pull = GPIO_PULL_NONE;
+  gpio_init(GPIOA, &gpio_init_struct);
 
   /* add user code begin gpio_config 2 */
 
@@ -388,6 +409,8 @@ void wk_i2c1_init(void)
   i2c_ack_enable(I2C1, TRUE);
   i2c_clock_stretch_enable(I2C1, TRUE);
   i2c_general_call_enable(I2C1, FALSE);
+
+  i2c_dma_enable(I2C1, TRUE);
 
   /**
    * Users need to configure I2C1 interrupt functions according to the actual application.
@@ -520,6 +543,10 @@ void wk_spi1_init(void)
   spi_init_struct.cs_mode_selection = SPI_CS_SOFTWARE_MODE;
   spi_init(SPI1, &spi_init_struct);
 
+  spi_i2s_dma_transmitter_enable(SPI1, TRUE);
+
+  spi_i2s_dma_receiver_enable(SPI1, TRUE);
+
   /**
    * Users need to configure SPI1 interrupt functions according to the actual application.
    * 1. Call the below function to enable the corresponding SPI1 interrupt.
@@ -591,6 +618,10 @@ void wk_spi2_init(void)
   spi_init_struct.cs_mode_selection = SPI_CS_SOFTWARE_MODE;
   spi_init(SPI2, &spi_init_struct);
 
+  spi_i2s_dma_transmitter_enable(SPI2, TRUE);
+
+  spi_i2s_dma_receiver_enable(SPI2, TRUE);
+
   /**
    * Users need to configure SPI2 interrupt functions according to the actual application.
    * 1. Call the below function to enable the corresponding SPI2 interrupt.
@@ -646,6 +677,8 @@ void wk_usart1_init(void)
   usart_receiver_enable(USART1, TRUE);
   usart_parity_selection_config(USART1, USART_PARITY_NONE);
 
+  usart_dma_receiver_enable(USART1, TRUE);
+
   usart_hardware_flow_control_set(USART1, USART_HARDWARE_FLOW_NONE);
 
   /**
@@ -659,6 +692,10 @@ void wk_usart1_init(void)
   usart_enable(USART1, TRUE);
 
   /* add user code begin usart1_init 2 */
+	usart_enable(USART1, FALSE);
+	usart_interrupt_enable(USART1, USART_IDLE_INT, TRUE);
+	usart_enable(USART1, TRUE);
+
 
   /* add user code end usart1_init 2 */
 }
@@ -703,6 +740,10 @@ void wk_usart2_init(void)
   usart_receiver_enable(USART2, TRUE);
   usart_parity_selection_config(USART2, USART_PARITY_NONE);
 
+  usart_dma_transmitter_enable(USART2, TRUE);
+
+  usart_dma_receiver_enable(USART2, TRUE);
+
   usart_hardware_flow_control_set(USART2, USART_HARDWARE_FLOW_NONE);
 
   /**
@@ -716,7 +757,9 @@ void wk_usart2_init(void)
   usart_enable(USART2, TRUE);
 
   /* add user code begin usart2_init 2 */
-
+	usart_enable(USART2, FALSE);
+	usart_interrupt_enable(USART2, USART_IDLE_INT, TRUE);
+	usart_enable(USART2, TRUE);
   /* add user code end usart2_init 2 */
 }
 
@@ -760,6 +803,10 @@ void wk_usart3_init(void)
   usart_receiver_enable(USART3, TRUE);
   usart_parity_selection_config(USART3, USART_PARITY_NONE);
 
+  usart_dma_transmitter_enable(USART3, TRUE);
+
+  usart_dma_receiver_enable(USART3, TRUE);
+
   usart_hardware_flow_control_set(USART3, USART_HARDWARE_FLOW_NONE);
 
   /**
@@ -773,7 +820,9 @@ void wk_usart3_init(void)
   usart_enable(USART3, TRUE);
 
   /* add user code begin usart3_init 2 */
-
+	usart_enable(USART3, FALSE);
+	usart_interrupt_enable(USART3, USART_IDLE_INT, TRUE);
+	usart_enable(USART3, TRUE);
   /* add user code end usart3_init 2 */
 }
 
@@ -900,6 +949,444 @@ void wk_crc_init(void)
   /* add user code begin crc_init 1 */
 
   /* add user code end crc_init 1 */
+}
+
+/**
+  * @brief  init dma1 channel1 for "usart1_rx"
+  * @param  none
+  * @retval none
+  */
+void wk_dma1_channel1_init(void)
+{
+  /* add user code begin dma1_channel1 0 */
+
+  /* add user code end dma1_channel1 0 */
+
+  dma_init_type dma_init_struct;
+
+  dma_reset(DMA1_CHANNEL1);
+  dma_default_para_init(&dma_init_struct);
+  dma_init_struct.direction = DMA_DIR_PERIPHERAL_TO_MEMORY;
+  dma_init_struct.memory_data_width = DMA_MEMORY_DATA_WIDTH_BYTE;
+  dma_init_struct.memory_inc_enable = TRUE;
+  dma_init_struct.peripheral_data_width = DMA_PERIPHERAL_DATA_WIDTH_BYTE;
+  dma_init_struct.peripheral_inc_enable = FALSE;
+  dma_init_struct.priority = DMA_PRIORITY_LOW;
+  dma_init_struct.loop_mode_enable = FALSE;
+  dma_init(DMA1_CHANNEL1, &dma_init_struct);
+	
+  /* flexible function enable */
+  dma_flexible_config(DMA1, FLEX_CHANNEL1, DMA_FLEXIBLE_UART1_RX);
+  /**
+   * Users need to configure DMA1 interrupt functions according to the actual application.
+   * 1. Call the below function to enable the corresponding DMA1 interrupt.
+   *     --dma_interrupt_enable(...)
+   * 2. Add the user's interrupt handler code into the below function in the at32f415_int.c file.
+   *     --void DMA1_Channel1_IRQHandler(void)
+   */ 
+  /* add user code begin dma1_channel1 1 */
+
+  /* add user code end dma1_channel1 1 */
+}
+
+/**
+  * @brief  init dma1 channel3 for "usart2_rx"
+  * @param  none
+  * @retval none
+  */
+void wk_dma1_channel3_init(void)
+{
+  /* add user code begin dma1_channel3 0 */
+
+  /* add user code end dma1_channel3 0 */
+
+  dma_init_type dma_init_struct;
+
+  dma_reset(DMA1_CHANNEL3);
+  dma_default_para_init(&dma_init_struct);
+  dma_init_struct.direction = DMA_DIR_PERIPHERAL_TO_MEMORY;
+  dma_init_struct.memory_data_width = DMA_MEMORY_DATA_WIDTH_BYTE;
+  dma_init_struct.memory_inc_enable = TRUE;
+  dma_init_struct.peripheral_data_width = DMA_PERIPHERAL_DATA_WIDTH_BYTE;
+  dma_init_struct.peripheral_inc_enable = FALSE;
+  dma_init_struct.priority = DMA_PRIORITY_LOW;
+  dma_init_struct.loop_mode_enable = FALSE;
+  dma_init(DMA1_CHANNEL3, &dma_init_struct);
+	
+  /* flexible function enable */
+  dma_flexible_config(DMA1, FLEX_CHANNEL3, DMA_FLEXIBLE_UART2_RX);
+  /**
+   * Users need to configure DMA1 interrupt functions according to the actual application.
+   * 1. Call the below function to enable the corresponding DMA1 interrupt.
+   *     --dma_interrupt_enable(...)
+   * 2. Add the user's interrupt handler code into the below function in the at32f415_int.c file.
+   *     --void DMA1_Channel3_IRQHandler(void)
+   */ 
+  /* add user code begin dma1_channel3 1 */
+
+  /* add user code end dma1_channel3 1 */
+}
+
+/**
+  * @brief  init dma1 channel4 for "usart2_tx"
+  * @param  none
+  * @retval none
+  */
+void wk_dma1_channel4_init(void)
+{
+  /* add user code begin dma1_channel4 0 */
+
+  /* add user code end dma1_channel4 0 */
+
+  dma_init_type dma_init_struct;
+
+  dma_reset(DMA1_CHANNEL4);
+  dma_default_para_init(&dma_init_struct);
+  dma_init_struct.direction = DMA_DIR_MEMORY_TO_PERIPHERAL;
+  dma_init_struct.memory_data_width = DMA_MEMORY_DATA_WIDTH_BYTE;
+  dma_init_struct.memory_inc_enable = TRUE;
+  dma_init_struct.peripheral_data_width = DMA_PERIPHERAL_DATA_WIDTH_BYTE;
+  dma_init_struct.peripheral_inc_enable = FALSE;
+  dma_init_struct.priority = DMA_PRIORITY_LOW;
+  dma_init_struct.loop_mode_enable = FALSE;
+  dma_init(DMA1_CHANNEL4, &dma_init_struct);
+	
+  /* flexible function enable */
+  dma_flexible_config(DMA1, FLEX_CHANNEL4, DMA_FLEXIBLE_UART2_TX);
+  /**
+   * Users need to configure DMA1 interrupt functions according to the actual application.
+   * 1. Call the below function to enable the corresponding DMA1 interrupt.
+   *     --dma_interrupt_enable(...)
+   * 2. Add the user's interrupt handler code into the below function in the at32f415_int.c file.
+   *     --void DMA1_Channel4_IRQHandler(void)
+   */ 
+  /* add user code begin dma1_channel4 1 */
+
+  /* add user code end dma1_channel4 1 */
+}
+
+/**
+  * @brief  init dma1 channel5 for "spi1_rx"
+  * @param  none
+  * @retval none
+  */
+void wk_dma1_channel5_init(void)
+{
+  /* add user code begin dma1_channel5 0 */
+
+  /* add user code end dma1_channel5 0 */
+
+  dma_init_type dma_init_struct;
+
+  dma_reset(DMA1_CHANNEL5);
+  dma_default_para_init(&dma_init_struct);
+  dma_init_struct.direction = DMA_DIR_PERIPHERAL_TO_MEMORY;
+  dma_init_struct.memory_data_width = DMA_MEMORY_DATA_WIDTH_BYTE;
+  dma_init_struct.memory_inc_enable = TRUE;
+  dma_init_struct.peripheral_data_width = DMA_PERIPHERAL_DATA_WIDTH_BYTE;
+  dma_init_struct.peripheral_inc_enable = FALSE;
+  dma_init_struct.priority = DMA_PRIORITY_LOW;
+  dma_init_struct.loop_mode_enable = FALSE;
+  dma_init(DMA1_CHANNEL5, &dma_init_struct);
+	
+  /* flexible function enable */
+  dma_flexible_config(DMA1, FLEX_CHANNEL5, DMA_FLEXIBLE_SPI1_RX);
+  /**
+   * Users need to configure DMA1 interrupt functions according to the actual application.
+   * 1. Call the below function to enable the corresponding DMA1 interrupt.
+   *     --dma_interrupt_enable(...)
+   * 2. Add the user's interrupt handler code into the below function in the at32f415_int.c file.
+   *     --void DMA1_Channel5_IRQHandler(void)
+   */ 
+  /* add user code begin dma1_channel5 1 */
+
+  /* add user code end dma1_channel5 1 */
+}
+
+/**
+  * @brief  init dma1 channel6 for "spi1_tx"
+  * @param  none
+  * @retval none
+  */
+void wk_dma1_channel6_init(void)
+{
+  /* add user code begin dma1_channel6 0 */
+
+  /* add user code end dma1_channel6 0 */
+
+  dma_init_type dma_init_struct;
+
+  dma_reset(DMA1_CHANNEL6);
+  dma_default_para_init(&dma_init_struct);
+  dma_init_struct.direction = DMA_DIR_MEMORY_TO_PERIPHERAL;
+  dma_init_struct.memory_data_width = DMA_MEMORY_DATA_WIDTH_BYTE;
+  dma_init_struct.memory_inc_enable = TRUE;
+  dma_init_struct.peripheral_data_width = DMA_PERIPHERAL_DATA_WIDTH_BYTE;
+  dma_init_struct.peripheral_inc_enable = FALSE;
+  dma_init_struct.priority = DMA_PRIORITY_LOW;
+  dma_init_struct.loop_mode_enable = FALSE;
+  dma_init(DMA1_CHANNEL6, &dma_init_struct);
+	
+  /* flexible function enable */
+  dma_flexible_config(DMA1, FLEX_CHANNEL6, DMA_FLEXIBLE_SPI1_TX);
+  /**
+   * Users need to configure DMA1 interrupt functions according to the actual application.
+   * 1. Call the below function to enable the corresponding DMA1 interrupt.
+   *     --dma_interrupt_enable(...)
+   * 2. Add the user's interrupt handler code into the below function in the at32f415_int.c file.
+   *     --void DMA1_Channel6_IRQHandler(void)
+   */ 
+  /* add user code begin dma1_channel6 1 */
+
+  /* add user code end dma1_channel6 1 */
+}
+
+/**
+  * @brief  init dma1 channel7 for "usart3_rx"
+  * @param  none
+  * @retval none
+  */
+void wk_dma1_channel7_init(void)
+{
+  /* add user code begin dma1_channel7 0 */
+
+  /* add user code end dma1_channel7 0 */
+
+  dma_init_type dma_init_struct;
+
+  dma_reset(DMA1_CHANNEL7);
+  dma_default_para_init(&dma_init_struct);
+  dma_init_struct.direction = DMA_DIR_PERIPHERAL_TO_MEMORY;
+  dma_init_struct.memory_data_width = DMA_MEMORY_DATA_WIDTH_BYTE;
+  dma_init_struct.memory_inc_enable = TRUE;
+  dma_init_struct.peripheral_data_width = DMA_PERIPHERAL_DATA_WIDTH_BYTE;
+  dma_init_struct.peripheral_inc_enable = FALSE;
+  dma_init_struct.priority = DMA_PRIORITY_LOW;
+  dma_init_struct.loop_mode_enable = FALSE;
+  dma_init(DMA1_CHANNEL7, &dma_init_struct);
+	
+  /* flexible function enable */
+  dma_flexible_config(DMA1, FLEX_CHANNEL7, DMA_FLEXIBLE_UART3_RX);
+  /**
+   * Users need to configure DMA1 interrupt functions according to the actual application.
+   * 1. Call the below function to enable the corresponding DMA1 interrupt.
+   *     --dma_interrupt_enable(...)
+   * 2. Add the user's interrupt handler code into the below function in the at32f415_int.c file.
+   *     --void DMA1_Channel7_IRQHandler(void)
+   */ 
+  /* add user code begin dma1_channel7 1 */
+
+  /* add user code end dma1_channel7 1 */
+}
+
+/**
+  * @brief  init dma2 channel1 for "usart3_tx"
+  * @param  none
+  * @retval none
+  */
+void wk_dma2_channel1_init(void)
+{
+  /* add user code begin dma2_channel1 0 */
+
+  /* add user code end dma2_channel1 0 */
+
+  dma_init_type dma_init_struct;
+
+  dma_reset(DMA2_CHANNEL1);
+  dma_default_para_init(&dma_init_struct);
+  dma_init_struct.direction = DMA_DIR_MEMORY_TO_PERIPHERAL;
+  dma_init_struct.memory_data_width = DMA_MEMORY_DATA_WIDTH_BYTE;
+  dma_init_struct.memory_inc_enable = TRUE;
+  dma_init_struct.peripheral_data_width = DMA_PERIPHERAL_DATA_WIDTH_BYTE;
+  dma_init_struct.peripheral_inc_enable = FALSE;
+  dma_init_struct.priority = DMA_PRIORITY_LOW;
+  dma_init_struct.loop_mode_enable = FALSE;
+  dma_init(DMA2_CHANNEL1, &dma_init_struct);
+	
+  /* flexible function enable */
+  dma_flexible_config(DMA2, FLEX_CHANNEL1, DMA_FLEXIBLE_UART3_TX);
+  /**
+   * Users need to configure DMA2 interrupt functions according to the actual application.
+   * 1. Call the below function to enable the corresponding DMA2 interrupt.
+   *     --dma_interrupt_enable(...)
+   * 2. Add the user's interrupt handler code into the below function in the at32f415_int.c file.
+   *     --void DMA2_Channel1_IRQHandler(void)
+   */ 
+  /* add user code begin dma2_channel1 1 */
+
+  /* add user code end dma2_channel1 1 */
+}
+
+/**
+  * @brief  init dma2 channel2 for "spi2_rx"
+  * @param  none
+  * @retval none
+  */
+void wk_dma2_channel2_init(void)
+{
+  /* add user code begin dma2_channel2 0 */
+
+  /* add user code end dma2_channel2 0 */
+
+  dma_init_type dma_init_struct;
+
+  dma_reset(DMA2_CHANNEL2);
+  dma_default_para_init(&dma_init_struct);
+  dma_init_struct.direction = DMA_DIR_PERIPHERAL_TO_MEMORY;
+  dma_init_struct.memory_data_width = DMA_MEMORY_DATA_WIDTH_BYTE;
+  dma_init_struct.memory_inc_enable = TRUE;
+  dma_init_struct.peripheral_data_width = DMA_PERIPHERAL_DATA_WIDTH_BYTE;
+  dma_init_struct.peripheral_inc_enable = FALSE;
+  dma_init_struct.priority = DMA_PRIORITY_LOW;
+  dma_init_struct.loop_mode_enable = FALSE;
+  dma_init(DMA2_CHANNEL2, &dma_init_struct);
+	
+  /* flexible function enable */
+  dma_flexible_config(DMA2, FLEX_CHANNEL2, DMA_FLEXIBLE_SPI2_RX);
+  /**
+   * Users need to configure DMA2 interrupt functions according to the actual application.
+   * 1. Call the below function to enable the corresponding DMA2 interrupt.
+   *     --dma_interrupt_enable(...)
+   * 2. Add the user's interrupt handler code into the below function in the at32f415_int.c file.
+   *     --void DMA2_Channel2_IRQHandler(void)
+   */ 
+  /* add user code begin dma2_channel2 1 */
+
+  /* add user code end dma2_channel2 1*/
+}
+
+/**
+  * @brief  init dma2 channel3 for "spi2_tx"
+  * @param  none
+  * @retval none
+  */
+void wk_dma2_channel3_init(void)
+{
+  /* add user code begin dma2_channel3 0 */
+
+  /* add user code end dma2_channel3 0 */
+
+  dma_init_type dma_init_struct;
+
+  dma_reset(DMA2_CHANNEL3);
+  dma_default_para_init(&dma_init_struct);
+  dma_init_struct.direction = DMA_DIR_MEMORY_TO_PERIPHERAL;
+  dma_init_struct.memory_data_width = DMA_MEMORY_DATA_WIDTH_BYTE;
+  dma_init_struct.memory_inc_enable = TRUE;
+  dma_init_struct.peripheral_data_width = DMA_PERIPHERAL_DATA_WIDTH_BYTE;
+  dma_init_struct.peripheral_inc_enable = FALSE;
+  dma_init_struct.priority = DMA_PRIORITY_LOW;
+  dma_init_struct.loop_mode_enable = FALSE;
+  dma_init(DMA2_CHANNEL3, &dma_init_struct);
+	
+  /* flexible function enable */
+  dma_flexible_config(DMA2, FLEX_CHANNEL3, DMA_FLEXIBLE_SPI2_TX);
+  /**
+   * Users need to configure DMA2 interrupt functions according to the actual application.
+   * 1. Call the below function to enable the corresponding DMA2 interrupt.
+   *     --dma_interrupt_enable(...)
+   * 2. Add the user's interrupt handler code into the below function in the at32f415_int.c file.
+   *     --void DMA2_Channel3_IRQHandler(void)
+   */ 
+  /* add user code begin dma2_channel3 1 */
+
+  /* add user code end dma2_channel3 1 */
+}
+
+/**
+  * @brief  init dma2 channel4 for "i2c1_rx"
+  * @param  none
+  * @retval none
+  */
+void wk_dma2_channel4_init(void)
+{
+  /* add user code begin dma2_channel4 0 */
+
+  /* add user code end dma2_channel4 0 */
+
+  dma_init_type dma_init_struct;
+
+  dma_reset(DMA2_CHANNEL4);
+  dma_default_para_init(&dma_init_struct);
+  dma_init_struct.direction = DMA_DIR_PERIPHERAL_TO_MEMORY;
+  dma_init_struct.memory_data_width = DMA_MEMORY_DATA_WIDTH_BYTE;
+  dma_init_struct.memory_inc_enable = TRUE;
+  dma_init_struct.peripheral_data_width = DMA_PERIPHERAL_DATA_WIDTH_BYTE;
+  dma_init_struct.peripheral_inc_enable = FALSE;
+  dma_init_struct.priority = DMA_PRIORITY_LOW;
+  dma_init_struct.loop_mode_enable = FALSE;
+  dma_init(DMA2_CHANNEL4, &dma_init_struct);
+	
+  /* flexible function enable */
+  dma_flexible_config(DMA2, FLEX_CHANNEL4, DMA_FLEXIBLE_I2C1_RX);
+  /**
+   * Users need to configure DMA2 interrupt functions according to the actual application.
+   * 1. Call the below function to enable the corresponding DMA2 interrupt.
+   *     --dma_interrupt_enable(...)
+   * 2. Add the user's interrupt handler code into the below function in the at32f415_int.c file.
+   *     --void DMA2_Channel4_IRQHandler(void)
+   */ 
+  /* add user code begin dma2_channel4 1 */
+
+  /* add user code end dma2_channel4 1 */
+}
+
+/**
+  * @brief  init dma2 channel5 for "i2c1_tx"
+  * @param  none
+  * @retval none
+  */
+void wk_dma2_channel5_init(void)
+{
+  /* add user code begin dma2_channel5 0 */
+
+  /* add user code end dma2_channel5 0 */
+
+  dma_init_type dma_init_struct;
+
+  dma_reset(DMA2_CHANNEL5);
+  dma_default_para_init(&dma_init_struct);
+  dma_init_struct.direction = DMA_DIR_MEMORY_TO_PERIPHERAL;
+  dma_init_struct.memory_data_width = DMA_MEMORY_DATA_WIDTH_BYTE;
+  dma_init_struct.memory_inc_enable = TRUE;
+  dma_init_struct.peripheral_data_width = DMA_PERIPHERAL_DATA_WIDTH_BYTE;
+  dma_init_struct.peripheral_inc_enable = FALSE;
+  dma_init_struct.priority = DMA_PRIORITY_LOW;
+  dma_init_struct.loop_mode_enable = FALSE;
+  dma_init(DMA2_CHANNEL5, &dma_init_struct);
+	
+  /* flexible function enable */
+  dma_flexible_config(DMA2, FLEX_CHANNEL5, DMA_FLEXIBLE_I2C1_TX);
+  /**
+   * Users need to configure DMA2 interrupt functions according to the actual application.
+   * 1. Call the below function to enable the corresponding DMA2 interrupt.
+   *     --dma_interrupt_enable(...)
+   * 2. Add the user's interrupt handler code into the below function in the at32f415_int.c file.
+   *     --void DMA2_Channel5_IRQHandler(void)
+   */ 
+  /* add user code begin dma2_channel5 1 */
+
+  /* add user code end dma2_channel5 1 */
+}
+
+/**
+  * @brief  config dma channel transfer parameter
+  * @param  none
+  * @retval none
+  */
+void wk_dma_channel_config(dma_channel_type* dmax_channely, uint32_t peripheral_base_addr, uint32_t memory_base_addr, uint16_t buffer_size)
+{
+  /* add user code begin dma_channel_config 0 */
+
+  /* add user code end dma_channel_config 0 */
+
+  dmax_channely->dtcnt = buffer_size;
+  dmax_channely->paddr = peripheral_base_addr;
+  dmax_channely->maddr = memory_base_addr;
+
+  /* add user code begin dma_channel_config 1 */
+
+  /* add user code end dma_channel_config 1 */
 }
 
 /* add user code begin 1 */

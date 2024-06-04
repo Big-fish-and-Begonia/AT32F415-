@@ -13,6 +13,7 @@
 .\objects\system_at32f415.o: ..\..\libraries\cmsis\cm4\device_support\at32f415.h
 .\objects\system_at32f415.o: ..\..\libraries\drivers\inc\at32f415_crm.h
 .\objects\system_at32f415.o: ..\..\libraries\drivers\inc\at32f415_debug.h
+.\objects\system_at32f415.o: ..\..\libraries\drivers\inc\at32f415_dma.h
 .\objects\system_at32f415.o: ..\..\libraries\drivers\inc\at32f415_ertc.h
 .\objects\system_at32f415.o: ..\..\libraries\drivers\inc\at32f415_exint.h
 .\objects\system_at32f415.o: ..\..\libraries\drivers\inc\at32f415_flash.h
