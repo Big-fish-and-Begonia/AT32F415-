@@ -71,7 +71,7 @@ PUTCHAR_PROTOTYPE
 
 /* private variables ---------------------------------------------------------*/
 /* add user code begin private variables */
-uint32_t debugsdsdd = 0;
+float debugsdsdd = 0;
 /* add user code end private variables */
 
 /* private function prototypes --------------------------------------------*/
@@ -236,7 +236,7 @@ int main(void)
 		if(UART_1.Uartrxsta == 1)
 		{
 			printf("接受的数据\r\n");
-			usartd1masend(debug_rx,sizeof(debug_rx));
+			printf("%s",debug_rx);
 			UART_1.USART_RX_LEN = 0;
 			UART_1.Uartrxsta = 0;
 			printf("\r\n");
@@ -244,9 +244,15 @@ int main(void)
 		
 		if(0==1)
 		{
-			sprintf((char*)UART_2.USART_TX_Buff,"page7.t0.txt=\"%d\"\xff\xff\xff",debugsdsdd);
-			sprintf((char*)UART_2.USART_TX_Buff,"%s page7.t0.txt=\"%d\"\xff\xff\xff",UART_2.USART_TX_Buff,debugsdsdd);
+			memset(UART_2.USART_TX_Buff,0,sizeof(UART_2.USART_TX_Buff));
+			sprintf((char*)UART_2.USART_TX_Buff,"HAND.t6.txt=\"%0.2f\"\xff\xff\xff",debugsdsdd);
+			sprintf((char*)UART_2.USART_TX_Buff,"%sHAND.t7.txt=\"%0.2f\"\xff\xff\xff",UART_2.USART_TX_Buff,debugsdsdd);
+			sprintf((char*)UART_2.USART_TX_Buff,"%sHAND.t8.txt=\"%0.2f\"\xff\xff\xff",UART_2.USART_TX_Buff,debugsdsdd);
+			sprintf((char*)UART_2.USART_TX_Buff,"%sHAND.t9.txt=\"%0.2f\"\xff\xff\xff",UART_2.USART_TX_Buff,debugsdsdd);
+			sprintf((char*)UART_2.USART_TX_Buff,"%sHAND.t10.txt=\"%0.2f\"\xff\xff\xff",UART_2.USART_TX_Buff,debugsdsdd);
+			sprintf((char*)UART_2.USART_TX_Buff,"%sHAND.t11.txt=\"%0.2f\"\xff\xff\xff",UART_2.USART_TX_Buff,debugsdsdd);
 			
+			usartd2masend(UART_2.USART_TX_Buff,sizeof(UART_2.USART_TX_Buff));
 		}
 
     /* add user code end 3 */

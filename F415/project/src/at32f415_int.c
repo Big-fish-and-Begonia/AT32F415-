@@ -426,10 +426,10 @@ void USART1_IRQHandler(void)
 	uint8_t clear;
 	if(usart_flag_get(USART1, USART_IDLEF_FLAG) != RESET)
 	{
-		clear=USART1->sts;                                              // USART1���������жϱ�־λ
-		clear=USART1->dt;												// USART1���������жϱ�־λ
+		clear=USART1->sts;    
+		clear=USART1->dt;	
 		clear&=0;
-		UART_1.Uartrxsta = 1; //�������ɱ�־λ
+		UART_1.Uartrxsta = 1; 
 		UART_1.USART_RX_LEN = 512 - dma_data_number_get(DMA1_CHANNEL1);
 		memcpy(debug_rx,UART_1.USART_RX_Buff,UART_1.USART_RX_LEN);
 		usart1dmarecv(UART_1.USART_RX_Buff,UART_1.USART_RX_LEN);
@@ -448,7 +448,17 @@ void USART1_IRQHandler(void)
 void USART2_IRQHandler(void)
 {
   /* add user code begin USART2_IRQ 0 */
-
+//	uint8_t clear1;
+//	if(usart_flag_get(USART2, USART_IDLEF_FLAG) != RESET)
+//	{
+//		clear1=USART2->sts;    
+//		clear1=USART2->dt;	
+//		clear1&=0;
+//		UART_2.Uartrxsta = 1; 
+//		UART_2.USART_RX_LEN = 512 - dma_data_number_get(DMA1_CHANNEL3);
+//		//memcpy(debug_rx,UART_2.USART_RX_Buff,UART_2.USART_RX_LEN);
+//		usart1dmarecv(UART_2.USART_RX_Buff,UART_2.USART_RX_LEN);
+//	}
   /* add user code end USART2_IRQ 0 */
   /* add user code begin USART2_IRQ 1 */
 
@@ -463,7 +473,17 @@ void USART2_IRQHandler(void)
 void USART3_IRQHandler(void)
 {
   /* add user code begin USART3_IRQ 0 */
-
+	uint8_t clear2;
+	if(usart_flag_get(USART3, USART_IDLEF_FLAG) != RESET)
+	{
+		clear2=USART3->sts;    
+		clear2=USART3->dt;	
+		clear2&=0;
+		UART_3.Uartrxsta = 1; 
+		UART_3.USART_RX_LEN = 512 - dma_data_number_get(DMA1_CHANNEL5);
+		//memcpy(debug_rx,UART_3.USART_RX_Buff,UART_3.USART_RX_LEN);
+		usart1dmarecv(UART_3.USART_RX_Buff,UART_3.USART_RX_LEN);
+	}
   /* add user code end USART3_IRQ 0 */
   /* add user code begin USART3_IRQ 1 */
 
