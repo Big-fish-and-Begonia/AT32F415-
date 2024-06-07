@@ -1,6 +1,6 @@
 Dependencies for Project 'F415', Target 'F415': (DO NOT MODIFY !)
 CompilerVersion: 5060960::V5.06 update 7 (build 960)::.\ARMV5
-F (..\src\main.c)(0x665F193D)(-c --cpu Cortex-M4 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\..\libraries\drivers\inc -I ..\..\libraries\cmsis\cm4\core_support -I ..\..\libraries\cmsis\cm4\device_support -I ..\inc -I ..\src -I ..\MDK_V5-IC:\Users\Admin\AppData\Local\Arm\Packs\ArteryTek\AT32F415_DFP\2.1.4\Device\Include-D__UVISION_VERSION="538" -DAT32F415CBT7 -DAT32F415CBT7 -DUSE_STDPERIPH_DRIVER-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+F (..\src\main.c)(0x666177B7)(-c --cpu Cortex-M4 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\..\libraries\drivers\inc -I ..\..\libraries\cmsis\cm4\core_support -I ..\..\libraries\cmsis\cm4\device_support -I ..\inc -I ..\src -I ..\MDK_V5-IC:\Users\Admin\AppData\Local\Arm\Packs\ArteryTek\AT32F415_DFP\2.1.4\Device\Include-D__UVISION_VERSION="538" -DAT32F415CBT7 -DAT32F415CBT7 -DUSE_STDPERIPH_DRIVER-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
 I (..\inc\at32f415_wk_config.h)(0x665F170B)
 I (..\..\libraries\cmsis\cm4\device_support\at32f415.h)(0x6655DE6A)
 I (..\..\libraries\cmsis\cm4\core_support\core_cm4.h)(0x6655DE6A)
@@ -28,7 +28,7 @@ I (..\..\libraries\drivers\inc\at32f415_tmr.h)(0x6655DE6A)
 I (..\..\libraries\drivers\inc\at32f415_usart.h)(0x6655DE6A)
 I (..\..\libraries\drivers\inc\at32f415_usb.h)(0x6655DE6A)
 I (C:\Keil_v5\ARM\ARMV5\include\stdio.h)(0x5E8E3CC2)
-I (..\MDK_V5\value.h)(0x665F1A4B)
+I (..\MDK_V5\value.h)(0x6660512E)
 I (..\MDK_V5\delay.h)(0x665DB011)
 I (C:\Keil_v5\ARM\ARMV5\include\string.h)(0x5E8E3CC2)
 F (..\src\at32f415_wk_config.c)(0x665DBB2D)(-c --cpu Cortex-M4 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\..\libraries\drivers\inc -I ..\..\libraries\cmsis\cm4\core_support -I ..\..\libraries\cmsis\cm4\device_support -I ..\inc -I ..\src -I ..\MDK_V5-IC:\Users\Admin\AppData\Local\Arm\Packs\ArteryTek\AT32F415_DFP\2.1.4\Device\Include-D__UVISION_VERSION="538" -DAT32F415CBT7 -DAT32F415CBT7 -DUSE_STDPERIPH_DRIVER-o .\objects\at32f415_wk_config.o --omf_browse .\objects\at32f415_wk_config.crf --depend .\objects\at32f415_wk_config.d)
@@ -85,10 +85,10 @@ I (..\..\libraries\drivers\inc\at32f415_spi.h)(0x6655DE6A)
 I (..\..\libraries\drivers\inc\at32f415_tmr.h)(0x6655DE6A)
 I (..\..\libraries\drivers\inc\at32f415_usart.h)(0x6655DE6A)
 I (..\..\libraries\drivers\inc\at32f415_usb.h)(0x6655DE6A)
-I (..\MDK_V5\value.h)(0x665F1A4B)
+I (..\MDK_V5\value.h)(0x6660512E)
 I (C:\Keil_v5\ARM\ARMV5\include\string.h)(0x5E8E3CC2)
-F (.\value.c)(0x665F1A3E)(-c --cpu Cortex-M4 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\..\libraries\drivers\inc -I ..\..\libraries\cmsis\cm4\core_support -I ..\..\libraries\cmsis\cm4\device_support -I ..\inc -I ..\src -I ..\MDK_V5-IC:\Users\Admin\AppData\Local\Arm\Packs\ArteryTek\AT32F415_DFP\2.1.4\Device\Include-D__UVISION_VERSION="538" -DAT32F415CBT7 -DAT32F415CBT7 -DUSE_STDPERIPH_DRIVER-o .\objects\value.o --omf_browse .\objects\value.crf --depend .\objects\value.d)
-I (value.h)(0x665F1A4B)
+F (.\value.c)(0x66614460)(-c --cpu Cortex-M4 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\..\libraries\drivers\inc -I ..\..\libraries\cmsis\cm4\core_support -I ..\..\libraries\cmsis\cm4\device_support -I ..\inc -I ..\src -I ..\MDK_V5-IC:\Users\Admin\AppData\Local\Arm\Packs\ArteryTek\AT32F415_DFP\2.1.4\Device\Include-D__UVISION_VERSION="538" -DAT32F415CBT7 -DAT32F415CBT7 -DUSE_STDPERIPH_DRIVER-o .\objects\value.o --omf_browse .\objects\value.crf --depend .\objects\value.d)
+I (value.h)(0x6660512E)
 I (..\..\libraries\cmsis\cm4\device_support\at32f415.h)(0x6655DE6A)
 I (..\..\libraries\cmsis\cm4\core_support\core_cm4.h)(0x6655DE6A)
 I (C:\Keil_v5\ARM\ARMV5\include\stdint.h)(0x5E8E3CC2)
@@ -114,7 +114,7 @@ I (..\..\libraries\drivers\inc\at32f415_spi.h)(0x6655DE6A)
 I (..\..\libraries\drivers\inc\at32f415_tmr.h)(0x6655DE6A)
 I (..\..\libraries\drivers\inc\at32f415_usart.h)(0x6655DE6A)
 I (..\..\libraries\drivers\inc\at32f415_usb.h)(0x6655DE6A)
-F (.\value.h)(0x665F1A4B)()
+F (.\value.h)(0x6660512E)()
 F (.\delay.c)(0x665DB04D)(-c --cpu Cortex-M4 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\..\libraries\drivers\inc -I ..\..\libraries\cmsis\cm4\core_support -I ..\..\libraries\cmsis\cm4\device_support -I ..\inc -I ..\src -I ..\MDK_V5-IC:\Users\Admin\AppData\Local\Arm\Packs\ArteryTek\AT32F415_DFP\2.1.4\Device\Include-D__UVISION_VERSION="538" -DAT32F415CBT7 -DAT32F415CBT7 -DUSE_STDPERIPH_DRIVER-o .\objects\delay.o --omf_browse .\objects\delay.crf --depend .\objects\delay.d)
 I (delay.h)(0x665DB011)
 I (..\..\libraries\cmsis\cm4\device_support\at32f415.h)(0x6655DE6A)
@@ -143,6 +143,35 @@ I (..\..\libraries\drivers\inc\at32f415_tmr.h)(0x6655DE6A)
 I (..\..\libraries\drivers\inc\at32f415_usart.h)(0x6655DE6A)
 I (..\..\libraries\drivers\inc\at32f415_usb.h)(0x6655DE6A)
 F (.\delay.h)(0x665DB011)()
+F (.\W5500.c)(0x66616A9E)(-c --cpu Cortex-M4 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\..\libraries\drivers\inc -I ..\..\libraries\cmsis\cm4\core_support -I ..\..\libraries\cmsis\cm4\device_support -I ..\inc -I ..\src -I ..\MDK_V5-IC:\Users\Admin\AppData\Local\Arm\Packs\ArteryTek\AT32F415_DFP\2.1.4\Device\Include-D__UVISION_VERSION="538" -DAT32F415CBT7 -DAT32F415CBT7 -DUSE_STDPERIPH_DRIVER-o .\objects\w5500.o --omf_browse .\objects\w5500.crf --depend .\objects\w5500.d)
+I (..\..\libraries\cmsis\cm4\device_support\at32f415.h)(0x6655DE6A)
+I (..\..\libraries\cmsis\cm4\core_support\core_cm4.h)(0x6655DE6A)
+I (C:\Keil_v5\ARM\ARMV5\include\stdint.h)(0x5E8E3CC2)
+I (..\..\libraries\cmsis\cm4\core_support\cmsis_version.h)(0x6655DE6A)
+I (..\..\libraries\cmsis\cm4\core_support\cmsis_compiler.h)(0x6655DE6A)
+I (..\..\libraries\cmsis\cm4\core_support\cmsis_armcc.h)(0x6655DE6A)
+I (..\..\libraries\cmsis\cm4\core_support\mpu_armv7.h)(0x6655DE6A)
+I (..\..\libraries\cmsis\cm4\device_support\system_at32f415.h)(0x6655DE6A)
+I (..\..\libraries\drivers\inc\at32f415_def.h)(0x6655DE6A)
+I (..\inc\at32f415_conf.h)(0x665DBB2D)
+I (..\..\libraries\drivers\inc\at32f415_crc.h)(0x6655DE6A)
+I (..\..\libraries\drivers\inc\at32f415_crm.h)(0x6655DE6A)
+I (..\..\libraries\drivers\inc\at32f415_debug.h)(0x6655DE6A)
+I (..\..\libraries\drivers\inc\at32f415_dma.h)(0x6655DE6A)
+I (..\..\libraries\drivers\inc\at32f415_ertc.h)(0x6655DE6A)
+I (..\..\libraries\drivers\inc\at32f415_exint.h)(0x6655DE6A)
+I (..\..\libraries\drivers\inc\at32f415_flash.h)(0x6655DE6A)
+I (..\..\libraries\drivers\inc\at32f415_gpio.h)(0x6655DE6A)
+I (..\..\libraries\drivers\inc\at32f415_i2c.h)(0x6655DE6A)
+I (..\..\libraries\drivers\inc\at32f415_misc.h)(0x6655DE6A)
+I (..\..\libraries\drivers\inc\at32f415_pwc.h)(0x6655DE6A)
+I (..\..\libraries\drivers\inc\at32f415_spi.h)(0x6655DE6A)
+I (..\..\libraries\drivers\inc\at32f415_tmr.h)(0x6655DE6A)
+I (..\..\libraries\drivers\inc\at32f415_usart.h)(0x6655DE6A)
+I (..\..\libraries\drivers\inc\at32f415_usb.h)(0x6655DE6A)
+I (W5500.h)(0x6539D169)
+I (delay.h)(0x665DB011)
+F (.\w5500.h)(0x6539D169)()
 F (..\..\libraries\drivers\src\at32f415_crc.c)(0x6655DE6A)(-c --cpu Cortex-M4 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\..\libraries\drivers\inc -I ..\..\libraries\cmsis\cm4\core_support -I ..\..\libraries\cmsis\cm4\device_support -I ..\inc -I ..\src -I ..\MDK_V5-IC:\Users\Admin\AppData\Local\Arm\Packs\ArteryTek\AT32F415_DFP\2.1.4\Device\Include-D__UVISION_VERSION="538" -DAT32F415CBT7 -DAT32F415CBT7 -DUSE_STDPERIPH_DRIVER-o .\objects\at32f415_crc.o --omf_browse .\objects\at32f415_crc.crf --depend .\objects\at32f415_crc.d)
 I (..\inc\at32f415_conf.h)(0x665DBB2D)
 I (..\..\libraries\drivers\inc\at32f415_crc.h)(0x6655DE6A)

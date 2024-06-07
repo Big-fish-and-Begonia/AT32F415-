@@ -4,6 +4,7 @@
 ".\objects\at32f415_int.o"
 ".\objects\value.o"
 ".\objects\delay.o"
+".\objects\w5500.o"
 ".\objects\at32f415_crc.o"
 ".\objects\at32f415_crm.o"
 ".\objects\at32f415_debug.o"

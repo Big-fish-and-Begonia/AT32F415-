@@ -244,15 +244,26 @@ int main(void)
 		
 		if(0==1)
 		{
+			//HAND 界面
 			memset(UART_2.USART_TX_Buff,0,sizeof(UART_2.USART_TX_Buff));
-			sprintf((char*)UART_2.USART_TX_Buff,"HAND.t6.txt=\"%0.2f\"\xff\xff\xff",debugsdsdd);
-			sprintf((char*)UART_2.USART_TX_Buff,"%sHAND.t7.txt=\"%0.2f\"\xff\xff\xff",UART_2.USART_TX_Buff,debugsdsdd);
-			sprintf((char*)UART_2.USART_TX_Buff,"%sHAND.t8.txt=\"%0.2f\"\xff\xff\xff",UART_2.USART_TX_Buff,debugsdsdd);
-			sprintf((char*)UART_2.USART_TX_Buff,"%sHAND.t9.txt=\"%0.2f\"\xff\xff\xff",UART_2.USART_TX_Buff,debugsdsdd);
-			sprintf((char*)UART_2.USART_TX_Buff,"%sHAND.t10.txt=\"%0.2f\"\xff\xff\xff",UART_2.USART_TX_Buff,debugsdsdd);
-			sprintf((char*)UART_2.USART_TX_Buff,"%sHAND.t11.txt=\"%0.2f\"\xff\xff\xff",UART_2.USART_TX_Buff,debugsdsdd);
+			sprintf((char*)UART_2.USART_TX_Buff,"HAND.t6.txt=\"%0.2f\"\xff\xff\xff",state1.Axis_1_Pos);
+			sprintf((char*)UART_2.USART_TX_Buff,"%sHAND.t7.txt=\"%0.2f\"\xff\xff\xff",UART_2.USART_TX_Buff,state1.Axis_2_Pos);
+			sprintf((char*)UART_2.USART_TX_Buff,"%sHAND.t8.txt=\"%0.2f\"\xff\xff\xff",UART_2.USART_TX_Buff,state1.Axis_3_Pos);
+			sprintf((char*)UART_2.USART_TX_Buff,"%sHAND.t9.txt=\"%0.2f\"\xff\xff\xff",UART_2.USART_TX_Buff,state1.Axis_4_Pos);
+			sprintf((char*)UART_2.USART_TX_Buff,"%sHAND.t10.txt=\"%0.2f\"\xff\xff\xff",UART_2.USART_TX_Buff,state1.Axis_5_Pos);
+			sprintf((char*)UART_2.USART_TX_Buff,"%sHAND.t11.txt=\"%0.2f\"\xff\xff\xff",UART_2.USART_TX_Buff,state1.Axis_6_Pos);
 			
 			usartd2masend(UART_2.USART_TX_Buff,sizeof(UART_2.USART_TX_Buff));
+		}
+		if(0==1)
+		{
+			memset(UART_2.USART_TX_Buff,0,sizeof(UART_2.USART_TX_Buff));
+			sprintf((char*)UART_2.USART_TX_Buff,"version.t8.txt=\"0.0.1\"\xff\xff\xff");
+			
+		}
+		if(0==1)
+		{
+			
 		}
 
     /* add user code end 3 */
